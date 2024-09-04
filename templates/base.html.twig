@@ -20,6 +20,19 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+            <div class="container-wrap">
+                {% block header %}
+                    {% include "partials/_header.html.twig" %}
+                {% endblock %}
+
+                {% block body %}
+                {% endblock %}
+
+                {% block footer %}
+                    {% include "partials/_footer.html.twig" %}
+                {% endblock %}
+            </div>
+
     </body>
 </html>
