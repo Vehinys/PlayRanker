@@ -51,7 +51,7 @@
 
 /* -------------------------------------------------------  */
 
-/* BODY HOME */
+/* TEXT IN IMG */
 
 #bg-home {
   width: 100%;
@@ -76,6 +76,7 @@
 }
 
 .container-header-title h1 {
+  font-size: 60px;
   color:#ECC33E;
   padding-bottom: 50px;
   text-shadow: 2px 2px 0px #000000, 5px 4px 0px rgba(0,0,0,0.15), 2px 2px 2px rgba(206,89,55,0);
@@ -83,11 +84,8 @@
 }
 
 .container-header-title b {
-  font-size: 60px;
   font-family: langar;
 }
-
-
 
 .container-header-title h2 {
   width: 60%;
@@ -95,12 +93,94 @@
   text-align: center;
 }
 
+/* -------------------------------------------------------  */
 
+.container-body{
+  width: 100%;
+  background: linear-gradient(180deg, rgba(202,170,61,1) 0%, rgba(151,132,60,1) 10%, rgba(120,109,59,1) 20%, rgba(95,90,58,1) 30%, rgba(73,74,57,1) 40%, 
+  rgba(57,62,56,1) 50%, rgba(40,50,55,1) 60%, rgba(37,48,55,1) 70%, rgba(34,46,55,1) 80%, rgba(29,43,55,1) 90%, rgba(21,36,54,1) 100%);
+}
 
+/* 100% GRATUIT */
 
+.container-body-h3 {
+  text-align: -webkit-center;
+}
+.container-body-h3 h3 {
+  width: 40%;
+  color: white;
+  padding: 50px 0;
+  font-size: 70px;
+  text-align: center;
+  font-family: langar;
+}
 
+/* -------------------------------------------------------  */
 
+/* cards */
 
+.container-card {
+  gap: 100px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: -webkit-center;
+}
+
+.card {
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+  border: 3px solid #ECC33E;
+}
+
+.card p {
+  font-size: 25px;
+}
+
+.card-title {
+  height: 100px;
+  align-content: center;
+  border-radius: 15px 15px 0 0;
+  background-color: #ECC33E;
+  border: 3px solid #ECC33E;
+  font-size: 25px;
+}
+
+.displayFlex {
+  display: flex;
+  align-items: flex-end;
+}
+
+.colorYellow {
+  color: #ECC33E;
+  margin-top: 25px;
+}
+
+.colorWhite {
+  color:white;
+  margin-top: 25px;
+}
+
+.container-card-information {
+  height: 375px;
+}
+
+.information-card {
+  justify-content: space-between;
+  padding: 10px 10px 0 10px;
+}
+
+.profil {
+  border: white 3px solid;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%
+}
+
+.info-card {
+  padding: 25px 0 0px 10px;
+}
 
 /* -------------------------------------------------------  */
 
