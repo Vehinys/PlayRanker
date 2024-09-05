@@ -1,12 +1,156 @@
+/* -------------------------------------------------------  */
+
 .langar-regular {
+  font-weight: 400;
+  font-style: normal;
     font-family: "Langar", system-ui;
-    font-weight: 400;
-    font-style: normal;
   }
+
+.lalezar-regular {
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Lalezar", system-ui;
+}
 
 *{
     margin: 0;
     padding: 0;
+    font-family: lalezar;
     text-decoration: none;
     box-sizing: border-box;
+}
+
+/* NAV - BAR */
+.container-header{
+  margin: 50px 0;
+}
+
+.container-header ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav-a {
+  color: #ECC33E;
+  font-size: 30px;
+}
+
+.playranker {
+  font-size: 70px;
+  font-family: langar;
+  color: #ECC33E;
+}
+
+/* -------------------------------------------------------  */
+
+/* BODY HOME */
+
+.bg-home {
+  background-image: url("img/BG-IMAGE-BLACKOPS6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+}
+
+
+
+
+
+
+/* -------------------------------------------------------  */
+
+/* FOOTER*/
+
+footer {
+  width: 100%;
+  text-align: center;
+  background: rgb(88,99,112);
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
+}
+
+footer h2 {
+  font-size: 40px;
+  text-align: start;
+  padding: 50px 0 10px 40px;
+  font-family: langar;
+  color: #ECC33E;
+}
+
+#information {
+  width: 70%;
+  color: white;
+  text-align:left;
+  font-size: 18px;
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.container-footer {
+  display: flex;
+}
+
+.information {
+  width: 30%;
+}
+
+.liens {
+  gap: 80px;
+  width: 50%;
+  display: flex;
+  margin: 50px 0;
+  justify-content: center;
+}
+
+.liens p {
+  font-size: 20px;
+  color: #ECC33E;
+  text-align: start;
+}
+
+.liens a {
+  display: flex;
+  color: white;
+  font-size: 15px;
+}
+
+.reseaux {
+  width: 20%;
+  display: flex;
+  margin: 50px 0;
+  justify-content: center;
+}
+
+.reseaux p {
+  font-size: 20px;
+  color: #ECC33E;
+  text-align: start;
+}
+
+.reseaux a {
+  gap: 10px;
+  display: flex;
+  color: white;
+  font-size: 13px;
+  align-items: center;
+}
+
+.separation {
+  margin: 15px 0;
+}
+
+small {
+  color: #ECC33E;
+  font-size: 13px;
+}
+
+.small a {
+  color: white;
+  font-size: 13px;
+}
+
+.small p {
+  color :#ECC33E;
+  padding-bottom: 5px;
 }
