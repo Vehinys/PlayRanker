@@ -278,3 +278,121 @@ small {
   color :#ECC33E;
   padding-bottom: 5px;
 }
+
+/* PARALAX*/
+
+
+
+@font-face {
+	font-family: "wild_worldbold";
+	src:
+		url("https://assets.codepen.io/756881/wild_world-webfont.woff2") format("woff2"),
+		url("https://assets.codepen.io/756881/wild_world-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.min-vh-100 {
+	min-height: 100vh;
+}
+
+/* parallax */
+
+.section-parallax {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.bg-parallax {
+    background: url('https://images.pexels.com/photos/1532997/pexels-photo-1532997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	z-index: 30;
+	position: relative;
+	overflow: hidden;
+	background-position-y: 0px;
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(
+		  rgba(0, 0, 0, 0.5) 0,
+		  rgba(0, 0, 0, 0.3) 50%,
+		  rgba(0, 0, 0, 0.1) 100%
+		);
+		z-index: -1;
+	}
+}
+
+.text-parallax {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	& > h1 {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		&:nth-child(1) {
+			z-index: 30;
+			color: transparent;
+			transform: translate(-50%, -100%);
+			-webkit-text-stroke-color: #e5456c;
+		}
+		&:nth-child(2) {
+			z-index: 30;
+			color: #e0e0e0;
+			transform: translateX(-50%);
+			-webkit-text-stroke-color: #e0e0e0;
+		}
+	}
+}
+
+.header-wild-world {
+	font-family: "wild_worldbold";
+	font-size: clamp(12px, 12vw, 250px);
+	text-align: center;
+	line-height: 0.67;
+	margin: 0;
+	user-select: none;
+	text-align: center;
+	color: transparent;
+	word-spacing: -25px;
+	white-space: nowrap;
+	text-align: center;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: #e5456c;
+}
+
+/* credits*/
+
+section:has(.credits) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.credits {
+	color: #e0e0e0;
+
+	& > a {
+		color: rgba(#e5456c, 1);
+		text-decoration: none;
+		transition-property: color;
+		transition-timing-function: cubic-bezier(.4,0,.2,1);
+		transition-duration: 0.25s;
+		&:hover {
+			color: rgba(#e5456c, 0.85);
+		}
+	}
+}
