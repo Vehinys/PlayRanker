@@ -18,6 +18,7 @@
   font-family: lalezar;
   text-decoration: none;
   box-sizing: border-box;
+  text-align: -webkit-center;
 }
 
 /* NAV - BAR */
@@ -35,12 +36,12 @@
 .nav-a {
   color: #ECC33E;
   font-size: 30px;
-  transition: font-size 0.1s ease, text-shadow 0.3s ease; /* Transition sur la taille de police et l'ombre */
+  transition: font-size 0.1s ease, text-shadow 0.1s ease; /* Transition sur la taille de police et l'ombre */
 }
 
 .nav-a:hover {
   font-size: 35px; /* Taille augmentée */
-  text-shadow: 0px 8px 20px rgba(21,36,54,1); /* Effet d'ombre plus prononcé */
+  text-shadow: 2px 4px  8px rgb(119, 119, 119);
 }
 
 .playranker {
@@ -57,13 +58,16 @@
   width: 100%;
   height: 100vh;
   padding: 10px 0;
+  min-height: 100vh;
   position: relative;
   background-size: cover; 
   justify-content: center;
   background-position: center; 
   background-repeat: no-repeat; 
+  background-attachment: fixed;
   background-image: url("/img/bg-blackops6.jpg"); /* Le chemin de l'image */
   text-shadow: 2px 2px 0px #000000, 5px 4px 0px rgba(0,0,0,0.15), 2px 2px 2px rgba(206,89,55,0);
+  border-bottom: #ECC33E solid 3px;
 }
 
 .absolue {
@@ -97,8 +101,8 @@
 
 .container-body{
   width: 100%;
-  background: linear-gradient(180deg, rgba(202,170,61,1) 0%, rgba(151,132,60,1) 10%, rgba(120,109,59,1) 20%, rgba(95,90,58,1) 30%, rgba(73,74,57,1) 40%, 
-  rgba(57,62,56,1) 50%, rgba(40,50,55,1) 60%, rgba(37,48,55,1) 70%, rgba(34,46,55,1) 80%, rgba(29,43,55,1) 90%, rgba(21,36,54,1) 100%);
+  background: rgb(88,99,112);
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
 
 /* 100% GRATUIT */
@@ -108,7 +112,7 @@
 }
 .container-body-h3 h3 {
   width: 40%;
-  color: white;
+  color: #ECC33E;
   padding: 50px 0;
   font-size: 70px;
   text-align: center;
@@ -119,67 +123,56 @@
 
 /* cards */
 
-.container-card {
-  gap: 100px;
-  margin: 10px;
+
+.cards {
+  gap: 150px;
+  width: 80%;
   display: flex;
   justify-content: center;
-  text-align: -webkit-center;
 }
 
 .card {
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  border: 3px solid #ECC33E;
+
+  width: auto;
+  border-radius: 10px;
+  transition-duration: 0.5s;
+  box-shadow: 5px 6px 5px -2px rgba(0,0,0,0.61);
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
 
 .card p {
-  font-size: 25px;
+  font-size: 30px;
+  margin: 0 10px;
 }
 
-.card-title {
-  height: 100px;
-  align-content: center;
-  border-radius: 15px 15px 0 0;
-  background-color: #ECC33E;
-  border: 3px solid #ECC33E;
-  font-size: 25px;
+.card-header {
+  padding: 25px;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.displayFlex {
+.card-info {
   display: flex;
-  align-items: flex-end;
-}
-
-.colorYellow {
-  color: #ECC33E;
-  margin-top: 25px;
-}
-
-.colorWhite {
-  color:white;
-  margin-top: 25px;
-}
-
-.container-card-information {
-  height: 375px;
-}
-
-.information-card {
   justify-content: space-between;
-  padding: 10px 10px 0 10px;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
-.profil {
-  border: white 3px solid;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%
+.profile {
+  width: 250px;
+  border-radius: 100%;
+  margin-top: 50px;
+  filter: grayscale(100%);
+  transition: background-color 0.3s ease;
+  border: solid #ECC33E 3px;
 }
 
-.info-card {
-  padding: 25px 0 0px 10px;
+.comment {
+  display: flex;
 }
 
 /* -------------------------------------------------------  */
@@ -209,6 +202,11 @@ footer h2 {
   font-size: 18px;
   padding-top: 20px;
   padding-left: 40px;
+}
+
+.liens a:hover {
+  color :#ECC33E;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .container-footer {
@@ -277,122 +275,4 @@ small {
 .small p {
   color :#ECC33E;
   padding-bottom: 5px;
-}
-
-/* PARALAX*/
-
-
-
-@font-face {
-	font-family: "wild_worldbold";
-	src:
-		url("https://assets.codepen.io/756881/wild_world-webfont.woff2") format("woff2"),
-		url("https://assets.codepen.io/756881/wild_world-webfont.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-.min-vh-100 {
-	min-height: 100vh;
-}
-
-/* parallax */
-
-.section-parallax {
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.bg-parallax {
-    background: url('https://images.pexels.com/photos/1532997/pexels-photo-1532997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center;
-	background-size: cover;
-	height: 50vh;
-	width: 100%;
-	z-index: 30;
-	position: relative;
-	overflow: hidden;
-	background-position-y: 0px;
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: linear-gradient(
-		  rgba(0, 0, 0, 0.5) 0,
-		  rgba(0, 0, 0, 0.3) 50%,
-		  rgba(0, 0, 0, 0.1) 100%
-		);
-		z-index: -1;
-	}
-}
-
-.text-parallax {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	
-	& > h1 {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		&:nth-child(1) {
-			z-index: 30;
-			color: transparent;
-			transform: translate(-50%, -100%);
-			-webkit-text-stroke-color: #e5456c;
-		}
-		&:nth-child(2) {
-			z-index: 30;
-			color: #e0e0e0;
-			transform: translateX(-50%);
-			-webkit-text-stroke-color: #e0e0e0;
-		}
-	}
-}
-
-.header-wild-world {
-	font-family: "wild_worldbold";
-	font-size: clamp(12px, 12vw, 250px);
-	text-align: center;
-	line-height: 0.67;
-	margin: 0;
-	user-select: none;
-	text-align: center;
-	color: transparent;
-	word-spacing: -25px;
-	white-space: nowrap;
-	text-align: center;
-	-webkit-text-stroke-width: 1.5px;
-	-webkit-text-stroke-color: #e5456c;
-}
-
-/* credits*/
-
-section:has(.credits) {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.credits {
-	color: #e0e0e0;
-
-	& > a {
-		color: rgba(#e5456c, 1);
-		text-decoration: none;
-		transition-property: color;
-		transition-timing-function: cubic-bezier(.4,0,.2,1);
-		transition-duration: 0.25s;
-		&:hover {
-			color: rgba(#e5456c, 0.85);
-		}
-	}
 }
