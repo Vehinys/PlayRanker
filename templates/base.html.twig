@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Déclaration de l'encodage des caractères -->
         <meta charset="UTF-8">
+        
+        <!-- Titre de la page, modifiable via les blocs Twig -->
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <!-- Icône de la page (favicon) -->
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 
         viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text 
         y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
+        <!-- Préconnexion aux serveurs de Google Fonts pour améliorer la vitesse de chargement -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+        <!-- Chargement des polices Langar et Lalezar depuis Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Langar&family=Lalezar&display=swap" rel="stylesheet">
 
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800">
-        
+        <!-- Chargement du CSS de Flickity (carousel) -->
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+        <!-- Chargement de la bibliothèque GSAP (animations JavaScript) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+
+        <!-- Chargement de la bibliothèque Chroma.js (manipulation des couleurs) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+
+        <!-- Chargement du JavaScript de Flickity (carousel) -->
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+        <!-- Bloc pour les styles additionnels chargés via Twig -->
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{asset('css/style.css') }}">
-
-        
-
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
 
+        <!-- Bloc pour les scripts additionnels chargés via Twig -->
         {% block javascripts %}
-        <script src="#{{asset('js/script.js')}}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
+        <!-- Conteneur principal de la page -->
+        <div class="container-wrap">
+            
+            <!-- Bloc d'en-tête, inclus depuis un fichier Twig partiel -->
+            {% block header %}
+                {% include "partials/_header.html.twig" %}
+            {% endblock %}
 
-            <div class="container-wrap">
-                {% block header %}
-                    {% include "partials/_header.html.twig" %}
-                {% endblock %}
+            <!-- Bloc principal du corps de la page -->
+            {% block body %}
+            {% endblock %}
 
-                {% block body %}
-                {% endblock %}
-
-                {% block footer %}
-                    {% include "partials/_footer.html.twig" %}
-                {% endblock %}
-            </div>
-
+            <!-- Bloc de pied de page, inclus depuis un fichier Twig partiel -->
+            {% block footer %}
+                {% include "partials/_footer.html.twig" %}
+            {% endblock %}
+        </div>
     </body>
 </html>

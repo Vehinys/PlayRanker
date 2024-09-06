@@ -4,99 +4,153 @@
 
 {% block body %}
 
+<!-- -------------------------------------------------------  -->
+<!-- SECTION PRINCIPALE -->
 <div class="container-body">
 
+  <!-- -------------------------------------------------------  -->
+  <!-- TITRE PRINCIPAL ET DESCRIPTION -->
   <section class="container-header-title absolue">
-
     <h1> Bienvenue sur <b> PlayRanker </b> </h1>
-
-      <h2>
-
-        Le premier espace en ligne dédié exclusivement à l'évaluation des jeux !  
-        Que vous soyez un joueur passionné ou un curieux à la recherche de nouveaux défis, 
-        nous sommes votre référence ultime. Découvrez nos évaluations, 
-        des astuces inédites pour maîtriser vos jeux préférés, 
-        et des avis d'experts pour vous guider dans vos choix.
-
-      </h2>
-
+    <h2>
+      Le premier espace en ligne dédié exclusivement à l'évaluation des jeux !  
+      Que vous soyez un joueur passionné ou un curieux à la recherche de nouveaux défis, 
+      nous sommes votre référence ultime. Découvrez nos évaluations, 
+      des astuces inédites pour maîtriser vos jeux préférés, 
+      et des avis d'experts pour vous guider dans vos choix.
+    </h2>
   </section>
 
+  <!-- -------------------------------------------------------  -->
+  <!-- SECTION NOTEZ-LES -->
   <section class="container-body-h3">
     <h3> Notez-les, c'est 100% gratuit ! </h3>
-    </section>
+  </section>
 
-    <section class="cards">
-      <div class="card card-gauche">
-        <div class="card-header gauche">
-          <p>TOP 5</p>
-          <p>Des meilleurs notes</p>
-        </div>
-        <div class="card-body">
-          <div class="card-info">
-            <p class="game-title">BLACK OPS 6 | PS5</p>
-            <p class="game-points">645 Points</p>
-          </div>
-          <div class="card-info">
-            <p class="game-title">SONIC | SEGA</p>
-            <p class="game-points">523 Points</p>
-          </div>
-          <div class="card-info">
-            <p class="game-title">LARA CROFT | PS4</p>
-            <p class="game-points">327 Points</p>
-          </div>
-          <div class="card-info">
-            <p class="game-title">LEAGUE OF LEGENDS | PC</p>
-            <p class="game-points">278 Points</p>
-          </div>
-          <div class="card-info">
-            <p class="game-title">MINECRAFT | XBOX</p>
-            <p class="game-points">251 Points</p>
-          </div>
-        </div>
+  <!-- -------------------------------------------------------  -->
+  <!-- SECTION CARDS -->
+  <section class="cards">
 
-        <img src="img/test.svg" alt="Logo " width="230" height="230">
+    <!-- -------------------------------------------------------  -->
+    <!-- CARTE GAUCHE : TOP 5 DES MEILLEURES NOTES -->
+    <div class="card card-gauche">
+      <div class="card-header gauche">
+        <p>TOP 5</p>
+        <p>Des meilleurs notes</p>
       </div>
-    
-      <div class="card card-droite">
-        <div class="card-header">
-          <p>Les cinq derniers</p>
-          <p>Commentaires reçus</p>
+      <div class="card-body">
+        <!-- Liste des jeux avec les meilleurs points -->
+        <div class="card-info">
+          <p class="game-title">BLACK OPS 6 | PS5</p>
+          <p class="game-points">645 Points</p>
         </div>
-        <div class="card-body">
-          <div class="comment">
-            <div class="profile"><a href=""> <img src="img/bg-blackops6.jpg" alt="Logo " width="100" height="100"></a></div>
-            <p class="game-title">BLACK OPS 6 | PS5
-            </p>
-            <a href=""><button class="button"><p>voir</p></button></a>
-          </div>
-          <div class="comment">
-            <div class="profile"><a href=""> <img src="img/bg-blackops6.jpg" alt="Logo " width="100" height="100"></a></div>
-            <p class="game-title">SONIC | SEGA
-            </p>
-            <a href=""><button class="button"><p>voir</p></button></a>
-          </div>
-          <div class="comment">
-            <div class="profile"><a href=""> <img src="img/bg-blackops6.jpg" alt="Logo " width="100" height="100"></a></div>
-            <p class="game-title">LARA CROFT | PS4
-            </p>
-              <a href=""><button class="button"><p>voir</p></button></a>
-          </div>
-          <div class="comment">
-            <div class="profile"><a href=""> <img src="img/bg-blackops6.jpg" alt="Logo " width="100" height="100"></a></div>
-            <p class="game-title">LEAGUE OF LEGENDS | PC
-            </p>
-              <a href=""><button class="button"><p>voir</p></button></a>
-          </div>
-          <div class="comment">
-            <div class="profile"><a href=""> <img src="img/bg-blackops6.jpg" alt="Logo " width="100" height="100"></a></div>
-            <p class="game-title">MINECRAFT | XBOX
-            </p>
-              <a href=""><button class="button"><p>voir</p></button></a>
-          </div>
+        <div class="card-info">
+          <p class="game-title">SONIC | SEGA</p>
+          <p class="game-points">523 Points</p>
+        </div>
+        <div class="card-info">
+          <p class="game-title">LARA CROFT | PS4</p>
+          <p class="game-points">327 Points</p>
+        </div>
+        <div class="card-info">
+          <p class="game-title">LEAGUE OF LEGENDS | PC</p>
+          <p class="game-points">278 Points</p>
+        </div>
+        <div class="card-info">
+          <p class="game-title">MINECRAFT | XBOX</p>
+          <p class="game-points">251 Points</p>
         </div>
       </div>
-    </section>
-  </div>
 
-  {% endblock %}
+      <!-- Image associée à la carte gauche -->
+      <img src="img/test.svg" alt="Logo" width="230" height="230">
+    </div>
+
+    <!-- -------------------------------------------------------  -->
+    <!-- CARTE DROITE : Cinq derniers commentaires reçus -->
+    <div class="card card-droite">
+      <div class="card-header">
+        <p>Les cinq derniers</p>
+        <p>Commentaires reçus</p>
+      </div>
+      <div class="card-body">
+        <!-- Liste des derniers commentaires avec les jeux -->
+        <div class="comment">
+          <div class="profile">
+            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
+          </div>
+          <p class="game-title">BLACK OPS 6 | PS5</p>
+          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+        </div>
+        <div class="comment">
+          <div class="profile">
+            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
+          </div>
+          <p class="game-title">SONIC | SEGA</p>
+          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+        </div>
+        <div class="comment">
+          <div class="profile">
+            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
+          </div>
+          <p class="game-title">LARA CROFT | PS4</p>
+          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+        </div>
+        <div class="comment">
+          <div class="profile">
+            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
+          </div>
+          <p class="game-title">LEAGUE OF LEGENDS | PC</p>
+          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+        </div>
+        <div class="comment">
+          <div class="profile">
+            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
+          </div>
+          <p class="game-title">MINECRAFT | XBOX</p>
+          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------  -->
+  <!-- SECTION SLIDER -->
+  <section>
+    <div class="hero-slider" data-carousel>
+      <!-- Première cellule du carousel -->
+      <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6d4fca48-876d-40ed-bb37-3b7dfe487e38/d5vn85d-915b7d79-8417-4cdc-bdfd-0a9c39b7a9af.jpg/v1/fill/w_1233,h_648,q_70,strp/tomb_raider_reborn_by_txusjfuentes_by_txusjfuentes_d5vn85d-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcLzZkNGZjYTQ4LTg3NmQtNDBlZC1iYjM3LTNiN2RmZTQ4N2UzOFwvZDV2bjg1ZC05MTViN2Q3OS04NDE3LTRjZGMtYmRmZC0wYTljMzliN2E5YWYuanBnIiwid2lkdGgiOiI8PTU3MDMifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.aJRkuK7nX-qS6SW_QYmK46m3Nib9eV0xZfYy5JuBod8);background-position: center 30%;">
+        <div class="overlay"></div>
+        <div class="inner">
+          <h3 class="subtitle">PlayRanker</h3>
+          <h2 class="title">"Plongez dans l'univers du jeu vidéo avec notre espace en ligne dédié : évaluations, astuces, et conseils d'experts pour vous accompagner à chaque étape !"</h2>
+          <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
+        </div>
+      </div>
+      <!-- Deuxième cellule du carousel -->
+      <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec6b653d-20ae-41d7-8e78-5a2ec054db72/d96jce6-72cdff18-80d6-44ef-9859-54c6271a9a4b.jpg/v1/fill/w_1024,h_414,q_75,strp/arcade_promotion_art_by_su_ke_d96jce6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDE0IiwicGF0aCI6IlwvZlwvZWM2YjY1M2QtMjBhZS00MWQ3LThlNzgtNWEyZWMwNTRkYjcyXC9kOTZqY2U2LTcyY2RmZjE4LTgwZDYtNDRlZi05ODU5LTU0YzYyNzFhOWE0Yi5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.meTIQcEONzadt2cAwoHuWGelCmBIdMA0AWkDV2DOVgo);">
+        <div class="overlay"></div>
+        <div class="inner">
+          <h3 class="subtitle">PlayRanker</h3>
+          <h2 class="title">"Explorez l'univers de nos jeux vidéo et faites entendre votre voix ! Rendez-vous sur notre espace en ligne pour voter, découvrir des évaluations détaillées."</h2>
+          <a href=""><button class="glow-button"><span>INSCRIPTION</span></button></a>
+        </div>
+      </div>
+      <!-- Troisième cellule du carousel -->
+      <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c83c004e-1370-4756-88e5-4071de797088/dfwtrdo-80c5b3ae-615f-4074-9f0e-c772659e4e79.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M4M2MwMDRlLTEzNzAtNDc1Ni04OGU1LTQwNzFkZTc5NzA4OFwvZGZ3dHJkby04MGM1YjNhZS02MTVmLTQwNzQtOWYwZS1jNzcyNjU5ZTRlNzkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.3iKkKrjeG6eQFUmlq4I48HZ51hGyHGd_qHBelGyZuRo);">
+        <div class="overlay"></div>
+        <div class="inner">
+          <h3 class="subtitle">PlayRanker</h3>
+          <h2 class="title">"Vous avez des questions sur nos jeux ou avez besoin d'aide pour progresser ? Notre espace en ligne est là pour vous ! Rejoignez notre communauté ! "</h2>
+          <a href=""><button class="glow-button"><span>INSCRIPTION</span></button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- -------------------------------------------------------  -->
+<!-- INCLUSION DU SCRIPT -->
+<script src="{{ asset('js/script.js') }}"></script>
+
+{% endblock %}
