@@ -166,18 +166,22 @@
 /* Styles pour l'en-tête de la carte */
 .card-header {
   padding: 35px;
-  color: #000000;
+  color: #ECC33E;
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #ECC33E;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  color: #ffffff;
+  -webkit-box-shadow: inset 0px 3px 9px -1px rgba(0,0,0,0.68); 
+  box-shadow: inset 0px 3px 9px -1px rgba(0,0,0,0.68);
+  text-shadow: 1px 2px 0 #000000, 1px 13px 5px #494848;
 }
 
 /* Styles pour le texte à l'intérieur de l'en-tête de la carte */
 .card-header p {
-  font-size: 40px;
+  font-size: 50px;
 }
 
 /* Styles pour la section gauche des cartes */
