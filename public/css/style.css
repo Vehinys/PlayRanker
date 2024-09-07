@@ -34,7 +34,13 @@
 /* Styles pour le conteneur de la barre de navigation */
 .container-header {
   margin: 50px 0;
+  position: relative; /* Assurez-vous que la barre de navigation est positionnée correctement */
+  z-index: 10; 
+  margin: 0;
+  border-bottom: #ECC33E solid 3px;
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
+  /* Styles pour la liste dans la barre de navigation */
 
 /* Styles pour la liste dans la barre de navigation */
 .container-header ul {
@@ -81,6 +87,7 @@
   border-bottom: #ECC33E solid 3px;
   background-image: url("/img/bg-blackops6.jpg"); /* Le chemin de l'image */
   text-shadow: 2px 2px 0px #000000, 5px 4px 0px rgba(0,0,0,0.15), 2px 2px 2px rgba(206,89,55,0);
+  z-index: 1; 
 }
 
 /* Styles pour les éléments en position absolue */
@@ -98,7 +105,7 @@
 .container-header-title h1 {
   font-size: 70px;
   color: #ECC33E;
-  padding-bottom: 50px;
+  padding: 120px 0;
   text-shadow: 2px 3px 9px #22221f;
 }
 
@@ -670,6 +677,16 @@ small {
 /* -------------------------------------------------------  */
 /* FORMULAIRE DE CONNEXION */
 
-/* Styles pour le formulaire de connexion */
-
-
+.bg-login {
+  width: 100%;
+  padding: 10px 0;
+  min-height: 100vh;
+  position: relative;
+  background-size: cover;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  border-bottom: #ECC33E solid 3px;
+  background-image: url("https://img.goodfon.com/wallpaper/nbig/d/9b/anime-elf-girl-fantasy-ocean.webp"); /* Le chemin de l'image */
+}

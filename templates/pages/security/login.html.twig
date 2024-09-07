@@ -1,4 +1,10 @@
-<div class="form-container">
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<div class="form-container bg-login">
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,3 +43,6 @@
         <button type="submit">Se connecter</button>
     </form>
 </div>
+
+{% endblock %}
+
