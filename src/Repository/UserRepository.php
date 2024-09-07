@@ -22,7 +22,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function findAllUsers()
     {
         return $this->createQueryBuilder('u')
-            ->select('u.id, u.email, u.authCode')
+            ->select('u.id, u.email')
             ->getQuery()
             ->getResult();
     }

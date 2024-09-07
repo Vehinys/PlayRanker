@@ -1,8 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
 <div class="form-container">
     <form method="post">
         {% if error %}
@@ -11,27 +6,34 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        
+        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+
+        {# Affichage des erreurs pour l'email #}
         <label for="inputEmail">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
-        
-        <label for="inputPassword">Password</label>
+        {% if error and error.messageKey == 'Invalid credentials.' %}
+            <div class="alert alert-danger">Identifiants invalides</div>
+        {% endif %}
+
+        {# Affichage des erreurs pour le mot de passe #}
+        <label for="inputPassword">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+        {% if error and error.messageKey == 'Invalid credentials.' %}
+            <div class="alert alert-danger">Mot de passe incorrect</div>
+        {% endif %}
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" name="_remember_me"> Remember me
+                <input type="checkbox" name="_remember_me"> Se souvenir de moi
             </label>
         </div>
 
-        <button type="submit">Sign in</button>
+        <button type="submit">Se connecter</button>
     </form>
 </div>
-{% endblock %}
