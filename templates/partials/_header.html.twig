@@ -26,22 +26,28 @@
             <a class='nav-a' href="">FAQ</a>
           </li>
 
+          {% if app.user %}
+
           <li>
             <a class='nav-a' href="">PROFIL</a>
           </li>
 
           <li>
-            <a class='nav-a' href="">DECONNEXION</a>
+            <a class='nav-a' href="{{ path('logout') }}">DECONNEXION</a>
           </li>
 
-          {# <li>
-            <a class='nav-a' href="">INSCRIPTION</a>
+          {% else %}
+
+          <li>
+            <a class='nav-a' href="{{ path('register') }}">INSCRIPTION</a>
           </li>
 
           <li>
-            <a class='nav-a' href="">CONNEXION</a>
+            <a class='nav-a' href="{{ path('login') }}">CONNEXION</a>
           </li>
-        </ul> #}
+        </ul>
+        
+        {% endif %}
 
       </nav>
 
