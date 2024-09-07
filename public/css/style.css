@@ -666,3 +666,102 @@ small {
   border: 3px solid #ffa501;
   outline: none;
 }
+
+/* -------------------------------------------------------  */
+/* FORMULAIRE DE CONNEXION */
+
+/* Styles pour le formulaire de connexion */
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
+  border-radius: 10px;
+  box-shadow: 0px 10px 13px -7px #000000, 0px 0px 25px 13px rgba(0,0,0,0.32);
+}
+
+/* Styles pour les alertes d'erreur */
+.alert.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Styles pour les champs de saisie */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 3px solid #ECC33E;
+  background-color: #ffffff;
+  color: #333;
+  font-size: 18px;
+  font-family: lalezar;
+  border-radius: 5px;
+  box-shadow: inset 0px 2px 5px rgba(0,0,0,0.3);
+  transition: border 0.3s ease;
+}
+
+/* Styles pour le champ de saisie au focus */
+input[type="email"]:focus, input[type="password"]:focus {
+  border: 3px solid #ffa501;
+  outline: none;
+}
+
+/* Styles pour le label des champs */
+label {
+  font-family: lalezar;
+  font-size: 18px;
+  color: #ECC33E;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Styles pour le bouton de soumission */
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ECC33E;
+  color: #fff;
+  font-size: 18px;
+  font-family: lalezar;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styles pour le bouton de soumission au survol */
+button[type="submit"]:hover {
+  background-color: #ffa501;
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Styles pour le lien de déconnexion */
+a[href="{{ path('app_logout') }}"] {
+  color: #ECC33E;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+a[href="{{ path('app_logout') }}"]:hover {
+  text-decoration: underline;
+  color: #ffa501;
+}
+
+/* Styles pour la case à cocher "Remember me" */
+.checkbox {
+  margin: 20px 0;
+  font-family: lalezar;
+  font-size: 16px;
+  color: #ECC33E;
+}
+
+.checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
