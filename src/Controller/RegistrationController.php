@@ -14,8 +14,14 @@ use Symfony\Component\Routing\Annotation\Route; // Utiliser Annotation au lieu d
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
+    public function register(
+        
+        Request $request, 
+        UserPasswordHasherInterface $userPasswordHasher, 
+        EntityManagerInterface $entityManager
+        
+    ): Response {
+        
         // Création d'une nouvelle instance de User
         $user = new User();
         
