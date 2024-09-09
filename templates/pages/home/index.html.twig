@@ -19,6 +19,12 @@
       des astuces inédites pour maîtriser vos jeux préférés, 
       et des avis d'experts pour vous guider dans vos choix.
     </h2>
+    <div class="recherche_p">
+      <form action="/search" id="searchthis" method="get" type="CustomSearch">
+        <input classe="recherche" id="search" name="q" type="text" placeholder="Rechercher un jeu" />
+        <input id="search-btn" type="submit" value="Rechercher" />
+      </form>
+    </div>
   </section>
 
   <!-- -------------------------------------------------------  -->
@@ -41,23 +47,23 @@
       <div class="card-body">
         <!-- Liste des jeux avec les meilleurs points -->
         <div class="card-info">
-          <p class="game-title">BLACK OPS 6 | PS5</p>
+          <a href=""><p class="game-title">BLACK OPS 6 | PS5</p></a>
           <p class="game-points">645 Points</p>
         </div>
         <div class="card-info">
-          <p class="game-title">SONIC | SEGA</p>
+          <a href=""><p class="game-title">SONIC | SEGA</p></a>
           <p class="game-points">523 Points</p>
         </div>
         <div class="card-info">
-          <p class="game-title">LARA CROFT | PS4</p>
+          <a href=""><p class="game-title">LARA CROFT | PS4</p></a>
           <p class="game-points">327 Points</p>
         </div>
         <div class="card-info">
-          <p class="game-title">LEAGUE OF LEGENDS | PC</p>
+          <a href=""><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
           <p class="game-points">278 Points</p>
         </div>
         <div class="card-info">
-          <p class="game-title">MINECRAFT | XBOX</p>
+          <a href=""><p class="game-title">MINECRAFT | XBOX</p></a>
           <p class="game-points">251 Points</p>
         </div>
       </div>
@@ -79,36 +85,36 @@
           <div class="profile">
             <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
           </div>
-          <p class="game-title">BLACK OPS 6 | PS5</p>
-          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+          
+          <a href=""><p class="game-title">BLACK OPS 6 | PS5</p></a>
         </div>
         <div class="comment">
           <div class="profile">
             <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
           </div>
-          <p class="game-title">SONIC | SEGA</p>
-          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+          
+          <a href=""><p class="game-title">SONIC | SEGA</p></a>
         </div>
         <div class="comment">
           <div class="profile">
             <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
           </div>
-          <p class="game-title">LARA CROFT | PS4</p>
-          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+          
+          <a href=""><p class="game-title">LARA CROFT | PS4</p></a>
         </div>
         <div class="comment">
           <div class="profile">
             <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
           </div>
-          <p class="game-title">LEAGUE OF LEGENDS | PC</p>
-          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+          
+          <a href=""><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
         </div>
         <div class="comment">
           <div class="profile">
             <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
           </div>
-          <p class="game-title">MINECRAFT | XBOX</p>
-          <a href=""><button class="glow-button"><span>Détail</span></button></a>
+          
+          <a href=""><p class="game-title">MINECRAFT | XBOX</p></a>
         </div>
       </div>
     </div>
@@ -152,9 +158,9 @@
 <!-- -------------------------------------------------------  -->
 <!-- CONTACT -->
 
-<section>
+<section class="container-contact">
   <form action="">
-    <div class="container-contact">
+    <div class="container-form">
       <h3>NOUS CONTACTER</h3>
       <input type="text" placeholder="Votre nom / pseudo" name="pseudo" class="input-contact">
       <input type="text" placeholder="Votre email" name="email" class="input-contact">

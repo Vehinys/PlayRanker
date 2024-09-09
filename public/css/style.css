@@ -1,14 +1,8 @@
 /* -------------------------------------------------------  */
 /* FONTS */
 
-/* Styles pour la police Langar */
+/* Styles pour la police */
 
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-}
 
 /* -------------------------------------------------------  */
 /* GLOBAL STYLES */
@@ -34,6 +28,7 @@
   z-index: 10; 
   margin: 0;
   border-bottom: #ECC33E solid 3px;
+  background-position: 0% 1%;
   background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
   /* Styles pour la liste dans la barre de navigation */
@@ -49,22 +44,69 @@
 /* Styles pour les liens de navigation */
 .nav-a {
   color: #ECC33E;
-  font-size: 40px;
+  font-size: 20px;
   transition: font-size 0.1s ease, text-shadow 0.1s ease; /* Transition sur la taille de police et l'ombre */
+  font-weight: bolder;
+}
+
+.nav-a:hover {
+  color: white;
 }
 
 /* Styles pour les liens de navigation au survol */
-.nav-a:hover {
-  font-size: 50px; /* Taille augmentée au survol */
-  text-decoration: underline;
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
 }
 
-/* Styles pour le texte du titre de la page d'accueil */
-.playranker {
-  font-size: 90px;
-  color: #ECC33E;
-  font-family: langar;
+nav ul li {
+  position: relative;
 }
+
+nav ul li a {
+  text-decoration: none;
+  color: black; /* Couleur du texte */
+  font-size: 18px;
+  padding: 10px;
+  position: relative;
+}
+
+nav ul li a::before,
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #ECC33E; /* Couleur des barres */
+  transition: width 0.3s ease;
+}
+
+nav ul li a::before {
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav ul li a::after {
+  bottom: 0;
+  right: 0;
+  transition: width 0.3s ease, right 0.3s ease;
+}
+
+nav ul li a:hover::before {
+  width: 100%; /* Barre supérieure s'étend sur toute la largeur du texte */
+  left: 0; /* Elle démarre de la gauche */
+}
+
+nav ul li a:hover::after {
+  width: 100%; /* Barre inférieure s'étend sur toute la largeur du texte */
+  right: 0; /* Elle démarre de la droite */
+}
+
+
 
 /* -------------------------------------------------------  */
 /* TEXT IN IMG */
@@ -73,7 +115,7 @@
 #bg-home {
   width: 100%;
   padding: 10px 0;
-  min-height: 80vh;
+  min-height: 90vh;
   position: relative;
   background-size: cover;
   justify-content: center;
@@ -81,7 +123,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   border-bottom: #ECC33E solid 3px;
-  background-image: url("/img/bg-blackops6.jpg"); /* Le chemin de l'image */
+  background-image: url(https://cdna.artstation.com/p/assets/images/images/076/408/744/large/hybs-woods-final-full.jpg?1716928038); /* Le chemin de l'image */
   text-shadow: 2px 2px 0px #000000, 5px 4px 0px rgba(0,0,0,0.15), 2px 2px 2px rgba(206,89,55,0);
   z-index: 1; 
 }
@@ -99,22 +141,22 @@
 
 /* Styles pour le titre principal du conteneur d'en-tête */
 .container-header-title h1 {
-  font-size: 70px;
+  font-size: 50px;
   color: #ECC33E;
-  padding: 70px 0;
+  padding: 200px 0 20px 0;
   text-shadow: 2px 3px 9px #22221f;
 }
 
 /* Styles pour le texte en gras du titre */
 .container-header-title b {
-  font-family: langar;
+  font-size:70px;
 }
 
 /* Styles pour le sous-titre du conteneur d'en-tête */
 .container-header-title h2 {
   width: 60%;
   color: white;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   text-shadow: 2px 3px 9px rgba(0, 0, 0, 0.86);
 }
@@ -125,7 +167,6 @@
 /* Styles pour le conteneur principal du corps */
 .container-body {
   width: 100%;
-  padding-bottom: 60px;
   background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
 
@@ -136,11 +177,11 @@
 
 .container-body-h3 h3 {
   width: 34%;
+  margin: 45px 0;
   padding: 50px 0;
-  color: #ECC33E;
   font-size: 70px;
+  color: #ECC33E;
   text-align: center;
-  font-family: langar;
   text-shadow: 2px 3px 9px rgba(0,0,0,0.86);
 }
 
@@ -149,7 +190,7 @@
 
 /* Styles pour le conteneur des cartes */
 .cards {
-  padding: 20px 20px 50px 20px;
+  padding: 20px 20px 90px 20px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -236,6 +277,11 @@
   color: #ffffff;
   flex-direction: column;
   text-align: left;
+  font-weight: bold;
+}
+
+.game-title:hover{
+  color: #ECC33E;
 }
 
 /* Styles pour les points des jeux */
@@ -281,7 +327,7 @@
 /* Styles pour le conteneur du carousel */
 .hero-slider {
   width: 100%;
-  height: 40vh;
+  height: 45vh;
   overflow: hidden;
   position: relative;
   border-top: #ECC33E solid 3px;
@@ -509,7 +555,6 @@ footer h2 {
   font-size: 60px;
   color: #ECC33E;
   text-align: start;
-  font-family: langar;
   padding: 30px 0 0px 85px;
 }
 
@@ -621,12 +666,18 @@ small {
   padding-bottom: 5px;
 }
 
+/* -------------------------------------------------------  */
+/* FORM CONTACT */
 
+
+/* Styles pour la section contact */
+.container-contact {
+  padding: 120px 0;
+}
 
 /* Styles pour le conteneur du formulaire */
-.container-contact {
+.container-form {
   width: 50%;
-  margin-top: 60px;
   background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
   border-radius: 10px;
   padding: 40px;
@@ -634,11 +685,10 @@ small {
 }
 
 /* Styles pour le titre du formulaire */
-.container-contact h3 {
+.container-form h3 {
   font-size: 50px;
   color: #ECC33E;
   text-align: center;
-  font-family: langar;
   margin-bottom: 30px;
   text-shadow: 2px 3px 9px rgba(0,0,0,0.86);
 }
@@ -674,9 +724,145 @@ small {
 /* FORMULAIRE DE CONNEXION */
 
 .bg-login {
+  padding: 10px 0;
+  min-height: 105vh;
+  position: relative;
+  background-size: cover;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url(https://cdna.artstation.com/p/assets/images/images/076/586/446/large/hybs-pegasus.jpg?1717336241) ;
+  background-position: 0% 1%;
+  display: flex;
+  align-items: center;
+}
+
+.login-h1{
+  display: flex;
+}
+
+.section-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container{
+  width: 800px;
+  color: #fff;
+  padding: 50px 60px;
+  border-radius: 15px;
+  background: rgba(5, 5, 5, 0.7)
+}
+
+.register{
+  font-size: 14px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.register a{
+  font-weight: 600;
+  color: #fff;
+  font-size: 20px;
+}
+
+.register p {
+  color: #fff;
+  font-size: 20px;
+}
+
+.register p a:hover{
+  color: #ECC33E;
+}
+
+.btn-login{
+  width: 100%;
+  height: 40px;
+  background: #ECC33E;
+  color: #000;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ECC33E;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 1s;
+}
+
+.btn-login:hover{
+  background: transparent;
+  border: 2px solid #ECC33E;
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ECC33E;
+}
+
+.remember{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  margin: 10px 30px 25px;
+}
+
+.remember a{
+  font-weight: 600;
+  font-size: 20PX;
+  border-bottom: 2px solid transparent;
+  color: #fff;
+}
+
+.remember a:hover{
+  color: #ECC33E;
+}
+
+.input-box{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 15px 0;
+}
+
+.input-box-mdp {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.input-box-email {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border-radius: 5px;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.input-box i{
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+
+.bg-inscription {
   width: 100%;
   padding: 10px 0;
-  min-height: 100vh;
+  min-height: 90vh;
   position: relative;
   background-size: cover;
   justify-content: center;
@@ -684,5 +870,10 @@ small {
   background-repeat: no-repeat;
   background-attachment: fixed;
   border-bottom: #ECC33E solid 3px;
-  background-image: url("https://img.goodfon.com/wallpaper/nbig/d/9b/anime-elf-girl-fantasy-ocean.webp"); /* Le chemin de l'image */
+  z-index: 1; 
+  background-image: url(https://cdna.artstation.com/p/assets/images/images/060/608/988/large/hybs-final.jpg?1678933182);
 }
+
+/* -------------------------------------------------------  */
+/* BARRE DE RECHERCHE */
+
