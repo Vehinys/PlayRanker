@@ -164,10 +164,14 @@ nav ul li a:hover::after {
 /* -------------------------------------------------------  */
 /* BODY */
 
+.container-wrap {
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
+}
+
 /* Styles pour le conteneur principal du corps */
 .container-body {
   width: 100%;
-  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
+
 }
 
 /* Styles pour le titre de la section 100% GRATUIT */
@@ -597,7 +601,8 @@ footer h2 {
 .liens a {
   display: flex;
   color: white;
-  font-size: 20px;
+  padding-top: 5px;
+  font-size: 13px;
 }
 
 /* Styles pour les liens dans la section des liens */
@@ -624,10 +629,11 @@ footer h2 {
 
 /* Styles pour les liens dans la section des réseaux sociaux */
 .reseaux a {
+  padding-top: 10px;
   gap: 10px;
   display: flex;
   color: white;
-  font-size: 20px;
+  font-size: 13px;
   align-items: center;
 }
 
@@ -644,19 +650,18 @@ footer h2 {
 
 /* Styles pour les petits textes dans le pied de page */
 small {
-  font-size: 17px;
+  font-size: 13px;
   color: #ECC33E;
 }
 
 /* Styles pour les liens dans les petits textes */
 .small a {
   color: white;
-  font-size: 17px;
+  font-size: 13px;
 }
 
 .small a:hover {
   color:  #ECC33E;
-  font-size: 17px;
   text-decoration: underline;
 }
 
@@ -877,3 +882,26 @@ small {
 /* -------------------------------------------------------  */
 /* BARRE DE RECHERCHE */
 
+.recherche-form{
+margin-top: 50px;
+}
+
+#search{
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  Padding: 5px;
+  border-radius: 10px;
+  padding: 10px 150px 10px 150px;
+  box-shadow: 0 0 20px #ECC33E;
+  border-color: #ECC33E;
+}
+
+#search-btn {
+  background-color: rgba(21, 36, 54, 1);
+  color: #ECC33E;
+  border-color: #ECC33E;
+  box-shadow: 0 0 20px #ECC33E;
+  Padding: 5px;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+}

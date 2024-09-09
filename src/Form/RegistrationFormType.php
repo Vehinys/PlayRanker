@@ -50,14 +50,14 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez entrer un mot de passe.',
                     ]),
                     new Length([
-                        'min' => 6,    
+                        'min' => 12,    
                         'max' => 4096,
                         'minMessage' => 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
                         'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
                     ]),
                     new Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                        'message' => 'Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/',
+                        'message' => 'Le mot de passe doit comporter au moins 12 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
                     ]), 
                 ],
                 'mapped' => false,
