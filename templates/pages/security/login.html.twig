@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="bg-login">
-    <div class="form-container ">
+    <div class="form-container">
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -23,6 +23,7 @@
 
                 {# Affichage des erreurs pour l'email #}
                 <div class="input-box" >
+                    <label class="required" for="email-label">Email</label>
                     <input class="input-box-email" type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
                     <i class='bx bx-envelope'></i>
                     {% if error and error.messageKey == 'Invalid credentials.' %}
@@ -32,8 +33,9 @@
         
                 {# Affichage des erreurs pour le mot de passe #}
                 <div class="input-box" >
-                    <input class="input-box-mdp" type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe">
-                    <i class='bx bx-lock-alt' ></i>
+                    <label class="required" for="mdp-label">Mot de passe</label>
+                    <input class="input-box-mdp" type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" > <i class='bx bx-lock-alt' ></i> 
+                    
                     {% if error and error.messageKey == 'Invalid credentials.' %}
                         <div class="alert alert-danger">Mot de passe incorrect</div>
                     {% endif %}
@@ -48,11 +50,15 @@
             </div>
 
             <button type="submit" class="btn-login">Se connecter</button>
+            <div >
+                <small class="small"> * = Champs obligatoire</small>
+            </div>
 
             <div class="register">
                 <p>Vous n'avez pas de compte ? <br> 
                 <a href="{{ path('register') }}">Inscription</a></p>
             </div>
+
         </form>
     </div>
 </div>
