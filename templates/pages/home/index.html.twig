@@ -163,13 +163,42 @@
   <!-- CONTACT -->
 
     <section class="container-contact">
-      <form action="">
+      <form action="traitement.php" method="post">
         <div class="container-form">
           <h3>NOUS CONTACTER</h3>
-          <input type="text" placeholder="Votre nom / pseudo" name="pseudo" class="input-contact">
-          <input type="text" placeholder="Votre email" name="email" class="input-contact">
-          <textarea placeholder="Votre message" name="message" class="textarea-contact"></textarea>
-          <button type="submit" class="glow-button"><span>Envoyer</span></button>
+          <div class="contact-form">
+            
+            <p>
+              <label class="form-label required" for="nom">Votre nom et prénom </label>
+              <input placeholder="Votre nom et prénom" type="text"  id="nom" name="nom" class="input-contact">
+            </p>
+  
+            <p>
+              <label class="form-label required" for="sujet">votre sujet </label>
+              <input placeholder="Votre sujet" type="text"  id="sujet" name="sujet" class="input-contact">
+            </p>
+
+          </div>
+
+          <p>
+            <label class="form-label required" for="email">Votre email </label>
+            <input type="text" placeholder="Votre email" name="email" class="input-contact">
+          </p>
+
+          <p>
+            <label class="form-label required" for="message">Votre message </label>
+            <textarea placeholder="Votre message" name="message" class="textarea-contact"></textarea>
+            <br>
+          </p>
+
+          <div>
+            <small class="small form-label-small"> * = Champs obligatoire</small>
+          </div>
+
+          <p>
+            <button type="submit" class="glow-button"><span>Envoyer</span></button>
+          </p>
+
         </div>
       </form>
     </section>

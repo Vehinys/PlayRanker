@@ -725,6 +725,19 @@ small {
   outline: none;
 }
 
+.form-label {
+  display: flex;
+  margin-top: 10px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.form-label-small {
+  display: flex;
+  margin-top: 10px;
+  color: #ECC33E;
+}
+
 /* -------------------------------------------------------  */
 /* FORMULAIRE DE CONNEXION */
 
@@ -1060,4 +1073,16 @@ small {
 
 .bx-envelope{
   margin-top: 10px;
+}
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+#nom, #sujet {
+  width: 460px;
 }
