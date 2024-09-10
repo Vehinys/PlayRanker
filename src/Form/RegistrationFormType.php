@@ -8,10 +8,13 @@ use App\Form\FormExtension\RepeatedPasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -39,7 +42,38 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('password', RepeatedPasswordType::class); // Assurez-vous que cette classe est correctement définie
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'constraints' => [
+                    new NotBlank([ 
+                        'message' => 'Veuillez entrer un mot de passe.',
+                    ]),
+                    new Length([
+                        'min' => 6,    
+                        'max' => 255,
+                        'minMessage' => 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+                        'message' => 'Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                    ]), 
+                ],
+                'mapped' => false,
+                'first_options' => [
+                    'label' => 'Votre mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmez votre mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                    ],
+                ],
+                'invalid_message' => 'Les mots de passe doivent correspondre.',
+            ]);
     }
     
     public function configureOptions(OptionsResolver $resolver): void
