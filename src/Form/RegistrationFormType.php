@@ -4,22 +4,21 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use App\Form\FormExtension\RepeatedPasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', null, [
+            ->add('email', EmailType::class, [ // Utilisation de EmailType pour validation intégrée
                 'label' => 'Email',
                 'attr' => [
                     'placeholder' => 'Email',
@@ -28,10 +27,7 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez entrer une adresse email.',
                     ]),
-                    new Regex([
-                        'pattern' => '/^.+@.+\..+$/',
-                        'message' => 'Veuillez entrer une adresse email valide.',
-                    ]),
+                    // La contrainte Email est déjà incluse avec EmailType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -43,44 +39,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'constraints' => [
-                    new NotBlank([ 
-                        'message' => 'Veuillez entrer un mot de passe.',
-                    ]),
-                    new Length([
-                        'min' => 12,    
-                        'max' => 4096,
-                        'minMessage' => 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
-                        'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
-                    ]),
-                    new Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/',
-                        'message' => 'Le mot de passe doit comporter au moins 12 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
-                    ]), 
-                ],
-                'mapped' => false,
-                'first_options' => [
-                    'label' => 'Votre mot de passe',
-                    'attr' => [
-                        'placeholder' => 'Mot de passe',
-                    ],
-                ],
-                'second_options' => [
-                    'label' => 'Confirmez votre mot de passe',
-                    'attr' => [
-                        'placeholder' => 'Mot de passe',
-                    ],
-                ],
-                'invalid_message' => 'Les mots de passe doivent correspondre.',
-            ]);
+            ->add('password', RepeatedPasswordType::class); // Assurez-vous que cette classe est correctement définie
     }
     
-    
-
-                
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
