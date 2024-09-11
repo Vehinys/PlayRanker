@@ -4,10 +4,14 @@
 
 {% block body %}
 
-<div class="container">
+    <div class="container-recherche">
+       <form class="recherche-form" action="{{ path('search') }} " id="searchthis" method="post">
+        <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu" />
+        <input id="search-btn" name="submit" type="submit" value="Rechercher">
+      </form>
+    </div>
 
-    <h1 class="page-title">Les jeux :</h1>
-
+<div class="container-jeux">
     <div class="game-card-container">
         {% for game in games.results %}
             <div class="game-card">
@@ -19,9 +23,7 @@
                 </div>
                 <div class="button-container">
                     <a href="{# {{ path('game_detail', {'id': game.id}) }}#}" class="detail-button">Détail</a> 
-                    <a href="#" class="favorite-button">
-                        <i class="fas fa-heart"></i>
-                    </a>
+                    <a href="#" class="favorite-button"> <i class="fas fa-heart"></i> </a>
                 </div>
             </div>
         {% endfor %}

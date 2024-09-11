@@ -1102,6 +1102,10 @@ small {
 /* -------------------------------------------------------  */
 /* GAME CARDS */
 
+.container-jeux {
+  margin: 80px 0;
+}
+
 /* Styles pour le conteneur des cartes de jeux */
 .game-card-container {
   display: grid;
@@ -1123,7 +1127,7 @@ small {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 330px; /* Augmenter la hauteur des cartes pour plus d'espace */
+  height: 370px; /* Augmenter la hauteur des cartes pour plus d'espace */
   position: relative; /* Pour positionner les boutons */
 }
 
@@ -1162,8 +1166,9 @@ small {
 /* Styles pour les boutons */
 .detail-button {
   padding: 10px 95px;
-  background-color: #ECC33E; /* Couleur de fond du bouton Détail */
-  color: #0C1D36; /* Couleur du texte du bouton Détail */
+  background-color: rgba(21, 36, 54, 1);
+  color: #ECC33E;
+  border-color: #ECC33E;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -1171,17 +1176,22 @@ small {
   transition: background-color 0.3s ease;
   text-decoration: none; /* Supprime le soulignement */
   display: inline-block;
+  border-style: groove;
+  font-weight:700;
 }
 
 .detail-button:hover {
-  background-color: #d4b92e; /* Couleur de fond au survol */
+  border-style: groove;
+  background-color: #ECC33E;
+  border: rgba(21, 36, 54, 1) 2px solid;
+  color: rgba(21, 36, 54, 1);
+  box-shadow: 0px 10px 15px -5px rgba(0,0,0,0.7), 0px 0px 20px 10px rgba(0,0,0,0.4);
 }
 
 /* Styles spécifiques pour le bouton Favoris */
 .favorite-button {
   padding: 5px; /* Réduire la taille du bouton Favoris */
-  color: #ffffff; /* Couleur de l'icône du bouton Favoris */
-  font-size: 20px; /* Taille de l'icône */
+  font-size: 25px; /* Taille de l'icône */
   margin-left: 10px; /* Espacement horizontal entre les boutons */
   border: none;
   border-radius: 5px;
@@ -1198,4 +1208,9 @@ small {
 
 .favorite-button.active i {
   color: #ff0000; /* Couleur de l'icône lorsque le bouton est actif */
+}
+
+.page-title {
+  margin: 40px 0;
+  color: #ECC33E;
 }
