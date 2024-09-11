@@ -14,9 +14,11 @@
             <img style='width:400px', src="{{game.background_image}}" alt="">
 
             {{game.name}}
+            {{game.released}}
             
                 {% for genre in game.genres %}
                     {{genre.name}}
+
                     
                 {% endfor %}
 
