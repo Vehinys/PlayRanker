@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!{% endblock %}
+
+{% block body %}
+
+
+Les jeux :
+{% for game in games.results %}
+
+ {{game.name}}
+    
+{% endfor %}
+
+
+{% endblock %}
