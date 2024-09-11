@@ -30,4 +30,5 @@ class ApiHttpClient extends AbstractController
 
         return $response->toArray();
     }
+    
 }

@@ -21,15 +21,12 @@
     </h2>
 
     <div class="container-recherche">
-      <form class="recherche-form" action="/search" id="searchthis" method="get" type="CustomSearch">
-
-        <input classe="recherche" id="search" name="q" type="text" placeholder="Rechercher un jeu" />
-
+      <form class="recherche-form" action="{{ path('search', { input: '' }) }}" id="searchthis" method="get">
+        <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu" />
         <input id="search-btn" type="submit" value="Rechercher" />
       </form>
-
-      <a href="{{ path('search', { input:'witcher'}) }}">test</a>
     </div>
+
   </section>
 
   <!-- -------------------------------------------------------  -->

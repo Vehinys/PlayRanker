@@ -107,3 +107,16 @@ const generateGlowButtons = () => {
         }
     });
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('searchthis');
+        const searchBtn = document.getElementById('search-btn');
+        
+        searchBtn.addEventListener('click', function(event) {
+          event.preventDefault(); // Empêche le comportement par défaut du bouton submit
+          
+          form.submit(); // Soumet le formulaire
+        });
+    });
+});
