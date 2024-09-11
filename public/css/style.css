@@ -1084,5 +1084,21 @@ small {
 }
 
 #nom, #sujet {
-  width: 460px;
+  width: 415px;
 }
+
+
+/* --------------------------------- */
+/* Vue des mots de passe cacher*/
+
+.input-box {
+  position: relative;
+}
+
+#togglePassword:hover {
+  color: #ECC33E;
+}
+
+
+/* --------------------------------- */
+/* Message d'erreur */

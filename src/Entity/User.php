@@ -87,7 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @inheritDoc
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // Si vous avez des informations sensibles stockées sur l'utilisateur,
         // vous devez les effacer ici. Sinon, laissez cette méthode vide.

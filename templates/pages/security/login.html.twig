@@ -1,61 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}login{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
 
+<!-- Conteneur principal pour le fond de la page de connexion -->
 <div class="bg-login">
+
+    <!-- Conteneur du formulaire -->
     <div class="form-container">
+
+        <!-- Formulaire de connexion -->
         <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+
+            <!-- Affichage des erreurs, s'il y en a -->
+            {% if error and error.messageKey == 'Invalid credentials.' %}
+            <div class="alert" style="font-weight: bold; color: #ECC33E; font-size: 22px; margin-bottom: 20px;">Les informations de connexion sont incorrectes.<br> Veuillez vérifier votre adresse email et votre mot de passe.</div>
             {% endif %}
 
-            {% if app.user %}
-                <div class="mb-3">
-                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
-                </div>
-            {% endif %}
-
+            <!-- Titre de la page de connexion -->
             <h1 class="login-h1">Connexion</h1>
 
+            <!-- Section des champs de saisie -->
             <section class="section-input">
 
-                {# Affichage des erreurs pour l'email #}
-                <div class="input-box" >
-                    <label class="required" for="email-label">Email</label>
+                <!-- Champ pour l'email -->
+                <div class="input-box">
+                    <label class="required" for="inputEmail">Email</label>
                     <input class="input-box-email" type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
                     <i class='bx bx-envelope'></i>
-                    {% if error and error.messageKey == 'Invalid credentials.' %}
-                        <div class="alert alert-danger">Identifiants invalides</div>
-                    {% endif %}
                 </div>
-        
-                {# Affichage des erreurs pour le mot de passe #}
-                <div class="input-box" >
-                    <label class="required" for="mdp-label">Mot de passe</label>
-                    <input class="input-box-mdp" type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" > <i class='bx bx-lock-alt' ></i> 
-                    
-                    {% if error and error.messageKey == 'Invalid credentials.' %}
-                        <div class="alert alert-danger">Mot de passe incorrect</div>
-                    {% endif %}
+
+                <!-- Champ pour le mot de passe -->
+                <div class="input-box">
+                    <label class="required" for="inputPassword">Mot de passe</label>
+                    <input class="input-box-mdp" type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe">
+                    <i class='bx bx-lock-alt' id="togglePassword" style="cursor: pointer;"></i>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 </div>
 
             </section>
 
+            <!-- Option de se souvenir de l'utilisateur et lien pour mot de passe oublié -->
             <div class="remember">
-                <label> <input type="checkbox" name="_remember_me"> Se souvenir de moi </label>
-                <a href="">Mot de passe oublier ?</a>
+                <label>
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                </label>
+                <a href="#">Mot de passe oublié ?</a>
             </div>
 
+            <!-- Bouton de soumission -->
             <button type="submit" class="btn-login">Se connecter</button>
-            <div >
+
+            <!-- Message indiquant les champs obligatoires -->
+            <div>
                 <small class="small"> * = Champs obligatoire</small>
             </div>
 
+            <!-- Lien vers la page d'inscription -->
             <div class="register">
-                <p>Vous n'avez pas de compte ? <br> 
+                <p>Vous n'avez pas de compte ? <br>
                 <a href="{{ path('register') }}">Inscription</a></p>
             </div>
 
@@ -64,4 +68,3 @@
 </div>
 
 {% endblock %}
-

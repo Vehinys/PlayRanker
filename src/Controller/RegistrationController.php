@@ -9,26 +9,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route; // Utiliser Annotation au lieu de Attribute si pas en PHP 8.0
+use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'register')]
     public function register(
-        
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
         EntityManagerInterface $entityManager
-        
     ): Response {
-        
         // Création d'une nouvelle instance de User
         $user = new User();
         
         // Création du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-    
+
+        // Vérification si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             // Obtention du mot de passe en clair
             $plainPassword = $form->get('plainPassword')->getData();
@@ -40,19 +38,18 @@ class RegistrationController extends AbstractController
             if (empty($user->getRoles())) {
                 $user->setRoles(['ROLE_USER']);
             }
-    
+
             // Persistance et enregistrement en base de données
             $entityManager->persist($user);
             $entityManager->flush();
-    
+
             // Redirection après inscription réussie
             return $this->redirectToRoute('login');
         }
-    
+
         // Rendu du formulaire d'inscription
         return $this->render('pages/security/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
 }
-

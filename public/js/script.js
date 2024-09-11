@@ -1,4 +1,3 @@
-// Cette fonction est exécutée lorsque le contenu du DOM est entièrement chargé
 document.addEventListener('DOMContentLoaded', function() {
     // Configuration des options pour Flickity (un plugin de carousel)
     var options = {
@@ -38,55 +37,73 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Appelle la fonction pour initialiser les boutons avec effet de lueur
     generateGlowButtons();
+
+    // Gestion de l'affichage du mot de passe
+    const passwordField = document.getElementById('inputPassword');
+    const togglePasswordIcon = document.getElementById('togglePassword');
+
+    const confirmPasswordField = document.getElementById('inputConfirmPassword');
+    const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPassword');
+
+    function togglePasswordVisibility(field, icon) {
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.add('bx-show'); // Ajoute une classe pour indiquer que le mot de passe est visible
+        } else {
+            field.type = 'password';
+            icon.classList.remove('bx-show'); // Retire la classe lorsque le mot de passe est masqué
+        }
+    }
+
+    if (passwordField && togglePasswordIcon) {
+        togglePasswordIcon.addEventListener('click', function() {
+            togglePasswordVisibility(passwordField, togglePasswordIcon);
+        });
+    }
+
+    if (confirmPasswordField && toggleConfirmPasswordIcon) {
+        toggleConfirmPasswordIcon.addEventListener('click', function() {
+            togglePasswordVisibility(confirmPasswordField, toggleConfirmPasswordIcon);
+        });
+    }
 });
 
 // Fonction pour générer les boutons avec effet de lueur
 const generateGlowButtons = () => {
-    // Sélectionne tous les boutons avec la classe .glow-button
     document.querySelectorAll(".glow-button").forEach((button) => {
-        // Vérifie si l'élément gradient existe déjà
         let gradientElem = button.querySelector('.gradient');
-        
-        // Si l'élément gradient n'existe pas, crée-le
         if (!gradientElem) {
             gradientElem = document.createElement("div");
             gradientElem.classList.add("gradient");
-            button.appendChild(gradientElem); // Ajoute l'élément gradient au bouton
+            button.appendChild(gradientElem);
         }
 
-        // Nettoie les anciens événements pour éviter les doublons
         button.removeEventListener("pointermove", handlePointerMove);
-        // Ajoute un nouvel événement pointermove pour gérer le déplacement du curseur
         button.addEventListener("pointermove", handlePointerMove);
 
-        // Fonction pour gérer le mouvement du pointeur sur le bouton
         function handlePointerMove(e) {
-            // Récupère la taille et la position du bouton
             const rect = button.getBoundingClientRect();
-            // Calcule la position du pointeur par rapport au bouton
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Anime la position du pointeur avec GSAP
             gsap.to(button, {
-                "--pointer-x": `${x}px`, // Met à jour la position horizontale du pointeur
-                "--pointer-y": `${y}px`, // Met à jour la position verticale du pointeur
-                duration: 0.6, // Durée de l'animation
+                "--pointer-x": `${x}px`,
+                "--pointer-y": `${y}px`,
+                duration: 0.6,
             });
 
-            // Anime la couleur de la lueur du bouton avec GSAP
             gsap.to(button, {
                 "--button-glow": chroma
                 .mix(
-                    getComputedStyle(button) // Récupère les styles calculés du bouton
-                    .getPropertyValue("--button-glow-start") // Récupère la couleur de départ
+                    getComputedStyle(button)
+                    .getPropertyValue("--button-glow-start")
                     .trim(),
-                    getComputedStyle(button).getPropertyValue("--button-glow-end").trim(), // Récupère la couleur de fin
-                    x / rect.width // Mixe les couleurs en fonction de la position du pointeur
+                    getComputedStyle(button).getPropertyValue("--button-glow-end").trim(),
+                    x / rect.width
                 )
-                .hex(), // Convertit la couleur mixée en format hexadécimal
-                duration: 0.2, // Durée de l'animation
+                .hex(),
+                duration: 0.2,
             });
         }
     });
-}
+};
