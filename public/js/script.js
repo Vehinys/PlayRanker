@@ -131,3 +131,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const incrementButtons = document.querySelectorAll('.increment-button');
+
+    incrementButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const counterValueElement = this.querySelector('.counter-value');
+            let currentValue = parseInt(counterValueElement.textContent, 10);
+            counterValueElement.textContent = currentValue + 1;
+        });
+    });
+});

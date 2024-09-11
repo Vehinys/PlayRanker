@@ -30,5 +30,4 @@ class ApiController extends AbstractController
             'games' => $games
         ]);
     }
-
 }
