@@ -3,31 +3,31 @@
 {% block title %}Jeux{% endblock %}
 
 {% block body %}
-<div style='width:100%;' class="container">
 
-    <h1 style="margin:25px 0;color:white;">Les jeux :</h1>
+<div class="container">
 
-        <div style='align-items:center;color:white;' class="container-jeux">
-            
-            {% for game in games.results %}
+    <h1 class="page-title">Les jeux :</h1>
 
-                <img style='width:200px;', src="{{game.background_image}}" alt=""><br>
+    <div class="game-card-container">
+        {% for game in games.results %}
+            <div class="game-card">
+                <div class="game-card-header">
+                    <p>{{ game.name }}</p>
+                </div>
+                    <img class="game-card-image" src="{{ game.background_image }}" alt="{{ game.name }}">
+                    <div class="game-card-body">
+                </div>
+                <div class="button-container">
+                    <a href="{# {{ path('game_detail', {'id': game.id}) }}#}" class="detail-button">Détail</a> 
+                    <a href="#" class="favorite-button">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-                <p style='font-size:20px; margin-bottom: 10px;'>{{game.name}}</p>
-                <p> Date de sortie  : {{game.released|date('d/m/Y')}}<br></p>
-                <p> Nombre d'heure  : {{game.playtime}} Heures </p>
-                <p> Note metacritic : {{game.metacritic}} sur 100</p>
-                
-                <p style='display: contents;'> Genre :
-
-                    {% for genre in game.genres %}
-                        {{genre.name}}
-                    {% endfor %} </p>
-                    <br><br>
-
-            {% endfor %}
-        </div>
 </div>
-{% endblock %}
 
+{% endblock %}
 

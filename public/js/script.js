@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Écoute l'événement de défilement pour ajuster la position de fond des images
         flkty.on('scroll', function () {
-            // Parcours chaque slide
+
             flkty.slides.forEach(function (slide, i) {
-                var image = slides[i]; // Sélectionne l'image correspondante
-                // Calcule la nouvelle position de fond pour créer un effet de parallaxe
+                var image = slides[i]; 
+                
                 var x = (slide.target + flkty.x) * -1 / 3;
-                image.style.backgroundPosition = x + 'px'; // Applique la nouvelle position de fond
+                image.style.backgroundPosition = x + 'px'; 
             });
         });
     }
@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function togglePasswordVisibility(field, icon) {
         if (field.type === 'password') {
             field.type = 'text';
-            icon.classList.add('bx-show'); // Ajoute une classe pour indiquer que le mot de passe est visible
+            icon.classList.add('bx-show'); 
         } else {
             field.type = 'password';
-            icon.classList.remove('bx-show'); // Retire la classe lorsque le mot de passe est masqué
+            icon.classList.remove('bx-show');
         }
     }
 
@@ -114,9 +114,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchBtn = document.getElementById('search-btn');
         
         searchBtn.addEventListener('click', function(event) {
-          event.preventDefault(); // Empêche le comportement par défaut du bouton submit
+          event.preventDefault();
           
-          form.submit(); // Soumet le formulaire
+          form.submit(); 
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const favoriteButtons = document.querySelectorAll('.favorite-button');
+
+    favoriteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            this.classList.toggle('active');
         });
     });
 });
