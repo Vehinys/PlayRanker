@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ApiController!{% endblock %}
+{% block title %}Jeux{% endblock %}
 
 {% block body %}
 
 
 <h1 style="margin-bottom:15px">Les jeux :</h1>
-{% for game in games.results %}
 
-<div style="display: flex;justify-content: center; color:white; font-size:20px; margin-top:5px;">
-    {{game.name}}
-</div>
+    {% for game in games.results %}
+        <img src="{{game.background_image}}" alt="">
+        {{game.name}}
+            {% for genre in game.genres %}
+                {{genre.name}}
+            {% endfor %}
 
+        <div style="display: flex;justify-content: center; color:white; font-size:20px; margin-top:5px;">
+
+
+
+    </div>
+
+    {% endfor %}
     
-{% endfor %}
-
-
 {% endblock %}
