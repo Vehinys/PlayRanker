@@ -3,27 +3,31 @@
 {% block title %}Jeux{% endblock %}
 
 {% block body %}
+<div style='width:100%;' class="container">
 
+    <h1 style="margin:25px 0;color:white;">Les jeux :</h1>
 
-<h1 style="margin-bottom:15px">Les jeux :</h1>
-
-    <div class="container">
-        
-        {% for game in games.results %}
-
-            <img style='width:400px', src="{{game.background_image}}" alt="">
-
-            {{game.name}}
-            {{game.released}}
+        <div style='align-items:center;color:white;' class="container-jeux">
             
-                {% for genre in game.genres %}
-                    {{genre.name}}
+            {% for game in games.results %}
 
-                    
-                {% endfor %}
+                <img style='width:200px;', src="{{game.background_image}}" alt=""><br>
 
-        {% endfor %}
+                <p style='font-size:20px; margin-bottom: 10px;'>{{game.name}}</p>
+                <p> Date de sortie  : {{game.released|date('d/m/Y')}}<br></p>
+                <p> Nombre d'heure  : {{game.playtime}} Heures </p>
+                <p> Note metacritic : {{game.metacritic}} sur 100</p>
+                
+                <p style='display: contents;'> Genre :
 
+                    {% for genre in game.genres %}
+                        {{genre.name}}
+                    {% endfor %} </p>
+                    <br><br>
+
+            {% endfor %}
         </div>
-
+</div>
 {% endblock %}
+
+

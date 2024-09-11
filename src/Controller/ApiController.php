@@ -14,8 +14,6 @@ class ApiController extends AbstractController
     public function index( ApiHttpClient $apiHttpClient): Response
     {
         $games = $apiHttpClient->games();
-        dd($games);
-
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
         ]);
