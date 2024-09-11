@@ -21,9 +21,9 @@
     </h2>
 
     <div class="container-recherche">
-      <form class="recherche-form" action="{{ path('search', { input: '' }) }}" id="searchthis" method="get">
+       <form class="recherche-form" action="{{ path('search') }} " id="searchthis" method="post">
         <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu" />
-        <input id="search-btn" type="submit" value="Rechercher" />
+        <input id="search-btn" name="submit" type="submit" value="Rechercher">
       </form>
     </div>
 

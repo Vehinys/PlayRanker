@@ -5,10 +5,13 @@
 {% block body %}
 
 
-Les jeux :
+<h1 style="margin-bottom:15px">Les jeux :</h1>
 {% for game in games.results %}
 
- {{game.name}}
+<div style="display: flex;justify-content: center; color:white; font-size:20px; margin-top:5px;">
+    {{game.name}}
+</div>
+
     
 {% endfor %}
 
