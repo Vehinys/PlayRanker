@@ -28,15 +28,18 @@ class ApiController extends AbstractController
     }
     
     #[Route('/jeux/{id}', name: 'detail_jeux')]
-    public function detailJeux(ApiHttpClient $apiHttpClient, Request $request, int $id): Response
+    public function detailJeux(ApiHttpClient $apiHttpClient, int $id): Response
     {
        
         $gameDetail = $apiHttpClient->gameDetail($id);
+        $gameAnnonce = $apiHttpClient->gameAnnonce($id);
 
         // dd($gameDetail);
+        dd($gameAnnonce);
 
         return $this->render('pages/jeux/detail.html.twig', [
-           'gameDetail' => $gameDetail
+           'gameDetail' => $gameDetail,
+           'gameAnnonce' => $gameAnnonce
         ]);
     }
     

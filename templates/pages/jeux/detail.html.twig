@@ -29,7 +29,7 @@
         </div>
 
         <div class="container-multi-reponse">
-            <p class="tag-label">Développeur(s)</p>
+            <p class="tag-label">Studio(s)</p>
             <p class="tag-list">
                 {% for developer in gameDetail.developers %}
                     {{ developer.name }}<br>
@@ -88,6 +88,10 @@
 
     {% set cleaned_description = gameDetail.description|replace({'<p>': '', '</p>': ''}) %}
     {{ cleaned_description|raw }}
+</section>
+
+<section>
+    
 </section>
 
 {% endblock %}
