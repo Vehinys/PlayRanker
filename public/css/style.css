@@ -1246,3 +1246,44 @@ small {
   margin-top: 50px;
   padding-top: 40px;
 }
+
+
+/* -------------------------------------------------------  */
+/* PAGINATION */
+
+.pagination {
+  display: flex;
+  justify-content: center; /* Centre les éléments horizontalement */
+  align-items: center; /* Aligne les éléments verticalement */
+  margin: 20px 0; /* Ajoute un espace autour de la pagination */
+  font-family: Arial, sans-serif;
+}
+
+.pagination a {
+  padding: 10px 20px;
+  margin: 0 5px;
+  text-decoration: none;
+  background-color: #ECC33E; /* Couleur de fond des boutons */
+  color: #0C1D36; /* Couleur du texte */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: #d4b92e; /* Couleur de fond au survol */
+}
+
+.pagination span {
+  padding: 10px 15px;
+  background-color: #0C1D36; /* Couleur de fond pour la page actuelle */
+  color: #ECC33E; /* Couleur du texte pour la page actuelle */
+  border-radius: 5px;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.pagination a.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  pointer-events: none; /* Désactive le clic sur les liens désactivés */
+}

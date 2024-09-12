@@ -33,10 +33,10 @@ class ApiHttpClient extends AbstractController
         return $response->toArray();
     }
 
-    // public function nextPage($page)
-    // {
-    //     $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'');
-    //     return $response->toArray();
-    // }
+    public function nextPage($page)
+    {
+        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'');
+        return $response->toArray();
+    }
     
 }

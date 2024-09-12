@@ -11,6 +11,7 @@
       </form>
     </div>
 
+
 <div class="container-jeux">
     <div class="game-card-container">
         {% for game in games.results %}
@@ -29,7 +30,16 @@
             </div>
         {% endfor %}
     </div>
+</div>
 
+<div class="pagination">
+    {% if currentPage > 1 %}
+        <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
+    {% endif %}
+
+    <span>Page {{ currentPage }}</span>
+
+    <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
 </div>
 
 {% endblock %}
