@@ -6,6 +6,9 @@
 
 <div class="game-detail-container">
 
+
+
+
     <section class="game-detail-image">
         <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
     </section>
@@ -56,6 +59,13 @@
         </div>
 
         <div class="container-multi-reponse">
+            <p class="tag-label">Esrb</p> 
+            <p class="tag-list"> {{ gameDetail.esrb_rating.name }} </p>
+        </div>
+
+
+
+        <div class="container-multi-reponse">
             <p class="tag-label">Tag(s)</p>
             <p style="font-size: 15px">
                 {% for tag in gameDetail.tags %}
@@ -71,7 +81,7 @@
 
         {% if gameDetail.metacritic_url %}
         <div class="container-multi-reponse">
-            <p class="tag-label">Platform metacritic(s)</p>
+            <p class="tag-label">Plateforme metacritic(s)</p>
                 <a href="{{ gameDetail.metacritic_url }}">{{ gameDetail.name }}</a>
         </div>
         {% endif %}
@@ -84,6 +94,7 @@
         </div>
         {% endif %}
 
+        {% if app.user %}
         <section class="container-button-general">
             <div>
                 <a href="#" class="favorite-button"> <i class="fas fa-heart"></i> </a>
@@ -93,6 +104,9 @@
                 <button class="increment-button"><span class="counter-value">0</span></button>
             </div>
         </section>
+        {% else %}
+
+        {% endif %}
 
     </section>
 
@@ -101,13 +115,15 @@
 
     <h3 class="section-video-h3"> Bande d'annonce </h3>
     <section class="section-video">
-        {% set count = 0 %}
-        {% for trailer in gameAnnonce.results %}
-            {% if count < 2 %}
-                <iframe src="{{ trailer.data.max }}">{{ trailer.name }}</iframe>
-                {% set count = count + 1 %}
-            {% endif %}
-        {% endfor %}
+        <div class='ifram'>
+            {% set count = 0 %}
+            {% for trailer in gameAnnonce.results %}
+                {% if count < 2 %}
+                    <iframe  src="{{ trailer.data.max }}" width="380" height="222">{{ trailer.name }} </iframe>
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </section>
 
     <section class="game-description">

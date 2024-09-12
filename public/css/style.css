@@ -1168,7 +1168,21 @@ small {
   background-color: rgba(21, 36, 54, 1);
   color: #ECC33E;
   border-color: #ECC33E;
-  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Supprime le soulignement */
+  display: inline-block;
+  border-style: groove;
+  font-weight:700;
+}
+
+.detail-buttonDeux {
+  padding: 10px 112px;
+  background-color: rgba(21, 36, 54, 1);
+  color: #ECC33E;
+  border-color: #ECC33E;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -1205,16 +1219,12 @@ small {
 
 /* Styles spécifiques pour le bouton Favoris */
 .favorite-button {
-  padding: 5px; /* Réduire la taille du bouton Favoris */
-  font-size: 25px; /* Taille de l'icône */
-  margin-left: 10px; /* Espacement horizontal entre les boutons */
+  padding: 5px;
+  font-size: 30px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center; /* Centrer l'icône verticalement */
-  justify-content: center; /* Centrer l'icône horizontalement */
 }
 
 .favorite-button i {
@@ -1410,4 +1420,8 @@ small {
   display: flex;
   margin: 20px 0;
   font-size: 20px;
+}
+
+.ifram:hover {
+  font-size: 50%;
 }
