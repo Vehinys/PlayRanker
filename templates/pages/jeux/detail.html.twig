@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeux{% endblock %}
+
+{% block body %}
+
+<div class="game-detail-container">
+
+    <section class="game-detail-image">
+        <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
+    </section>
+
+    <section class="game-detail-info">
+        <div>
+            <p class="game-detail-p"><span>Nom</span> {{gameDetail.name}}</p>
+        </div>
+
+        <div>
+            <p class="game-detail-p"><span>Date de sortie</span> {{gameDetail.released|date("m/d/Y")}}</p>
+        </div>
+
+        <div>
+            <p class="game-detail-p">
+                <span>Éditeur(s)</span> 
+                {% for editeur in gameDetail.publishers %}
+                    {{ editeur.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+
+        <div class="container-multi-reponse">
+            <p class="tag-label">Développeur(s)</p>
+            <p class="tag-list">
+                {% for developer in gameDetail.developers %}
+                    {{ developer.name }}<br>
+                {% endfor %}
+            </p>
+        </div>
+
+        <div class="container-multi-reponse">
+            <p class="tag-label">Plateforme(s)</p>
+            <p class="">
+                {% for element in gameDetail.platforms %}
+                    {{ element.platform.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+
+        <div class="container-multi-reponse">
+            <p class="tag-label">Genre(s)</p> 
+            <p class="tag-list">
+                {% for genre in gameDetail.genres %}
+                    {{ genre.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+
+        <div class="container-multi-reponse">
+            <p class="tag-label">Tag(s)</p>
+            <p style="font-size: 15px">
+                {% for tag in gameDetail.tags %}
+                    {{ tag.name }} {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+
+        <div>
+            <p class="game-detail-p">
+                <span> Site Web</span> 
+                <a class href="{{gameDetail.website}}">{{gameDetail.name}}</a>
+        </div>
+
+        <section class="container-button-general">
+            <div>
+                <a href="#" class="favorite-button"> <i class="fas fa-heart"></i> </a>
+            </div>
+
+            <div>
+                <button class="increment-button"><span class="counter-value">0</span></button>
+            </div>
+        </section>
+
+    </section>
+
+</div>
+
+<section class="game-description">
+
+    {% set cleaned_description = gameDetail.description|replace({'<p>': '', '</p>': ''}) %}
+    {{ cleaned_description|raw }}
+</section>
+
+{% endblock %}

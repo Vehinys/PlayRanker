@@ -18,13 +18,28 @@ class ApiController extends AbstractController
         
         // Appeler la méthode nextPage pour récupérer les jeux paginés
         $games = $apiHttpClient->nextPage($page);
+        
+        // dd($games);
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'currentPage' => $page,
         ]);
     }
+    
+    #[Route('/jeux/{id}', name: 'detail_jeux')]
+    public function detailJeux(ApiHttpClient $apiHttpClient, Request $request, int $id): Response
+    {
+       
+        $gameDetail = $apiHttpClient->gameDetail($id);
 
+        // dd($gameDetail);
+
+        return $this->render('pages/jeux/detail.html.twig', [
+           'gameDetail' => $gameDetail
+        ]);
+    }
+    
     #[Route('/jeux/search', name: 'search', methods: ['POST'])]
     public function search(ApiHttpClient $apiHttpClient, Request $request): Response
     {
@@ -47,4 +62,7 @@ class ApiController extends AbstractController
             'currentPage' => $page,
         ]);
     }
+
+
+    
 }

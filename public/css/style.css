@@ -1221,6 +1221,11 @@ small {
   color: #ffffff; /* Couleur de l'icône */
 }
 
+.favorite-button i:hover {
+  filter: drop-shadow(0 0 0.75rem #ff0000);
+  color: #ff0000; /* Couleur de l'icône */
+}
+
 .favorite-button.active i {
   color: #ff0000; /* Couleur de l'icône lorsque le bouton est actif */
 }
@@ -1286,4 +1291,108 @@ small {
   background-color: #cccccc;
   color: #666666;
   pointer-events: none; /* Désactive le clic sur les liens désactivés */
+}
+
+/* -------------------------------------------------------  */
+/* DETAIL JEUX */
+
+/* Container principal */
+.game-detail-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  width: 80%;
+  margin: 50px 0;
+}
+
+/* Section de l'image du jeu */
+.game-detail-image {
+  width: 50%; /* 50% de la largeur du container */
+}
+
+.game-detail-image img {
+  width: 100%;
+  height: 100%; /* Assure que l'image prend toute la hauteur */
+  object-fit: cover; /* Permet de garder le ratio tout en remplissant l'espace */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Section des détails du jeu */
+.game-detail-info {
+  width: 45%; /* 45% de la largeur pour les informations à droite */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-detail-info p {
+  font-size: 17px;
+}
+
+.game-detail-p {
+  float: left;
+}
+
+.game-detail-info p span {
+  font-size: 17px;
+  font-weight: bold;
+  color: #ECC33E; /* Couleur pour les titres des informations */
+}
+
+.container-multi-reponse {
+  display: flex;
+}
+
+.tag-label {
+  font-weight: bold;
+  color: #ECC33E;
+  margin-right: 5px;
+}
+
+.tag-list {
+  column-count: 3; /* Réduire les colonnes pour ne pas déborder */
+  column-gap: 15px;
+}
+
+/* Bouton du site web */
+.game-detail-info button {
+  margin: 0px 0 0 10px;
+  background-color: #ECC33E;
+  border: none;
+  color: #0C1D36;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-detail-info button:hover {
+  background-color: #0C1D36;
+  box-shadow: 0 0 20px #ECC33E;
+  color: #ECC33E;
+}
+
+.game-detail-info a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.game-detail-info a:hover {
+  color: #0C1D36;
+}
+
+/* Section de description */
+.game-description {
+  width: 78%;
+  text-align: justify;
+  color: white;
+  margin-top: 50px;
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+.container-button-general {
+  display: flex;
 }
