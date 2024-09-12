@@ -130,13 +130,15 @@ const generateGlowButtons = () => {
 
 // *** SEARCH FORM SUBMISSION ***
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('searchthis');
-    const searchBtn = document.getElementById('search-btn');
-
-    // Gestion du clic sur le bouton de recherche
-    searchBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Empêche le comportement par défaut
-        form.submit(); // Soumet le formulaire de recherche
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('searchthis');
+        const searchBtn = document.getElementById('search-btn');
+        
+        searchBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          
+          form.submit(); 
+        });
     });
 });
 

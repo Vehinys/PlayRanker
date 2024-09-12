@@ -33,6 +33,8 @@ class ApiController extends AbstractController
     {
         $input = $request->get('input');
         $games = $apiHttpClient->gamesSearch($input);
+        // dd($input);
+        // dd($games);
         
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
