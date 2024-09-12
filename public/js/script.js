@@ -1,11 +1,16 @@
+// ---------------------------------------------------------------------------------------------------- //
+
+// DOMContentLoaded s'assure que le code est exécuté après que tout le DOM est chargé
 document.addEventListener('DOMContentLoaded', function() {
+
+    // *** FLICKITY CAROUSEL CONFIGURATION *** : [ CODE DISPONIBLE : CODEPEN.IO ]
     // Configuration des options pour Flickity (un plugin de carousel)
     var options = {
         accessibility: true, // Permet l'accès au carousel via le clavier
         prevNextButtons: true, // Affiche les boutons pour naviguer entre les slides
         pageDots: true, // Affiche les points de pagination sous le carousel
         setGallerySize: false, // Ne définit pas la taille de la galerie automatiquement
-        arrowShape: {
+        arrowShape: { // Personnalisation de la forme des flèches de navigation
             x0: 10, // Position du point de départ de la flèche
             x1: 60, // Position du premier point de la flèche
             y1: 50, // Position verticale du premier point
@@ -25,19 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Écoute l'événement de défilement pour ajuster la position de fond des images
         flkty.on('scroll', function () {
-
             flkty.slides.forEach(function (slide, i) {
                 var image = slides[i]; 
-                
-                var x = (slide.target + flkty.x) * -1 / 3;
-                image.style.backgroundPosition = x + 'px'; 
+                var x = (slide.target + flkty.x) * -1 / 3; // Calcule la nouvelle position de l'image
+                image.style.backgroundPosition = x + 'px'; // Applique le déplacement du fond
             });
         });
     }
 
+    // *** GLOW BUTTONS GENERATION ***
     // Appelle la fonction pour initialiser les boutons avec effet de lueur
     generateGlowButtons();
 
+    // *** PASSWORD TOGGLE VISIBILITY ***
     // Gestion de l'affichage du mot de passe
     const passwordField = document.getElementById('inputPassword');
     const togglePasswordIcon = document.getElementById('togglePassword');
@@ -45,22 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmPasswordField = document.getElementById('inputConfirmPassword');
     const toggleConfirmPasswordIcon = document.getElementById('toggleConfirmPassword');
 
+    // Fonction pour afficher/masquer le mot de passe
     function togglePasswordVisibility(field, icon) {
         if (field.type === 'password') {
-            field.type = 'text';
-            icon.classList.add('bx-show'); 
+            field.type = 'text'; // Montre le mot de passe
+            icon.classList.add('bx-show'); // Change l'icône
         } else {
-            field.type = 'password';
-            icon.classList.remove('bx-show');
+            field.type = 'password'; // Cache le mot de passe
+            icon.classList.remove('bx-show'); // Remet l'icône d'origine
         }
     }
 
+    // Gestion des événements pour afficher/masquer le mot de passe
     if (passwordField && togglePasswordIcon) {
         togglePasswordIcon.addEventListener('click', function() {
             togglePasswordVisibility(passwordField, togglePasswordIcon);
         });
     }
 
+    // Gestion pour le champ de confirmation de mot de passe
     if (confirmPasswordField && toggleConfirmPasswordIcon) {
         toggleConfirmPasswordIcon.addEventListener('click', function() {
             togglePasswordVisibility(confirmPasswordField, toggleConfirmPasswordIcon);
@@ -68,30 +76,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+// ---------------------------------------------------------------------------------------------------- //
+
+// *** GLOW BUTTONS LOGIC *** [ CODE DISPONIBLE : CODEPEN.IO ]
 // Fonction pour générer les boutons avec effet de lueur
 const generateGlowButtons = () => {
     document.querySelectorAll(".glow-button").forEach((button) => {
         let gradientElem = button.querySelector('.gradient');
         if (!gradientElem) {
             gradientElem = document.createElement("div");
-            gradientElem.classList.add("gradient");
-            button.appendChild(gradientElem);
+            gradientElem.classList.add("gradient"); // Crée l'élément de gradient si absent
+            button.appendChild(gradientElem); // L'ajoute au bouton
         }
 
+        // Supprime tout écouteur précédent pour éviter la duplication
         button.removeEventListener("pointermove", handlePointerMove);
+        // Ajoute un nouvel écouteur pour suivre les mouvements de la souris
         button.addEventListener("pointermove", handlePointerMove);
 
+        // Fonction pour gérer le déplacement de la souris sur le bouton
         function handlePointerMove(e) {
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const rect = button.getBoundingClientRect(); // Obtient les dimensions du bouton
+            const x = e.clientX - rect.left; // Coordonnée X de la souris relative au bouton
+            const y = e.clientY - rect.top; // Coordonnée Y de la souris relative au bouton
 
+            // Animation GSAP pour déplacer le gradient en fonction de la position de la souris
             gsap.to(button, {
                 "--pointer-x": `${x}px`,
                 "--pointer-y": `${y}px`,
-                duration: 0.6,
+                duration: 0.6, // Durée de l'animation
             });
 
+            // Animation GSAP pour changer la couleur de lueur du bouton
             gsap.to(button, {
                 "--button-glow": chroma
                 .mix(
@@ -101,45 +118,56 @@ const generateGlowButtons = () => {
                     getComputedStyle(button).getPropertyValue("--button-glow-end").trim(),
                     x / rect.width
                 )
-                .hex(),
-                duration: 0.2,
+                .hex(), // Change la couleur selon la position
+                duration: 0.2, // Durée du changement de couleur
             });
         }
     });
 };
 
+
+// ---------------------------------------------------------------------------------------------------- //
+
+// *** SEARCH FORM SUBMISSION ***
 document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('searchthis');
-        const searchBtn = document.getElementById('search-btn');
-        
-        searchBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          
-          form.submit(); 
-        });
+    const form = document.getElementById('searchthis');
+    const searchBtn = document.getElementById('search-btn');
+
+    // Gestion du clic sur le bouton de recherche
+    searchBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut
+        form.submit(); // Soumet le formulaire de recherche
     });
 });
 
+
+// ---------------------------------------------------------------------------------------------------- //
+
+// *** FAVORITE BUTTON TOGGLE ***
 document.addEventListener('DOMContentLoaded', function() {
     const favoriteButtons = document.querySelectorAll('.favorite-button');
 
+    // Gestion des clics sur les boutons "favoris"
     favoriteButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
-            this.classList.toggle('active');
+            this.classList.toggle('active'); // Active/Désactive l'état de favori
         });
     });
 });
 
+// ---------------------------------------------------------------------------------------------------- //
+
+// *** INCREMENT COUNTER BUTTON ***
 document.addEventListener('DOMContentLoaded', function() {
     const incrementButtons = document.querySelectorAll('.increment-button');
 
+    // Gestion du clic pour incrémenter la valeur d'un compteur
     incrementButtons.forEach(button => {
         button.addEventListener('click', function() {
             const counterValueElement = this.querySelector('.counter-value');
-            let currentValue = parseInt(counterValueElement.textContent, 10);
-            counterValueElement.textContent = currentValue + 1;
+            let currentValue = parseInt(counterValueElement.textContent, 10); // Récupère la valeur actuelle
+            counterValueElement.textContent = currentValue + 1; // Incrémente de 1
         });
     });
 });
