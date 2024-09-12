@@ -23,7 +23,7 @@
                     <div class="game-card-body">
                 </div>
                 <div class="button-container">
-                    <a href="{{ path('detail_jeux', {'id': game.id}) }}" class="detail-button">Détail</a> 
+                    <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
                     <button class="increment-button"><span class="counter-value">0</span></button>
                     <a href="#" class="favorite-button"> <i class="fas fa-heart"></i> </a>
                 </div>
@@ -33,6 +33,9 @@
 </div>
 
 <div class="pagination">
+    {% if currentPage is defined %}
+        
+    
     {% if currentPage > 1 %}
         <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
     {% endif %}
@@ -40,6 +43,7 @@
     <span>Page {{ currentPage }}</span>
 
     <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
+    {% endif %}
 </div>
 
 {% endblock %}

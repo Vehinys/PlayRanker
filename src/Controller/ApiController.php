@@ -27,15 +27,27 @@ class ApiController extends AbstractController
         ]);
     }
     
-    #[Route('/jeux/{id}', name: 'detail_jeux')]
-    public function detailJeux(ApiHttpClient $apiHttpClient, int $id): Response
+    
+    #[Route('/jeux/search', name: 'search', methods: ['POST'])]
+    public function search(ApiHttpClient $apiHttpClient, Request $request): Response
+    {
+        $input = $request->get('input');
+        $games = $apiHttpClient->gamesSearch($input);
+        
+        return $this->render('pages/jeux/index.html.twig', [
+            'games' => $games,
+        ]);
+    }
+
+    #[Route('/jeux/{id}', name: 'detail_jeu')]
+    public function detailJeu(ApiHttpClient $apiHttpClient, string $id): Response
     {
        
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
 
         // dd($gameDetail);
-        dd($gameAnnonce);
+        // dd($gameAnnonce);
 
         return $this->render('pages/jeux/detail.html.twig', [
            'gameDetail' => $gameDetail,
@@ -43,17 +55,6 @@ class ApiController extends AbstractController
         ]);
     }
     
-    #[Route('/jeux/search', name: 'search', methods: ['POST'])]
-    public function search(ApiHttpClient $apiHttpClient, Request $request): Response
-    {
-        $input = $request->get('input');
-        $games = $apiHttpClient->gamesSearch($input);
-
-        return $this->render('pages/jeux/index.html.twig', [
-            'games' => $games,
-        ]);
-    }
-
     #[Route('/jeux/page/{page}', name: 'jeux_page')]
     public function nextPage(ApiHttpClient $apiHttpClient, int $page): Response
     {
