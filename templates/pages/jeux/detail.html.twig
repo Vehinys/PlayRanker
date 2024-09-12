@@ -64,11 +64,25 @@
             </p>
         </div>
 
+        <div class="container-multi-reponse">
+            <p class="tag-label">metacritic(s)</p>
+            <p class="tag-list">{{gameDetail.metacritic }} sur 100</p>
+        </div>
+
+        {% if gameDetail.metacritic_url %}
+        <div class="container-multi-reponse">
+            <p class="tag-label">Platform metacritic(s)</p>
+                <a href="{{ gameDetail.metacritic_url }}">{{ gameDetail.name }}</a>
+        </div>
+        {% endif %}
+
+        {% if gameDetail.website %}
         <div>
             <p class="game-detail-p">
                 <span> Site Web</span> 
                 <a class href="{{gameDetail.website}}">{{gameDetail.name}}</a>
         </div>
+        {% endif %}
 
         <section class="container-button-general">
             <div>
@@ -82,19 +96,26 @@
 
     </section>
 
+
 </div>
 
-<section class="game-description">
+    <h3 class="section-video-h3"> Bande d'annonce </h3>
+    <section class="section-video">
+        {% set count = 0 %}
+        {% for trailer in gameAnnonce.results %}
+            {% if count < 2 %}
+                <iframe src="{{ trailer.data.max }}">{{ trailer.name }}</iframe>
+                {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
+    </section>
 
-    {% set cleaned_description = gameDetail.description|replace({'<p>': '', '</p>': ''}) %}
-    {{ cleaned_description|raw }}
-</section>
+    <section class="game-description">
+    <h3> Description </h3>
+        {% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
+        {{ cleaned_description|raw }}
+    </section>
 
-<section>
-    {% for trailer in gameAnnonce.results %}
-        <iframe src="{{trailer.data.max}}">{{trailer.name }}</iframe>
-    {% endfor %}
-    
-</section>
+
 
 {% endblock %}

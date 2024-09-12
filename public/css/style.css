@@ -1302,7 +1302,7 @@ small {
   justify-content: space-evenly;
   color: white;
   width: 80%;
-  margin: 50px 0;
+  margin: 50px 0 10px 0;
 }
 
 /* Section de l'image du jeu */
@@ -1385,10 +1385,10 @@ small {
 
 /* Section de description */
 .game-description {
-  width: 78%;
+  width: 77%;
   text-align: justify;
   color: white;
-  margin-top: 50px;
+  margin-top: 20px;
   line-height: 1.6;
   font-size: 16px;
   margin-bottom: 50px;
@@ -1398,26 +1398,16 @@ small {
   display: flex;
 }
 
-
-HTML CSS JSResult Skip Results Iframe
-EDIT ON
-/* * The body style is just for the
- * background color of the codepen.
- * Do not include in your code.
- */
-body {
-  background-color: #111;
-  color: #fff;
-}
-/*
- * Styles essential to the sample
- * are below
- */
-/* Initial styles for the player wrapper */
-#playerWrapper {
-  width: 272px;
-  height: 153px;
-  transition: width .4s ease-in-out, height .4s ease-in-out;
+.section-video {
+  width: 77%;
+  display: flex;
+  justify-content: flex-start;
 }
 
-
+.section-video-h3, .game-description h3 {
+  color: #ECC33E;
+  width: 77%;
+  display: flex;
+  margin: 20px 0;
+  font-size: 20px;
+}
