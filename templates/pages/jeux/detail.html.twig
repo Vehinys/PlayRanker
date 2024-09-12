@@ -92,7 +92,7 @@
 
 <section>
     {% for trailer in gameAnnonce.results %}
-    {{trailer.name }}<iframe src="{{trailer.data.max}}"></iframe>
+        <iframe src="{{trailer.data.max}}">{{trailer.name }}</iframe>
     {% endfor %}
     
 </section>

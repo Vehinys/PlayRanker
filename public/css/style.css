@@ -1397,3 +1397,27 @@ small {
 .container-button-general {
   display: flex;
 }
+
+
+HTML CSS JSResult Skip Results Iframe
+EDIT ON
+/* * The body style is just for the
+ * background color of the codepen.
+ * Do not include in your code.
+ */
+body {
+  background-color: #111;
+  color: #fff;
+}
+/*
+ * Styles essential to the sample
+ * are below
+ */
+/* Initial styles for the player wrapper */
+#playerWrapper {
+  width: 272px;
+  height: 153px;
+  transition: width .4s ease-in-out, height .4s ease-in-out;
+}
+
+
