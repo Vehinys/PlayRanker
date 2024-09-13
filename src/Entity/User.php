@@ -10,7 +10,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse email')]
+#[UniqueEntity(fields: ['email'], message: 'Un compte est déjà associé à cette information.')]
+#[UniqueEntity(fields: ['pseudo'], message: 'Un compte est déjà associé à cette information.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]

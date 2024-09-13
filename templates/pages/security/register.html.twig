@@ -14,6 +14,13 @@
     <!-- Début du formulaire -->
     {{ form_start(registrationForm) }}
 
+          <!-- Champ email avec les erreurs -->
+      <div class="input-box">
+        {{ form_label(registrationForm.pseudo, 'Pseudo') }}
+        {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Entrez votre pseudo' } }) }}
+        {{ form_errors(registrationForm.pseudo) }}
+      </div>
+
       <!-- Champ email avec les erreurs -->
       <div class="input-box">
         {{ form_label(registrationForm.email, 'Email') }}
