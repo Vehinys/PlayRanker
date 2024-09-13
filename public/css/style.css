@@ -1139,12 +1139,17 @@ small {
 
 /* Styles pour l'en-tête de chaque carte de jeu */
 .game-card-header {
+  font-size: 15px;
   padding: 15px;
   color: #FFCC00;
   font-weight: bold;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   text-shadow: 2px 2px 0 #000000;
+}
+
+.game-card-header h3 {
+  font-size: 15px;
 }
 
 /* Styles pour l'image de la carte de jeu */
