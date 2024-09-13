@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier mon Pseudo{% endblock %}
+{% block title %} Edit my profile {% endblock %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
         <div class="profil-section">
             <div class="profil-card">
                 <div class="profil-title">
-                    <h1>Modifier mon profil</h1>
+                    <h1>Edit my profile</h1>
                 </div>
                 <div class="profil-card-content">
                     <div class="profil-user-info">
@@ -22,18 +22,18 @@
                             {% if user %}
                                 {{ form_start(form) }}
 
-                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Votre nouveau pseudo' } }) }}</p>
-                                <p><b>Email :</b> <span>{{ user.email }}</span> {{ form_widget(form.email, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Votre nouvelle email' } }) }}</p>
+                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New nickname' } }) }}</p>
+                                <p><b>Email :</b> <span>{{ user.email }}</span> {{ form_widget(form.email, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New email' } }) }}</p>
                                 
                             {% else %}
-                                <p>Aucun utilisateur trouvé. Veuillez vous connecter.</p>
+                                <p>No users found. Please login.</p>
                             {% endif %}
                         </div>
                     </div>
-                        <a class="increment-button" type="submit">Valider</a>
-                        <a class="increment-button" href="{{ path('profil') }}">Retour au profil</a>
+                        <button class="increment-button" type="submit">To validate</button>
                         {{ form_end(form) }}
                         
+                        <a class="increment-button" href="{{ path('profil') }}">Back to profile</a>
                     </div>
                 </div>
             </div>

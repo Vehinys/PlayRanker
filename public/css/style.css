@@ -1471,11 +1471,8 @@ small {
 }
 
 /* ---------------------------------------------------*/
-
 /* */
 
-/* -------------------------------------------------------  */
-/* GLOBAL STYLES */
 .profil-container {
   background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
   padding: 20px;
@@ -1534,7 +1531,7 @@ small {
 .profil-user-details h3,
 .profil-user-details p {
   text-align: left;
-  margin-left: 20px;
+  margin: 20px;
   color: white;
 }
 
