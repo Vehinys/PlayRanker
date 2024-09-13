@@ -23,7 +23,49 @@
                     <div class="game-card-body">
                 </div>
 
-                <div>
+                <div class="platforms">
+                    <div class="platform">
+                        {% set platform_logos = {
+                            'PlayStation 1': 'img/ps1.png',
+                            'PlayStation 2': 'img/ps2.png',
+                            'PlayStation 3': 'img/ps3.png',
+                            'PlayStation 4': 'img/ps4.png',
+                            'PlayStation 5': 'img/ps5.png',
+                            'PS Vita': 'img/ps vita.png',
+                            'PC': 'img/pc.png',
+                            'Linux': 'img/linux.png',
+                            'macOS': 'img/macOS.png',
+                            'Web': 'img/Web.png',
+                            'iOS': 'img/ios.png',
+                            'Android': 'img/Android.png',
+                            'Xbox Series S/X': 'img/Xbox Series SX.png',
+                            'Xbox 360': 'img/Xbox 360.png',
+                            'Xbox One': 'img/Xbox One.png',
+                            'Xbox': 'img/xbox.png',
+                            'Nintendo Switch': 'img/Nintendo Switch.png',
+                            'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                            'Wii U': 'img/Wii U.png',
+                        } %}
+                
+                        {% for platform in game.platforms %}
+
+                            <div class="platform-item">
+
+                               
+                                
+                                {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
+
+                                {% if logo_path %}
+
+                                    <img style="width: 30px;" src="{{ asset(logo_path) }}" alt="{{ platform.platform.name }} logo" />
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
 
                 </div>
                 
@@ -33,7 +75,7 @@
                     <button class="increment-button"><span class="counter-value">0</span></button>
                     <a href="#" class="favorite-button"> <i class="fas fa-heart"></i> </a>
                 {% else %}
-                    <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-buttonDeux">Détail</a> 
+                    <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button-deux">Détail</a> 
                 {% endif %}
                 </div>
             </div>
