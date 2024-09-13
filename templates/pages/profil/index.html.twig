@@ -6,14 +6,12 @@
 
 <div class="container-profil">
 
-    <div>
-
+    {# <div>
         <section>
             <div>
-                <img src="{{user.avatar }}" alt=""> </img>
+                <img src="{{user.avatar}}" alt=""> </img>
             </div>
         </section>
-        
         <section>
             <div>
                 Mon pseudo : {{ user.pseudo }} <br> 
@@ -21,11 +19,40 @@
                 Mon email : {{ user.email }}<br>   
             </div>
         </section>
-
     </div>
+</div> #}
 
 
+
+<div class="profil-container">
+
+
+
+
+    <div class="profil-section">
+        <div class="profil-card">
+            <div class="profil-title">
+                <h1>Mon Profil</h1>
+            </div>
+            <div class="profil-card-content">
+                <div class="profil-user-info">
+                    <img src="{{user.avatar}}" alt="Photo de Profil" class="profil-image">
+                    <div class="profil-user-details">
+                        <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span></p>
+                        <p><b>Email :</b <span class="profil-highlight">{{ user.email }}</span></p>
+                    </div>
+                </div>
+                <div>
+                    <button>
+                        <a class="increment-button" href="{{ path('edit_profile') }}">Modifier mon profil</a>
+                    </button> 
+                </div> 
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 
 {% endblock %}
