@@ -14,7 +14,8 @@ class UserTest extends KernelTestCase
 
         $user = new User();
         $user->setEmail('albert.lecomte1989@gmail.com')
-             ->setPassword('SecurePassword123!');
+             ->setPassword('SecurePassword123!')
+             ->setPseudo('vehinys');
 
         $errors = $container->get('validator')->validate($user);
         $this->assertCount(0, $errors);
@@ -27,7 +28,8 @@ class UserTest extends KernelTestCase
 
         $user = new User();
         $user->setEmail('')
-             ->setPassword('SecurePassword123!');
+             ->setPassword('SecurePassword123!')
+             ->setPseudo('vehinys');
 
         $errors = $container->get('validator')->validate($user);
         $this->assertCount(1, $errors);
