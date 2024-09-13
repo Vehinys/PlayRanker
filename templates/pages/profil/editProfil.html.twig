@@ -3,12 +3,43 @@
 {% block title %}Modifier mon Pseudo{% endblock %}
 
 {% block body %}
-<h1>Modifier mon Pseudo</h1>
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Modifier</button>
-{{ form_end(form) }}
+<div class="container-profil">
+    <div class="profil-container">
+        <div class="profil-section">
+            <div class="profil-card">
+                <div class="profil-title">
+                    <h1>Modifier mon profil</h1>
+                </div>
+                <div class="profil-card-content">
+                    <div class="profil-user-info">
+                        {% if user %}
+                            <img src="{{ user.avatar }}" alt="Photo de Profil" class="profil-image">
+                        {% else %}
+                            <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/36280650-defaut-avatar-profil-icone-social-medias-utilisateur-image-gris-avatar-icone-vide-profil-silhouette-vecteur-illustration-vectoriel.jpg" alt="Photo de Profil" class="profil-image">
+                        {% endif %}
+                        <div class="profil-user-details">
+                            {% if user %}
+                                {{ form_start(form) }}
 
-<a href="{{ path('profil') }}">Retour au profil</a>
+                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Votre nouveau pseudo' } }) }}</p>
+                                <p><b>Email :</b> <span>{{ user.email }}</span> {{ form_widget(form.email, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Votre nouvelle email' } }) }}</p>
+                                
+                            {% else %}
+                                <p>Aucun utilisateur trouvé. Veuillez vous connecter.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                        <a class="increment-button" type="submit">Valider</a>
+                        <a class="increment-button" href="{{ path('profil') }}">Retour au profil</a>
+                        {{ form_end(form) }}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

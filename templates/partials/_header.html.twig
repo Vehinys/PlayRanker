@@ -7,11 +7,11 @@
         <ul>
 
           <li>
-            <a class='nav-a is-current' href="{{ path('home') }}">ACCUEIL</a>
+            <a class='nav-a is-current' href="{{ path('home') }}">HOME</a>
           </li>
 
           <li>
-            <a class='nav-a' href="{{ path('jeux') }}">JEUX</a>
+            <a class='nav-a' href="{{ path('jeux') }}">GAMES</a>
           </li>
 
           {% if app.user %}
@@ -31,11 +31,11 @@
           {% else %}
 
           <li>
-            <a class='nav-a' href="{{ path('register') }}">INSCRIPTION</a>
+            <a class='nav-a' href="{{ path('register') }}">REGISTRATION</a>
           </li>
 
           <li>
-            <a class='nav-a' href="{{ path('login') }}">CONNEXION</a>
+            <a class='nav-a' href="{{ path('login') }}">LOGIN</a>
           </li>
         </ul>
         

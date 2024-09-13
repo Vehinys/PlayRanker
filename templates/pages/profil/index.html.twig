@@ -3,56 +3,55 @@
 {% block title %}Hello ProfilController!{% endblock %}
 
 {% block body %}
-
-<div class="container-profil">
-
-    {# <div>
-        <section>
-            <div>
-                <img src="{{user.avatar}}" alt=""> </img>
-            </div>
-        </section>
-        <section>
-            <div>
-                Mon pseudo : {{ user.pseudo }} <br> 
-                <button><a href="{{ path('edit_profile') }}">Modifier mon pseudo</a></button>  
-                Mon email : {{ user.email }}<br>   
-            </div>
-        </section>
-    </div>
-</div> #}
-
-
-
-<div class="profil-container">
-
-
-
-
-    <div class="profil-section">
-        <div class="profil-card">
-            <div class="profil-title">
-                <h1>Mon Profil</h1>
-            </div>
-            <div class="profil-card-content">
-                <div class="profil-user-info">
-                    <img src="{{user.avatar}}" alt="Photo de Profil" class="profil-image">
-                    <div class="profil-user-details">
-                        <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span></p>
-                        <p><b>Email :</b <span class="profil-highlight">{{ user.email }}</span></p>
+<div>
+    <section class="container-profil">
+        <section class="profil-container">
+            <div class="profil-section">
+                <div class="profil-card">
+                    <div class="profil-title">
+                        <h1>My Profil</h1>
                     </div>
+                    <div class="profil-card-content">
+                        <div class="profil-user-info">
+                            {% if user %}
+                                <img src="{{ user.avatar }}" alt="Photo de Profil" class="profil-image">
+                            {% else %}
+                                <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/36280650-defaut-avatar-profil-icone-social-medias-utilisateur-image-gris-avatar-icone-vide-profil-silhouette-vecteur-illustration-vectoriel.jpg" alt="Photo de Profil" class="profil-image">
+                            {% endif %}
+                            <div class="profil-user-details">
+                            {% if user %}
+                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span></p>
+                                <p><b>Email :</b> <span>{{ user.email }}</span></p>
+                            {% else %}
+                                <p>No users found. Please log in</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <button  ><a class="increment-button" href="{{ path('edit_profile') }}">Edit my profile</a></button>
                 </div>
-                <div>
-                    <button>
-                        <a class="increment-button" href="{{ path('edit_profile') }}">Modifier mon profil</a>
-                    </button> 
-                </div> 
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="container-profil">
+        <section class="profil-container">
+            <div class="profil-section">
+                <div class="profil-card">
+                    <div class="profil-title">
+                        <h1>My Gamelist</h1>
+                    </div>
+
+
+
+                    <div>
+                    <a class="increment-button" href="{{ path('jeux') }}"> Search game</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+
 </div>
-
-
-
-
 {% endblock %}
