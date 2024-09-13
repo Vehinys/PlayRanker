@@ -16,7 +16,8 @@
         
         <section>
             <div>
-                Mon pseudo : {{ user.pseudo }} <br>   
+                Mon pseudo : {{ user.pseudo }} <br> 
+                <button><a href="{{ path('edit_profile') }}">Modifier mon pseudo</a></button>  
                 Mon email : {{ user.email }}<br>   
             </div>
         </section>

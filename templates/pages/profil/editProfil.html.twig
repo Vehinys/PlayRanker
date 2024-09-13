@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon Pseudo{% endblock %}
+
+{% block body %}
+<h1>Modifier mon Pseudo</h1>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Modifier</button>
+{{ form_end(form) }}
+
+<a href="{{ path('profil') }}">Retour au profil</a>
+{% endblock %}
