@@ -50,14 +50,12 @@
                         {% for platform in game.platforms %}
 
                             <div class="platform-item">
-
-                               
                                 
                                 {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
 
                                 {% if logo_path %}
 
-                                    <img style="width: 30px;" src="{{ asset(logo_path) }}" alt="{{ platform.platform.name }} logo" />
+                                    <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ platform.platform.name}} " alt="{{ platform.platform.name}} logo" />
 
                                 {% endif %}
 
