@@ -65,11 +65,6 @@ class ProfilController extends AbstractController
             'attr' => [
                 'placeholder' => 'Url de l\'avatar',
             ],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Veuillez entrer un url.',
-                ]),
-            ],
         ])
 
         ->getForm();

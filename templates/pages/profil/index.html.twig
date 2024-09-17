@@ -14,17 +14,22 @@
                     <div class="profil-card-content">
                         <div class="profil-user-info">
                             {% if user %}
-                                <img src="{{ user.avatar }}" alt="Photo de Profil" class="profil-image">
+                                <!-- Affiche l'avatar de l'utilisateur s'il existe -->
+                                <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
                             {% else %}
-                                <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/36280650-defaut-avatar-profil-icone-social-medias-utilisateur-image-gris-avatar-icone-vide-profil-silhouette-vecteur-illustration-vectoriel.jpg" alt="Photo de Profil" class="profil-image">
+                                <!-- Affiche une image par défaut si l'utilisateur n'est pas connecté -->
+                                <img src="https://via.placeholder.com/50" alt="Photo de Profil par défaut" class="profil-image">
                             {% endif %}
                             <div class="profil-user-details">
-                            {% if user %}
-                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span></p>
-                                <p><b>Email :</b> <span>{{ user.email }}</span></p>
-                            {% else %}
-                                <p>No users found. Please log in</p>
-                            {% endif %}
+                                {% if user %}
+                                    <!-- Affiche les détails de l'utilisateur s'il est connecté -->
+                                    <p><b>Pseudo : </b> <span>{{ user.pseudo }} </span></p>
+                                    <p><b>Email  : </b> <span>{{ user.email }}  </span></p>
+                                {% else %}
+                                    <!-- Message à afficher si aucun utilisateur n'est trouvé -->
+                                    <p>No users found. Please log in</p>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                     <button  ><a class="increment-button" href="{{ path('edit_profile') }}">Edit my profile</a></button>
@@ -38,8 +43,11 @@
             <div class="profil-section">
                 <div class="profil-card">
                     <div class="profil-title">
-                        <h1>My Gamelist</h1>
+                        <h1>My favorites</h1>
                     </div>
+
+
+                    
                     <div>
                     <a class="increment-button" href="{{ path('jeux') }}"> Search game</a>
                     </div>
@@ -48,7 +56,22 @@
         </section>
     </section>
 
+    <section class="container-profil">
+        <section class="profil-container">
+            <div class="profil-section">
+                <div class="profil-card">
+                    <div class="profil-title">
+                        <h1>My Gamelist</h1>
+                    </div>
 
 
+
+                    <div>
+                    <a class="increment-button" href="{{ path('jeux') }}"> Search game</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 </div>
 {% endblock %}
