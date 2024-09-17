@@ -18,10 +18,7 @@ class ApiHttpClient extends AbstractController
 
     public function games()
     {
-
-        $url = 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&ordering=-metacritic';
-
-        $response = $this->httpClient->request('GET', $url);
+        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&ordering=-metacritic');
         return $response->toArray();
     }
 

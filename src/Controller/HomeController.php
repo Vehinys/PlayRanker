@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * This file contains the HomeController class, which is responsible for handling the home page routes in the application.
+ */
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
