@@ -71,7 +71,7 @@
                     {% if app.user %}
                     <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
                     <button class="increment-button"><span class="counter-value">0</span></button>
-                    <a href="{{app.user in vote.games ? 'hidden' : '' }}" class="favorite-button"> <i class="fas fa-heart"></i> {{ vote.games|length }}</a>
+                    <a href="" class="favorite-button"> <i class="fas fa-heart"></i></a>
                 {% else %}
                     <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button-deux">Détail</a> 
                 {% endif %}
