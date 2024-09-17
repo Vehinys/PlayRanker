@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\HttpClient\ApiHttpClient;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,15 +40,14 @@ class ApiController extends AbstractController
     #[Route('/jeux/{id}', name: 'detail_jeu')]
     public function detailJeu(ApiHttpClient $apiHttpClient, string $id): Response
     {
-       
         $gameDetail = $apiHttpClient->gameDetail($id);
         // dd($gameDetail);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
         // dd($gameAnnonce);
 
         return $this->render('pages/jeux/detail.html.twig', [
-           'gameDetail' => $gameDetail,
-           'gameAnnonce' => $gameAnnonce
+            'gameDetail' => $gameDetail,
+            'gameAnnonce' => $gameAnnonce
         ]);
     }
     
