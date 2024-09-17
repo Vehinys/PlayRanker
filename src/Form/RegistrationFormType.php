@@ -37,10 +37,6 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Le pseudo doit contenir au moins {{ limit }} lettres.',
                         'maxMessage' => 'Le pseudo ne peut pas dépasser {{ limit }} lettres.',
                     ]),
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z]{2,100}$/',
-                        'message' => 'Le pseudo ne doit contenir que des lettres sans accents et pas d\'espaces ni de caractères spéciaux.',
-                    ]),
                 ],
             ])
 

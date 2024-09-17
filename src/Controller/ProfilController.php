@@ -45,7 +45,6 @@ class ProfilController extends AbstractController
             'constraints' => [
                 new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
                 new Length  (['min' => 2, 'max' => 100]),
-                new Regex   (['pattern' => '/^[a-zA-Z]{2,100}$/', 'message' => 'Le pseudo ne doit contenir que des lettres.']),
             ],
         ])
         ->add('email', EmailType::class, [ 
@@ -54,9 +53,7 @@ class ProfilController extends AbstractController
                 'placeholder' => 'Email',
             ],
             'constraints' => [
-                new NotBlank([
-                    'message' => 'Veuillez entrer une adresse email.',
-                ]),
+                new NotBlank([ 'message' => 'Veuillez entrer une adresse email.'])
             ],
         ])
 
@@ -80,6 +77,5 @@ class ProfilController extends AbstractController
         'form' => $form->createView(),
         'user' => $user
     ]);
-}
-
+  }
 }
