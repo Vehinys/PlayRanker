@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class ProfilController extends AbstractController
 {
@@ -42,8 +43,8 @@ class ProfilController extends AbstractController
             ],
             'constraints' => [
                 new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
-                new Length(['min' => 2, 'max' => 100]),
-                new Regex(['pattern' => '/^[a-zA-Z]{2,100}$/', 'message' => 'Le pseudo ne doit contenir que des lettres.']),
+                new Length  (['min' => 2, 'max' => 100]),
+                new Regex   (['pattern' => '/^[a-zA-Z]{2,100}$/', 'message' => 'Le pseudo ne doit contenir que des lettres.']),
             ],
         ])
         ->add('email', EmailType::class, [ 
@@ -54,6 +55,18 @@ class ProfilController extends AbstractController
             'constraints' => [
                 new NotBlank([
                     'message' => 'Veuillez entrer une adresse email.',
+                ]),
+            ],
+        ])
+
+        ->add('avatar', UrlType::class, [
+            'label' => 'Avatar',
+            'attr' => [
+                'placeholder' => 'Url de l\'avatar',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Veuillez entrer un url.',
                 ]),
             ],
         ])

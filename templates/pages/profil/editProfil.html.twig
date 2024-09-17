@@ -22,18 +22,20 @@
                             {% if user %}
                                 {{ form_start(form) }}
 
-                                <p><b>Pseudo :</b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New nickname' } }) }}</p>
-                                <p><b>Email :</b> <span>{{ user.email }}</span> {{ form_widget(form.email, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New email' } }) }}</p>
-                                
+                                <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New nickname' } }) }}</p>
+                                <p><b>Email :  </b> <span>{{ user.email }}</span>  {{ form_widget(form.email,  { 'attr': { 'class': 'input-box-email', 'placeholder': 'New email'    } }) }}</p>
+                                <p><b>Avatar : </b>                                {{ form_widget(form.avatar, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New avatar'   } }) }}</p>
                             {% else %}
                                 <p>No users found. Please login.</p>
                             {% endif %}
                         </div>
                     </div>
-                        <button class="increment-button" type="submit">To validate</button>
-                        {{ form_end(form) }}
-                        
-                        <a class="increment-button" href="{{ path('profil') }}">Back to profile</a>
+                        <div class="input-btn">
+                            <button class="increment-button" type="submit">To validate</button>
+                            {{ form_end(form) }}
+                            
+                            <a class="increment-button" href="{{ path('profil') }}">Back to profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
