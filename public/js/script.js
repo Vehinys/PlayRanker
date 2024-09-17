@@ -129,19 +129,46 @@ const generateGlowButtons = () => {
 // ---------------------------------------------------------------------------------------------------- //
 
 // *** SEARCH FORM SUBMISSION ***
-document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('searchthis');
-        const searchBtn = document.getElementById('search-btn');
-        
-        searchBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          
-          form.submit(); 
-        });
-    });
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const resultsDiv = document.getElementById('results');
 
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function performSearch() {
+        const query = searchInput.value;
+        const apiKey = 'c2caa004df8a4f65b23177fa9ca935f9';
+        const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&search=${encodeURIComponent(query)}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                displayResults(data.results);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la recherche:', error);
+            });
+    }
+
+    function displayResults(games) {
+        resultsDiv.innerHTML = '';
+        games.forEach(game => {
+            const gameElement = document.createElement('div');
+            gameElement.innerHTML = `
+                <h3>${game.name}</h3>
+                <img src="${game.background_image}" alt="${game.name}" style="width: 200px;">
+                <p>Note : ${game.rating}/5</p>
+            `;
+            resultsDiv.appendChild(gameElement);
+        });
+    }
+});
 
 // ---------------------------------------------------------------------------------------------------- //
 

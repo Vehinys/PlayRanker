@@ -95,7 +95,8 @@
 
         <div class="container-multi-reponse">
             <p class="tag-label">Esrb</p> 
-            <p class="tag-list"> {{ gameDetail.esrb_rating.name }} </p>
+            <p class="tag-list"> <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
+</p>
         </div>
 
 
@@ -155,7 +156,7 @@
             {% set count = 0 %}
             {% for trailer in gameAnnonce.results %}
                 {% if count < 2 %}
-                    <iframe  src="{{ trailer.data.max }}" width="380" height="222">{{ trailer.name }} </iframe>
+                    <iframe  src="{{ trailer.data.max }}" title='Video trailer' width="380" height="222">{{ trailer.name }} </iframe>
                     {% set count = count + 1 %}
                 {% endif %}
             {% endfor %}
