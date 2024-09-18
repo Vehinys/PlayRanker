@@ -715,14 +715,14 @@ small {
 
 /* Styles pour le champ textearea */
 .textarea-contact {
-  height: 150px;
   resize: none;
+  height: 150px;
 }
 
 /* Effet au focus sur les champs */
 .input-contact:focus, .textarea-contact:focus {
-  border: 3px solid #ffa501;
   outline: none;
+  border: 3px solid #ffa501;
 }
 
 .form-label {
@@ -742,17 +742,16 @@ small {
 /* FORMULAIRE DE CONNEXION */
 
 .bg-login {
+  display: flex;
   padding: 10px 0;
   min-height: 105vh;
   position: relative;
+  align-items: center;
   background-size: cover;
   justify-content: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url(https://cdna.artstation.com/p/assets/images/images/076/586/446/large/hybs-pegasus.jpg?1717336241) ;
-  background-position: 0% 1%;
-  display: flex;
-  align-items: center;
 }
 
 .login-h1{
@@ -760,9 +759,9 @@ small {
 }
 
 .section-input {
+  gap: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .form-container{
@@ -774,15 +773,15 @@ small {
 }
 
 .register{
+  display: flex;
   font-size: 14px;
   margin-top: 20px;
-  display: flex;
   justify-content: center;
 }
 
 .register a{
-  font-weight: 600;
   color: #fff;
+  font-weight: 600;
   font-size: 20px;
 }
 
@@ -797,39 +796,39 @@ small {
 
 .btn-login{
   width: 100%;
-  height: 40px;
-  background: #ECC33E;
-  color: #000;
   border: none;
+  height: 40px;
   outline: none;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #ECC33E;
+  color: #000;
+  transition: 1s;
   font-size: 15px;
   font-weight: 600;
-  transition: 1s;
+  border-radius: 20px;
+  background: #ECC33E;
+  box-shadow: 0 0 20px #ECC33E;
 }
 
 .btn-login:hover{
-  background: transparent;
-  border: 2px solid #ECC33E;
   color: #fff;
   transform: scale(1.1);
+  background: transparent;
+  border: 2px solid #ECC33E;
   box-shadow: 0 0 20px #ECC33E;
 }
 
 .remember{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   font-size: 20px;
+  flex-direction: row;
   margin: 10px 30px 25px;
+  justify-content: space-between;
 }
 
 .remember a{
-  font-weight: 600;
-  font-size: 20PX;
-  border-bottom: 2px solid transparent;
   color: #fff;
+  font-size: 20PX;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
 }
 
 .remember a:hover{
@@ -846,40 +845,41 @@ small {
 .input-box-mdp {
   width: 100%;
   height: 100%;
-  background: transparent;
   border: none;
-  outline: none;
-  border-radius: 5px;
   color: #fff;
-  border: 2px solid #fff;
-  font-size: 16px;
+  outline: none;
   padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid #fff;
 }
 
 .input-box-email {
   width: 100%;
   height: 100%;
-  background: transparent;
   outline: none;
-  border-radius: 5px;
   color: #fff;
-  border: 2px solid #fff;
-  font-size: 16px;
   padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid #fff;
 }
 
 .input-box i{
-  position: absolute;
-  right: 20px;
   top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
   font-size: 20px;
+  position: absolute;
+  transform: translateY(-50%);
 }
 
 
 /* -------------------------------------------------------  */
 /* BARRE DE RECHERCHE */
 .bg-inscription {
+  z-index: 1; 
   width: 100%;
   padding: 10px 0;
   min-height: 90vh;
@@ -890,7 +890,6 @@ small {
   background-repeat: no-repeat;
   background-attachment: fixed;
   border-bottom: #ECC33E solid 3px;
-  z-index: 1; 
   background-image: url(https://cdnb.artstation.com/p/assets/images/images/007/505/041/large/pawel-szklarski-ac2.jpg?1506591120);
 }
 
@@ -899,21 +898,21 @@ small {
 }
 
 #search{
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
   Padding: 5px;
   border-radius: 10px;
-  padding: 10px 150px 10px 150px;
+  color: rgb(0, 0, 0);
   border-color: #ECC33E;
+  background-color: #ffffff;
+  padding: 10px 150px 10px 150px;
 }
 
 #search-btn {
-  background-color: rgba(21, 36, 54, 1);
-  color: #ECC33E;
-  border-color: #ECC33E;
   Padding: 5px;
+  color: #ECC33E;
   border-radius: 10px;
+  border-color: #ECC33E;
   padding: 10px 20px 10px 20px;
+  background-color: rgba(21, 36, 54, 1);
 }
 
 /* -------------------------------------------------------  */
@@ -921,29 +920,28 @@ small {
 
 /* Section d'inscription */
 .bg-inscription {
+  display: flex;
   padding: 10px 0;
   min-height: 105vh;
   position: relative;
+  align-items: center;
   background-size: cover;
   justify-content: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url(https://cdnb.artstation.com/p/assets/images/images/007/505/039/large/pawel-szklarski-ac1.jpg?1506591117);
-  background-position: 0% 1%;
-  display: flex;
-  align-items: center;
 }
 
 .inscription-h1 {
+  color: #fff;
   display: flex;
   font-size: 36px;
-  color: #fff;
 }
 
 .section-input {
+  gap: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .form-container {
@@ -955,16 +953,16 @@ small {
 }
 
 .register-link {
+  display: flex;
   font-size: 14px;
   margin-top: 20px;
-  display: flex;
   justify-content: center;
 }
 
 .register-link a {
-  font-weight: 600;
   color: #fff;
   font-size: 20px;
+  font-weight: 600;
 }
 
 .register-link p {
@@ -979,22 +977,22 @@ small {
 .btn-register {
   width: 100%;
   height: 40px;
-  background: #ECC33E;
-  color: #000;
   border: none;
   outline: none;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #ECC33E;
+  color: #000;
+  transition: 1s;
   font-size: 15px;
   font-weight: 600;
-  transition: 1s;
+  border-radius: 20px;
+  background: #ECC33E;
+  box-shadow: 0 0 20px #ECC33E;
 }
 
 .btn-register:hover {
-  background: transparent;
-  border: 2px solid #ECC33E;
   color: #fff;
   transform: scale(1.1);
+  background: transparent;
+  border: 2px solid #ECC33E;
   box-shadow: 0 0 20px #ECC33E;
 }
 
@@ -1006,23 +1004,23 @@ small {
 }
 
 .input-box-mdp, .input-box-email {
+  padding: 5px;
   width: 100%;
   height: 100%;
   outline: none;
-  border-radius: 5px;
-  color: #000000;
-  border: 0px solid #fff;
   font-size: 15px;
-  padding: 5px;
+  color: #000000;
+  border-radius: 5px;
   background: #ffffff;
+  border: 0px solid #fff;
 }
 
 .input-box i {
-  position: absolute;
-  right: 20px;
   top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
   font-size: 20px;
+  position: absolute;
+  transform: translateY(-50%);
 }
 
 .form-group a {
@@ -1036,16 +1034,16 @@ small {
 .btn-register{
   width: 100%;
   height: 40px;
-  background: #ECC33E;
-  color: #000;
   border: none;
   outline: none;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #ECC33E;
-  font-size: 15px;
-  font-weight: 600;
+  color: #000;
   transition: 1s;
+  font-size: 15px;
   margin-top: 20px;
+  font-weight: 600;
+  border-radius: 20px;
+  background: #ECC33E;
+  box-shadow: 0 0 20px #ECC33E;
 }
 
 .register-title {
@@ -1074,9 +1072,9 @@ small {
 }
 
 .contact-form {
+  gap: 40px;
   width: 100%;
   display: flex;
-  gap: 40px;
   align-items: center;
   justify-content: center;
 }
@@ -1106,28 +1104,28 @@ small {
 
 /* Styles pour le conteneur des cartes de jeux */
 .game-card-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 50px;
-  margin: 0px auto;
   width: 90%;
+  display: grid;
+  margin: 0px auto;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 /* Styles pour chaque carte de jeu */
 .game-card {
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(85, 98, 112, 1) 0%, rgba(45, 58, 75, 1) 100%);
-  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.6), 0px 0px 15px 8px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  display: flex;
   padding: 15px;
-  text-align: center;
   color: #ffffff;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
   min-height: 420px;
   position: relative;
-  width: 360px;
+  text-align: center;
+  border-radius: 10px;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.6), 0px 0px 15px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(85, 98, 112, 1) 0%, rgba(45, 58, 75, 1) 100%);
 }
 
 
@@ -1139,16 +1137,16 @@ small {
 
 /* Styles pour l'en-tête de chaque carte de jeu */
 .game-card-header {
-  font-size: 15px;
   height: 80px;
+  display: flex;
   padding: 15px;
+  font-size: 15px;
   color: #FFCC00;
   font-weight: bold;
+  align-items: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   text-shadow: 2px 2px 0 #000000;
-  display: flex;
-  align-items: center;
 }
 
 .game-card-header h3 {
@@ -1158,95 +1156,95 @@ small {
 /* Styles pour l'image de la carte de jeu */
 .game-card-image {
   width: 100%;
-  height: 200px; /* Hauteur uniforme pour les images */
+  height: 200px;
   object-fit: cover;
   border-radius: 10px;
 }
 
 /* Styles pour le conteneur des boutons */
 .button-container {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
   width: 100%;
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-around;
 }
 
 /* Styles pour les boutons */
 .detail-button {
-  padding: 10px 75px;
-  background-color: rgba(21, 36, 54, 1);
-  color: #ECC33E;
-  border-color: #ECC33E;
-  border-radius: 5px;
   cursor: pointer;
+  font-weight:700;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  color: #ECC33E;
+  padding: 10px 75px;
+  border-radius: 5px;
+  border-style: groove;
   text-decoration: none; 
   display: inline-block;
-  border-style: groove;
-  font-weight:700;
+  border-color: #ECC33E;
+  transition: background-color 0.3s ease;
+  background-color: rgba(21, 36, 54, 1);
 }
 
 .detail-button-deux {
-  padding: 10px 112px;
-  background-color: rgba(21, 36, 54, 1);
-  color: #ECC33E;
-  border-color: #ECC33E;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight:700;
+  color: #ECC33E;
+  border-radius: 5px;
+  padding: 10px 112px;
+  border-style: groove;
   text-decoration: none; 
   display: inline-block;
-  border-style: groove;
-  font-weight:700;
+  border-color: #ECC33E;
+  transition: background-color 0.3s ease;
+  background-color: rgba(21, 36, 54, 1);
 }
 
 .increment-button{
-  padding: 10px 15px;
-  background-color: rgba(21, 36, 54, 1);
-  color: #ECC33E;
-  border-color: #ECC33E;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight:700;
+  color: #ECC33E;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border-style: groove;
   text-decoration: none; 
   display: inline-block;
-  border-style: groove;
-  font-weight:700;
+  border-color: #ECC33E;
+  transition: background-color 0.3s ease;
+  background-color: rgba(21, 36, 54, 1);
 }
 
 .detail-button:hover {
   border-style: groove;
+  color: rgba(21, 36, 54, 1);
   background-color: #ECC33E;
   border: rgba(21, 36, 54, 1) 2px solid;
-  color: rgba(21, 36, 54, 1);
   box-shadow: 0px 10px 15px -5px rgba(0,0,0,0.7), 0px 0px 20px 10px rgba(0,0,0,0.4);
 }
 
 /* Styles spécifiques pour le bouton Favoris */
 .favorite-button {
   padding: 5px;
-  font-size: 30px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 30px;
+  border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .favorite-button i {
-  color: #ffffff; /* Couleur de l'icône */
+  color: #ffffff; 
 }
 
 .favorite-button i:hover {
   filter: drop-shadow(0 0 0.75rem #ff0000);
-  color: #ff0000; /* Couleur de l'icône */
+  color: #ff0000; 
 }
 
 .favorite-button.active i {
-  color: #ff0000; /* Couleur de l'icône lorsque le bouton est actif */
+  color: #ff0000;
 }
 
 .title{
@@ -1262,9 +1260,9 @@ small {
   width: 85%;
   height: 200px;
   margin: 50px 0;
-  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.6), 0px 0px 15px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
   margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.6), 0px 0px 15px 8px rgba(0, 0, 0, 0.3);
 }
 
 .container-search-jeux {
@@ -1276,39 +1274,39 @@ small {
 
 .pagination {
   display: flex;
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Aligne les éléments verticalement */
-  margin: 20px 0; /* Ajoute un espace autour de la pagination */
+  margin: 20px 0; 
+  align-items: center; 
+  justify-content: center;
   font-family: Arial, sans-serif;
 }
 
 .pagination a {
-  padding: 10px 20px;
   margin: 0 5px;
-  text-decoration: none;
-  background-color: #ECC33E; /* Couleur de fond des boutons */
-  color: #0C1D36; /* Couleur du texte */
+  color: #0C1D36;
   border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #ECC33E;
   transition: background-color 0.3s ease;
 }
 
 .pagination a:hover {
-  background-color: #d4b92e; /* Couleur de fond au survol */
+  background-color: #d4b92e;
 }
 
 .pagination span {
-  padding: 10px 15px;
-  background-color: #0C1D36; /* Couleur de fond pour la page actuelle */
-  color: #ECC33E; /* Couleur du texte pour la page actuelle */
-  border-radius: 5px;
   margin: 0 5px;
+  color: #ECC33E;
   font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #0C1D36;
 }
 
 .pagination a.disabled {
-  background-color: #cccccc;
   color: #666666;
-  pointer-events: none; /* Désactive le clic sur les liens désactivés */
+  pointer-events: none;
+  background-color: #cccccc;
 }
 
 /* -------------------------------------------------------  */
@@ -1316,16 +1314,16 @@ small {
 
 /* Container principal */
 .game-detail-container {
-  display: flex;
-  justify-content: space-evenly;
-  color: white;
   width: 80%;
+  display: flex;
+  color: white;
   margin: 50px 0 10px 0;
+  justify-content: space-evenly;
 }
 
 /* Section de l'image du jeu */
 .game-detail-image {
-  width: 50%; /* 50% de la largeur du container */
+  width: 50%; 
 }
 
 .game-detail-image img {
@@ -1338,7 +1336,7 @@ small {
 
 /* Section des détails du jeu */
 .game-detail-info {
-  width: 45%; /* 45% de la largeur pour les informations à droite */
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1355,8 +1353,8 @@ small {
 
 .game-detail-info p span {
   font-size: 17px;
+  color: #ECC33E;
   font-weight: bold;
-  color: #ECC33E; /* Couleur pour les titres des informations */
 }
 
 .container-multi-reponse {
@@ -1364,32 +1362,32 @@ small {
 }
 
 .tag-label {
-  font-weight: bold;
   color: #ECC33E;
+  font-weight: bold;
   margin-right: 5px;
 }
 
 .tag-list {
-  column-count: 3; /* Réduire les colonnes pour ne pas déborder */
+  column-count: 3;
   column-gap: 15px;
 }
 
 /* Bouton du site web */
 .game-detail-info button {
-  margin: 0px 0 0 10px;
-  background-color: #ECC33E;
   border: none;
-  color: #0C1D36;
-  border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+  color: #0C1D36;
+  border-radius: 5px;
+  margin: 0px 0 0 10px;
+  background-color: #ECC33E;
   transition: background-color 0.3s ease;
 }
 
 .game-detail-info button:hover {
+  color: #ECC33E;
   background-color: #0C1D36;
   box-shadow: 0 0 20px #ECC33E;
-  color: #ECC33E;
 }
 
 .game-detail-info a {
@@ -1404,11 +1402,11 @@ small {
 /* Section de description */
 .game-description {
   width: 77%;
-  text-align: justify;
   color: white;
+  font-size: 16px;
   margin-top: 20px;
   line-height: 1.6;
-  font-size: 16px;
+  text-align: justify;
   margin-bottom: 50px;
 }
 
@@ -1423,11 +1421,11 @@ small {
 }
 
 .section-video-h3, .game-description h3 {
-  color: #ECC33E;
   width: 77%;
   display: flex;
   margin: 20px 0;
   font-size: 20px;
+  color: #ECC33E;
 }
 
 .ifram:hover {
@@ -1435,16 +1433,16 @@ small {
 }
 
 .platforms {
-  height: 45px;
   width: 100%;
+  height: 45px;
 }
 
 .platform {
+  gap: 3px;
+  width: 100%;
   display: flex;
   margin-top: 10px;
-  width: 100%;
   justify-content: flex-start;
-  gap: 3px;
   filter: drop-shadow(0 0 0.75rem black);
 }
 
@@ -1454,16 +1452,16 @@ small {
 }
 
 .platforms-detail {
-  height: 45px;
   width: 100%;
+  height: 45px;
 }
 
 .platform-detail {
+  gap: 10px;
+  width: 100%;
   display: flex;
   margin-top: 10px;
-  width: 100%;
   justify-content: flex-start;
-  gap: 10px;
   filter: drop-shadow(0 0 0.75rem black);
 }
 
@@ -1471,11 +1469,9 @@ small {
 /* */
 
 .profil-container {
-  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
   padding: 20px;
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
-
-/* -------------------------------------------------------  */
 
 .profil-title h2 {
   font-size: 40px;
@@ -1483,26 +1479,25 @@ small {
   text-shadow: 2px 3px 9px rgba(0, 0, 0, 0.86);
 }
 
-/* -------------------------------------------------------  */
 /* PROFILE SECTION */
 .profil-section {
   display: flex;
-  justify-content: center;
   padding: 20px 0;
+  justify-content: center;
 }
 
 .profil-card {
-  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
-  border-radius: 10px;
-  box-shadow: 0px 10px 13px -7px #000000, 0px 0px 25px 13px rgba(0,0,0,0.32);
   width: 70%;
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 13px -7px #000000, 0px 0px 25px 13px rgba(0,0,0,0.32);
+  background: radial-gradient(circle, rgba(88,99,112,1) 0%, rgba(57,70,85,1) 50%, rgba(21,36,54,1) 100%);
 }
 
 /* Card Header */
 .profil-card-header h2 {
-  color: #ECC33E;
   font-size: 30px;
+  color: #ECC33E;
 }
 
 /* Card Content */
@@ -1513,9 +1508,9 @@ small {
 /* User Info */
 .profil-user-info {
   display: flex;
+  font-size: 20px;
   align-items: center;
   margin: 20px 0 20px 20px;
-  font-size: 20px;
 }
 
 .profil-user-info b {
@@ -1525,72 +1520,72 @@ small {
 .profil-image {
   width: 100px;
   height: 100px;
+  margin-right: 20px;
   border-radius: 50%;
   border: solid #ECC33E 3px;
-  margin-right: 20px;
 }
 
 .profil-user-details h3,
 .profil-user-details p {
-  text-align: left;
   margin: 20px;
   color: white;
+  text-align: left;
 }
 
 .profil-user-details b {
-  margin-right: 5px;
-  color: #ECC33E;
   font-size: 20px;
+  color: #ECC33E;
+  margin-right: 5px;
 }
 
 #form_pseudo , #form_email {
   width: 100%;
-  display: flex;
   height: 100%;
-  background: #ffffff;
-  border-radius: 5px;
-  color: #000000;
-  border: 0px solid #fff;
-  font-size: 15px;
   padding: 5px;
+  display: flex;
+  font-size: 15px;
+  color: #000000;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 0px solid #fff;
 }
 
 .input-btn {
+  gap: 20px;
   display: flex;
   justify-content: center;
-  gap: 20px;
 }
 
 /* --------------------------------------------------------  */
 
 /* Styles de base pour la mise en page */
 .container-console {
-  display: flex;
-  justify-content: center;
   gap: 20px;
+  display: flex;
   margin-top: 20px;
+  justify-content: center;
 }
 
 .recherche-form-jeux {
-  display: flex;
   gap: 10px;
+  display: flex;
   justify-content: center;
 }
 
 /* Styles pour les boutons du dropdown */
 .dropbtn {
-  background-color: #0C1D36; /* Couleur de fond du bouton */
-  color: #ECC33E; /* Couleur du texte */
-  padding: 10px 20px;
-  font-size: 16px;
   border: none;
+  font-size: 16px;
   cursor: pointer;
+  color: #ECC33E; /* Couleur du texte */
   border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #0C1D36; /* Couleur de fond du bouton */
 }
 
 .dropbtn:hover {
-  background-color: #ECC33E;
   color: #0C1D36;
+  background-color: #ECC33E;
 }
 
 /* Le conteneur dropdown (caché par défaut) */
@@ -1601,24 +1596,25 @@ small {
 
 /* Styles pour les liens dans le dropdown */
 .dropdown-content {
-  display: none; /* Caché par défaut */
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  display: none; /* Caché par défaut */
+  min-width: 160px;
+  position: absolute;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdown-content a {
   color: black;
+  display: block;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
 }
 
 .dropdown-content a:hover {
-  background-color: #ECC33E;
   color: #000;
+  background-color: #ECC33E;
 }
 
 /* Afficher le dropdown au survol */

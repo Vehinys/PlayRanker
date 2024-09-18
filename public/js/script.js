@@ -203,37 +203,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ---------------------------------------------------------------------------------------------------- //
 
-// Fonction pour ouvrir/fermer les dropdowns
 document.addEventListener('DOMContentLoaded', function() {
-    const dropBtns = document.querySelectorAll('.dropbtn');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-    dropBtns.forEach(button => {
-        button.addEventListener('click', function() {
-            // Obtenir l'ID du dropdown lié au bouton
-            const dropdownId = this.getAttribute('data-dropdown');
-            const dropdownContent = document.getElementById(dropdownId);
+    dropdowns.forEach(dropdown => {
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
 
-            // Fermer tous les autres dropdowns
-            document.querySelectorAll('.dropdown-content').forEach(drop => {
-                if (drop !== dropdownContent) {
-                    drop.classList.remove('show');
-                }
-            });
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.classList.add('show'); // Affiche le dropdown au survol
+        });
 
-            // Ouvrir/fermer le dropdown actuel
-            dropdownContent.classList.toggle('show');
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.classList.remove('show'); // Masque le dropdown quand le curseur quitte
         });
     });
-
-    // Fermer le dropdown si on clique en dehors
-    window.addEventListener('click', function(e) {
-        if (!e.target.matches('.dropbtn')) {
-            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-                dropdown.classList.remove('show');
-            });
-        }
-    });
 });
+
 
 
 
