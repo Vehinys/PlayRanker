@@ -5,11 +5,49 @@
 {% block body %}
 
 <div class="container-recherche-jeux">
-    <form class="recherche-form-jeux" action="{{ path('search') }} " id="searchthis" method="post">
+    <form class="recherche-form-jeux" action="{{ path('search') }}" id="searchthis" method="post">
         <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu"/>
         <input id="search-btn" name="submit" type="submit" value="Rechercher">
     </form>
 </div>
+
+<div class="container-console">
+    <form class="recherche-form-jeux">
+    
+        <div class="dropdown">
+            <button class="dropbtn" data-dropdown="playstationDropdown">PlayStation</button>
+            <div id="playstationDropdown" class="dropdown-content">
+                <a href="#">PlayStation 5</a>
+                <a href="#">PlayStation 4</a>
+                <a href="#">PlayStation 3</a>
+                <a href="#">PlayStation 2</a>
+                <a href="#">PlayStation</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn" data-dropdown="xboxDropdown">Xbox</button>
+            <div id="xboxDropdown" class="dropdown-content">
+                <a href="#">Xbox Series X/S</a>
+                <a href="#">Xbox One</a>
+                <a href="#">Xbox 360</a>
+                <a href="#">Xbox</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn" data-dropdown="nintendoDropdown">Nintendo</button>
+            <div id="nintendoDropdown" class="dropdown-content">
+                <a href="#">Nintendo Switch</a>
+                <a href="#">Wii U</a>
+                <a href="#">Wii</a>
+                <a href="#">GameCube</a>
+                <a href="#">Nintendo 64</a>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 
 <div class="container-jeux">

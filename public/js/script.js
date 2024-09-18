@@ -200,3 +200,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ---------------------------------------------------------------------------------------------------- //
+
+// Fonction pour ouvrir/fermer les dropdowns
+document.addEventListener('DOMContentLoaded', function() {
+    const dropBtns = document.querySelectorAll('.dropbtn');
+
+    dropBtns.forEach(button => {
+        button.addEventListener('click', function() {
+            // Obtenir l'ID du dropdown lié au bouton
+            const dropdownId = this.getAttribute('data-dropdown');
+            const dropdownContent = document.getElementById(dropdownId);
+
+            // Fermer tous les autres dropdowns
+            document.querySelectorAll('.dropdown-content').forEach(drop => {
+                if (drop !== dropdownContent) {
+                    drop.classList.remove('show');
+                }
+            });
+
+            // Ouvrir/fermer le dropdown actuel
+            dropdownContent.classList.toggle('show');
+        });
+    });
+
+    // Fermer le dropdown si on clique en dehors
+    window.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                dropdown.classList.remove('show');
+            });
+        }
+    });
+});
+
+
+
+
