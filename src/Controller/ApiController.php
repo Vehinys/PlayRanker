@@ -11,12 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ApiController extends AbstractController
 {
     #[Route('/jeux', name: 'jeux')]
-    public function index(ApiHttpClient $apiHttpClient, Request $request, string $id = null): Response
+    public function index(ApiHttpClient $apiHttpClient, Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
-        // dd($page);
         $games = $apiHttpClient->nextPage($page);
-        // dd($games);
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
@@ -28,9 +26,7 @@ class ApiController extends AbstractController
     public function search(ApiHttpClient $apiHttpClient, Request $request): Response
     {
         $input = $request->get('input');
-        // dd($input);
         $games = $apiHttpClient->gamesSearch($input);
-        // dd($games);
         
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
@@ -41,9 +37,7 @@ class ApiController extends AbstractController
     public function detailJeu(ApiHttpClient $apiHttpClient, string $id): Response
     {
         $gameDetail = $apiHttpClient->gameDetail($id);
-        // dd($gameDetail);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
-        // dd($gameAnnonce);
 
         return $this->render('pages/jeux/detail.html.twig', [
             'gameDetail' => $gameDetail,
@@ -56,11 +50,10 @@ class ApiController extends AbstractController
     {
         // Utiliser la méthode nextPage de ApiHttpClient pour récupérer les jeux à la page donnée
         $games = $apiHttpClient->nextPage($page);
-        // dd($page);
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
-            'currentPage' => $page,
+            'currentPage' => $page
         ]);
     }
 
