@@ -1480,8 +1480,8 @@ small {
 
 /* -------------------------------------------------------  */
 
-.profil-title h1 {
-  font-size: 50px;
+.profil-title h2 {
+  font-size: 40px;
   color: #ECC33E;
   text-shadow: 2px 3px 9px rgba(0, 0, 0, 0.86);
 }
@@ -1518,6 +1518,11 @@ small {
   display: flex;
   align-items: center;
   margin: 20px 0 20px 20px;
+  font-size: 20px;
+}
+
+.profil-user-info b {
+  font-size: 25px;
 }
 
 .profil-image {

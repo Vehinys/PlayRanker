@@ -18,21 +18,8 @@ class ApiHttpClient extends AbstractController
 
     public function games()
     {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games', [
-            'query' => [
-                'key' => 'c2caa004df8a4f65b23177fa9ca935f9',
-                'page_size' => 100, // Increase the number of results
-            ]
-        ]);
-    
-        $data = $response->toArray();
-    
-        // Sort the results by name
-        usort($data['results'], function($a, $b) {
-            return strcmp($a['name'], $b['name']);
-        });
-    
-        return $data;
+        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9');
+        return $response->toArray();
     }
 
     public function gamesSearch($input)
@@ -57,6 +44,13 @@ class ApiHttpClient extends AbstractController
     {
         $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games/'.$id.'/movies?key=c2caa004df8a4f65b23177fa9ca935f9');
         return $response->toArray();
+    }
+
+    public function gamesSearchByPlatforms($id)
+    {
+        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&parent_platforms='.$id.'');
+        return $response->toArray();
+        
     }
 
     
