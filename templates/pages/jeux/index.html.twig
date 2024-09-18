@@ -75,11 +75,9 @@
                         <a href="{{ path('searchByPlatform', {'id':  5 }) }}"> MacOs   </a>
                     </div>
             </div>
-
         </form>
     </section>
 </div>
-
 
 
 <div class="container-jeux">
@@ -151,13 +149,9 @@
                 </div>
                 
                 <div class="button-container">
-                    {% if app.user %}
+
                     <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
-                    <button class="increment-button"><span class="counter-value">0</span></button>
-                    <a href="" class="favorite-button"> <i class="fas fa-heart"></i></a>
-                {% else %}
-                    <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button-deux">Détail</a> 
-                {% endif %}
+
                 </div>
             </div>
         {% endfor %}

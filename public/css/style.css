@@ -1165,7 +1165,7 @@ small {
 .button-container {
   width: 100%;
   display: flex;
-  margin-top: 10px;
+  margin-top: 60px;
   justify-content: space-around;
 }
 
@@ -1224,27 +1224,18 @@ small {
   box-shadow: 0px 10px 15px -5px rgba(0,0,0,0.7), 0px 0px 20px 10px rgba(0,0,0,0.4);
 }
 
-/* Styles spécifiques pour le bouton Favoris */
-.favorite-button {
-  padding: 5px;
+/* Styles spécifiques pour le bouton add */
+.add-button {
+  margin-top: 10px;
   border: none;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
-.favorite-button i {
+.add-button i {
   color: #ffffff; 
-}
-
-.favorite-button i:hover {
-  filter: drop-shadow(0 0 0.75rem #ff0000);
-  color: #ff0000; 
-}
-
-.favorite-button.active i {
-  color: #ff0000;
 }
 
 .title{
@@ -1345,6 +1336,7 @@ small {
 .game-detail-info p {
   font-size: 17px;
   text-align: -webkit-left;
+  margin-top: 5px;
 }
 
 .game-detail-p {
@@ -1359,6 +1351,7 @@ small {
 
 .container-multi-reponse {
   display: flex;
+  margin-top: 10px;
 }
 
 .tag-label {
@@ -1379,15 +1372,13 @@ small {
   cursor: pointer;
   color: #0C1D36;
   border-radius: 5px;
-  margin: 0px 0 0 10px;
-  background-color: #ECC33E;
+  background-color: #0C1D36;
   transition: background-color 0.3s ease;
 }
 
 .game-detail-info button:hover {
-  color: #ECC33E;
-  background-color: #0C1D36;
-  box-shadow: 0 0 20px #ECC33E;
+  color: #0C1D36;
+  box-shadow: 0 0 20px #0C1D36;
 }
 
 .game-detail-info a {
@@ -1412,6 +1403,7 @@ small {
 
 .container-button-general {
   display: flex;
+  margin-top: 20px;
 }
 
 .section-video {
@@ -1438,10 +1430,13 @@ small {
 }
 
 .platform {
-  gap: 3px;
-  width: 100%;
+  gap: 10px;
+  width: 90%;
+  height: 80px;
   display: flex;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  align-content: flex-start;
   justify-content: flex-start;
   filter: drop-shadow(0 0 0.75rem black);
 }
@@ -1585,7 +1580,7 @@ small {
 
 .dropbtn:hover {
   color: #0C1D36;
-  background-color: #ECC33E;
+  background-color: #0C1D36;
 }
 
 /* Le conteneur dropdown (caché par défaut) */

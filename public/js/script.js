@@ -172,34 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ---------------------------------------------------------------------------------------------------- //
 
-// *** FAVORITE BUTTON TOGGLE ***
-document.addEventListener('DOMContentLoaded', function() {
-    const favoriteButtons = document.querySelectorAll('.favorite-button');
 
-    // Gestion des clics sur les boutons "favoris"
-    favoriteButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            this.classList.toggle('active'); // Active/Désactive l'état de favori
-        });
-    });
-});
-
-// ---------------------------------------------------------------------------------------------------- //
-
-// *** INCREMENT COUNTER BUTTON ***
-document.addEventListener('DOMContentLoaded', function() {
-    const incrementButtons = document.querySelectorAll('.increment-button');
-
-    // Gestion du clic pour incrémenter la valeur d'un compteur
-    incrementButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const counterValueElement = this.querySelector('.counter-value');
-            let currentValue = parseInt(counterValueElement.textContent, 10); // Récupère la valeur actuelle
-            counterValueElement.textContent = currentValue + 1; // Incrémente de 1
-        });
-    });
-});
 
 // ---------------------------------------------------------------------------------------------------- //
 
