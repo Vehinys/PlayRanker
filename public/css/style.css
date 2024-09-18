@@ -1264,15 +1264,14 @@ small {
   margin: 50px 0;
   box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.6), 0px 0px 15px 8px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+  margin-top: 40px;
 }
 
-.recherche-form-jeux {
-  margin-top: 50px;
-  padding-top: 40px;
+.container-search-jeux {
+  margin-top: 40px;
 }
 
-
-/* -------------------------------------------------------  */
+/* ------------------------------------------------------  */
 /* PAGINATION */
 
 .pagination {
@@ -1575,6 +1574,7 @@ small {
 .recherche-form-jeux {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 
 /* Styles pour les boutons du dropdown */
@@ -1617,7 +1617,8 @@ small {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #ECC33E;
+  color: #000;
 }
 
 /* Afficher le dropdown au survol */

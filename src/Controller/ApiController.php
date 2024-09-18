@@ -15,10 +15,24 @@ class ApiController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
-
+        
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'currentPage' => $page
+        ]);
+    }
+
+    #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
+    public function searchByConsole(ApiHttpClient $apiHttpClient, string $id): Response
+    {   
+        $token = 'platform';
+
+        $searchByConsole = $apiHttpClient->searchByConsole($id);
+        $games = $searchByConsole;
+
+        return $this->render('pages/jeux/index.html.twig', [
+            'games' => $games,
+            'token' => $token
         ]);
     }
 
