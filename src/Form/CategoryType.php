@@ -16,7 +16,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'nom de la session',
+                'label' => 'Name category',
                 
                 'attr' => [
                     'minlength' => 2,
@@ -31,7 +31,7 @@ class CategoryType extends AbstractType
             ])
 
             ->add('submit', SubmitType::class, [
-                'label' => 'Valid',
+                'label' => 'add',
             ]);
         
     }
