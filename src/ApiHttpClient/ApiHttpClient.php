@@ -36,7 +36,6 @@ class ApiHttpClient extends AbstractController
     
     public function nextPagePlatform($page, $id)
     {
-
         $url = $this->url;
         $key = $this->key;
 
