@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Entity\SousCategory;
+use App\Form\SousCategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\SousCategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,12 +20,19 @@ class AdminController extends AbstractController
 {
 
     #[Route('/admin', name: 'admin')]
-    public function index(CategoryRepository $categoryRepository): Response
-    {
+    public function index(
+        
+        CategoryRepository $categoryRepository, 
+        SousCategoryRepository $sousCategoryRepository
+        
+    ): Response {
+
         $categories = $categoryRepository->findAll();
+        $subcategory = $sousCategoryRepository->findAll();
     
         return $this->render('admin/index.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'subcategory' => $subcategory,
         ]);
     }
 
@@ -121,32 +131,100 @@ class AdminController extends AbstractController
 
     //                 ----------------------------------------------------------------------------- // 
 
-    // #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
-    // public function newSousCategory(
+    #[Route('/admin/subcategory/new', name: 'subcategory.add', methods: ['GET', 'POST'])]
+    public function newsubcategory(
         
-    //     Request $request,
-    //     EntityManagerInterface $manager
+        Request $request,
+        EntityManagerInterface $manager
         
-    // ): Response {
+    ): Response {
 
-    //     $SousCategory = new SousCategory();
-    //     $form = $this->createForm(CategoryType::class, $SousCategory);
-    //     $form->handleRequest($request);
+        $subcategory = new SousCategory();
+        $form = $this->createForm(SousCategoryType::class, $subcategory);
+        $form->handleRequest($request);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-    //         $SousCategory = $form->getData();
-    //         $manager->persist($SousCategory);
-    //         $manager->flush();
+            $subcategory = $form->getData();
+            $manager->persist($subcategory);
+            $manager->flush();
 
-    //         return $this->redirectToRoute('admin');
-    //     }   
+            return $this->redirectToRoute('admin');
+        }   
 
-    //     return $this->render('admin/platformAdd.html.twig', [
-    //         'form' => $form,
-    //         'sessionId'=> $SousCategory->getId()
-    //     ]);
-    // }
+        return $this->render('admin/subcategoryadd.html.twig', [
+            'form' => $form,
+            'sessionId'=> $subcategory->getId()
+        ]);
+    }
+
+    #[Route('/admin/subcategory/edit/{subcategoryId}', name: 'subcategory.edit', methods: ['GET', 'POST'])]
+    public function editsubcategory(
+
+        int $subcategoryId, 
+        SousCategoryRepository $repository,  
+        Request $request, 
+        EntityManagerInterface $manager
+
+    ): Response {
+
+        $subcategory = $repository->find($subcategoryId);
+    
+        if (!$subcategory) {
+            throw $this->createNotFoundException('ubcategory not found');
+        }
+    
+        $form = $this->createForm(SousCategoryType::class, $subcategory);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $subcategory = $form->getData();
+            $manager->persist($subcategory);
+            $manager->flush();
+    
+            $this->addFlash('success', 'The category has been successfully updated');
+            return $this->redirectToRoute('admin', ['id' => $subcategory->getId()]);
+        }
+    
+        return $this->render('admin/platformEdit.html.twig', [
+            'form' => $form->createView(),
+            'subcategoryId' => $subcategory->getId(),
+        ]);
+    }
+
+    
+
+    #[Route('/admin/subcategory/delete/{subcategoryId}', name: 'subcategory.delete', methods: ['POST'])]
+    public function deletesubcategory(
+
+        int $subcategoryId, 
+        SousCategoryRepository $repository, 
+        EntityManagerInterface $manager, 
+        Request $request, 
+        CsrfTokenManagerInterface $csrfTokenManager
+
+    ): Response {
+        $subcategory = $repository->find($subcategoryId);
+    
+        if (!$subcategory) {
+            throw $this->createNotFoundException('Category not found');
+        }
+    
+        // Vérification du token CSRF
+        $csrfToken = $request->request->get('_token');
+        if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$subcategoryId, $csrfToken))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token');
+        }
+    
+        // Supprimer la catégorie
+        $manager->remove($subcategory);
+        $manager->flush();
+    
+        $this->addFlash('success', 'The subcategory has been successfully deleted');
+        
+        return $this->redirectToRoute('admin');
+    }
+
     
 
     

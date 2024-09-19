@@ -16,12 +16,12 @@ class SousCategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name category',
+                'label' => 'Name subcategory',
                 
                 'attr' => [
                     'minlength' => 2,
                     'maxlength' => 100,
-                    'placeholder' => 'Add category'
+                    'placeholder' => 'Add subcategory'
                 ],
 
                 'constraints' => [

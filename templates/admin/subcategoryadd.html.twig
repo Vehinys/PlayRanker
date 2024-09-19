@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+
+    <div class="container-add-category" >
+
+        {{ form_start(form) }}
+            <div>
+                {{form_row(form.name)}}
+            </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}
