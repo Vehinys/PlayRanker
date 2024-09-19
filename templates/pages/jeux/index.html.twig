@@ -11,9 +11,40 @@
         </form>
     </section>
 
+
     <section class="container-console">
-        <form class="recherche-form-jeux">
         
+        <form class="recherche-form-jeux">
+
+            {% for category in categories %}
+
+                <div class="dropdown">
+
+                    <button class="dropbtn" data-dropdown="allDropdown">{{ category.name }}</button>
+
+                        <div id="allDropdown" class="dropdown-content">
+
+                            <a href=""></a>
+                        </div>
+                </div> 
+            {% endfor %}
+
+        </form>
+
+    </section>
+
+    {{ form_start(formAddCategory) }}
+   
+        <div>
+            {{form_row(formAddCategory.name)}}
+        </div>
+  
+    {{ form_end(formAddCategory) }}
+
+
+
+    {# <section class="container-console">
+        <form class="recherche-form-jeux">
             <div class="dropdown">
                 <button class="dropbtn" data-dropdown="playstationDropdown">PlayStation</button>
                     <div id="playstationDropdown" class="dropdown-content">
@@ -77,7 +108,7 @@
             </div>
         </form>
     </section>
-</div>
+</div> #}
 
 
 <div class="container-jeux">

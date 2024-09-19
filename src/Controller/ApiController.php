@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\HttpClient\ApiHttpClient;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,14 +12,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ApiController extends AbstractController
 {
     #[Route('/jeux', name: 'jeux')]
-    public function index(ApiHttpClient $apiHttpClient, Request $request): Response
-    {
+    public function index(
+        
+        ApiHttpClient $apiHttpClient, 
+        Request $request,
+        CategoryRepository $repository
+        
+    ): Response {
+
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
-        
+        $categories = $repository->findAll();
+
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'categories' => $categories
+
         ]);
     }
 
@@ -70,7 +80,5 @@ class ApiController extends AbstractController
             'currentPage' => $page
         ]);
     }
-
-
     
 }
