@@ -1579,7 +1579,7 @@ small {
 }
 
 .dropbtn:hover {
-  color: #0C1D36;
+  color: white;
   background-color: #0C1D36;
 }
 
@@ -1609,6 +1609,7 @@ small {
 
 .dropdown-content a:hover {
   color: #000;
+  border-radius: 5px;
   background-color: #ECC33E;
 }
 
