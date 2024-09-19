@@ -4,10 +4,13 @@
 
 {% block body %}
 
-    {{ form_start(form) }}
-        <div>
-            {{form_row(form.name)}}
-        </div>
-    {{ form_end(form) }}
+Add new category
+    <div>
+        <a href="{{ path('platform.add') }}">ADD</a>
+    </div>
 
+{# Edit category
+    <div>
+        <a href="{{ path('platform.edit', {'id': category.id} ) }}">EDIT</a>
+    </div> #}
 {% endblock %}

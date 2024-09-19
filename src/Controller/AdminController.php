@@ -21,13 +21,11 @@ class AdminController extends AbstractController
 
         return $this->render('admin/index.html.twig', [
 
-        'form' => $form
-
         ]);
     }
 
-    #[Route('/admin/new', name: 'admin.add', methods: ['GET', 'POST'])]
-    public function newSession(
+    #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
+    public function newCategory(
         
         Request $request,
         EntityManagerInterface $manager
@@ -47,48 +45,48 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin');
         }   
 
-        return $this->render('admin/index.html.twig', [
+        return $this->render('admin/platformAdd.html.twig', [
             'form' => $form,
             'sessionId'=> $category->getId()
         ]);
     }
 
-    // #[Route('/admin/edition/{id}', name: 'admin.edit', methods: ['GET', 'POST'])]
-    // public function editCategory(
+    #[Route('/admin/edition/{id}', name: 'platform.edit', methods: ['GET', 'POST'])]
+    public function editCategory(
         
-    //     int $id, 
-    //     CategoryRepository $repository,  
-    //     Request $request, 
-    //     EntityManagerInterface $manager
+        int $id, 
+        CategoryRepository $repository,  
+        Request $request, 
+        EntityManagerInterface $manager
         
-    //     ): Response {
-    //     $category = $repository->find($id);
+        ): Response {
+        $category = $repository->find($id);
 
-    //     if (!$category) {
-    //         throw $this->createNotFoundException('category non trouvé');
-    //     }
+        if (!$category) {
+            throw $this->createNotFoundException('category non trouvé');
+        }
 
-    //     $form = $this->createForm(CategoryType::class, $category);
-    //     $form->handleRequest($request);
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
 
-    //     // dd($category);
-    //     if ($form->isSubmitted() && $form->isValid()) {
+        // dd($category);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-    //         $category = $form->getData();
+            $category = $form->getData();
 
-    //         $manager->persist($category);
-    //         $manager->flush();
+            $manager->persist($category);
+            $manager->flush();
 
-    //         $this->addFlash(
-    //             'success',
-    //             'La modification à été faite avec succès de '
-    //         );
-    //         return $this->redirectToRoute('admin', ['id' => $category->getId()]);
+            $this->addFlash(
+                'success',
+                'La modification à été faite avec succès de '
+            );
+            return $this->redirectToRoute('admin', ['id' => $category->getId()]);
 
-    //     }
-    //     return $this->render('admin/index.html.twig', [
-    //         'form' => $form->createView(),
-    //         'sessionId'=> $category->getId()
-    //     ]);
-    // }
+        }
+        return $this->render('admin/platformEdit.html.twig', [
+            'form' => $form->createView(),
+            'sessionId'=> $category->getId()
+        ]);
+    }
 }
