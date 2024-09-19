@@ -4,10 +4,14 @@
 
 {% block body %}
 
-    {{ form_start(form) }}
-        <div>
-            {{form_row(form.name)}}
-        </div>
-    {{ form_end(form) }}
+    <div class="container-add-category" >
+
+        {{ form_start(form) }}
+            <div>
+                {{form_row(form.name)}}
+            </div>
+        {{ form_end(form) }}
+
+    </div>
 
 {% endblock %}

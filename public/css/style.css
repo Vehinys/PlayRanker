@@ -1617,3 +1617,55 @@ small {
 .dropdown-content.show {
   display: block;
 }
+
+.container-add-category{
+  width: 60%;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.container-add-category h2 {
+  padding: 0 10px 10px 0;
+  color: white;
+}
+
+.button-add-category {
+  background-color: #ECC33E;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.button-add-category a {
+  color: #000;
+}
+
+.button-edit-category , .button-delete-category {
+  background-color: #ECC33E;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.button-edit-category a {
+  color: #000;
+}
+
+.container-edit-category {
+  display: flex;
+  width: 60%;
+  margin: 0 0 25px 0;
+  color: white;
+  font-weight: 700;
+}
+
+.container-edit-category td {
+  padding: 0 20px;
+  font-size: 20px;
+}
+.container-edit-category th {
+  color: white;
+  font-size: 24px;
+}
