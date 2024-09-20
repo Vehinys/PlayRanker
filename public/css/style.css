@@ -3,16 +3,16 @@
 /* ----------------------------------------------------------- */
 
 :root {
-  --background-dark: #000;                                   /* Arrière-plan noir */
-  --text-light: #FFFFFF;                                     /* Texte en blanc */
-  --text-yellow: #ECC33E;                                    /* Couleur du texte (jaune doré) */
-  --text-medium: #666;                                       /* Couleur du texte (gris moyen) */
-  --text-dark: #333;                                         /* Couleur du texte (gris foncé) */
-  --border-yellow: #efd807;                                  /* Bordure jaune doré */
-  --border-orange: #ECC33E;                                  /* Bordure orange vif */
-  --button-bg-yellow: #efd807;                               /* Couleur de fond du bouton jaune doré */
-  --button-bg-orange: #ECC33E;                               /* Couleur d'arrière-plan orange au survol */
-  --background-light: #F5F5F5;                               /* Arrière-plan gris clair pour le corps */
+  --background-dark: #000;                                   /* Noir pour l'arrière-plan principal */
+  --text-light: #FFFFFF;                                     /* Blanc pour le texte sur fond sombre */
+  --text-yellow: #ECC33E;                                    /* Jaune doré pour le texte (accent) */
+  --text-medium: #666;                                       /* Gris moyen pour le texte secondaire */
+  --text-dark: #333;                                         /* Gris foncé pour le texte principal */
+  --border-yellow: #efd807;                                  /* Jaune doré pour les bordures */
+  --border-orange: #ECC33E;                                  /* Orange vif pour les bordures au survol */
+  --button-bg-yellow: #efd807;                               /* Fond jaune doré pour les boutons */
+  --button-bg-orange: #ECC33E;                               /* Fond orange vif pour les boutons au survol */
+  --background-light: #F5F5F5;                               /* Gris clair pour l'arrière-plan secondaire */
 }
 
 /* ----------------------------------------------------------- */
@@ -20,11 +20,11 @@
 /* ----------------------------------------------------------- */
 
 * {
-  margin: 0;                                                   /* Supprime les marges par défaut */
-  padding: 0;                                                  /* Supprime le rembourrage par défaut */
-  font-family: 'Montserrat', sans-serif;                       /* Définit la police Montserrat pour tout le texte */
-  text-decoration: none;                                       /* Supprime le soulignement des liens */
-  box-sizing: border-box;                                      /* Inclut les bordures et le rembourrage dans la largeur et la hauteur */
+  margin: 0;                                                   /* Réinitialisation des marges */
+  padding: 0;                                                  /* Réinitialisation des espacements internes */
+  font-family: 'Montserrat', sans-serif;                       /* Police par défaut (Montserrat) */
+  text-decoration: none;                                       /* Suppression des soulignements de lien */
+  box-sizing: border-box;                                      /* Inclusion des bordures et paddings dans le calcul de la taille */
 }
 
 /* ----------------------------------------------------------- */
@@ -32,28 +32,28 @@
 /* ----------------------------------------------------------- */
 
 .header-section {
-  background-color: var(--background-dark);                    /* Arrière-plan gris foncé */
-  color: var(--text-light);                                    /* Texte blanc */
-  padding: 40px 20px;                                          /* Rembourrage autour du contenu */
-  text-align: center;                                          /* Centre le texte */
+  background-color: var(--background-dark);                    /* Arrière-plan noir pour l'en-tête */
+  color: var(--text-light);                                    /* Texte blanc pour un bon contraste */
+  padding: 40px 20px;                                          /* Espacement interne de l'en-tête */
+  text-align: center;                                          /* Centrage du contenu */
 }
 
 /* Styles pour le titre principal */
 .header-section h1 {
-  font-size: 4rem;                                             /* Taille de police pour le titre principal */
-  margin-bottom: 15px;                                         /* Marge en bas du titre */
+  font-size: 4rem;                                             /* Très grande taille pour le titre principal */
+  margin-bottom: 15px;                                         /* Espacement en bas du titre */
   font-weight: bold;                                           /* Met le titre en gras */
-  color: var(--border-yellow);
+  color: var(--border-yellow);                                 /* Utilisation du jaune doré pour le texte */
 }
 
 /* Styles pour le sous-titre */
 .header-section h3 {
-  width: 55%;
-  text-align: center;
-  font-size: 1.1rem;
-  margin:  5px 0 30px 0;
-  line-height: 1.5;
-  display: -webkit-inline-box;
+  width: 55%;                                                  /* Largeur du sous-titre à 55% de son conteneur */
+  text-align: center;                                          /* Centre le texte */
+  font-size: 1.1rem;                                           /* Taille moyenne pour le sous-titre */
+  margin: 5px 0 30px 0;                                        /* Marges pour aérer le sous-titre */
+  line-height: 1.5;                                            /* Hauteur de ligne pour meilleure lisibilité */
+  display: -webkit-inline-box;                                 /* Alignement pour l'affichage en boîte */
 }
 
 /* ----------------------------------------------------------- */
@@ -61,74 +61,115 @@
 /* ----------------------------------------------------------- */
 
 .search-container {
-  display: flex;                                               /* Utilise flexbox pour un meilleur alignement */
-  justify-content: center;                                     /* Centre le formulaire de recherche */
-  position: relative;
-  width: 100%;
+  display: flex;                                               /* Utilisation de flexbox pour aligner horizontalement */
+  justify-content: center;                                     /* Centrage du formulaire dans la page */
+  position: relative;                                          /* Position relative pour gérer l'icône */
+  width: 100%;                                                 /* Prend toute la largeur du conteneur parent */
 }
 
 /* Styles pour le formulaire de recherche */
 .search-form {
-  display: flex;                                               /* Flex pour le champ et le bouton */
+  display: flex;                                               /* Utilisation de flexbox pour aligner le champ et le bouton */
 }
 
 /* Styles pour le champ de recherche */
 .search-input {
-  padding: 10px 50px 10px 50px;
-  font-size: 16px;
-  border: 3px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-  box-sizing: border-box;
+  padding: 10px 50px 10px 50px;                                /* Espacement interne avec padding symétrique */
+  font-size: 16px;                                             /* Taille du texte du champ de recherche */
+  border: 3px solid #ccc;                                      /* Bordure grise autour du champ */
+  border-radius: 25px;                                         /* Arrondit les coins du champ */
+  outline: none;                                               /* Supprime l'outline par défaut */
+  box-sizing: border-box;                                      /* Inclut bordures et padding dans les dimensions du champ */
 }
 
 /* Effet de focus sur le champ de recherche */
 .search-input:focus {
-  border-color: var(--border-orange);                          /* Bordure orange vif au focus */
-  outline: none;                                               /* Supprime le contour par défaut */
+  border-color: var(--border-orange);                          /* Change la couleur de la bordure au focus */
+  outline: none;                                               /* Supprime le contour par défaut au focus */
 }
 
 /* Styles pour le bouton de recherche */
 #search-btn {
-  padding: 12px 20px;                                          /* Rembourrage à l'intérieur du bouton */
-  background-color: var(--button-bg-yellow);                   /* Couleur de fond jaune doré */
-  color: var(--background-dark);                               /* Couleur du texte (gris foncé) */
-  border: none;                                                /* Supprime la bordure par défaut */
-  cursor: pointer;                                             /* Changement du curseur au survol */
-  transition: background-color 0.3s ease;                      /* Transition pour l'effet de survol */
+  padding: 12px 20px;                                          /* Espacement interne du bouton */
+  background-color: var(--button-bg-yellow);                   /* Fond jaune doré pour le bouton */
+  color: var(--background-dark);                               /* Texte noir pour le contraste avec le fond */
+  border: none;                                                /* Supprime la bordure par défaut du bouton */
+  cursor: pointer;                                             /* Change le curseur pour pointer lors du survol */
+  transition: background-color 0.3s ease;                      /* Transition fluide pour les changements d'état (survol) */
 }
 
 /* Effet de survol sur le bouton */
 #search-btn:hover {
-  background-color: var(--button-bg-yellow);                   /* Couleur d'arrière-plan orange au survol */
+  background-color: var(--button-bg-yellow);                   /* Change la couleur du fond au survol */
 }
 
 /* Style pour l'icône de recherche */
 .search-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--background-dark);
-  font-size: 18px;
-  margin: 0px 15px;
+  position: absolute;                                          /* Positionnement absolu pour placer l'icône */
+  top: 50%;                                                    /* Centrage vertical */
+  transform: translateY(-50%);                                 /* Ajustement du centrage */
+  color: var(--background-dark);                               /* Couleur de l'icône (noir) */
+  font-size: 18px;                                             /* Taille de l'icône */
+  margin: 0px 15px;                                            /* Marges autour de l'icône */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles pour la section de notation                          */
 /* ----------------------------------------------------------- */
 
+/* Styles pour la section de notation */
 .rate-section {
-  text-align: center;                                          /* Centre le texte horizontalement */
-  margin-bottom: 30px;                                         /* Marge en bas de la section */
-  background-color: var(--background-light);                   /* Arrière-plan gris clair pour le corps */
-  padding: 40px 20px;  
+  text-align: center;                                          /* Centrage du texte de la section */
+  background-color: var(--background-light);                   /* Arrière-plan gris clair pour la section */
+  padding: 20px;                                               /* Espacement interne de la section */
+  display: flex;                                               /* Utilisation de flexbox pour aligner les éléments */
+  justify-content: center;                                     /* Centre l'ensemble du séparateur horizontalement */
 }
 
+/* Styles pour le titre de la section */
 .rate-section h2 {
-  font-size: 4rem;                                            /* Taille de police pour le titre */
-  color: var(--background-dark);                              /* Couleur du texte (gris foncé) */
-  font-weight: bold;                                          /* Met le titre en gras */
-  line-height: 1.4;                                           /* Hauteur de ligne pour une meilleure lisibilité */
-  margin-bottom: 15px;                                        /* Marge en bas du titre */
-  padding: 10px 0;                                            /* Rembourrage autour de la section */
+  font-size: 4rem;                                             /* Très grande taille de police pour le titre */
+  color: var(--background-dark);                               /* Texte noir pour le titre */
+  font-weight: bold;                                           /* Texte en gras */
+  line-height: 1.4;                                            /* Hauteur de ligne pour améliorer la lisibilité */
+  padding: 20px 0;                                             /* Espacement interne autour du titre */
+  width: 60%;                                                  /* Prend 60% la largeur du conteneur parent */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour le séparateur avec des lignes de part et d'autre*/
+/* ----------------------------------------------------------- */
+
+/* Styles pour le séparateur */
+.separator {
+  display: flex;                                               /* Utilisation de flexbox pour aligner les éléments */
+  align-items: center;                                         /* Aligne verticalement le texte et les lignes */
+  justify-content: center;                                     /* Centre l'ensemble du séparateur horizontalement */
+  margin: 20px auto;                                           /* Marge pour centrer le séparateur */
+  width: 80%;                                                  /* Largeur du séparateur à 80% du conteneur parent */
+}
+
+/* Styles pour les lignes de séparation avant et après le texte */
+.separator::before,
+.separator::after {
+  content: '';                                                 /* Génère un contenu vide pour les lignes */
+  width: 300px;                                                /* Taille des lignes avant et après le texte */
+  border-bottom: 4px solid;                                    /* Ligne solide en bas (séparateur) */
+}
+
+/* Marge à droite de la ligne avant le texte */
+.separator::before {
+  margin-right: 20px;                                          /* Espace de 10px entre la ligne avant et le texte */
+}
+
+/* Marge à gauche de la ligne après le texte */
+.separator::after {
+  margin-left: 20px;                                           /* Espace de 10px entre la ligne après et le texte */
+}
+
+/* Styles pour le texte centré entre les lignes */
+.separator span {
+  font-size: 28px;                                             /* Taille de police importante pour le texte */
+  font-weight: bold;                                           /* Texte en gras */
+  color: var(--text-yellow);                                   /* Couleur du texte (jaune doré) */
 }
