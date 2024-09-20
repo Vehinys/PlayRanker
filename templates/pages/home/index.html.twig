@@ -7,202 +7,144 @@
 <!-- -------------------------------------------------------  -->
 <!-- SECTION PRINCIPALE -->
 
-<div class="container-body">
+  <div class="container-body">
 
-  <!-- -------------------------------------------------------  -->
-  <!-- TITRE PRINCIPAL ET DESCRIPTION -->
+    <!-- -------------------------------------------------------  -->
+    <!-- TITRE PRINCIPAL ET DESCRIPTION -->
 
-  <section class="container-header-title absolue " id="bg-home">
+      <section class="header-section" id="bg-home">
+      
+        <h1> Welcome to  <b> PlayRanker </b> </h1>
+        <h3>
+          The first online space dedicated exclusively to game evaluation!  
+          Whether you are a passionate gamer or a curious person looking for new challenges, 
+          we are your ultimate reference. Discover our evaluations, 
+          new tips to master your favorite games, and expert opinions to guide you in your choices.
+        </h3>
+
+        <div class="search-container">
+          <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
+            <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </form>
+        </div>
+
+      </section>
+
+      <!-- ------------------------------------------------------ -->
+      <!-- -------------------- Cherchez-les -------------------- -->
+      <!-- SECTION NOTEZ-LES -->
+
+      <section class="rate-section">
+        <h2> Rate them, it's 100% free! </h2>
+      </section>
+
+      <!-- ------------------------------------------------------ -->   
+      <!-- ------------- Top 5 des meilleurs notes -------------- -->
+
+      <section class="cards-section">
   
-    <h1> Welcome to  <b> PlayRanker </b> </h1>
-    <h2>
-      The first online space dedicated exclusively to game evaluation!  
-      Whether you are a passionate gamer or a curious person looking for new challenges, 
-      we are your ultimate reference. Discover our evaluations, 
-      new tips to master your favorite games, and expert opinions to guide you in your choices.
-    </h2>
+      <!-- TOP 5 DES MEILLEURES NOTES -->
+      <div class="card top-scores-card">
+        <div class="card-header">
+          <h4>TOP 5</h4>
+          <h5>Top grades</h5>
+        </div>
+        <div class="card-body">
+          <div class="game-info">
+            <a href="#"><p class="game-title">BLACK OPS 6 | PS5</p></a>
+            <p class="game-points">645 Points</p>
+          </div>
+          <div class="game-info">
+            <a href="#"><p class="game-title">SONIC | SEGA</p></a>
+            <p class="game-points">523 Points</p>
+          </div>
+          <div class="game-info">
+            <a href="#"><p class="game-title">LARA CROFT | PS4</p></a>
+            <p class="game-points">327 Points</p>
+          </div>
+          <div class="game-info">
+            <a href="#"><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
+            <p class="game-points">278 Points</p>
+          </div>
+          <div class="game-info">
+            <a href="#"><p class="game-title">MINECRAFT | XBOX</p></a>
+            <p class="game-points">251 Points</p>
+          </div>
+        </div>
+        <img src="img/test.svg" alt="Logo" class="card-image" width="230" height="230">
+      </div>
 
-    <div class="container-recherche">
-      <form class="recherche-form" action="{{ path('search') }} " id="searchthis" method="post">
-        <input class="recherche" id="search" name="input" type="text" placeholder="Search for a game" />
-        <input id="search-btn" name="submit" type="submit" value="Search">
-      </form>
+      <!-- ------------------------------------------------------ --> 
+      <!-- --------- Cinq derniers commentaires reçus ----------- -->
+
+  <div class="card latest-comments-card">
+    <div class="card-header">
+      <h4>The last five</h4>
+      <h5>Comments received</h5>
     </div>
-
-  </section>
-
-  <!-- -------------------------------------------------------  -->
-  <!-- SECTION NOTEZ-LES -->
-
-<div class="bg-body"> 
-  <section class="container-body-h3">
-    <h3> Rate them, it's 100% free!</h3>
-  </section>
-
-  <!-- -------------------------------------------------------  -->
-  <!-- SECTION CARDS -->
-
-  <section class="cards">
-
-    <!-- -------------------------------------------------------  -->
-    <!-- CARTE GAUCHE : TOP 5 DES MEILLEURES NOTES -->
-
-    <div class="card card-gauche">
-      <div class="card-header gauche">
-        <p>TOP 5</p>
-        <p>Top grades</p>
+    <div class="card-body">
+      <!-- Liste des derniers commentaires avec les jeux -->
+      <div class="comment">
+        <div class="profile">
+          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
+        </div>
+        <a href="#"><p class="game-title">BLACK OPS 6 | PS5</p></a>
       </div>
-      <div class="card-body">
-        <!-- Liste des jeux avec les meilleurs points -->
-        <div class="card-info">
-          <a href=""><p class="game-title">BLACK OPS 6 | PS5</p></a>
-          <p class="game-points">645 Points</p>
+      <div class="comment">
+        <div class="profile">
+          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
         </div>
-        <div class="card-info">
-          <a href=""><p class="game-title">SONIC | SEGA</p></a>
-          <p class="game-points">523 Points</p>
-        </div>
-        <div class="card-info">
-          <a href=""><p class="game-title">LARA CROFT | PS4</p></a>
-          <p class="game-points">327 Points</p>
-        </div>
-        <div class="card-info">
-          <a href=""><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
-          <p class="game-points">278 Points</p>
-        </div>
-        <div class="card-info">
-          <a href=""><p class="game-title">MINECRAFT | XBOX</p></a>
-          <p class="game-points">251 Points</p>
-        </div>
+        <a href="#"><p class="game-title">SONIC | SEGA</p></a>
       </div>
-
-      <!-- Image associée à la carte gauche -->
-      <img src="img/test.svg" alt="Logo" width="230" height="230">
-    </div>
-
-    <!-- -------------------------------------------------------  -->
-    <!-- CARTE DROITE : Cinq derniers commentaires reçus -->
-
-    <div class="card card-droite">
-      <div class="card-header">
-        <p>The last five</p>
-        <p>Comments received</p>
+      <div class="comment">
+        <div class="profile">
+          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
+        </div>
+        <a href="#"><p class="game-title">LARA CROFT | PS4</p></a>
       </div>
-      <div class="card-body">
-        <!-- Liste des derniers commentaires avec les jeux -->
-        <div class="comment">
-          <div class="profile">
-            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
-          </div>
-          
-          <a href=""><p class="game-title">BLACK OPS 6 | PS5</p></a>
+      <div class="comment">
+        <div class="profile">
+          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
         </div>
-        <div class="comment">
-          <div class="profile">
-            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
-          </div>
-          
-          <a href=""><p class="game-title">SONIC | SEGA</p></a>
+        <a href="#"><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
+      </div>
+      <div class="comment">
+        <div class="profile">
+          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
         </div>
-        <div class="comment">
-          <div class="profile">
-            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
-          </div>
-          
-          <a href=""><p class="game-title">LARA CROFT | PS4</p></a>
-        </div>
-        <div class="comment">
-          <div class="profile">
-            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
-          </div>
-          
-          <a href=""><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
-        </div>
-        <div class="comment">
-          <div class="profile">
-            <a href=""><img src="img/bg-blackops6.jpg" alt="Logo" width="100" height="100"></a>
-          </div>
-          
-          <a href=""><p class="game-title">MINECRAFT | XBOX</p></a>
-        </div>
+        <a href="#"><p class="game-title">MINECRAFT | XBOX</p></a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- -------------------------------------------------------  -->
-  <!-- SECTION SLIDER -->
+<!-- -------------------------------------------------------  -->
+<!-- SECTION SLIDER -->
 
-  <section>
-    <div class="hero-slider" data-carousel>
-      <!-- Première cellule du carousel -->
-      <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6d4fca48-876d-40ed-bb37-3b7dfe487e38/d5vn85d-915b7d79-8417-4cdc-bdfd-0a9c39b7a9af.jpg/v1/fill/w_1233,h_648,q_70,strp/tomb_raider_reborn_by_txusjfuentes_by_txusjfuentes_d5vn85d-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcLzZkNGZjYTQ4LTg3NmQtNDBlZC1iYjM3LTNiN2RmZTQ4N2UzOFwvZDV2bjg1ZC05MTViN2Q3OS04NDE3LTRjZGMtYmRmZC0wYTljMzliN2E5YWYuanBnIiwid2lkdGgiOiI8PTU3MDMifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.aJRkuK7nX-qS6SW_QYmK46m3Nib9eV0xZfYy5JuBod8);background-position: center 30%;">
-        <div class="overlay"></div>
-        <div class="inner">
-          <h3 class="subtitle">PlayRanker</h3>
-          <h2 class="title">"
+<section>
+  <div class="hero-slider" data-carousel>
+    <!-- Première cellule du carousel -->
+    <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6d4fca48-876d-40ed-bb37-3b7dfe487e38/d5vn85d-915b7d79-8417-4cdc-bdfd-0a9c39b7a9af.jpg/v1/fill/w_1233,h_648,q_70,strp/tomb_raider_reborn_by_txusjfuentes_by_txusjfuentes_d5vn85d-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcLzZkNGZjYTQ4LTg3NmQtNDBlZC1iYjM3LTNiN2RmZTQ4N2UzOFwvZDV2bjg1ZC05MTViN2Q3OS04NDE3LTRjZGMtYmRmZC0wYTljMzliN2E5YWYuanBnIiwid2lkdGgiOiI8PTU3MDMifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.aJRkuK7nX-qS6SW_QYmK46m3Nib9eV0xZfYy5JuBod8);background-position: center 30%;">
+      <div class="overlay"></div>
+      <div class="inner">
+        <h3 class="subtitle">PlayRanker</h3>
+        <h2 class="title">"
 Immerse yourself in the world of video games with our dedicated online space: evaluations, tips, and expert advice to support you at every step !"</h2>
-          <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
-        </div>
-      </div>
-      <!-- Deuxième cellule du carousel -->
-      <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec6b653d-20ae-41d7-8e78-5a2ec054db72/d96jce6-72cdff18-80d6-44ef-9859-54c6271a9a4b.jpg/v1/fill/w_1024,h_414,q_75,strp/arcade_promotion_art_by_su_ke_d96jce6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQwMCIsInBhdGgiOiJcL2ZcL2VjNmI2NTNkLTIwYWUtNDFkNy04ZTc4LTVhMmVjMDU0ZGI3MlwvZDk2amNlNi03MmNkZmYxOC04MGQ2LTQ0ZWYtOTg1OS01NGM2MjcxYTlhNGIuanBnIiwid2lkdGgiOiI8PTE3NzcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Ps5SDO_Puc4keWtNfe2xrJ4RHBECLTEeQPi7seXY7PI);background-position: center 30%;">
-        <div class="overlay"></div>
-        <div class="inner">
-          <h3 class="subtitle">PlayRanker</h3>
-          <h2 class="title">"
-Immerse yourself in the world of video games with our dedicated online space: evaluations, tips, and expert advice to support you at every step"</h2>
-          <a href="" target="_blank"> <button class="glow-button"> <span>REGISTER</span> </button> </a>
-        </div>
+        <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
       </div>
     </div>
-  </section>
-    <!-- ---------------------------------------------------------->
-  <!-- CONTACT -->
-  <section class="container-contact">
-    <form action="traitement.php" method="post">
-      <div class="container-form">
-        <h3>NOUS CONTACTER</h3>
-        <div class="contact-form">
-
-          <p>
-            <label class="form-label required" for="nom">Votre nom et prénom </label>
-            <input placeholder="Votre nom et prénom" type="text" id="nom" name="nom" class="input-contact" required>
-          </p>
-
-          <p>
-            <label class="form-label required" for="sujet">Votre sujet </label>
-            <input placeholder="Votre sujet" type="text" id="sujet" name="sujet" class="input-contact" required>
-          </p>
-
-        </div>
-
-        <p>
-          <label class="form-label required" for="email">Votre email </label>
-          <input type="email" placeholder="Votre email" id="email" name="email" class="input-contact" required>
-        </p>
-
-        <p>
-          <label class="form-label required" for="message">Votre message </label>
-          <textarea placeholder="Votre message" id="message" name="message" class="textarea-contact" required></textarea>
-          <br>
-        </p>
-
-        <div>
-          <small class="small form-label-small">* = Champs obligatoires</small>
-        </div>
-
-        <p>
-          <button type="submit" class="glow-button"><span>Envoyer</span></button>
-        </p>
-
+    <!-- Deuxième cellule du carousel -->
+    <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec6b653d-20ae-41d7-8e78-5a2ec054db72/d96jce6-72cdff18-80d6-44ef-9859-54c6271a9a4b.jpg/v1/fill/w_1024,h_414,q_75,strp/arcade_promotion_art_by_su_ke_d96jce6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcL2VjNmI2NTNkLTIwYWUtNDFkNy04ZTc4LTVhMmVjMDU0ZGJmMjQvbDk0NDM2YzktNzA2MC00YTU2LTg2MDAtYWQ3ZTA3MTA2MmQ2LnBuZyIsIndpZHRoIjoiPD0xMDI0In1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.1N17Vz0G2j5EoZB6hDNwhgA1kPmPC0HYEk8_oV8iOXE);background-position: center 30%;">
+      <div class="overlay"></div>
+      <div class="inner">
+        <h3 class="subtitle">PlayRanker</h3>
+        <h2 class="title">"
+Join us and let yourself be carried away by the magic of video games with our evaluations and tips!</h2>
+        <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
       </div>
-    </form>
-  </section>
-  <!-- ---------------------------------------------------------->
-  
-  <!-- INCLUSION DU SCRIPT -->
-  <script src="{{ asset('js/script.js') }}"></script>
-
-</div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}
