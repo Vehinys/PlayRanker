@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\HttpClient\ApiHttpClient;
 use App\Repository\CategoryRepository;
+use App\Repository\SousCategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,14 +12,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApiController extends AbstractController
 {
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Affiche la page d'index pour la section des jeux.
+     *
+     * Cette action récupère les jeux pour le numéro de page donné en utilisant la méthode `nextPage` du service `ApiHttpClient`.
+     * Elle récupère également toutes les catégories depuis le `CategoryRepository` et les transmet au template Twig.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param Request $request La requête HTTP courante.
+     * @param CategoryRepository $repository Le service de repository des catégories.
+     *
+     * @return Response La réponse rendue.
+     */
+
+
     #[Route('/jeux', name: 'jeux')]
-    public function index(
-        
-        ApiHttpClient $apiHttpClient, 
-        Request $request,
-        CategoryRepository $repository
-        
-    ): Response {
+    public function index( ApiHttpClient $apiHttpClient, Request $request,CategoryRepository $repository): Response 
+    {
 
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
@@ -31,6 +44,21 @@ class ApiController extends AbstractController
 
         ]);
     }
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Affiche les résultats de recherche des jeux par plateforme.
+     *
+     * Cette action récupère les jeux pour l'ID de plateforme donné en utilisant la méthode `searchByConsole` du service `ApiHttpClient`.
+     * Elle rend ensuite le template `pages/jeux/index.html.twig` avec les jeux récupérés et un paramètre 'token' défini sur 'platform'.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param string $id L'ID de la plateforme à rechercher.
+     *
+     * @return Response La réponse rendue.
+     */
+
 
     #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
     public function searchByConsole(ApiHttpClient $apiHttpClient, string $id): Response
@@ -46,6 +74,20 @@ class ApiController extends AbstractController
         ]);
     }
 
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Affiche les résultats de recherche pour les jeux basés sur une saisie utilisateur.
+     *
+     * Cette action récupère les jeux correspondant à la saisie donnée en utilisant la méthode `gamesSearch` du service `ApiHttpClient`.
+     * Elle rend ensuite le template `pages/jeux/index.html.twig` avec les jeux récupérés.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param Request $request La requête HTTP courante.
+     *
+     * @return Response La réponse rendue.
+     */
+
     #[Route('/jeux/search', name: 'search', methods: ['POST'])]
     public function search(ApiHttpClient $apiHttpClient, Request $request): Response
     {
@@ -56,6 +98,20 @@ class ApiController extends AbstractController
             'games' => $games,
         ]);
     }
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Affiche la page suivante des résultats de recherche pour les jeux.
+     *
+     * Cette action récupère la page suivante de jeux en utilisant la méthode `nextPage` du service `ApiHttpClient`.
+     * Elle rend ensuite le template `pages/jeux/index.html.twig` avec les jeux récupérés et le numéro de page actuel.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param int $page Le numéro de page à récupérer.
+     *
+     * @return Response La réponse rendue.
+     */
 
     #[Route('/jeux/{id}', name: 'detail_jeu')]
     public function detailJeu(ApiHttpClient $apiHttpClient, string $id): Response
@@ -68,7 +124,21 @@ class ApiController extends AbstractController
             'gameAnnonce' => $gameAnnonce
         ]);
     }
-    
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Affiche la page suivante des résultats de recherche pour les jeux.
+     *
+     * Cette action récupère la page suivante de jeux en utilisant la méthode `nextPage` du service `ApiHttpClient`.
+     * Elle rend ensuite le template `pages/jeux/index.html.twig` avec les jeux récupérés et le numéro de page actuel.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param int $page Le numéro de page à récupérer.
+     *
+     * @return Response La réponse rendue.
+     */
+
     #[Route('/jeux/page/{page}', name: 'jeux_page')]
     public function nextPage(ApiHttpClient $apiHttpClient, int $page): Response
     {
@@ -80,5 +150,38 @@ class ApiController extends AbstractController
             'currentPage' => $page
         ]);
     }
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
+    /**
+     * Affiche la page des résultats de recherche pour une sous-catégorie spécifique.
+     *
+     * Cette action récupère les jeux associés à l'ID de sous-catégorie donné en utilisant la méthode `searchBySousCategory` du service `ApiHttpClient`.
+     * Elle récupère également toutes les catégories depuis le `CategoryRepository` pour les passer au template.
+     * Le template `pages/jeux/index.html.twig` est ensuite rendu avec les jeux et les catégories récupérés.
+     *
+     * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
+     * @param SousCategoryRepository $sousCategoryRepository Le service de repository des sous-catégories.
+     * @param CategoryRepository $categoryRepository Le service de repository des catégories.
+     * @param int $id L'ID de la sous-catégorie à rechercher.
+     *
+     * @return Response La réponse rendue.
+     */
+
+    #[Route('/search/sous-category/{id}', name: 'searchBySousCategory')]
+    public function searchBySousCategory(ApiHttpClient $apiHttpClient, SousCategoryRepository $sousCategoryRepository, CategoryRepository $categoryRepository, int $id): Response
+    {
+
+        $sousCategory = $sousCategoryRepository->find($id);
+        $games = $sousCategory ? $apiHttpClient->searchBySousCategory($sousCategory->getName()) : [];
+        $categories = $categoryRepository->findAll();
+    
+        return $this->render('pages/jeux/index.html.twig', [
+            'games' => $games,
+            'categories' => $categories
+        ]);
+    }
+    
+    
+
 }

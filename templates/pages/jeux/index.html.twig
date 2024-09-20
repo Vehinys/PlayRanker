@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jeux{% endblock %}
+{% block title %}Games{% endblock %}
 
 {% block body %}
+
+    <! 
+        * Affiche un formulaire de recherche pour les jeux.
+        * Le formulaire permet aux utilisateurs de saisir une requête de recherche et de la soumettre à la route 'search'.
+        * Le champ de saisie de recherche et le bouton de soumission sont affichés dans une section avec la classe 'section-recherche-jeux'.
+    > 
+
 <div class="container-search-jeux">
+
     <section class="section-recherche-jeux">
         <form class="recherche-form-jeux" action="{{ path('search') }}" id="searchthis" method="post">
             <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu"/>
@@ -11,98 +19,38 @@
         </form>
     </section>
 
+    <! 
+        * Affiche un menu déroulant pour sélectionner une catégorie de plateforme de jeu.
+        * Le menu déroulant contient une liste de sous-catégories pour la catégorie de plateforme sélectionnée,
+        * chacune avec un lien pour rechercher des jeux dans cette sous-catégorie.
+        * Le menu déroulant est affiché dans un formulaire de recherche de jeux.
+        * Le formulaire inclut également un lien vers la page d'administration.
+    > 
 
     <section class="container-console">
-        
         <form class="recherche-form-jeux">
-
             {% for category in categories %}
-
                 <div class="dropdown">
-
-                    <button class="dropbtn" data-dropdown="allDropdown">{{ category.name }}</button>
-
-                        <div id="allDropdown" class="dropdown-content">
-
-                            <a href=""></a>
-                        </div>
-                </div> 
+                    <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
+                    <div id="dropdown-{{ category.id }}" class="dropdown-content">
+                        {% for sousCategory in category.category %}
+                            <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
             {% endfor %}
-
         </form>
-
         <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
-
-
     </section>
 
-    {# <section class="container-console">
-        <form class="recherche-form-jeux">
-            <div class="dropdown">
-                <button class="dropbtn" data-dropdown="playstationDropdown">PlayStation</button>
-                    <div id="playstationDropdown" class="dropdown-content">
-                        <a href="{{ path('searchByPlatform', {'id': 187 }) }}"> PlayStation 5 </a>
-                        <a href="{{ path('searchByPlatform', {'id': 18  }) }}"> PlayStation 4 </a>
-                        <a href="{{ path('searchByPlatform', {'id': 16  }) }}"> PlayStation 3 </a>
-                        <a href="{{ path('searchByPlatform', {'id': 15  }) }}"> PlayStation 2 </a>
-                        <a href="{{ path('searchByPlatform', {'id': 27  }) }}"> PlayStation   </a>
-                        <a href="{{ path('searchByPlatform', {'id': 19  }) }}"> PS VITA       </a> 
-                        <a href="{{ path('searchByPlatform', {'id': 17  }) }}"> PSP           </a> 
-                    </div>
-            </div>
+</div>
 
-            <div class="dropdown">
-                <button class="dropbtn" data-dropdown="xboxDropdown">Xbox</button>
-                    <div id="xboxDropdown" class="dropdown-content">
-                        <a href="{{ path('searchByPlatform', {'id': 186 }) }}"> Xbox Series X/S </a>
-                        <a href="{{ path('searchByPlatform', {'id': 1   }) }}"> Xbox One        </a>
-                        <a href="{{ path('searchByPlatform', {'id': 14  }) }}"> Xbox 360        </a>
-                        <a href="{{ path('searchByPlatform', {'id': 80  }) }}"> Xbox            </a>
-                    </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn" data-dropdown="nintendoDropdown">Nintendo</button>
-                    <div id="nintendoDropdown" class="dropdown-content">
-                        <a href="{{ path('searchByPlatform', {'id':   7 }) }}"> Nintendo Switch  </a>
-                        <a href="{{ path('searchByPlatform', {'id':  10 }) }}"> Wii U            </a>
-                        <a href="{{ path('searchByPlatform', {'id':  11 }) }}"> Wii              </a>
-                        <a href="{{ path('searchByPlatform', {'id': 105 }) }}"> GameCube         </a>
-                        <a href="{{ path('searchByPlatform', {'id':   8 }) }}"> Nintendo 3DS     </a>
-                        <a href="{{ path('searchByPlatform', {'id':  13 }) }}"> Nintendo DSi     </a>
-                        <a href="{{ path('searchByPlatform', {'id':   9 }) }}"> Nintendo DS      </a>
-                        <a href="{{ path('searchByPlatform', {'id':  24 }) }}"> Game Boy Advance </a>
-                        <a href="{{ path('searchByPlatform', {'id':  43 }) }}"> Game Boy Color   </a>
-                        <a href="{{ path('searchByPlatform', {'id':  23 }) }}"> Game Boy         </a>
-                        <a href="{{ path('searchByPlatform', {'id':  83 }) }}"> Nintendo 64      </a>
-                        <a href="{{ path('searchByPlatform', {'id':  79 }) }}"> SNES             </a>
-                        <a href="{{ path('searchByPlatform', {'id':  49 }) }}"> NES              </a>
-                        <a href="{{ path('searchByPlatform', {'id':  24 }) }}"> Game Boy Advance </a>
-                    </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn" data-dropdown="pcDropdown">PC</button>
-                    <div id="pcDropdown" class="dropdown-content">
-                        <a href="{{ path('searchByPlatform', {'id':   4 }) }}"> Windows </a>
-                        <a href="{{ path('searchByPlatform', {'id':   6 }) }}"> Linux   </a>
-                        <a href="{{ path('searchByPlatform', {'id':   4 }) }}"> MacOs   </a>
-                        <a href="{{ path('searchByPlatform', {'id': 171 }) }}"> Web     </a>
-                    </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn" data-dropdown="mobileDropdown">Mobile</button>
-                    <div id="mobileDropdown" class="dropdown-content">
-                        <a href="{{ path('searchByPlatform', {'id':  3 }) }}"> iOS      </a>
-                        <a href="{{ path('searchByPlatform', {'id': 21 }) }}"> Android </a>
-                        <a href="{{ path('searchByPlatform', {'id':  5 }) }}"> MacOs   </a>
-                    </div>
-            </div>
-        </form>
-    </section>
-</div> #}
-
+    <! 
+        * Affiche un conteneur pour une liste de cartes de jeux, chacune représentant un jeu.
+        * Le conteneur inclut une mise en page en grille pour les cartes de jeux, chaque carte affichant le nom du jeu, 
+        * son image et les icônes des plateformes.
+        * Chaque carte de jeu comprend également un bouton "Détail" qui renvoie vers la page de détails du jeu.
+    > 
 
 <div class="container-jeux">
     <div class="game-card-container">
@@ -153,64 +101,46 @@
                         } %}
                 
                         {% for platform in game.platforms %}
-
                             <div class="platform-item">
-                                
                                 {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
-
                                 {% if logo_path %}
-
                                     <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ platform.platform.name}} " alt="{{ platform.platform.name}} logo" />
-
                                 {% endif %}
-
                             </div>
-
                         {% endfor %}
-
                     </div>
-
                 </div>
-                
                 <div class="button-container">
-
                     <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
-
                 </div>
             </div>
         {% endfor %}
     </div>
 </div>
 
+    <!
+        * Affiche un composant de pagination pour la page des jeux.
+        * Le composant de pagination inclut des liens pour naviguer vers les pages précédente et suivante,
+        * ainsi que le numéro de la page actuelle.
+        * Le comportement du composant de pagination dépend de la présence du paramètre 'token'
+        * défini comme 'platform', ce qui indique que la page est filtrée par plateforme.
+    > 
+
 <div class="pagination">
-
     {% if currentPage is defined %}
-
         {% if token is defined and token is same as 'platform' %}
-
             {% if currentPage > 1 %}
-
                 <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
-
                 {% endif %}
-
                     <span>Page {{ currentPage }}</span>
                     <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-
                     {% else %}
-
-                
                 {% if currentPage > 1 %}
-
                     <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
-
                 {% endif %}
-
                     <span>Page {{ currentPage }}</span>
                     <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-
             {% endif %}
-
     {% endif %}
 </div>
 
