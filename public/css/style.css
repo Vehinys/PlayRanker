@@ -3,7 +3,7 @@
 /* ----------------------------------------------------------- */
 
 :root {
-  --background-dark: #000;                                   /* Noir pour l'arrière-plan principal */
+  --background-dark: #0C1D36;                                /* Noir pour l'arrière-plan principal */
   --text-light: #FFFFFF;                                     /* Blanc pour le texte sur fond sombre */
   --text-yellow: #ECC33E;                                    /* Jaune doré pour le texte (accent) */
   --text-medium: #666;                                       /* Gris moyen pour le texte secondaire */
@@ -12,7 +12,7 @@
   --border-orange: #ECC33E;                                  /* Orange vif pour les bordures au survol */
   --button-bg-yellow: #efd807;                               /* Fond jaune doré pour les boutons */
   --button-bg-orange: #ECC33E;                               /* Fond orange vif pour les boutons au survol */
-  --background-light: #F5F5F5;                               /* Gris clair pour l'arrière-plan secondaire */
+  --background-light: #d3e1f7;                               /* Gris clair pour l'arrière-plan secondaire */
 }
 
 /* ----------------------------------------------------------- */
@@ -28,14 +28,60 @@
 }
 
 /* ----------------------------------------------------------- */
+/* Styles pour la nav                                          */
+/* ----------------------------------------------------------- */
+
+.container-header {
+  background-color: var(--background-dark);                 /* Fond sombre pour l'en-tête */
+  padding: 20px;                                           /* Espacement interne pour l'en-tête */
+}
+
+.nav-list {
+  list-style-type: none;                                   /* Supprime les puces de la liste */
+  display: flex;                                           /* Utilisation de flexbox pour aligner horizontalement */
+  justify-content: center;                                 /* Centre les éléments de la liste */
+  margin: 0;                                              /* Réinitialisation de la marge */
+  padding: 0;                                             /* Réinitialisation du padding */
+}
+
+.nav-list li {
+  margin: 0 15px;                                        /* Espacement horizontal entre les éléments */
+}
+
+.nav-a {
+  color: var(--text-light);                               /* Couleur du texte (blanc) */
+  font-size: 1.2rem;                                     /* Taille de police pour les liens */
+  text-decoration: none;                                  /* Supprime le soulignement des liens */
+  transition: color 0.3s ease;                           /* Transition fluide pour le changement de couleur */
+}
+
+.nav-a:hover {
+  color: var(--text-yellow);                              /* Change la couleur au survol */
+}
+
+.is-current {
+  font-weight: bold;                                     /* Texte en gras pour le lien courant */
+  color: var(--border-yellow);                            /* Couleur du lien actif (jaune doré) */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour le main                                         */
+/* ----------------------------------------------------------- */
+
+main {
+  background-color: var(--background-light);                    /* Arrière-plan noir pour le contenu principal */
+}
+
+/* ----------------------------------------------------------- */
 /* Styles pour la section d'en-tête                            */
 /* ----------------------------------------------------------- */
 
 .header-section {
   background-color: var(--background-dark);                    /* Arrière-plan noir pour l'en-tête */
   color: var(--text-light);                                    /* Texte blanc pour un bon contraste */
-  padding: 40px 20px;                                          /* Espacement interne de l'en-tête */
+  padding: 20px 0 40px 0;                                      /* Espacement interne de l'en-tête */
   text-align: center;                                          /* Centrage du contenu */
+  box-shadow: #0C1D36 0px 0px 10px;
 }
 
 /* Styles pour le titre principal */
@@ -74,9 +120,9 @@
 
 /* Styles pour le champ de recherche */
 .search-input {
-  padding: 10px 50px 10px 50px;                                /* Espacement interne avec padding symétrique */
+  padding: 10px 50px;                                          /* Espacement interne avec padding symétrique */
   font-size: 16px;                                             /* Taille du texte du champ de recherche */
-  border: 3px solid #ccc;                                      /* Bordure grise autour du champ */
+  border: 3px solid var(--text-light);                                    /* Bordure grise autour du champ */
   border-radius: 25px;                                         /* Arrondit les coins du champ */
   outline: none;                                               /* Supprime l'outline par défaut */
   box-sizing: border-box;                                      /* Inclut bordures et padding dans les dimensions du champ */
@@ -100,7 +146,7 @@
 
 /* Effet de survol sur le bouton */
 #search-btn:hover {
-  background-color: var(--button-bg-yellow);                   /* Change la couleur du fond au survol */
+  background-color: var(--button-bg-orange);                   /* Change la couleur du fond au survol */
 }
 
 /* Style pour l'icône de recherche */
@@ -120,8 +166,7 @@
 /* Styles pour la section de notation */
 .rate-section {
   text-align: center;                                          /* Centrage du texte de la section */
-  background-color: var(--background-light);                   /* Arrière-plan gris clair pour la section */
-  padding: 20px;                                               /* Espacement interne de la section */
+  padding: 45px 0 15px 0;                                      /* Espacement interne de la section */
   display: flex;                                               /* Utilisation de flexbox pour aligner les éléments */
   justify-content: center;                                     /* Centre l'ensemble du séparateur horizontalement */
 }
@@ -134,7 +179,9 @@
   line-height: 1.4;                                            /* Hauteur de ligne pour améliorer la lisibilité */
   padding: 20px 0;                                             /* Espacement interne autour du titre */
   width: 60%;                                                  /* Prend 60% la largeur du conteneur parent */
+  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre de texte pour un effet visuel */
 }
+
 
 /* ----------------------------------------------------------- */
 /* Styles pour le séparateur avec des lignes de part et d'autre*/
@@ -172,4 +219,324 @@
   font-size: 28px;                                             /* Taille de police importante pour le texte */
   font-weight: bold;                                           /* Texte en gras */
   color: var(--text-yellow);                                   /* Couleur du texte (jaune doré) */
+  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre de texte pour un effet visuel */
+}
+
+
+/* ----------------------------------------------------------- */
+/* Styles pour les cartes                                      */
+/* ----------------------------------------------------------- */
+
+.section-top {
+  background-color: var(--background-light);                   /* Couleur de fond pour la section de contact */
+  padding-bottom: 30px;
+}
+.container-card {
+  display: flex;                                               /* Utilisation de flexbox pour aligner les cartes */
+  gap: 20px;                                                   /* Espacement entre les cartes */
+  flex-wrap: wrap;                                             /* Permet aux cartes de passer à la ligne si nécessaire */
+  justify-content: center;                                     /* Centre les cartes horizontalement */
+  margin: 85px 0;                                              /* Marge en haut et en bas pour aérer la section */
+}
+
+.card {
+  width: 400px;                                                /* Largeur fixe pour les cartes */
+  height: 320px;                                               /* Hauteur fixe pour les cartes */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);                /* Ombre pour un effet d'élévation */
+  border-radius: 10px;                                         /* Arrondir les coins */
+  overflow: hidden;                                            /* Masque le débordement du contenu */
+  transition: transform 0.8s;                                  /* Transition fluide pour les effets (si besoin) */
+  
+}
+
+.front-face {
+  width: 100%;                                                 /* Prend toute la largeur de la carte */
+  height: 100%;                                                /* Prend toute la hauteur de la carte */
+  display: flex;                                               /* Utilisation de flexbox pour centrer le contenu */
+  flex-direction: column;                                      /* Aligne le contenu verticalement */
+  justify-content: center;                                     /* Centre le contenu verticalement */
+  align-items: center;                                         /* Centre le contenu horizontalement */
+  padding: 20px;                                               /* Espacement interne pour le contenu */
+  text-align: center;                                          /* Centre le texte dans la carte */
+  background-color: var(--background-dark);                    /* Fond sombre pour les cartes */
+}
+
+/* Styles pour le numéro de notation */
+.number {
+  font-size: 35px;                                             /* Taille de police pour le numéro */
+  color: var(--text-yellow);                                   /* Couleur du numéro (jaune doré) */
+  font-weight: bold;                                           /* Met le numéro en gras */
+  margin-bottom: 10px;                                         /* Marge en bas pour espacement */
+}
+
+/* Styles pour le titre de la carte */
+.title {
+  font-size: 30px;                                             /* Taille de police pour le titre */
+  color: var(--text-light);                                    /* Couleur du titre (noir) */
+  margin: 10px 0;                                              /* Marge pour espacement */
+}
+
+/* Styles pour la description de la carte */
+.description {
+  font-size: 24px;                                             /* Taille de police pour la description */
+  color: var(--text-light);                                    /* Couleur de la description (gris foncé) */
+  margin: 10px 0;                                              /* Marge pour espacement */
+}
+
+/* Styles pour les étoiles (notation) */
+.stars {
+  font-size: 18px;                                             /* Taille de police pour les étoiles */
+  color: var(--text-yellow);                                   /* Couleur des étoiles (jaune doré) */
+  margin: 10px 0;                                              /* Marge pour espacement */
+}
+
+/* Style général pour la carte */
+.card:hover {
+  transform: scale(1.3);                                   /* Effet d'agrandissement au survol (optionnel) */
+}
+
+.bouton {
+  display: inline-block;                                      /* Affiche le bouton en tant qu'élément en ligne */
+  background-color: var(--button-bg-yellow);                /* Couleur de fond (jaune doré) */
+  color: var(--background-dark);                              /* Couleur du texte (noir) */
+  padding: 12px 24px;                                       /* Espacement interne du bouton */
+  border-radius: 25px;                                      /* Coins arrondis */
+  text-align: center;                                       /* Centre le texte dans le bouton */
+  text-decoration: none;                                     /* Supprime le soulignement des liens */
+  font-weight: bold;                                        /* Met le texte en gras */
+  font-size: 1rem;                                         /* Taille de police */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition fluide pour le fond et la transformation */
+}
+
+.bouton:hover {
+  background-color: var(--button-bg-orange);                /* Change la couleur de fond au survol (orange) */
+  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
+  transform: scale(1.03);                                   /* Effet d'agrandissement au survol */
+  color: var(--text-light);                                 /* Change la couleur du texte au survol (blanc) */
+}
+
+.bouton a {
+  color: inherit;                                          /* Hérite de la couleur du bouton */
+  text-decoration: none;                                   /* Supprime le soulignement du lien */
+  display: block;                                          /* Permet au lien de remplir tout le bouton */
+  width: 100%;                                             /* Prend toute la largeur du bouton */
+  height: 100%;                                            /* Prend toute la hauteur du bouton */
+  line-height: normal;                                     /* Hauteur de ligne normale */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour la section de contact                          */
+/* ----------------------------------------------------------- */
+
+.contact-section {
+  padding: 40px 20px;                                       /* Espacement interne de la section */
+  background-color: var(--background-light);                /* Couleur de fond pour la section de contact */
+  text-align: center;                                       /* Centre le texte */
+}
+
+/* Styles pour le titre de la section */
+.contact-section h2 {
+  font-size: 2.5rem;                                        /* Taille du titre */
+  color: var(--background-dark);                            /* Couleur du titre (noir) */
+  margin-bottom: 20px;  
+  text-shadow: var(--background-dark) 0px 0px 2px;          /* Ombre de texte pour un effet visuel */ 
+}
+
+.contact-form {
+  display: flex;                                           /* Utilisation de flexbox pour aligner les éléments */
+  flex-direction: column;                                  /* Aligne les champs verticalement */
+  width: 100%;                                            /* Prend toute la largeur du conteneur */
+  max-width: 600px;                                      /* Largeur maximale pour le formulaire */
+  margin: 0 auto;                                        /* Centre le formulaire */
+}
+
+.form-group {
+  margin-bottom: 15px;                                    /* Marge en bas pour espacement entre les champs */
+  text-align: left;                                       /* Aligne le texte à gauche */
+}
+
+/* Styles pour les labels */
+.form-group label {
+  font-size: 1rem;                                        /* Taille de police pour les labels */
+  color: var(--text-dark);                                /* Couleur du texte des labels */
+}
+
+/* Styles pour les champs de saisie */
+.form-input,
+.form-textarea {
+  width: 100%;                                           /* Prend toute la largeur du conteneur */
+  padding: 10px;                                         /* Espacement interne */
+  font-size: 16px;                                       /* Taille de texte pour les champs */
+  border: 2px solid var(--text-light);                  /* Bordure grise autour des champs */
+  border-radius: 10px;                                   /* Coins arrondis */
+  outline: none;                                         /* Supprime l'outline par défaut */
+  box-sizing: border-box;                                /* Inclut les bordures et le padding dans les dimensions */
+  box-shadow: #0C1D36 0px 0px 5px;
+}
+
+/* Effet de focus sur les champs de saisie */
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--background-dark);                    /* Change la couleur de la bordure au focus */
+}
+
+.contact-section label{
+  text-shadow: var(--background-dark) 0px 0px 1px;          /* Ombre de texte pour un effet visuel */
+  padding-bottom: 10px;
+}
+
+.contact-btn {
+  padding: 12px 20px;                                     /* Espacement interne du bouton */
+  background-color: var(--button-bg-yellow);             /* Couleur de fond pour le bouton */
+  color: var(--background-dark);                          /* Couleur du texte pour le bouton */
+  border: none;                                          /* Supprime la bordure par défaut */
+  border-radius: 10px;                                   /* Coins arrondis pour le bouton */
+  cursor: pointer;                                       /* Change le curseur pour pointer lors du survol */
+  transition: background-color 0.3s ease;                /* Transition fluide pour le changement de couleur */
+  box-shadow: #0C1D36 0px 0px 5px;
+}
+
+/* Effet de survol sur le bouton */
+.contact-btn:hover {
+  background-color: var(--button-bg-orange);             /* Change la couleur au survol */
+  text-shadow: var(--background-dark) 0px 0px 1px;          /* Ombre de texte pour un effet visuel */
+}
+
+
+/* ----------------------------------------------------------- */
+/* Styles pour le conteneur de footer                          */
+/* ----------------------------------------------------------- */
+
+.container-footer {
+  background-color: var(--background-dark);                    /* Fond sombre pour le footer */
+  color: var(--text-light);                                    /* Couleur du texte (blanc) */
+  padding: 20px;                                               /* Espacement interne pour le footer */
+  display: flex;                                               /* Flexbox pour une mise en page fluide */
+  flex-direction: column;                                      /* Orientation verticale des sections */
+  align-items: center;                                         /* Centre les éléments horizontalement */
+  box-shadow: #0C1D36 0px 0px 10px;
+}
+
+.information {
+  width: 40%;
+  text-align: center;                                     /* Centre le texte */
+  margin-bottom: 20px;                                   /* Espace en bas */
+}
+
+.information h2 {
+  font-size: 1.5rem;                                      /* Taille de police pour les titres */
+  margin-bottom: 10px;                                    /* Espace en bas */
+
+  color: var(--border-orange);
+}
+
+.information P {
+  font-size: 1rem;                                          /* Taille de police pour les informations */
+  margin-bottom: 10px;                                      /* Espace en bas */
+  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
+}
+
+.liens {
+  display: flex;                                          /* Utilisation de flexbox pour aligner les colonnes */
+  justify-content: space-evenly;                          /* Espace entre les colonnes */
+  width: 25%;                                           /* Prend toute la largeur */
+  margin-bottom: 20px;                                   /* Espace en bas */
+}
+
+.liens div {
+  text-align: left;                                      /* Alignement à gauche */
+  display: flex;
+  flex-direction: column;
+}
+
+.liens p{
+  margin-bottom: 10px;
+  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
+  font-size: 1rem;
+  color: var(--border-orange);
+}
+
+.liens a {
+  color: var(--text-light);                              /* Couleur du texte pour les liens */
+  text-decoration: none;                                 /* Supprime le soulignement */
+  transition: color 0.3s ease;                          /* Transition fluide pour le changement de couleur */
+  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
+  font-size: 0.7rem;
+}
+
+.liens a:hover {
+  color: var(--text-yellow);                             /* Couleur au survol */
+}
+
+.reseaux {
+  text-align: center;                                    /* Centre le texte */
+}
+
+.reseaux a {
+  margin: 0 10px;                                       /* Espacement entre les icônes */
+}
+
+
+.small {
+  text-align: center;                                    /* Centre le texte */
+  background-color: var(--background-dark);
+}
+
+.small small {
+  font-size: 0.7rem;
+  color: var(--border-orange);                              /* Couleur du texte */
+  margin-bottom: 10px;                                   /* Espace en bas */
+}
+
+.small a {
+  color: var(--text-light);                              /* Couleur du texte */
+  text-decoration: none;                                 /* Supprime le soulignement */
+}
+
+.small a:hover {
+  color: var(--text-yellow);                             /* Couleur au survol */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour le conteneur de recherche de jeux               */
+/* ----------------------------------------------------------- */
+
+.container-search-jeux {
+  padding: 20px;                                         /* Espacement interne */
+  background-color: var(--background-dark);            /* Fond clair */
+}
+
+.section-recherche-jeux {
+  display: flex;                                        /* Flexbox pour l'alignement */
+  justify-content: center;                              /* Centre le contenu */
+  margin-bottom: 20px;                                 /* Espace en bas */
+}
+
+.recherche-form-jeux {
+  display: flex;                                        /* Flexbox pour le formulaire */
+}
+
+.recherche {
+  padding: 10px;                                       /* Espacement interne */
+  border: 1px solid var(--border-color);               /* Bordure */
+  border-radius: 5px;                                  /* Coins arrondis */
+  margin-right: 10px;                                  /* Espace à droite */
+}
+
+#search-btn {
+  padding: 10px 15px;                                  /* Espacement interne */
+  background-color: var(--primary-color);              /* Couleur de fond */
+  color: white;                                        /* Couleur du texte */
+  border: none;                                        /* Pas de bordure */
+  border-radius: 5px;                                  /* Coins arrondis */
+  cursor: pointer;                                     /* Curseur en main */
+  transition: background-color 0.3s ease;             /* Transition au survol */
+}
+
+#search-btn:hover {
+  background-color: var(--primary-color-hover);        /* Couleur de fond au survol */
+}
+
+.all-container-jeux {
+  background-color: var(--background-light);            /* Fond clair */
 }

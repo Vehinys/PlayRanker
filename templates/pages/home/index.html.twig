@@ -7,150 +7,124 @@
 <!-- -------------------------------------------------------  -->
 <!-- SECTION PRINCIPALE -->
 
-  <div class="container-body">
+<main class="container-body">
 
     <!-- -------------------------------------------------------  -->
     <!-- TITRE PRINCIPAL ET DESCRIPTION -->
 
-      <section class="header-section" id="bg-home">
-      
-        <h1> Welcome to  <b> PlayRanker </b> </h1>
-        <h3>
-          The first online space dedicated exclusively to game evaluation!  
-          Whether you are a passionate gamer or a curious person looking for new challenges, 
-          we are your ultimate reference. Discover our evaluations, 
-          new tips to master your favorite games, and expert opinions to guide you in your choices.
-        </h3>
+    <section class="header-section" id="bg-home">
+    
+      <h1> Welcome to  <b> PlayRanker </b> </h1>
+      <h3>
+        The first online space dedicated exclusively to game evaluation!  
+        Whether you are a passionate gamer or a curious person looking for new challenges, 
+        we are your ultimate reference. Discover our evaluations, 
+        new tips to master your favorite games, and expert opinions to guide you in your choices.
+      </h3>
 
-        <div class="search-container">
-          <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
-            <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          </form>
-        </div>
+      <div class="search-container">
+        <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
+          <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </form>
+      </div>
 
-      </section>
+    </section>
 
-      <!-- ------------------------------------------------------ -->
-      <!-- -------------------- Cherchez-les -------------------- -->
+    <!-- ------------------------------------------------------ -->
+    <!-- -------------------- Cherchez-les -------------------- -->
 
-      <section class="rate-section">
-        <h2> Discover your favorite games, unlimited and free! </h2>
-      </section>
+    <section class="rate-section">
+      <h2> Discover your favorite games, unlimited and free! </h2>
+    </section>
 
 
-      <!-- ------------------------------------------------------ -->
-      <!-- ------------------- Séparateur ----------------------- -->
-      
+    <!-- ------------------------------------------------------ -->
+    <!-- ------------------- Séparateur ----------------------- -->
+    <section class="section-top">>
       <div class="separator">
         <span>TOP 3 RATED GAMES</span>
       </div>
 
       <!-- ------------------------------------------------------ -->   
-      <!-- ------------- Top 5 des meilleurs notes -------------- -->
+      <!-- ------------- Top 3 des meilleurs notes -------------- -->
 
-      <section class="cards-section">
-  
-      <!-- TOP 5 DES MEILLEURES NOTES -->
-      <div class="card top-scores-card">
-        <div class="card-header">
-          <h4>TOP 5</h4>
-          <h5>Top grades</h5>
+      <div class="container-card">
+        <div class="card">
+            <div class="front-face">
+                <div class="content">
+                    <h2 class="number">TOP 1</h2>
+                    <h2 class="title">Call of Duty : Vanguard</h2>
+                    <span class="stars">⭐⭐⭐</span>
+                    <p class="description">PS5, PS4, XBOX</p>
+                    <div class="bouton"> <a href="#">Read more</a> </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <div class="game-info">
-            <a href="#"><p class="game-title">BLACK OPS 6 | PS5</p></a>
-            <p class="game-points">645 Points</p>
-          </div>
-          <div class="game-info">
-            <a href="#"><p class="game-title">SONIC | SEGA</p></a>
-            <p class="game-points">523 Points</p>
-          </div>
-          <div class="game-info">
-            <a href="#"><p class="game-title">LARA CROFT | PS4</p></a>
-            <p class="game-points">327 Points</p>
-          </div>
-          <div class="game-info">
-            <a href="#"><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
-            <p class="game-points">278 Points</p>
-          </div>
-          <div class="game-info">
-            <a href="#"><p class="game-title">MINECRAFT | XBOX</p></a>
-            <p class="game-points">251 Points</p>
-          </div>
+        <div class="card">
+            <div class="front-face">
+                <div class="content">
+                    <h2 class="number">TOP 2</h2>
+                    <h2 class="title">Tomb Raider (2013)</h2>
+                    <span class="stars">⭐⭐</span>
+                    <p class="description">PS5, PS4, XBOX</p>
+                    <div class="bouton"> <a href="#">Read more</a> </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="front-face">
+                <div class="content">
+                    <h2 class="number">TOP 3</h2>
+                    <h2 class="title">Minecraft</h2>
+                    <span class="stars">⭐</span>
+                    <p class="description">PS5, PS4, XBOX</p>
+                    <div class="bouton"> <a href="#">Read more</a> </div>
+                </div>
+            </div>
         </div>
       </div>
+    </section>
 
-      <!-- ------------------------------------------------------ --> 
-      <!-- --------- Cinq derniers commentaires reçus ----------- -->
-
-  <div class="card latest-comments-card">
-    <div class="card-header">
-      <h4>The last five</h4>
-      <h5>Comments received</h5>
+    <!-- ------------------------------------------------------ -->
+    <!-- ------------------- Séparateur ----------------------- -->
+    
+    <div class="separator">
+      <span>LATEST REVIEW</span>
     </div>
-    <div class="card-body">
-      <!-- Liste des derniers commentaires avec les jeux -->
-      <div class="comment">
-        <div class="profile">
-          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
-        </div>
-        <a href="#"><p class="game-title">BLACK OPS 6 | PS5</p></a>
-      </div>
-      <div class="comment">
-        <div class="profile">
-          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
-        </div>
-        <a href="#"><p class="game-title">SONIC | SEGA</p></a>
-      </div>
-      <div class="comment">
-        <div class="profile">
-          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
-        </div>
-        <a href="#"><p class="game-title">LARA CROFT | PS4</p></a>
-      </div>
-      <div class="comment">
-        <div class="profile">
-          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
-        </div>
-        <a href="#"><p class="game-title">LEAGUE OF LEGENDS | PC</p></a>
-      </div>
-      <div class="comment">
-        <div class="profile">
-          <a href="#"><img src="img/bg-blackops6.jpg" alt="Logo" class="profile-image" width="100" height="100"></a>
-        </div>
-        <a href="#"><p class="game-title">MINECRAFT | XBOX</p></a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- -------------------------------------------------------  -->
-<!-- SECTION SLIDER -->
+    <!-- ------------------------------------------------------ -->
+    <!-- ------------------- Séparateur ----------------------- -->
+    
+    <div class="separator">
+      <span>CONCTACT US</span>
+    </div>
 
-<section>
-  <div class="hero-slider" data-carousel>
-    <!-- Première cellule du carousel -->
-    <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6d4fca48-876d-40ed-bb37-3b7dfe487e38/d5vn85d-915b7d79-8417-4cdc-bdfd-0a9c39b7a9af.jpg/v1/fill/w_1233,h_648,q_70,strp/tomb_raider_reborn_by_txusjfuentes_by_txusjfuentes_d5vn85d-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcLzZkNGZjYTQ4LTg3NmQtNDBlZC1iYjM3LTNiN2RmZTQ4N2UzOFwvZDV2bjg1ZC05MTViN2Q3OS04NDE3LTRjZGMtYmRmZC0wYTljMzliN2E5YWYuanBnIiwid2lkdGgiOiI8PTU3MDMifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.aJRkuK7nX-qS6SW_QYmK46m3Nib9eV0xZfYy5JuBod8);background-position: center 30%;">
-      <div class="overlay"></div>
-      <div class="inner">
-        <h3 class="subtitle">PlayRanker</h3>
-        <h2 class="title">"
-Immerse yourself in the world of video games with our dedicated online space: evaluations, tips, and expert advice to support you at every step !"</h2>
-        <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
-      </div>
-    </div>
-    <!-- Deuxième cellule du carousel -->
-    <div class="carousel-cell" style="background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec6b653d-20ae-41d7-8e78-5a2ec054db72/d96jce6-72cdff18-80d6-44ef-9859-54c6271a9a4b.jpg/v1/fill/w_1024,h_414,q_75,strp/arcade_promotion_art_by_su_ke_d96jce6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzAwMCIsInBhdGgiOiJcL2ZcL2VjNmI2NTNkLTIwYWUtNDFkNy04ZTc4LTVhMmVjMDU0ZGJmMjQvbDk0NDM2YzktNzA2MC00YTU2LTg2MDAtYWQ3ZTA3MTA2MmQ2LnBuZyIsIndpZHRoIjoiPD0xMDI0In1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.1N17Vz0G2j5EoZB6hDNwhgA1kPmPC0HYEk8_oV8iOXE);background-position: center 30%;">
-      <div class="overlay"></div>
-      <div class="inner">
-        <h3 class="subtitle">PlayRanker</h3>
-        <h2 class="title">"
-Join us and let yourself be carried away by the magic of video games with our evaluations and tips!</h2>
-        <a href="" target="_blank"> <button class="glow-button"> <span>INSCRIPTION</span> </button> </a>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ------------------------------------------------------ -->
+    <!-- ------------------- contact ----------------------- -->
+
+    <section class="contact-section">
+      <form class="contact-form" action="#" method="post">
+        <div class="form-group">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message:</label>
+          <textarea id="message" class="form-textarea" rows="5" placeholder="Type your message here..." required></textarea>
+        </div>
+        <button type="submit" class="contact-btn">Send Message</button>
+      </form>
+    </section>
+
+
+</main
+
+
+
 
 {% endblock %}

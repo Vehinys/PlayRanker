@@ -1,48 +1,33 @@
-<section > 
-
+<section> 
   <header class="container-header">
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <a class='nav-a ' href="{{ path('home') }}">HOME</a>
+        </li>
+        <li>
+          <a class='nav-a is-current' href="{{ path('jeux') }}">GAMES</a>
+        </li>
 
-      <nav>
-
-        <ul>
-
-          <li>
-            <a class='nav-a is-current' href="{{ path('home') }}">HOME</a>
-          </li>
-
-          <li>
-            <a class='nav-a' href="{{ path('jeux') }}">GAMES</a>
-          </li>
-
-          {% if app.user %}
-
-          <li>
-            <a class='nav-a' href="">FORUM</a>
-          </li>
-
-          <li>
-            <a class='nav-a' href="{{ path('profil') }}">PROFIL</a>
-          </li>
-
-          <li>
-            <a class='nav-a' href="{{ path('logout') }}">DECONNEXION</a>
-          </li>
-
-          {% else %}
-
-          <li>
-            <a class='nav-a' href="{{ path('register') }}">REGISTRATION</a>
-          </li>
-
-          <li>
-            <a class='nav-a' href="{{ path('login') }}">LOGIN</a>
-          </li>
-        </ul>
-        
+        {% if app.user %}
+        <li>
+          <a class='nav-a' href="">FORUM</a>
+        </li>
+        <li>
+          <a class='nav-a' href="{{ path('profil') }}">PROFIL</a>
+        </li>
+        <li>
+          <a class='nav-a' href="{{ path('logout') }}">DECONNEXION</a>
+        </li>
+        {% else %}
+        <li>
+          <a class='nav-a' href="{{ path('register') }}">REGISTRATION</a>
+        </li>
+        <li>
+          <a class='nav-a' href="{{ path('login') }}">LOGIN</a>
+        </li>
         {% endif %}
-
-      </nav>
-
+      </ul>
+    </nav>
   </header>
-
 </section>

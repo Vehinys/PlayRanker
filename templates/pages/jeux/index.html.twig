@@ -12,12 +12,12 @@
 
 <div class="container-search-jeux">
 
-    <section class="section-recherche-jeux">
-        <form class="recherche-form-jeux" action="{{ path('search') }}" id="searchthis" method="post">
-            <input class="recherche" id="search" name="input" type="text" placeholder="Rechercher un jeu"/>
-            <input id="search-btn" name="submit" type="submit" value="Rechercher">
+    <div class="search-container">
+        <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
+            <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
         </form>
-    </section>
+    </div>
 
     <! 
         * Affiche un menu déroulant pour sélectionner une catégorie de plateforme de jeu.
@@ -51,98 +51,98 @@
         * son image et les icônes des plateformes.
         * Chaque carte de jeu comprend également un bouton "Détail" qui renvoie vers la page de détails du jeu.
     > 
+<div class="all-container-jeux">
+    <div class="container-jeux">
+        <div class="game-card-container">
+            {% for game in games.results %}
+                <div class="game-card">
+                    <div class="game-card-header">
+                        <h3>{{ game.name }}</h3>
+                    </div>
+                        <img class="game-card-image" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        <div class="game-card-body">
+                    </div>
 
-<div class="container-jeux">
-    <div class="game-card-container">
-        {% for game in games.results %}
-            <div class="game-card">
-                <div class="game-card-header">
-                    <h3>{{ game.name }}</h3>
-                </div>
-                    <img class="game-card-image" src="{{ game.background_image }}" alt="{{ game.name }}">
-                    <div class="game-card-body">
-                </div>
-
-                <div class="platforms">
-                    <div class="platform">
-                        {% set platform_logos = {
-                            'PlayStation 1': 'img/ps1.png',
-                            'PlayStation 2': 'img/ps2.png',
-                            'PlayStation 3': 'img/ps3.png',
-                            'PlayStation 4': 'img/ps4.png',
-                            'PlayStation 5': 'img/ps5.png',
-                            'PS Vita': 'img/ps vita.png',
-                            'PSP': 'img/psp.png',
-                            'PC': 'img/pc.png',
-                            'Linux': 'img/linux.png',
-                            'Web': 'img/Web.png',
-                            'macOS': 'img/macOS.png',
-                            'iOS': 'img/ios.png',
-                            'Android': 'img/Android.png',
-                            'Xbox Series S/X': 'img/Xbox Series SX.png',
-                            'Xbox 360': 'img/Xbox 360.png',
-                            'Xbox One': 'img/Xbox One.png',
-                            'Xbox': 'img/xbox.png',
-                            'Nintendo Switch': 'img/Nintendo Switch.png',
-                            'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                            'Wii U': 'img/Wii U.png',
-                            'Wii': 'img/Wii.png',
-                            'GameCube': 'img/gameCube.png',
-                            
-                            'Nintendo DSi ': 'img/Wii U.png',
-                            'Nintendo DS ': 'img/Wii U.png',
-                            'Game Boy Advance': 'img/Wii U.png',
-                            'Game Boy Color': 'img/Wii U.png',
-                            'Game Boy': 'img/Wii U.png',
-                            'Nintendo 64': 'img/Wii U.png',
-                            'SNES': 'img/Wii U.png',
-                            'Wii U': 'img/Wii U.png',
-                            'NES': 'img/Wii U.png',
-                        } %}
-                
-                        {% for platform in game.platforms %}
-                            <div class="platform-item">
-                                {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
-                                {% if logo_path %}
-                                    <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ platform.platform.name}} " alt="{{ platform.platform.name}} logo" />
-                                {% endif %}
-                            </div>
-                        {% endfor %}
+                    <div class="platforms">
+                        <div class="platform">
+                            {% set platform_logos = {
+                                'PlayStation 1': 'img/ps1.png',
+                                'PlayStation 2': 'img/ps2.png',
+                                'PlayStation 3': 'img/ps3.png',
+                                'PlayStation 4': 'img/ps4.png',
+                                'PlayStation 5': 'img/ps5.png',
+                                'PS Vita': 'img/ps vita.png',
+                                'PSP': 'img/psp.png',
+                                'PC': 'img/pc.png',
+                                'Linux': 'img/linux.png',
+                                'Web': 'img/Web.png',
+                                'macOS': 'img/macOS.png',
+                                'iOS': 'img/ios.png',
+                                'Android': 'img/Android.png',
+                                'Xbox Series S/X': 'img/Xbox Series SX.png',
+                                'Xbox 360': 'img/Xbox 360.png',
+                                'Xbox One': 'img/Xbox One.png',
+                                'Xbox': 'img/xbox.png',
+                                'Nintendo Switch': 'img/Nintendo Switch.png',
+                                'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                                'Wii U': 'img/Wii U.png',
+                                'Wii': 'img/Wii.png',
+                                'GameCube': 'img/gameCube.png',
+                                
+                                'Nintendo DSi ': 'img/Wii U.png',
+                                'Nintendo DS ': 'img/Wii U.png',
+                                'Game Boy Advance': 'img/Wii U.png',
+                                'Game Boy Color': 'img/Wii U.png',
+                                'Game Boy': 'img/Wii U.png',
+                                'Nintendo 64': 'img/Wii U.png',
+                                'SNES': 'img/Wii U.png',
+                                'Wii U': 'img/Wii U.png',
+                                'NES': 'img/Wii U.png',
+                            } %}
+                    
+                            {% for platform in game.platforms %}
+                                <div class="platform-item">
+                                    {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
+                                    {% if logo_path %}
+                                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ platform.platform.name}} " alt="{{ platform.platform.name}} logo" />
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
                     </div>
                 </div>
-                <div class="button-container">
-                    <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-    <!
-        * Affiche un composant de pagination pour la page des jeux.
-        * Le composant de pagination inclut des liens pour naviguer vers les pages précédente et suivante,
-        * ainsi que le numéro de la page actuelle.
-        * Le comportement du composant de pagination dépend de la présence du paramètre 'token'
-        * défini comme 'platform', ce qui indique que la page est filtrée par plateforme.
-    > 
+        <!
+            * Affiche un composant de pagination pour la page des jeux.
+            * Le composant de pagination inclut des liens pour naviguer vers les pages précédente et suivante,
+            * ainsi que le numéro de la page actuelle.
+            * Le comportement du composant de pagination dépend de la présence du paramètre 'token'
+            * défini comme 'platform', ce qui indique que la page est filtrée par plateforme.
+        > 
 
-<div class="pagination">
-    {% if currentPage is defined %}
-        {% if token is defined and token is same as 'platform' %}
-            {% if currentPage > 1 %}
-                <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
-                {% endif %}
-                    <span>Page {{ currentPage }}</span>
-                    <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-                    {% else %}
+    <div class="pagination">
+        {% if currentPage is defined %}
+            {% if token is defined and token is same as 'platform' %}
                 {% if currentPage > 1 %}
                     <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
+                    {% endif %}
+                        <span>Page {{ currentPage }}</span>
+                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
+                        {% else %}
+                    {% if currentPage > 1 %}
+                        <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
+                    {% endif %}
+                        <span>Page {{ currentPage }}</span>
+                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
                 {% endif %}
-                    <span>Page {{ currentPage }}</span>
-                    <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-            {% endif %}
-    {% endif %}
+        {% endif %}
+    </div>
 </div>
-
 {% endblock %}
 
