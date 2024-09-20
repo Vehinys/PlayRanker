@@ -19,10 +19,10 @@ class ApiHttpClient extends AbstractController
      * @property SousCategoryRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
      */
 
-    private $httpClient;
-    private $url = 'https://api.rawg.io/api/games?';
-    private $key = 'key=c2caa004df8a4f65b23177fa9ca935f9';
-    private $sousCategoryRepository;
+        private $httpClient;
+        private $url = 'https://api.rawg.io/api/games?';
+        private $key = 'key=c2caa004df8a4f65b23177fa9ca935f9';
+        private $sousCategoryRepository;
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
@@ -32,11 +32,12 @@ class ApiHttpClient extends AbstractController
      * @param HttpClientInterface $httpClient Le client HTTP à utiliser pour effectuer les requêtes API.
      * @param SousCategoryRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
      */
-    public function __construct(HttpClientInterface $httpClient, SousCategoryRepository $sousCategoryRepository)
-    {
-        $this->httpClient = $httpClient;
-        $this->sousCategoryRepository = $sousCategoryRepository;
-    }
+
+        public function __construct(HttpClientInterface $httpClient, SousCategoryRepository $sousCategoryRepository)
+        {
+            $this->httpClient = $httpClient;
+            $this->sousCategoryRepository = $sousCategoryRepository;
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -46,12 +47,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-
-    public function games()
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9');
-        return $response->toArray();
-    }
+        public function games()
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9');
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -62,12 +62,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    
-    public function gamesSearch($input)
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&search='.$input.'');
-        return $response->toArray();
-    }
+        public function gamesSearch($input)
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&search='.$input.'');
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -78,12 +77,11 @@ class ApiHttpClient extends AbstractController
      * @return array The response data from the RAWG API as an array.
      */
 
-    
-    public function nextPage($page)
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'');
-        return $response->toArray();
-    }
+        public function nextPage($page)
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'');
+            return $response->toArray();
+        }
     
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -95,16 +93,14 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    
-    public function nextPagePlatform($page, $id)
-    {
-        $url = $this->url;
-        $key = $this->key;
+        public function nextPagePlatform($page, $id)
+        {
+            $url = $this->url;
+            $key = $this->key;
+            $response = $this->httpClient->request('GET', $url.$key.'&page='.$page.'&platforms='.$id);
 
-        $response = $this->httpClient->request('GET', $url.$key.'&page='.$page.'&platforms='.$id);
-
-        return $response->toArray();
-    }
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -115,12 +111,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    
-    public function gameDetail($id)
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games/'.$id.'?key=c2caa004df8a4f65b23177fa9ca935f9');
-        return $response->toArray();
-    }
+        public function gameDetail($id)
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games/'.$id.'?key=c2caa004df8a4f65b23177fa9ca935f9');
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -131,12 +126,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    
-    public function gameAnnonce($id)
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games/'.$id.'/movies?key=c2caa004df8a4f65b23177fa9ca935f9');
-        return $response->toArray();
-    }
+        public function gameAnnonce($id)
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games/'.$id.'/movies?key=c2caa004df8a4f65b23177fa9ca935f9');
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -147,12 +141,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    
-    public function searchByConsole($id)
-    {
-        $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&platforms='.$id.'');
-        return $response->toArray();
-    }
+        public function searchByConsole($id)
+        {
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&platforms='.$id.'');
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -163,11 +156,11 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    public function searchBySousCategory($sousCategoryName)
-    {
-    $response = $this->httpClient->request('GET', $this->url.$this->key.'&genres='.$sousCategoryName);
-    return $response->toArray();
-    }
+        public function searchBySousCategory($sousCategoryName)
+        {
+            $response = $this->httpClient->request('GET', $this->url.$this->key.'&genres='.$sousCategoryName);
+            return $response->toArray();
+        }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
