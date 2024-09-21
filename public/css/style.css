@@ -3,16 +3,16 @@
 /* ----------------------------------------------------------- */
 
 :root {
-  --background-dark: #0C1D36;                                /* Noir pour l'arrière-plan principal */
-  --text-light: #FFFFFF;                                     /* Blanc pour le texte sur fond sombre */
-  --text-yellow: #ECC33E;                                    /* Jaune doré pour le texte (accent) */
-  --text-medium: #666;                                       /* Gris moyen pour le texte secondaire */
-  --text-dark: #333;                                         /* Gris foncé pour le texte principal */
-  --border-yellow: #efd807;                                  /* Jaune doré pour les bordures */
-  --border-orange: #ECC33E;                                  /* Orange vif pour les bordures au survol */
-  --button-bg-yellow: #efd807;                               /* Fond jaune doré pour les boutons */
-  --button-bg-orange: #ECC33E;                               /* Fond orange vif pour les boutons au survol */
-  --background-light: #d3e1f7;                               /* Gris clair pour l'arrière-plan secondaire */
+  --background-dark: #0C1D36;                                 /* Noir pour l'arrière-plan principal */
+  --text-light: #FFFFFF;                                      /* Blanc pour le texte sur fond sombre */
+  --text-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent) */
+  --text-medium: #666;                                        /* Gris moyen pour le texte secondaire */
+  --text-dark: #333;                                          /* Gris foncé pour le texte principal */
+  --border-yellow: #efd807;                                   /* Jaune doré pour les bordures */
+  --border-orange: #ECC33E;                                   /* Orange vif pour les bordures au survol */
+  --button-bg-yellow: #efd807;                                /* Fond jaune doré pour les boutons */
+  --button-bg-orange: #ECC33E;                                /* Fond orange vif pour les boutons au survol */
+  --background-light: #b5cdf3;                                /* Gris clair pour l'arrière-plan secondaire */
 }
 
 /* ----------------------------------------------------------- */
@@ -20,11 +20,11 @@
 /* ----------------------------------------------------------- */
 
 * {
-  margin: 0;                                                   /* Réinitialisation des marges */
-  padding: 0;                                                  /* Réinitialisation des espacements internes */
-  font-family: 'Montserrat', sans-serif;                       /* Police par défaut (Montserrat) */
-  text-decoration: none;                                       /* Suppression des soulignements de lien */
-  box-sizing: border-box;                                      /* Inclusion des bordures et paddings dans le calcul de la taille */
+  margin: 0;                                                    /* Réinitialisation des marges */
+  padding: 0;                                                   /* Réinitialisation des espacements internes */
+  font-family: 'Montserrat', sans-serif;                        /* Police par défaut (Montserrat) */
+  text-decoration: none;                                        /* Suppression des soulignements de lien */
+  box-sizing: border-box;                                       /* Inclusion des bordures et paddings dans le calcul de la taille */
 }
 
 /* ----------------------------------------------------------- */
@@ -32,44 +32,53 @@
 /* ----------------------------------------------------------- */
 
 .container-header {
-  background-color: var(--background-dark);                 /* Fond sombre pour l'en-tête */
-  padding: 20px;                                           /* Espacement interne pour l'en-tête */
+  background-color: var(--background-dark);                     /* Couleur d'arrière-plan pour le header */
+  padding: 20px;                                                /* Espacement interne du header */
+  position: fixed;                                              /* Fixe le header en haut de la page */
+  top: 0;                                                       /* Positionne le header en haut */
+  left: 0;                                                      /* Positionne le header à gauche */
+  right: 0;                                                     /* Positionne le header à droite */
+  z-index: 1000;                                                /* Assure que le header reste au-dessus des autres éléments */
 }
 
 .nav-list {
-  list-style-type: none;                                   /* Supprime les puces de la liste */
-  display: flex;                                           /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                 /* Centre les éléments de la liste */
-  margin: 0;                                              /* Réinitialisation de la marge */
-  padding: 0;                                             /* Réinitialisation du padding */
+  list-style-type: none;                                        /* Supprime les puces de la liste */
+  display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
+  justify-content: center;                                      /* Centre les éléments de la liste */
+  margin: 0;                                                    /* Réinitialisation de la marge */
+  padding: 0;                                                   /* Réinitialisation du padding */
 }
 
 .nav-list li {
-  margin: 0 15px;                                        /* Espacement horizontal entre les éléments */
+  margin: 0 15px;                                               /* Espacement horizontal entre les éléments de la liste */
 }
 
 .nav-a {
-  color: var(--text-light);                               /* Couleur du texte (blanc) */
-  font-size: 1.2rem;                                     /* Taille de police pour les liens */
-  text-decoration: none;                                  /* Supprime le soulignement des liens */
-  transition: color 0.3s ease;                           /* Transition fluide pour le changement de couleur */
+  color: var(--text-light);                                     /* Couleur du texte (blanc) */
+  font-size: 1.2rem;                                            /* Taille de police pour les liens */
+  text-decoration: none;                                        /* Supprime le soulignement des liens */
+  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur */
 }
 
 .nav-a:hover {
-  color: var(--text-yellow);                              /* Change la couleur au survol */
+  color: var(--text-yellow);                                    /* Change la couleur au survol */
 }
 
 .is-current {
-  font-weight: bold;                                     /* Texte en gras pour le lien courant */
-  color: var(--border-yellow);                            /* Couleur du lien actif (jaune doré) */
+  font-weight: bold;                                            /* Texte en gras pour le lien courant */
+  color: var(--border-yellow);                                  /* Couleur du lien actif (jaune doré) */
 }
 
 /* ----------------------------------------------------------- */
-/* Styles pour le main                                         */
+/* Styles pour le main et body                                 */
 /* ----------------------------------------------------------- */
 
+body {
+  padding-top: 64px;                                            /* Ajout d'espace en haut pour le header fixe */
+}
+
 main {
-  background-color: var(--background-light);                    /* Arrière-plan noir pour le contenu principal */
+  background-color: var(--background-light);                    /* Arrière-plan clair pour le contenu principal */
 }
 
 /* ----------------------------------------------------------- */
@@ -77,29 +86,27 @@ main {
 /* ----------------------------------------------------------- */
 
 .header-section {
-  background-color: var(--background-dark);                    /* Arrière-plan noir pour l'en-tête */
-  color: var(--text-light);                                    /* Texte blanc pour un bon contraste */
-  padding: 20px 0 40px 0;                                      /* Espacement interne de l'en-tête */
-  text-align: center;                                          /* Centrage du contenu */
-  box-shadow: #0C1D36 0px 0px 10px;
+  background-color: var(--background-dark);                     /* Arrière-plan sombre pour l'en-tête */
+  color: var(--text-light);                                     /* Texte clair pour un bon contraste */
+  padding: 20px 0 40px 0;                                       /* Espacement interne de l'en-tête */
+  text-align: center;                                           /* Centrage du contenu */
+  box-shadow: #0C1D36 0px 0px 10px;                           /* Ombre pour l'en-tête */
 }
 
-/* Styles pour le titre principal */
 .header-section h1 {
-  font-size: 4rem;                                             /* Très grande taille pour le titre principal */
-  margin-bottom: 15px;                                         /* Espacement en bas du titre */
-  font-weight: bold;                                           /* Met le titre en gras */
-  color: var(--border-yellow);                                 /* Utilisation du jaune doré pour le texte */
+font-size: 4rem;                                                /* Taille très grande pour le titre principal */
+margin-bottom: 15px;                                            /* Espacement en bas du titre */
+font-weight: bold;                                              /* Met le titre en gras */
+color: var(--border-yellow);                                    /* Utilisation du jaune doré pour le titre */
 }
 
-/* Styles pour le sous-titre */
 .header-section h3 {
-  width: 55%;                                                  /* Largeur du sous-titre à 55% de son conteneur */
-  text-align: center;                                          /* Centre le texte */
-  font-size: 1.1rem;                                           /* Taille moyenne pour le sous-titre */
-  margin: 5px 0 30px 0;                                        /* Marges pour aérer le sous-titre */
-  line-height: 1.5;                                            /* Hauteur de ligne pour meilleure lisibilité */
-  display: -webkit-inline-box;                                 /* Alignement pour l'affichage en boîte */
+width: 55%;                                                     /* Largeur du sous-titre à 55% de son conteneur */
+text-align: center;                                             /* Centre le texte */
+font-size: 1.1rem;                                              /* Taille moyenne pour le sous-titre */
+margin: 5px 0 30px 0;                                           /* Marges pour aérer le sous-titre */
+line-height: 1.5;                                               /* Hauteur de ligne pour meilleure lisibilité */
+display: -webkit-inline-box;                                    /* Alignement pour l'affichage en boîte */
 }
 
 /* ----------------------------------------------------------- */
@@ -107,56 +114,50 @@ main {
 /* ----------------------------------------------------------- */
 
 .search-container {
-  display: flex;                                               /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                     /* Centrage du formulaire dans la page */
-  position: relative;                                          /* Position relative pour gérer l'icône */
-  width: 100%;                                                 /* Prend toute la largeur du conteneur parent */
+display: flex;                                                  /* Utilisation de flexbox pour aligner horizontalement */
+justify-content: center;                                        /* Centrage du formulaire dans la page */
+position: relative;                                             /* Position relative pour gérer l'icône */
+width: 100%;                                                    /* Prend toute la largeur du conteneur parent */
 }
 
-/* Styles pour le formulaire de recherche */
 .search-form {
-  display: flex;                                               /* Utilisation de flexbox pour aligner le champ et le bouton */
+display: flex;                                                  /* Utilisation de flexbox pour aligner le champ et le bouton */
 }
 
-/* Styles pour le champ de recherche */
 .search-input {
-  padding: 10px 50px;                                          /* Espacement interne avec padding symétrique */
-  font-size: 16px;                                             /* Taille du texte du champ de recherche */
-  border: 3px solid var(--text-light);                                    /* Bordure grise autour du champ */
-  border-radius: 25px;                                         /* Arrondit les coins du champ */
-  outline: none;                                               /* Supprime l'outline par défaut */
-  box-sizing: border-box;                                      /* Inclut bordures et padding dans les dimensions du champ */
+padding: 10px 50px;                                             /* Espacement interne avec padding symétrique */
+font-size: 16px;                                                /* Taille du texte du champ de recherche */
+border: 3px solid var(--text-light);                            /* Bordure claire autour du champ */
+border-radius: 25px;                                            /* Arrondit les coins du champ */
+outline: none;                                                  /* Supprime l'outline par défaut */
+box-sizing: border-box;                                         /* Inclut bordures et padding dans les dimensions du champ */
 }
 
-/* Effet de focus sur le champ de recherche */
 .search-input:focus {
-  border-color: var(--border-orange);                          /* Change la couleur de la bordure au focus */
-  outline: none;                                               /* Supprime le contour par défaut au focus */
+border-color: var(--border-orange);                             /* Change la couleur de la bordure au focus */
+outline: none;                                                  /* Supprime le contour par défaut au focus */
 }
 
-/* Styles pour le bouton de recherche */
 #search-btn {
-  padding: 12px 20px;                                          /* Espacement interne du bouton */
-  background-color: var(--button-bg-yellow);                   /* Fond jaune doré pour le bouton */
-  color: var(--background-dark);                               /* Texte noir pour le contraste avec le fond */
-  border: none;                                                /* Supprime la bordure par défaut du bouton */
-  cursor: pointer;                                             /* Change le curseur pour pointer lors du survol */
-  transition: background-color 0.3s ease;                      /* Transition fluide pour les changements d'état (survol) */
+padding: 12px 20px;                                             /* Espacement interne du bouton */
+background-color: var(--button-bg-yellow);                      /* Fond jaune doré pour le bouton */
+color: var(--background-dark);                                  /* Texte noir pour le contraste avec le fond */
+border: none;                                                   /* Supprime la bordure par défaut du bouton */
+cursor: pointer;                                                /* Change le curseur pour pointer lors du survol */
+transition: background-color 0.3s ease;                         /* Transition fluide pour les changements d'état (survol) */
 }
 
-/* Effet de survol sur le bouton */
 #search-btn:hover {
-  background-color: var(--button-bg-orange);                   /* Change la couleur du fond au survol */
+background-color: var(--button-bg-orange);                      /* Change la couleur du fond au survol */
 }
 
-/* Style pour l'icône de recherche */
 .search-icon {
-  position: absolute;                                          /* Positionnement absolu pour placer l'icône */
-  top: 50%;                                                    /* Centrage vertical */
-  transform: translateY(-50%);                                 /* Ajustement du centrage */
-  color: var(--background-dark);                               /* Couleur de l'icône (noir) */
-  font-size: 18px;                                             /* Taille de l'icône */
-  margin: 0px 15px;                                            /* Marges autour de l'icône */
+position: absolute;                                             /* Positionnement absolu pour placer l'icône */
+top: 50%;                                                       /* Centrage vertical */
+transform: translateY(-50%);                                    /* Ajustement du centrage */
+color: var(--background-dark);                                  /* Couleur de l'icône (noir) */
+font-size: 18px;                                                /* Taille de l'icône */
+margin: 0px 15px;                                               /* Marges autour de l'icône */
 }
 
 /* ----------------------------------------------------------- */
@@ -165,21 +166,21 @@ main {
 
 /* Styles pour la section de notation */
 .rate-section {
-  text-align: center;                                          /* Centrage du texte de la section */
-  padding: 45px 0 15px 0;                                      /* Espacement interne de la section */
-  display: flex;                                               /* Utilisation de flexbox pour aligner les éléments */
-  justify-content: center;                                     /* Centre l'ensemble du séparateur horizontalement */
+  text-align: center;                                           /* Centrage du texte de la section */
+  padding: 45px 0 15px 0;                                       /* Espacement interne de la section */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments */
+  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement */
 }
 
 /* Styles pour le titre de la section */
 .rate-section h2 {
-  font-size: 4rem;                                             /* Très grande taille de police pour le titre */
-  color: var(--background-dark);                               /* Texte noir pour le titre */
-  font-weight: bold;                                           /* Texte en gras */
-  line-height: 1.4;                                            /* Hauteur de ligne pour améliorer la lisibilité */
-  padding: 20px 0;                                             /* Espacement interne autour du titre */
-  width: 60%;                                                  /* Prend 60% la largeur du conteneur parent */
-  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre de texte pour un effet visuel */
+  font-size: 4rem;                                              /* Très grande taille de police pour le titre */
+  color: var(--background-dark);                                /* Texte noir pour le titre */
+  font-weight: bold;                                            /* Texte en gras */
+  line-height: 1.4;                                             /* Hauteur de ligne pour améliorer la lisibilité */
+  padding: 20px 0;                                              /* Espacement interne autour du titre */
+  width: 60%;                                                   /* Prend 60% la largeur du conteneur parent */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
 }
 
 
@@ -189,312 +190,429 @@ main {
 
 /* Styles pour le séparateur */
 .separator {
-  display: flex;                                               /* Utilisation de flexbox pour aligner les éléments */
-  align-items: center;                                         /* Aligne verticalement le texte et les lignes */
-  justify-content: center;                                     /* Centre l'ensemble du séparateur horizontalement */
-  margin: 20px auto;                                           /* Marge pour centrer le séparateur */
-  width: 80%;                                                  /* Largeur du séparateur à 80% du conteneur parent */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments */
+  align-items: center;                                          /* Aligne verticalement le texte et les lignes */
+  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement */
+  margin: 20px auto;                                            /* Marge pour centrer le séparateur */
+  width: 80%;                                                   /* Largeur du séparateur à 80% du conteneur parent */
 }
 
 /* Styles pour les lignes de séparation avant et après le texte */
 .separator::before,
 .separator::after {
-  content: '';                                                 /* Génère un contenu vide pour les lignes */
-  width: 300px;                                                /* Taille des lignes avant et après le texte */
-  border-bottom: 4px solid;                                    /* Ligne solide en bas (séparateur) */
+  content: '';                                                  /* Génère un contenu vide pour les lignes */
+  width: 300px;                                                 /* Taille des lignes avant et après le texte */
+  border-bottom: 4px solid;                                     /* Ligne solide en bas (séparateur) */
 }
 
 /* Marge à droite de la ligne avant le texte */
 .separator::before {
-  margin-right: 20px;                                          /* Espace de 10px entre la ligne avant et le texte */
+  margin-right: 20px;                                           /* Espace de 10px entre la ligne avant et le texte */
 }
 
 /* Marge à gauche de la ligne après le texte */
 .separator::after {
-  margin-left: 20px;                                           /* Espace de 10px entre la ligne après et le texte */
+  margin-left: 20px;                                            /* Espace de 10px entre la ligne après et le texte */
 }
 
 /* Styles pour le texte centré entre les lignes */
 .separator span {
-  font-size: 28px;                                             /* Taille de police importante pour le texte */
-  font-weight: bold;                                           /* Texte en gras */
-  color: var(--text-yellow);                                   /* Couleur du texte (jaune doré) */
-  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre de texte pour un effet visuel */
+  font-size: 28px;                                              /* Taille de police importante pour le texte */
+  font-weight: bold;                                            /* Texte en gras */
+  color: var(--text-yellow);                                    /* Couleur du texte (jaune doré) */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
 }
-
 
 /* ----------------------------------------------------------- */
 /* Styles pour les cartes                                      */
 /* ----------------------------------------------------------- */
 
 .section-top {
-  background-color: var(--background-light);                   /* Couleur de fond pour la section de contact */
-  padding-bottom: 30px;
+  background-color: var(--background-light);                    /* Couleur de fond pour la section de contact */
+  padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section */
 }
+
 .container-card {
-  display: flex;                                               /* Utilisation de flexbox pour aligner les cartes */
-  gap: 20px;                                                   /* Espacement entre les cartes */
-  flex-wrap: wrap;                                             /* Permet aux cartes de passer à la ligne si nécessaire */
-  justify-content: center;                                     /* Centre les cartes horizontalement */
-  margin: 85px 0;                                              /* Marge en haut et en bas pour aérer la section */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les cartes */
+  gap: 20px;                                                    /* Espacement entre les cartes */
+  flex-wrap: wrap;                                              /* Permet aux cartes de passer à la ligne si nécessaire */
+  justify-content: center;                                      /* Centre les cartes horizontalement */
+  margin: 85px 0;                                               /* Marge en haut et en bas pour aérer la section */
 }
 
 .card {
-  width: 400px;                                                /* Largeur fixe pour les cartes */
-  height: 320px;                                               /* Hauteur fixe pour les cartes */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);                /* Ombre pour un effet d'élévation */
-  border-radius: 10px;                                         /* Arrondir les coins */
-  overflow: hidden;                                            /* Masque le débordement du contenu */
-  transition: transform 0.8s;                                  /* Transition fluide pour les effets (si besoin) */
+  width: 400px;                                                 /* Largeur fixe pour les cartes */
+  height: 320px;                                                /* Hauteur fixe pour les cartes */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);                 /* Ombre pour un effet d'élévation */
+  border-radius: 10px;                                          /* Arrondir les coins */
+  overflow: hidden;                                             /* Masque le débordement du contenu */
+  transition: transform 0.8s;                                   /* Transition fluide pour les effets (si besoin) */
   
 }
 
 .front-face {
-  width: 100%;                                                 /* Prend toute la largeur de la carte */
-  height: 100%;                                                /* Prend toute la hauteur de la carte */
-  display: flex;                                               /* Utilisation de flexbox pour centrer le contenu */
-  flex-direction: column;                                      /* Aligne le contenu verticalement */
-  justify-content: center;                                     /* Centre le contenu verticalement */
-  align-items: center;                                         /* Centre le contenu horizontalement */
-  padding: 20px;                                               /* Espacement interne pour le contenu */
-  text-align: center;                                          /* Centre le texte dans la carte */
-  background-color: var(--background-dark);                    /* Fond sombre pour les cartes */
+  width: 100%;                                                  /* Prend toute la largeur de la carte */
+  height: 100%;                                                 /* Prend toute la hauteur de la carte */
+  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
+  flex-direction: column;                                       /* Aligne le contenu verticalement */
+  justify-content: center;                                      /* Centre le contenu verticalement */
+  align-items: center;                                          /* Centre le contenu horizontalement */
+  padding: 20px;                                                /* Espacement interne pour le contenu */
+  text-align: center;                                           /* Centre le texte dans la carte */
+  background-color: var(--background-dark);                     /* Fond sombre pour les cartes */
 }
 
 /* Styles pour le numéro de notation */
 .number {
-  font-size: 35px;                                             /* Taille de police pour le numéro */
-  color: var(--text-yellow);                                   /* Couleur du numéro (jaune doré) */
-  font-weight: bold;                                           /* Met le numéro en gras */
-  margin-bottom: 10px;                                         /* Marge en bas pour espacement */
+  font-size: 35px;                                              /* Taille de police pour le numéro */
+  color: var(--text-yellow);                                    /* Couleur du numéro (jaune doré) */
+  font-weight: bold;                                            /* Met le numéro en gras */
+  margin-bottom: 10px;                                          /* Marge en bas pour espacement */
 }
 
 /* Styles pour le titre de la carte */
 .title {
-  font-size: 30px;                                             /* Taille de police pour le titre */
-  color: var(--text-light);                                    /* Couleur du titre (noir) */
-  margin: 10px 0;                                              /* Marge pour espacement */
+  font-size: 30px;                                              /* Taille de police pour le titre */
+  color: var(--text-light);                                     /* Couleur du titre (noir) */
+  margin: 10px 0;                                               /* Marge pour espacement */
 }
 
 /* Styles pour la description de la carte */
 .description {
-  font-size: 24px;                                             /* Taille de police pour la description */
-  color: var(--text-light);                                    /* Couleur de la description (gris foncé) */
-  margin: 10px 0;                                              /* Marge pour espacement */
+  font-size: 15px;                                              /* Taille de police pour la description */
+  color: var(--text-light);                                     /* Couleur de la description (gris foncé) */
+  margin: 10px 0;                                               /* Marge pour espacement */
 }
 
 /* Styles pour les étoiles (notation) */
 .stars {
-  font-size: 18px;                                             /* Taille de police pour les étoiles */
-  color: var(--text-yellow);                                   /* Couleur des étoiles (jaune doré) */
-  margin: 10px 0;                                              /* Marge pour espacement */
+  font-size: 18px;                                              /* Taille de police pour les étoiles */
+  color: var(--text-yellow);                                    /* Couleur des étoiles (jaune doré) */
+  margin: 10px 0;                                               /* Marge pour espacement */
 }
 
 /* Style général pour la carte */
 .card:hover {
-  transform: scale(1.3);                                   /* Effet d'agrandissement au survol (optionnel) */
+  transform: scale(1.3);                                        /* Effet d'agrandissement au survol (optionnel) */
 }
 
 .bouton {
-  display: inline-block;                                      /* Affiche le bouton en tant qu'élément en ligne */
-  background-color: var(--button-bg-yellow);                /* Couleur de fond (jaune doré) */
-  color: var(--background-dark);                              /* Couleur du texte (noir) */
-  padding: 12px 24px;                                       /* Espacement interne du bouton */
-  border-radius: 25px;                                      /* Coins arrondis */
-  text-align: center;                                       /* Centre le texte dans le bouton */
-  text-decoration: none;                                     /* Supprime le soulignement des liens */
-  font-weight: bold;                                        /* Met le texte en gras */
-  font-size: 1rem;                                         /* Taille de police */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition fluide pour le fond et la transformation */
+  display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne */
+  background-color: var(--button-bg-yellow);                    /* Couleur de fond (jaune doré) */
+  color: var(--background-dark);                                /* Couleur du texte (noir) */
+  border-radius: 20px;                                          /* Coins arrondis */
+  text-align: center;                                           /* Centre le texte dans le bouton */
+  text-decoration: none;                                        /* Supprime le soulignement des liens */
+  font-weight: bold;                                            /* Met le texte en gras */
+  font-size: 1rem;                                              /* Taille de police */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation */
+  width: 35%;                                                   /* Prend toute la largeur de la carte */
 }
 
 .bouton:hover {
-  background-color: var(--button-bg-orange);                /* Change la couleur de fond au survol (orange) */
-  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
-  transform: scale(1.03);                                   /* Effet d'agrandissement au survol */
-  color: var(--text-light);                                 /* Change la couleur du texte au survol (blanc) */
+  background-color: var(--button-bg-orange);                    /* Change la couleur de fond au survol (orange) */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
+  transform: scale(1.03);                                       /* Effet d'agrandissement au survol */
+  color: var(--text-light);                                     /* Change la couleur du texte au survol (blanc) */
 }
 
 .bouton a {
-  color: inherit;                                          /* Hérite de la couleur du bouton */
-  text-decoration: none;                                   /* Supprime le soulignement du lien */
-  display: block;                                          /* Permet au lien de remplir tout le bouton */
-  width: 100%;                                             /* Prend toute la largeur du bouton */
-  height: 100%;                                            /* Prend toute la hauteur du bouton */
-  line-height: normal;                                     /* Hauteur de ligne normale */
+  color: inherit;                                               /* Hérite de la couleur du bouton */
+  text-decoration: none;                                        /* Supprime le soulignement du lien */
+  display: block;                                               /* Permet au lien de remplir tout le bouton */
+  width: 100%;                                                  /* Prend toute la largeur du bouton */
+  height: 100%;                                                 /* Prend toute la hauteur du bouton */
+  line-height: normal;                                          /* Hauteur de ligne normale */
 }
 
 /* ----------------------------------------------------------- */
-/* Styles pour la section de contact                          */
+/* Styles pour le conteneur Latest Releases                    */
+/* ----------------------------------------------------------- */
+
+.review-section {
+  width: 100%;                                                  /* Prend toute la largeur disponible                 */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments  */
+  justify-content: center;                                      /* Centre le contenu horizontalement                  */
+  margin: 30px 0;                                               /* Marge en haut et en bas                           */
+}
+
+.review-container {
+  width: 60%;                                                   /* Largeur de 60% pour le conteneur de critiques     */
+  flex-direction: column;                                       /* Orientation verticale des critiques                */
+  display: flex;                                                /* Utilise flexbox pour un alignement flexible       */
+  align-items: flex-start;                                      /* Aligne les éléments au début du conteneur         */
+  margin: 50px 0;                                               /* Marge en haut et en bas                           */
+}
+
+.review-content, .review-content-reverse {
+  display: flex;                                                /* Utilisation de flexbox pour la mise en page       */
+  background-color: var(--background-dark);                     /* Couleur de fond sombre pour les critiques          */
+  border-radius: 30px;                                          /* Coins arrondis                                    */
+  color: var(--text-light);                                     /* Couleur du texte (blanc)                          */
+  padding: 20px 20px;                                           /* Espacement interne                                  */
+  margin-bottom: 50px;                                          /* Espace en bas pour séparer les critiques           */
+  width: 70%;                                                   /* Largeur de 70% du conteneur parent                */
+  box-shadow: #0C1D36 0px 0px 10px 0px;                       /* Ombre pour donner de la profondeur                 */
+}
+
+.review-content:hover, .review-content-reverse:hover {
+  transform: scale(1.3);                                        /* Effet d'agrandissement au survol                  */
+  transition: transform 0.3s ease;                              /* Transition fluide pour l'effet d'agrandissement   */
+}
+
+.review-content {
+  align-self: flex-start;                                       /* Aligne la critique au début du conteneur          */
+}
+
+.review-content-reverse {
+  flex-direction: row-reverse;                                  /* Inverse l'ordre des éléments dans la critique      */
+  align-self: flex-end;                                         /* Aligne la critique à la fin du conteneur          */
+}
+
+.review-content-reverse .review-image {
+  margin-left: 20px;                                            /* Marge à gauche pour l'image dans le conteneur inverse */
+  margin-right: 0;                                              /* Supprime la marge à droite                        */
+}
+
+.review-content-reverse .review-text {
+  text-align: right;                                            /* Aligne le texte à droite                           */
+  align-items: flex-end;                                        /* Aligne les éléments à la fin du conteneur         */
+}
+
+.review-content h2, .review-content-reverse h2 {
+  color: var(--text-yellow);                                    /* Couleur du titre des critiques                     */
+  font-size: 1.4em;                                             /* Taille de police pour les titres                  */
+  font-weight: bold;                                            /* Gras pour le texte du titre                       */
+}
+
+.review-image {
+  width: 150px;                                                 /* Largeur de l'image                                 */
+  height: 150px;                                                /* Hauteur de l'image                                 */
+  margin: 10px;                                                 /* Marge autour de l'image                            */
+  border-radius: 15px;                                          /* Coins arrondis                                    */
+  border: var(--button-bg-orange) 3px solid;                    /* Bordure orange autour de l'image                   */
+}
+
+.review-image:hover {
+  transform: scale(1.2);                                        /* Effet d'agrandissement au survol                  */
+  transition: transform 0.3s ease;                              /* Transition fluide pour l'effet d'agrandissement   */
+}
+
+.review-text {
+  text-align: justify;                                          /* Justifie le texte                                  */
+  display: flex;                                                /* Utilisation de flexbox pour le contenu de la critique */
+  flex-direction: column;                                       /* Orientation verticale des éléments                 */
+  justify-content: space-evenly;                                /* Espace entre les éléments                          */
+  align-items: flex-start;                                      /* Aligne les éléments au début du conteneur         */
+  padding: 0 20px;                                              /* Espacement interne à gauche et à droite           */
+}
+
+.review-text p {
+  width: 100%;                                                  /* Prend toute la largeur du conteneur                */
+  margin: 15px 0;                                               /* Marge en haut et en bas                            */
+  font-size: 0.75em;                                            /* Taille de police pour le texte                    */
+  text-align: justify;                                          /* Justifie le texte                                  */
+}
+
+.bouton a {
+  font-size: 0.84em;                                            /* Taille de police pour les liens dans le bouton    */
+  place-content: center;                                        /* Centre le contenu horizontalement                 */
+}
+
+.review-container > div:nth-child(even) {
+  flex-direction: row;                                          /* Orientation des éléments pour les critiques paires */
+}
+
+.review-container-text {
+  width: 100%;                                                  /* Prend toute la largeur du conteneur                */
+  display: flex;                                                /* Utilisation de flexbox pour le contenu de la critique */
+}
+.review-container-text p {
+  align-self: centerer;                                         /* Centre le texte verticalement                       */
+  text-align: center;                                           /* Centre le texte horizontalement                   */
+  font-size: large;                                             /* Taille de police plus grande pour le texte      */
+}
+
+.review-container-text p a {
+  color: var(--text-yellow);                                    /* Couleur du texte des liens dans le bouton         */
+  font-weight: 700;                                             /* Gras pour le texte du lien                         */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour la section de contact                           */
 /* ----------------------------------------------------------- */
 
 .contact-section {
-  padding: 40px 20px;                                       /* Espacement interne de la section */
-  background-color: var(--background-light);                /* Couleur de fond pour la section de contact */
-  text-align: center;                                       /* Centre le texte */
+  padding: 40px 20px;                                           /* Espacement : 40px en haut/bas, 20px à gauche/droite */
+  background-color: var(--background-light);                    /* Couleur de fond pour la section de contact       */
+  text-align: center;                                           /* Centre le texte horizontalement                   */
+  display: flex;                                                /* Utilise Flexbox pour un alignement flexible      */
+  justify-content: center;                                      /* Centre le contenu à l'intérieur de la section    */
 }
 
-/* Styles pour le titre de la section */
+.contact-container {
+  background-color: var(--background-dark);                     /* Couleur de fond pour le conteneur de contact     */
+  width: 60%;                                                   /* Largeur de 60% du conteneur parent               */
+  margin: 30px auto;                                            /* Marge : 30px en haut/bas, auto à gauche/droite  */
+  padding: 50px;                                                /* Espacement interne de 50px                       */
+  border-radius: 20px;                                          /* Coins arrondis                                   */
+}
+
 .contact-section h2 {
-  font-size: 2.5rem;                                        /* Taille du titre */
-  color: var(--background-dark);                            /* Couleur du titre (noir) */
-  margin-bottom: 20px;  
-  text-shadow: var(--background-dark) 0px 0px 2px;          /* Ombre de texte pour un effet visuel */ 
+  font-size: 2.5rem;                                            /* Taille de police pour le titre                   */
+  color: var(--background-dark);                                /* Couleur du titre (noir)                          */
+  margin-bottom: 20px;                                          /* Marge en bas pour espacer du contenu suivant     */
+  text-shadow: var(--background-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel              */
 }
 
 .contact-form {
-  display: flex;                                           /* Utilisation de flexbox pour aligner les éléments */
-  flex-direction: column;                                  /* Aligne les champs verticalement */
-  width: 100%;                                            /* Prend toute la largeur du conteneur */
-  max-width: 600px;                                      /* Largeur maximale pour le formulaire */
-  margin: 0 auto;                                        /* Centre le formulaire */
+  display: flex;                                                /* Utilisation de Flexbox pour aligner les éléments */
+  flex-direction: column;                                       /* Aligne les champs verticalement                  */
+  width: 100%;                                                  /* Prend toute la largeur du conteneur              */
+  max-width: 600px;                                             /* Largeur maximale pour le formulaire              */
+  margin: 0 auto;                                               /* Centre le formulaire                             */
 }
 
 .form-group {
-  margin-bottom: 15px;                                    /* Marge en bas pour espacement entre les champs */
-  text-align: left;                                       /* Aligne le texte à gauche */
+  margin-bottom: 15px;                                          /* Marge en bas pour espacement entre les champs    */
+  text-align: left;                                             /* Aligne le texte à gauche                         */
 }
 
-/* Styles pour les labels */
 .form-group label {
-  font-size: 1rem;                                        /* Taille de police pour les labels */
-  color: var(--text-dark);                                /* Couleur du texte des labels */
+  font-size: 1rem;                                              /* Taille de police pour les labels                 */
+  color: var(--text-light);                                     /* Couleur du texte des labels                      */
+  font-weight: 700;                                             /* Gras pour les labels                             */
+  padding-bottom: 5px;                                          /* Espacement en bas                                */
+  text-shadow: var(--background-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
 }
 
-/* Styles pour les champs de saisie */
 .form-input,
 .form-textarea {
-  width: 100%;                                           /* Prend toute la largeur du conteneur */
-  padding: 10px;                                         /* Espacement interne */
-  font-size: 16px;                                       /* Taille de texte pour les champs */
-  border: 2px solid var(--text-light);                  /* Bordure grise autour des champs */
-  border-radius: 10px;                                   /* Coins arrondis */
-  outline: none;                                         /* Supprime l'outline par défaut */
-  box-sizing: border-box;                                /* Inclut les bordures et le padding dans les dimensions */
-  box-shadow: #0C1D36 0px 0px 5px;
+  width: 100%;                                                  /* Prend toute la largeur du conteneur              */
+  padding: 10px;                                                /* Espacement interne                               */
+  font-size: 16px;                                              /* Taille de texte pour les champs                 */
+  border: 2px solid var(--text-light);                          /* Bordure autour des champs                        */
+  border-radius: 10px;                                          /* Coins arrondis                                   */
+  outline: none;                                                /* Supprime l'outline par défaut                    */
+  box-sizing: border-box;                                       /* Inclut les bordures et le padding dans les dimensions */
+  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour donner de la profondeur               */
+  margin-top: 5px;                                              /* Marge en haut                                   */
 }
 
-/* Effet de focus sur les champs de saisie */
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--background-dark);                    /* Change la couleur de la bordure au focus */
-}
-
-.contact-section label{
-  text-shadow: var(--background-dark) 0px 0px 1px;          /* Ombre de texte pour un effet visuel */
-  padding-bottom: 10px;
+  border-color: var(--border-orange);                           /* Change la couleur de la bordure au focus        */
 }
 
 .contact-btn {
-  padding: 12px 20px;                                     /* Espacement interne du bouton */
-  background-color: var(--button-bg-yellow);             /* Couleur de fond pour le bouton */
-  color: var(--background-dark);                          /* Couleur du texte pour le bouton */
-  border: none;                                          /* Supprime la bordure par défaut */
-  border-radius: 10px;                                   /* Coins arrondis pour le bouton */
-  cursor: pointer;                                       /* Change le curseur pour pointer lors du survol */
-  transition: background-color 0.3s ease;                /* Transition fluide pour le changement de couleur */
-  box-shadow: #0C1D36 0px 0px 5px;
+  padding: 12px 20px;                                           /* Espacement interne du bouton                     */
+  background-color: var(--button-bg-yellow);                    /* Couleur de fond pour le bouton                   */
+  color: var(--background-dark);                                /* Couleur du texte pour le bouton                  */
+  border: none;                                                 /* Supprime la bordure par défaut                   */
+  border-radius: 10px;                                          /* Coins arrondis pour le bouton                   */
+  cursor: pointer;                                              /* Change le curseur au survol                     */
+  transition: background-color 0.3s ease;                       /* Transition fluide pour le changement de couleur  */
+  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour le bouton                             */
+  font-size: 17px;                                              /* Taille de police pour le bouton                  */
+  font-weight: 700;                                             /* Gras pour le texte du bouton                     */
 }
 
-/* Effet de survol sur le bouton */
 .contact-btn:hover {
-  background-color: var(--button-bg-orange);             /* Change la couleur au survol */
-  text-shadow: var(--background-dark) 0px 0px 1px;          /* Ombre de texte pour un effet visuel */
+  background-color: var(--button-bg-orange);                    /* Change la couleur au survol                     */
+  text-shadow: var(--background-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
 }
-
 
 /* ----------------------------------------------------------- */
 /* Styles pour le conteneur de footer                          */
 /* ----------------------------------------------------------- */
 
 .container-footer {
-  background-color: var(--background-dark);                    /* Fond sombre pour le footer */
-  color: var(--text-light);                                    /* Couleur du texte (blanc) */
-  padding: 20px;                                               /* Espacement interne pour le footer */
-  display: flex;                                               /* Flexbox pour une mise en page fluide */
-  flex-direction: column;                                      /* Orientation verticale des sections */
-  align-items: center;                                         /* Centre les éléments horizontalement */
-  box-shadow: #0C1D36 0px 0px 10px;
+  background-color: var(--background-dark);                     /* Fond sombre pour le footer                          */
+  color: var(--text-light);                                     /* Couleur du texte (blanc)                           */
+  padding: 20px;                                                /* Espacement interne pour le footer                   */
+  display: flex;                                                /* Flexbox pour une mise en page fluide               */
+  flex-direction: column;                                       /* Orientation verticale des sections                  */
+  align-items: center;                                          /* Centre les éléments horizontalement                 */
+  box-shadow: #0C1D36 0px 0px 10px;                           /* Ombre pour donner de la profondeur                  */
 }
 
 .information {
-  width: 40%;
-  text-align: center;                                     /* Centre le texte */
-  margin-bottom: 20px;                                   /* Espace en bas */
+  width: 40%;                                                   /* Largeur de 40% pour le conteneur d'information     */
+  text-align: center;                                           /* Centre le texte                                     */
+  margin-bottom: 20px;                                          /* Espace en bas                                       */
 }
 
 .information h2 {
-  font-size: 1.5rem;                                      /* Taille de police pour les titres */
-  margin-bottom: 10px;                                    /* Espace en bas */
-
-  color: var(--border-orange);
+  font-size: 1.5rem;                                            /* Taille de police pour les titres                    */
+  margin-bottom: 10px;                                          /* Espace en bas                                       */
+  color: var(--border-orange);                                  /* Couleur du titre                                    */
 }
 
-.information P {
-  font-size: 1rem;                                          /* Taille de police pour les informations */
-  margin-bottom: 10px;                                      /* Espace en bas */
-  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
+.information p {
+  font-size: 1rem;                                              /* Taille de police pour les informations              */
+  margin-bottom: 10px;                                          /* Espace en bas                                       */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
 }
 
 .liens {
-  display: flex;                                          /* Utilisation de flexbox pour aligner les colonnes */
-  justify-content: space-evenly;                          /* Espace entre les colonnes */
-  width: 25%;                                           /* Prend toute la largeur */
-  margin-bottom: 20px;                                   /* Espace en bas */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les colonnes    */
+  justify-content: space-evenly;                                /* Espace entre les colonnes                           */
+  width: 25%;                                                   /* Prend toute la largeur                              */
+  margin-bottom: 20px;                                          /* Espace en bas                                       */
 }
 
 .liens div {
-  text-align: left;                                      /* Alignement à gauche */
-  display: flex;
-  flex-direction: column;
+  text-align: left;                                             /* Alignement à gauche                                 */
+  display: flex;                                                /* Utilisation de flexbox pour une colonne             */
+  flex-direction: column;                                       /* Orientation verticale des éléments dans la colonne  */
 }
 
-.liens p{
-  margin-bottom: 10px;
-  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
-  font-size: 1rem;
-  color: var(--border-orange);
+.liens p {
+  margin-bottom: 10px;                                          /* Espace en bas                                       */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
+  font-size: 1rem;                                              /* Taille de police pour les paragraphes               */
+  color: var(--border-orange);                                  /* Couleur du texte                                    */
 }
 
 .liens a {
-  color: var(--text-light);                              /* Couleur du texte pour les liens */
-  text-decoration: none;                                 /* Supprime le soulignement */
-  transition: color 0.3s ease;                          /* Transition fluide pour le changement de couleur */
-  text-shadow: var(--background-dark) 0px 0px 3px;          /* Ombre de texte pour un effet visuel */
-  font-size: 0.7rem;
+  color: var(--text-light);                                     /* Couleur du texte pour les liens                     */
+  text-decoration: none;                                        /* Supprime le soulignement                           */
+  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur     */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
+  font-size: 0.7rem;                                            /* Taille de police pour les liens                     */
 }
 
 .liens a:hover {
-  color: var(--text-yellow);                             /* Couleur au survol */
+  color: var(--text-yellow);                                    /* Couleur au survol                                    */
 }
 
 .reseaux {
-  text-align: center;                                    /* Centre le texte */
+  text-align: center;                                           /* Centre le texte                                     */
 }
 
 .reseaux a {
-  margin: 0 10px;                                       /* Espacement entre les icônes */
+  margin: 0 10px;                                               /* Espacement entre les icônes                          */
 }
 
-
 .small {
-  text-align: center;                                    /* Centre le texte */
-  background-color: var(--background-dark);
+text-align: center;                                             /* Centre le texte                                     */
+background-color: var(--background-dark);                       /* Fond sombre pour la section small                   */
+padding-bottom: 20px;                                           /* Espacement en bas                                    */
 }
 
 .small small {
-  font-size: 0.7rem;
-  color: var(--border-orange);                              /* Couleur du texte */
-  margin-bottom: 10px;                                   /* Espace en bas */
+font-size: 0.7rem;                                              /* Taille de police pour le texte petit                */
+color: var(--border-orange);                                    /* Couleur du texte                                    */
+margin-bottom: 10px;                                            /* Espace en bas                                       */
 }
 
 .small a {
-  color: var(--text-light);                              /* Couleur du texte */
-  text-decoration: none;                                 /* Supprime le soulignement */
+color: var(--text-light);                                       /* Couleur du texte pour les liens                     */
+text-decoration: none;                                          /* Supprime le soulignement                           */
 }
 
 .small a:hover {
-  color: var(--text-yellow);                             /* Couleur au survol */
+color: var(--text-yellow);                                      /* Couleur au survol                                    */
 }
 
 /* ----------------------------------------------------------- */
@@ -502,41 +620,76 @@ main {
 /* ----------------------------------------------------------- */
 
 .container-search-jeux {
-  padding: 20px;                                         /* Espacement interne */
-  background-color: var(--background-dark);            /* Fond clair */
+  padding: 20px;                                                /* Espacement interne */
+  background-color: var(--background-dark);                     /* Fond clair */
 }
 
 .section-recherche-jeux {
-  display: flex;                                        /* Flexbox pour l'alignement */
-  justify-content: center;                              /* Centre le contenu */
-  margin-bottom: 20px;                                 /* Espace en bas */
+  display: flex;                                                /* Flexbox pour l'alignement */
+  justify-content: center;                                      /* Centre le contenu */
+  margin-bottom: 20px;                                          /* Espace en bas */
 }
 
 .recherche-form-jeux {
-  display: flex;                                        /* Flexbox pour le formulaire */
+  display: flex;                                                /* Flexbox pour le formulaire */
 }
 
 .recherche {
-  padding: 10px;                                       /* Espacement interne */
-  border: 1px solid var(--border-color);               /* Bordure */
-  border-radius: 5px;                                  /* Coins arrondis */
-  margin-right: 10px;                                  /* Espace à droite */
+  padding: 10px;                                                /* Espacement interne */
+  border: 1px solid var(--border-color);                        /* Bordure */
+  border-radius: 5px;                                           /* Coins arrondis */
+  margin-right: 10px;                                           /* Espace à droite */
 }
 
 #search-btn {
-  padding: 10px 15px;                                  /* Espacement interne */
-  background-color: var(--primary-color);              /* Couleur de fond */
-  color: white;                                        /* Couleur du texte */
-  border: none;                                        /* Pas de bordure */
-  border-radius: 5px;                                  /* Coins arrondis */
-  cursor: pointer;                                     /* Curseur en main */
-  transition: background-color 0.3s ease;             /* Transition au survol */
+  padding: 10px 15px;                                           /* Espacement interne */
+  background-color: var(--primary-color);                       /* Couleur de fond */
+  color: white;                                               /* Couleur du texte */
+  border: none;                                                 /* Pas de bordure */
+  border-radius: 5px;                                           /* Coins arrondis */
+  cursor: pointer;                                              /* Curseur en main */
+  transition: background-color 0.3s ease;                       /* Transition au survol */
 }
 
 #search-btn:hover {
-  background-color: var(--primary-color-hover);        /* Couleur de fond au survol */
+  background-color: var(--primary-color-hover);                 /* Couleur de fond au survol */
 }
 
 .all-container-jeux {
-  background-color: var(--background-light);            /* Fond clair */
+  background-color: var(--background-light);                    /* Fond clair */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour le conteneur RETOUR EN HAUT                    */
+/* ----------------------------------------------------------- */
+
+/* Styles pour le bouton "Retour en haut" */
+.back-to-top {
+  position: fixed;                                              /* Position fixe dans la fenêtre                      */
+  bottom: 20px;                                                 /* Positionné à 20px du bas                          */
+  right: 20px;                                                  /* Positionné à 20px de la droite                    */
+  background-color: var(--background-dark);                     /* Fond sombre pour le bouton                        */
+  color: var(--border-orange);                                  /* Couleur du texte pour le bouton                   */
+  width: 50px;                                                  /* Largeur de 50px pour le bouton                    */
+  height: 50px;                                                 /* Hauteur de 50px pour le bouton                    */
+  border-radius: 50%;                                           /* Arrondi complet pour le bouton                    */
+  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu    */
+  justify-content: center;                                      /* Centre le contenu horizontalement                  */
+  font-size: 24px;                                              /* Taille de police par défaut                        */
+  text-decoration: none;                                        /* Supprime le soulignement                           */
+  opacity: 0;                                                   /* Rend le bouton invisible par défaut                */
+  transition: opacity 0.3s, background-color 0.3s;              /* Transition fluide pour l'opacité et la couleur    */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                   /* Ombre pour donner de la profondeur                 */
+  z-index: 1000;                                                /* Positionnement au-dessus des autres éléments       */
+  font-size: 50px;                                              /* Taille de police agrandie pour le bouton           */
+  align-items: center;                                          /* Centre le contenu verticalement                    */
+}
+
+.back-to-top:hover {
+  background-color: var(--border-orange);                       /* Change la couleur de fond au survol               */
+  color: var(--background-dark);                                /* Change la couleur du texte au survol              */
+}
+
+.back-to-top.show {
+  opacity: 1;                                                   /* Rend le bouton visible quand actif                 */
 }

@@ -45,3 +45,25 @@ function performSearch() {
 }
 
 // ------------------------------------------------------------------------------------------------ //
+
+document.addEventListener('DOMContentLoaded', function() {
+    var backToTopButton = document.createElement('a');
+    backToTopButton.href = '#';
+    backToTopButton.className = 'back-to-top';
+    backToTopButton.innerHTML = '&#8593;'; // Flèche vers le haut
+    document.body.appendChild(backToTopButton);
+
+    window.addEventListener('scroll', function() {
+        var reviewSection = document.querySelector('.review-section');
+        if (reviewSection && window.pageYOffset > reviewSection.offsetTop) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+});
