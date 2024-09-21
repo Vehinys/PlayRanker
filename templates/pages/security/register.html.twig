@@ -1,65 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Registration{% endblock %}
 
 {% block body %}
 
-<div class="bg-inscription bg-common">
-  <div class="form-container">
-    <h1 class="register-title">Inscription</h1>
+<div class="background-inscription">
+  <div class="form-wrapper">
+    <h1 class="register-heading">Registration</h1>
     
-    <!-- Affichage des erreurs globales du formulaire -->
+    <!-- Display global form errors -->
     {{ form_errors(registrationForm) }}
     
-    <!-- Début du formulaire -->
+    <!-- Start of the form -->
     {{ form_start(registrationForm) }}
 
-          <!-- Champ email avec les erreurs -->
-      <div class="input-box">
-        {{ form_label(registrationForm.pseudo, 'Pseudo') }}
-        {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Entrez votre pseudo' } }) }}
+      <!-- Pseudo field with errors -->
+      <div class="input-field">
+        {{ form_label(registrationForm.pseudo, 'Username') }}
+        {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'input-field-text', 'placeholder': 'Enter your username' } }) }}
         {{ form_errors(registrationForm.pseudo) }}
       </div>
 
-      <!-- Champ email avec les erreurs -->
-      <div class="input-box">
+      <!-- Email field with errors -->
+      <div class="input-field">
         {{ form_label(registrationForm.email, 'Email') }}
-        {{ form_widget(registrationForm.email, { 'attr': { 'class': 'input-box-email', 'placeholder': 'Entrez votre email' } }) }}
+        {{ form_widget(registrationForm.email, { 'attr': { 'class': 'input-field-text', 'placeholder': 'Enter your email' } }) }}
         {{ form_errors(registrationForm.email) }}
       </div>
 
-      <!-- Champ mot de passe avec les erreurs -->
-      <div class="input-box">
-        {{ form_label(registrationForm.plainPassword.first, 'Mot de passe') }}
-        <div class="password-wrapper">
-          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'input-box-mdp', 'id': 'inputPassword', 'placeholder': 'Mot de passe' } }) }}
+      <!-- Password field with errors -->
+      <div class="input-field">
+        {{ form_label(registrationForm.plainPassword.first, 'Password') }}
+        <div class="password-container">
+          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'input-field-password', 'id': 'inputPassword', 'placeholder': 'Password' } }) }}
         </div>
         {{ form_errors(registrationForm.plainPassword.first) }}
       </div>
 
-      <!-- Champ confirmation du mot de passe avec les erreurs -->
-      <div class="input-box">
-        {{ form_label(registrationForm.plainPassword.second, 'Confirmez votre mot de passe') }}
-        <div class="password-wrapper">
-          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'input-box-mdp', 'id': 'inputConfirmPassword', 'placeholder': 'Confirmer le mot de passe' } }) }}
+      <!-- Confirm password field with errors -->
+      <div class="input-field">
+        {{ form_label(registrationForm.plainPassword.second, 'Confirm your password') }}
+        <div class="password-container">
+          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'input-field-password required', 'id': 'inputConfirmPassword', 'placeholder': 'Confirm password' } }) }}
         </div>
         {{ form_errors(registrationForm.plainPassword.second) }}
       </div>
 
-      <!-- Champ des conditions d'utilisation avec les erreurs -->
-      <div class="form-group">
+      <!-- Terms of service acceptance field with errors -->
+      <div class="terms-acceptance">
         <label>
           {{ form_widget(registrationForm.agreeTerms) }}
-          <a class="required" href="#">J'accepte les conditions d'utilisation</a>
+          <a class="terms-link" href="#">I agree to the terms of service</a>
         </label>
         {{ form_errors(registrationForm.agreeTerms) }}
       </div>
 
-      <!-- Bouton de soumission -->
-      <button type="submit" class="btn-register">S'inscrire</button>
+      <!-- Submit button -->
+      <button type="submit" class="btn-submit">Register</button>
       <div>
-        <small> * = Champs obligatoire</small>
+        <small><b class="required-red">*</b> = Required fields</small>
       </div>
+
     {{ form_end(registrationForm) }}
   </div>
 </div>

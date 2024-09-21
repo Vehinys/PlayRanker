@@ -1,68 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
 
-<!-- Conteneur principal pour le fond de la page de connexion -->
-<div class="bg-login">
-
-    <!-- Conteneur du formulaire -->
+<div class="container-login">
     <div class="form-container">
 
         <!-- Formulaire de connexion -->
         <form method="post">
 
-            <!-- Affichage des erreurs, s'il y en a -->
             {% if error and error.messageKey == 'Invalid credentials.' %}
-            <div class="alert" style="font-weight: bold; color: #ECC33E; font-size: 22px; margin-bottom: 20px;">Les informations de connexion sont incorrectes.<br> Veuillez vérifier votre adresse email et votre mot de passe.</div>
+            <div style="color: #FF6B6B; font-weight: bold; text-align: center; margin-bottom: 20px;">
+                The login information is incorrect.<br> Please check your email address and password.
+            </div>
             {% endif %}
 
-            <!-- Titre de la page de connexion -->
-            <h1 class="login-h1">Connexion</h1>
+            <!-- Titre de la page -->
+            <h1 class="login-h1">Login</h1>
 
-            <!-- Section des champs de saisie -->
+            <!-- Champs du formulaire -->
             <section class="section-input">
-
-                <!-- Champ pour l'email -->
                 <div class="input-box">
                     <label class="required" for="inputEmail">Email</label>
-                    <input class="input-box-email" type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required placeholder="Email">
                     <i class='bx bx-envelope'></i>
                 </div>
 
-                <!-- Champ pour le mot de passe -->
                 <div class="input-box">
-                    <label class="required" for="inputPassword">Mot de passe</label>
-                    <input class="input-box-mdp" type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe">
-                    <i class='bx bx-lock-alt' id="togglePassword" style="cursor: pointer;"></i>
+                    <label class="required" for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Password">
+                    <i class='bx bx-lock-alt' id="togglePassword"></i>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 </div>
-
             </section>
 
-            <!-- Option de se souvenir de l'utilisateur et lien pour mot de passe oublié -->
+            <!-- Option "Remember me" et lien "Mot de passe oublié" -->
             <div class="remember">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
-                </label>
-                <a href="#">Mot de passe oublié ?</a>
+                <label><input type="checkbox" name="_remember_me"> Remember me</label>
+                <a href="#">Forgot password?</a>
             </div>
 
-            <!-- Bouton de soumission -->
-            <button type="submit" class="btn-login">Se connecter</button>
-
-            <!-- Message indiquant les champs obligatoires -->
+            <!-- Bouton de connexion -->
+            <button type="submit" class="btn-login">Log in</button>
             <div>
-                <small class="small"> * = Champs obligatoire</small>
+                <small><b class="required-red">*</b> = Required fields</small>
             </div>
 
             <!-- Lien vers la page d'inscription -->
-            <div class="register">
-                <p>Vous n'avez pas de compte ? <br>
-                <a href="{{ path('register') }}">Inscription</a></p>
+            <div class="register-login">
+                <p>Don't have an account? <a href="{{ path('register') }}">Register</a></p>
             </div>
-
         </form>
     </div>
 </div>

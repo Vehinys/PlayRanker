@@ -94,19 +94,19 @@ main {
 }
 
 .header-section h1 {
-font-size: 4rem;                                                /* Taille très grande pour le titre principal */
-margin-bottom: 15px;                                            /* Espacement en bas du titre */
-font-weight: bold;                                              /* Met le titre en gras */
-color: var(--border-yellow);                                    /* Utilisation du jaune doré pour le titre */
+  font-size: 4rem;                                              /* Taille très grande pour le titre principal */
+  margin-bottom: 15px;                                          /* Espacement en bas du titre */
+  font-weight: bold;                                            /* Met le titre en gras */
+  color: var(--border-yellow);                                  /* Utilisation du jaune doré pour le titre */
 }
 
 .header-section h3 {
-width: 55%;                                                     /* Largeur du sous-titre à 55% de son conteneur */
-text-align: center;                                             /* Centre le texte */
-font-size: 1.1rem;                                              /* Taille moyenne pour le sous-titre */
-margin: 5px 0 30px 0;                                           /* Marges pour aérer le sous-titre */
-line-height: 1.5;                                               /* Hauteur de ligne pour meilleure lisibilité */
-display: -webkit-inline-box;                                    /* Alignement pour l'affichage en boîte */
+  width: 55%;                                                   /* Largeur du sous-titre à 55% de son conteneur */
+  text-align: center;                                           /* Centre le texte */
+  font-size: 1.1rem;                                            /* Taille moyenne pour le sous-titre */
+  margin: 5px 0 30px 0;                                         /* Marges pour aérer le sous-titre */
+  line-height: 1.5;                                             /* Hauteur de ligne pour meilleure lisibilité */
+  display: -webkit-inline-box;                                  /* Alignement pour l'affichage en boîte */
 }
 
 /* ----------------------------------------------------------- */
@@ -114,50 +114,50 @@ display: -webkit-inline-box;                                    /* Alignement po
 /* ----------------------------------------------------------- */
 
 .search-container {
-display: flex;                                                  /* Utilisation de flexbox pour aligner horizontalement */
-justify-content: center;                                        /* Centrage du formulaire dans la page */
-position: relative;                                             /* Position relative pour gérer l'icône */
-width: 100%;                                                    /* Prend toute la largeur du conteneur parent */
+  display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
+  justify-content: center;                                      /* Centrage du formulaire dans la page */
+  position: relative;                                           /* Position relative pour gérer l'icône */
+  width: 100%;                                                  /* Prend toute la largeur du conteneur parent */
 }
 
 .search-form {
-display: flex;                                                  /* Utilisation de flexbox pour aligner le champ et le bouton */
+  display: flex;                                                /* Utilisation de flexbox pour aligner le champ et le bouton */
 }
 
 .search-input {
-padding: 10px 50px;                                             /* Espacement interne avec padding symétrique */
-font-size: 16px;                                                /* Taille du texte du champ de recherche */
-border: 3px solid var(--text-light);                            /* Bordure claire autour du champ */
-border-radius: 25px;                                            /* Arrondit les coins du champ */
-outline: none;                                                  /* Supprime l'outline par défaut */
-box-sizing: border-box;                                         /* Inclut bordures et padding dans les dimensions du champ */
+  padding: 10px 50px;                                           /* Espacement interne avec padding symétrique */
+  font-size: 16px;                                              /* Taille du texte du champ de recherche */
+  border: 3px solid var(--text-light);                          /* Bordure claire autour du champ */
+  border-radius: 25px;                                          /* Arrondit les coins du champ */
+  outline: none;                                                /* Supprime l'outline par défaut */
+  box-sizing: border-box;                                       /* Inclut bordures et padding dans les dimensions du champ */
 }
 
 .search-input:focus {
-border-color: var(--border-orange);                             /* Change la couleur de la bordure au focus */
-outline: none;                                                  /* Supprime le contour par défaut au focus */
+  border-color: var(--border-orange);                           /* Change la couleur de la bordure au focus */
+  outline: none;                                                /* Supprime le contour par défaut au focus */
 }
 
 #search-btn {
-padding: 12px 20px;                                             /* Espacement interne du bouton */
-background-color: var(--button-bg-yellow);                      /* Fond jaune doré pour le bouton */
-color: var(--background-dark);                                  /* Texte noir pour le contraste avec le fond */
-border: none;                                                   /* Supprime la bordure par défaut du bouton */
-cursor: pointer;                                                /* Change le curseur pour pointer lors du survol */
-transition: background-color 0.3s ease;                         /* Transition fluide pour les changements d'état (survol) */
+  padding: 12px 20px;                                           /* Espacement interne du bouton */
+  background-color: var(--button-bg-yellow);                    /* Fond jaune doré pour le bouton */
+  color: var(--background-dark);                                /* Texte noir pour le contraste avec le fond */
+  border: none;                                                 /* Supprime la bordure par défaut du bouton */
+  cursor: pointer;                                              /* Change le curseur pour pointer lors du survol */
+  transition: background-color 0.3s ease;                       /* Transition fluide pour les changements d'état (survol) */
 }
 
 #search-btn:hover {
-background-color: var(--button-bg-orange);                      /* Change la couleur du fond au survol */
+  background-color: var(--button-bg-orange);                    /* Change la couleur du fond au survol */
 }
 
 .search-icon {
-position: absolute;                                             /* Positionnement absolu pour placer l'icône */
-top: 50%;                                                       /* Centrage vertical */
-transform: translateY(-50%);                                    /* Ajustement du centrage */
-color: var(--background-dark);                                  /* Couleur de l'icône (noir) */
-font-size: 18px;                                                /* Taille de l'icône */
-margin: 0px 15px;                                               /* Marges autour de l'icône */
+  position: absolute;                                           /* Positionnement absolu pour placer l'icône */
+  top: 50%;                                                     /* Centrage vertical */
+  transform: translateY(-50%);                                  /* Ajustement du centrage */
+  color: var(--background-dark);                                /* Couleur de l'icône (noir) */
+  font-size: 18px;                                              /* Taille de l'icône */
+  margin: 0px 15px;                                             /* Marges autour de l'icône */
 }
 
 /* ----------------------------------------------------------- */
@@ -256,7 +256,6 @@ margin: 0px 15px;                                               /* Marges autour
   display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
   flex-direction: column;                                       /* Aligne le contenu verticalement */
   justify-content: center;                                      /* Centre le contenu verticalement */
-  align-items: center;                                          /* Centre le contenu horizontalement */
   padding: 20px;                                                /* Espacement interne pour le contenu */
   text-align: center;                                           /* Centre le texte dans la carte */
   background-color: var(--background-dark);                     /* Fond sombre pour les cartes */
@@ -296,7 +295,7 @@ margin: 0px 15px;                                               /* Marges autour
   transform: scale(1.3);                                        /* Effet d'agrandissement au survol (optionnel) */
 }
 
-.bouton {
+.bouton-card {
   display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne */
   background-color: var(--button-bg-yellow);                    /* Couleur de fond (jaune doré) */
   color: var(--background-dark);                                /* Couleur du texte (noir) */
@@ -307,16 +306,18 @@ margin: 0px 15px;                                               /* Marges autour
   font-size: 1rem;                                              /* Taille de police */
   transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation */
   width: 35%;                                                   /* Prend toute la largeur de la carte */
+  padding: 10px;                                               /* Espacement interne pour le bouton */
+  margin-top: 10px ;                                               /* Marge pour espacement */
 }
 
-.bouton:hover {
+.bouton-card:hover {
   background-color: var(--button-bg-orange);                    /* Change la couleur de fond au survol (orange) */
   text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
   transform: scale(1.03);                                       /* Effet d'agrandissement au survol */
   color: var(--text-light);                                     /* Change la couleur du texte au survol (blanc) */
 }
 
-.bouton a {
+.bouton-card a {
   color: inherit;                                               /* Hérite de la couleur du bouton */
   text-decoration: none;                                        /* Supprime le soulignement du lien */
   display: block;                                               /* Permet au lien de remplir tout le bouton */
@@ -337,7 +338,7 @@ margin: 0px 15px;                                               /* Marges autour
 }
 
 .review-container {
-  width: 60%;                                                   /* Largeur de 60% pour le conteneur de critiques     */
+  width: 75%;                                                   /* Largeur de 60% pour le conteneur de critiques     */
   flex-direction: column;                                       /* Orientation verticale des critiques                */
   display: flex;                                                /* Utilise flexbox pour un alignement flexible       */
   align-items: flex-start;                                      /* Aligne les éléments au début du conteneur         */
@@ -414,11 +415,6 @@ margin: 0px 15px;                                               /* Marges autour
   text-align: justify;                                          /* Justifie le texte                                  */
 }
 
-.bouton a {
-  font-size: 0.84em;                                            /* Taille de police pour les liens dans le bouton    */
-  place-content: center;                                        /* Centre le contenu horizontalement                 */
-}
-
 .review-container > div:nth-child(even) {
   flex-direction: row;                                          /* Orientation des éléments pour les critiques paires */
 }
@@ -436,6 +432,37 @@ margin: 0px 15px;                                               /* Marges autour
 .review-container-text p a {
   color: var(--text-yellow);                                    /* Couleur du texte des liens dans le bouton         */
   font-weight: 700;                                             /* Gras pour le texte du lien                         */
+}
+
+.bouton-review {
+  display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne */
+  background-color: var(--button-bg-yellow);                    /* Couleur de fond (jaune doré) */
+  color: var(--background-dark);                                /* Couleur du texte (noir) */
+  border-radius: 20px;                                          /* Coins arrondis */
+  text-align: center;                                           /* Centre le texte dans le bouton */
+  text-decoration: none;                                        /* Supprime le soulignement des liens */
+  font-weight: bold;                                            /* Met le texte en gras */
+  font-size: 1rem;                                              /* Taille de police */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation */
+  width: 35%;                                                   /* Prend toute la largeur de la carte */
+}
+
+.bouton-review:hover {
+  background-color: var(--button-bg-orange);                    /* Change la couleur de fond au survol (orange) */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
+  transform: scale(1.03);                                       /* Effet d'agrandissement au survol */
+  color: var(--text-light);                                     /* Change la couleur du texte au survol (blanc) */
+}
+
+.bouton-review a {
+  color: inherit;                                               /* Hérite de la couleur du bouton */
+  text-decoration: none;                                        /* Supprime le soulignement du lien */
+  display: block;                                               /* Permet au lien de remplir tout le bouton */
+  width: 100%;                                                  /* Prend toute la largeur du bouton */
+  height: 100%;                                                 /* Prend toute la hauteur du bouton */
+  line-height: normal;                                          /* Hauteur de ligne normale */
+  font-size: 0.84em;                                            /* Taille de police pour les liens dans le bouton    */
+  place-content: center;                                        /* Centre le contenu horizontalement                 */
 }
 
 /* ----------------------------------------------------------- */
@@ -523,99 +550,6 @@ margin: 0px 15px;                                               /* Marges autour
 }
 
 /* ----------------------------------------------------------- */
-/* Styles pour le conteneur de footer                          */
-/* ----------------------------------------------------------- */
-
-.container-footer {
-  background-color: var(--background-dark);                     /* Fond sombre pour le footer                          */
-  color: var(--text-light);                                     /* Couleur du texte (blanc)                           */
-  padding: 20px;                                                /* Espacement interne pour le footer                   */
-  display: flex;                                                /* Flexbox pour une mise en page fluide               */
-  flex-direction: column;                                       /* Orientation verticale des sections                  */
-  align-items: center;                                          /* Centre les éléments horizontalement                 */
-  box-shadow: #0C1D36 0px 0px 10px;                           /* Ombre pour donner de la profondeur                  */
-}
-
-.information {
-  width: 40%;                                                   /* Largeur de 40% pour le conteneur d'information     */
-  text-align: center;                                           /* Centre le texte                                     */
-  margin-bottom: 20px;                                          /* Espace en bas                                       */
-}
-
-.information h2 {
-  font-size: 1.5rem;                                            /* Taille de police pour les titres                    */
-  margin-bottom: 10px;                                          /* Espace en bas                                       */
-  color: var(--border-orange);                                  /* Couleur du titre                                    */
-}
-
-.information p {
-  font-size: 1rem;                                              /* Taille de police pour les informations              */
-  margin-bottom: 10px;                                          /* Espace en bas                                       */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
-}
-
-.liens {
-  display: flex;                                                /* Utilisation de flexbox pour aligner les colonnes    */
-  justify-content: space-evenly;                                /* Espace entre les colonnes                           */
-  width: 25%;                                                   /* Prend toute la largeur                              */
-  margin-bottom: 20px;                                          /* Espace en bas                                       */
-}
-
-.liens div {
-  text-align: left;                                             /* Alignement à gauche                                 */
-  display: flex;                                                /* Utilisation de flexbox pour une colonne             */
-  flex-direction: column;                                       /* Orientation verticale des éléments dans la colonne  */
-}
-
-.liens p {
-  margin-bottom: 10px;                                          /* Espace en bas                                       */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
-  font-size: 1rem;                                              /* Taille de police pour les paragraphes               */
-  color: var(--border-orange);                                  /* Couleur du texte                                    */
-}
-
-.liens a {
-  color: var(--text-light);                                     /* Couleur du texte pour les liens                     */
-  text-decoration: none;                                        /* Supprime le soulignement                           */
-  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur     */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel                 */
-  font-size: 0.7rem;                                            /* Taille de police pour les liens                     */
-}
-
-.liens a:hover {
-  color: var(--text-yellow);                                    /* Couleur au survol                                    */
-}
-
-.reseaux {
-  text-align: center;                                           /* Centre le texte                                     */
-}
-
-.reseaux a {
-  margin: 0 10px;                                               /* Espacement entre les icônes                          */
-}
-
-.small {
-text-align: center;                                             /* Centre le texte                                     */
-background-color: var(--background-dark);                       /* Fond sombre pour la section small                   */
-padding-bottom: 20px;                                           /* Espacement en bas                                    */
-}
-
-.small small {
-font-size: 0.7rem;                                              /* Taille de police pour le texte petit                */
-color: var(--border-orange);                                    /* Couleur du texte                                    */
-margin-bottom: 10px;                                            /* Espace en bas                                       */
-}
-
-.small a {
-color: var(--text-light);                                       /* Couleur du texte pour les liens                     */
-text-decoration: none;                                          /* Supprime le soulignement                           */
-}
-
-.small a:hover {
-color: var(--text-yellow);                                      /* Couleur au survol                                    */
-}
-
-/* ----------------------------------------------------------- */
 /* Styles pour le conteneur de recherche de jeux               */
 /* ----------------------------------------------------------- */
 
@@ -660,7 +594,7 @@ color: var(--text-yellow);                                      /* Couleur au su
 }
 
 /* ----------------------------------------------------------- */
-/* Styles pour le conteneur RETOUR EN HAUT                    */
+/* Styles RETOUR EN HAUT                                       */
 /* ----------------------------------------------------------- */
 
 /* Styles pour le bouton "Retour en haut" */
@@ -692,4 +626,367 @@ color: var(--text-yellow);                                      /* Couleur au su
 
 .back-to-top.show {
   opacity: 1;                                                   /* Rend le bouton visible quand actif                 */
+}
+
+/* ------------------------------------------------------- */
+/* Styles pour la page de connexion                         */
+/* ------------------------------------------------------- */
+
+.container-login {
+  background-image: url('/img/bg-login.jpg');                   /* Image d'arrière-plan */
+  background-size: cover;                                       /* Couvre l'écran */
+  background-position: center;                                  /* Centre l'image */
+  background-repeat: no-repeat;                                 /* Empêche la répétition de l'image */
+  height: 100vh;                                                /* Pleine hauteur de l'écran */
+  display: flex;                                                /* Flexbox pour l'alignement */
+  justify-content: center;                                      /* Centrage horizontal */
+  align-items: center;                                          /* Centrage vertical */
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent */
+  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond */
+  padding: 40px;                                                /* Espacement intérieur */
+  border-radius: 15px;                                          /* Bords arrondis */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur */
+  width: 400px;                                                 /* Largeur du formulaire */
+  max-width: 90%;                                               /* Largeur maximale pour petits écrans */
+  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
+  color: var(--background-dark);                                /* Texte blanc */
+}
+
+.login-h1 {
+  text-align: center;                                           /* Titre centré */
+  font-size: 32px;                                              /* Taille du titre */
+  margin-bottom: 30px;                                          /* Espacement en bas du titre */
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 20px;                                          /* Espacement entre champs */
+}
+
+.input-box label {
+  font-weight: bold;                                            /* Texte du label en gras */
+}
+
+.input-box input {
+  width: 100%;                                                  /* Champ en pleine largeur */
+  padding: 10px 40px 10px 10px;                                 /* Espacement interne */
+  border-radius: 5px;                                           /* Bords arrondis */
+  border: none;                                                 /* Suppression des bordures*/
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
+  color: var(--text-dark);                                      /* Texte blanc */
+  font-size: 16px;                                              /* Taille du texte */
+  font-weight: 400;
+}
+
+.input-box input::placeholder {
+  color: var(--text-dark);                                      /* Couleur du texte du placeholder */
+}
+
+.input-box i {
+  position: absolute;                                           /* Icone absolue dans le champ */
+  right: 10px;                                                  /* Espace à droite */
+  top: 50%;                                                     /* Centrage vertical */
+  transform: translateY(-50%);                                  /* Ajustement de centrage */
+  color: var(--background-dark);                                /* Couleur de l'icône */
+  cursor: pointer;                                              /* Pointeur sur icône */
+}
+
+.remember {
+  display: flex;                                                /* Aligne le texte et checkbox */
+  justify-content: space-between;                               /* Espace entre les éléments */
+  margin-bottom: 20px;                                          /* Espacement en bas */
+}
+
+.remember label {
+  display: flex;                                                /* Flex pour aligner */
+  align-items: center;                                          /* Centrer verticalement */
+}
+
+.remember input {
+  margin-right: 10px;                                           /* Espace entre checkbox et texte */
+}
+
+.remember a {
+  color: var(--background-dark);                                /* Couleur du lien */
+  text-decoration: none;                                        /* Suppression du soulignement */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour profondeur */
+}
+
+.remember a:hover {
+  text-decoration: underline;                                   /* Soulignement au survol */
+  transition: text-shadow 0.3s ease;                            /* Transition pour l'ombre */
+}
+
+.btn-login {
+  width: 100%;                                                  /* Bouton pleine largeur */
+  background-color: #ECC33E;                                  /* Couleur de fond du bouton */
+  color: #0C1D36;                                             /* Texte foncé */
+  border: none;                                                 /* Suppression des bordures */
+  padding: 15px;                                                /* Espacement interne */
+  border-radius: 5px;                                           /* Bords arrondis */
+  font-size: 18px;                                              /* Taille du texte */
+  cursor: pointer;                                              /* Curseur pointeur */
+  transition: background-color 0.3s ease;                       /* Transition fluide */
+}
+
+.btn-login:hover {
+  background-color: #FFD700;                                  /* Couleur en survol */
+}
+
+.register-login {
+  text-align: center;                                           /* Centrer le texte */
+  margin-top: 20px;                                             /* Espacement en haut */
+}
+
+.register-login a {
+  color: #ECC33E;                                             /* Couleur du lien */
+  text-decoration: none;                                        /* Pas de soulignement */
+  font-weight: bold;                                            /* Lien en gras */
+}
+
+.register-login a:hover {
+  color: #FFD700;                                             /* Couleur du lien en survol */
+}
+
+/* ------------------------------------------------------- */
+/* Styles pour la page d'inscription                        */
+/* ------------------------------------------------------- */
+
+.background-inscription {
+  background-image: url('/img/bg-login.jpg');                   /* Image d'arrière-plan */
+  background-size: cover;                                       /* Couvre l'écran */
+  background-position: center;                                  /* Centre l'image */
+  background-repeat: no-repeat;                                 /* Empêche la répétition de l'image */
+  height: 100vh;                                                /* Pleine hauteur de l'écran */
+  display: flex;                                                /* Flexbox pour l'alignement */
+  justify-content: center;                                      /* Centrage horizontal */
+  align-items: center;                                          /* Centrage vertical */
+}
+
+.form-wrapper {
+  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent */
+  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond */
+  padding: 40px;                                                /* Espacement intérieur */
+  border-radius: 15px;                                          /* Bords arrondis */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur */
+  width: 400px;                                                 /* Largeur du formulaire */
+  max-width: 90%;                                               /* Largeur maximale pour petits écrans */
+  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
+  color: var(--background-dark);                                /* Couleur du texte */
+}
+
+.register-heading {
+  text-align: center;                                           /* Titre centré */
+  font-size: 32px;                                              /* Taille du titre */
+  margin-bottom: 30px;                                          /* Espacement en bas du titre */
+}
+
+.input-field {
+  position: relative;
+  margin-bottom: 20px;                                          /* Espacement entre les champs */
+}
+
+.input-field label {
+  font-weight: bold;                                            /* Texte du label en gras */
+}
+
+.input-field-text {
+  width: 100%;                                                  /* Champ en pleine largeur */
+  padding: 10px 40px 10px 10px;                                 /* Espacement interne */
+  border-radius: 5px;                                           /* Bords arrondis */
+  border: none;                                                 /* Suppression des bordures */
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
+  color: var(--text-dark);                                      /* Couleur du texte */
+  font-size: 16px;                                              /* Taille du texte */
+  font-weight: 400;
+}
+
+.input-field-text::placeholder {
+  color: var(--text-dark);                                      /* Couleur du placeholder */
+}
+
+.input-field-password {
+  width: 100%;                                                  /* Largeur du champ de mot de passe */
+  padding: 10px 40px 10px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
+  color: var(--text-dark);                                      /* Couleur du texte */
+}
+
+.password-container {
+  position: relative;                                           /* Position relative pour permettre le positionnement absolu des éléments enfants (comme un icône ou un bouton) */
+}
+
+.terms-acceptance {
+  display: flex;                                                /* Utilise flexbox pour aligner les éléments à l'intérieur de manière horizontale */
+  align-items: center;                                          /* Centre verticalement les éléments alignés dans le conteneur */
+  margin-bottom: 20px;                                          /* Espace en bas pour séparer cette section des éléments suivants */
+}
+
+.terms-link {
+  color: var(--background-dark);                                /* Couleur du lien */
+  text-decoration: none;                                        /* Suppression du soulignement */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour donner du relief */
+}
+
+.terms-link:hover {
+  text-decoration: underline;                                   /* Soulignement au survol */
+}
+
+.btn-submit {
+  width: 100%;                                                  /* Bouton pleine largeur */
+  background-color: #ECC33E;                                  /* Couleur de fond du bouton */
+  color: #0C1D36;                                             /* Couleur du texte */
+  border: none;                                                 /* Suppression des bordures */
+  padding: 15px;                                                /* Espacement interne */
+  border-radius: 5px;                                           /* Bords arrondis */
+  font-size: 18px;                                              /* Taille du texte */
+  cursor: pointer;                                              /* Curseur pointeur */
+  transition: background-color 0.3s ease;                       /* Transition pour le hover */
+  }
+
+.btn-submit:hover {
+  background-color: #FFD700;                                  /* Couleur au survol */
+}
+
+small b {
+  color: #FF0000;                                             /* Couleur du texte */
+}
+
+.required:after {
+  content: '*';                                                 /* Ajouter une étoile après le label */
+  color: red;                                                 /* Couleur de l'étoile */
+  margin-left: 5px;                                             /* Espacement entre le label et l'étoile */
+  font-weight: bold;                                            /* Rendre l'étoile en gras */
+  font-size: 1.2em;                                             /* Agrandir légèrement l'étoile */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour le conteneur de footer                          */
+/* ----------------------------------------------------------- */
+.container-footer {
+  background-color: var(--background-dark);                     /* Couleur de fond sombre pour le footer */
+  color: var(--text-light);                                     /* Couleur du texte (blanc ou clair) */
+  padding: 20px;                                                /* Espacement interne pour le footer */
+  display: flex;                                                /* Flexbox pour disposer les sections */
+  justify-content: space-between;                               /* Espace uniforme entre les sections */
+  flex-wrap: wrap;                                              /* Permet aux sections de se réorganiser en ligne si nécessaire */
+  align-items: flex-start;                                      /* Aligne les sections en haut verticalement */
+  box-shadow: #0C1D36 0px 0px 10px;                           /* Ajout d'une ombre pour la profondeur */
+}
+
+/* Section contenant les informations */
+.information {
+  flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  padding: 10px;                                                /* Ajout d'un peu de marge interne pour l'aération */
+  text-align: left;                                             /* Aligne le texte à gauche */
+}
+
+/* Styles pour le titre de la section information */
+.information h2 {
+  font-size: 1.5rem;                                            /* Taille de la police pour le titre */
+  margin-bottom: 10px;                                          /* Espace sous le titre */
+  color: var(--border-orange);                                  /* Couleur du titre (orange) */
+}
+
+/* Styles pour le paragraphe d'information */
+.information p {
+  font-size: 1rem;                                              /* Taille de la police du paragraphe */
+  margin-bottom: 10px;                                          /* Espace sous le paragraphe */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ajoute une légère ombre au texte */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour la section des liens                            */
+/* ----------------------------------------------------------- */
+.liens {
+  flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  padding: 10px;                                                /* Ajoute de l'espace interne autour de la section */
+  display: flex;                                                /* Utilise flexbox pour disposer les éléments à l'intérieur */
+  align-items: center;                                          /* Centre les éléments verticalement */
+  justify-content: space-evenly;                                /* Espace uniforme entre les éléments dans la section */
+}
+
+/* Conteneur pour le contenu des liens */
+.liens-content {
+  display: flex;                                                /* Utilise flexbox pour les éléments à l'intérieur */
+  flex-direction: column;                                       /* Aligne les éléments en colonne */
+}
+
+/* Style pour les titres dans la section des liens */
+.liens p {
+  margin-bottom: 10px;                                         /* Espace sous le titre pour aérer le contenu */
+  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre légère pour donner du relief au texte */
+  font-size: 1rem;                                             /* Taille de la police pour les titres */
+  color: var(--border-orange);                                 /* Couleur orange pour les titres */
+}
+
+/* Style des liens dans la section */
+.liens a {
+  color: var(--text-light);                                    /* Couleur du texte des liens (blanc ou clair) */
+  text-decoration: none;                                       /* Supprime le soulignement par défaut des liens */
+  transition: color 0.3s ease;                                 /* Transition douce pour le changement de couleur lors du survol */
+  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre légère pour le texte des liens */
+  font-size: 0.7rem;                                           /* Taille réduite pour les liens */
+}
+
+/* Effet hover sur les liens */
+.liens a:hover {
+  color: var(--text-yellow);                                   /* Change la couleur du lien au survol (jaune) */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour la section des réseaux sociaux                  */
+/* ----------------------------------------------------------- */
+.reseaux {
+  flex: 1;                                                     /* Prend une largeur égale à celle des autres sections */
+  max-width: 30%;                                              /* Limite la largeur maximale à 30% */
+  padding: 10px;                                               /* Ajoute de l'espace interne autour de la section */
+  text-align: right;                                           /* Aligne le texte et les icônes à droite */
+}
+
+/* Conteneur pour le contenu des réseaux sociaux */
+.reseaux-content {
+  display: flex;                                               /* Utilise flexbox pour les éléments à l'intérieur */
+  flex-direction: column;                                      /* Aligne les éléments en colonne */
+  align-items: center;                                         /* Centre les éléments horizontalement */
+}
+
+/* Style des liens vers les réseaux sociaux */
+.reseaux a {
+  margin: 0 10px;                                              /* Ajoute de l'espace entre chaque icône de réseau social */
+}
+
+/* ----------------------------------------------------------- */
+/* Styles pour la section small                                */
+/* ----------------------------------------------------------- */
+.small {
+  text-align: center;                                          /* Centre le texte dans cette section */
+  background-color: var(--background-dark);                    /* Fond sombre pour le texte */
+  padding-bottom: 20px;                                        /* Ajoute de l'espace en bas de la section */
+  width: 100%;                                                 /* La section small prend toute la largeur du footer */
+}
+
+/* Style pour le petit texte dans la section small */
+.small small {
+  font-size: 0.7rem;                                           /* Taille de police réduite pour le texte petit */
+  color: var(--border-orange);                                 /* Couleur orange pour le petit texte */
+  margin-bottom: 10px;                                         /* Espace sous le texte pour aérer le contenu */
+}
+
+/* Style des liens dans la section small */
+.small a {
+  color: var(--text-light);                                    /* Couleur du texte pour les liens (blanc ou clair) */
+  text-decoration: none;                                       /* Supprime le soulignement des liens */
+}
+
+/* Effet hover sur les liens dans la section small */
+.small a:hover {
+  color: var(--text-yellow);                                   /* Change la couleur des liens au survol (jaune) */
 }
