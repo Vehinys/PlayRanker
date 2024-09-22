@@ -13,27 +13,39 @@
                 </div>
                 <div class="profil-card-content">
                     <div class="profil-user-info">
-                        {% if user %}
-                            <img src="{{ user.avatar }}" alt="Photo de Profil" class="profil-image">
-                        {% else %}
-                            <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/36280650-defaut-avatar-profil-icone-social-medias-utilisateur-image-gris-avatar-icone-vide-profil-silhouette-vecteur-illustration-vectoriel.jpg" alt="Photo de Profil" class="profil-image">
-                        {% endif %}
+                            {% if user %}
+                                {% if user.avatar %}
+                                    <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
+                                {% else %}
+                                    <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="profil-image">
+                                {% endif %}
+
                         <div class="profil-user-details">
+
                             {% if user %}
                                 {{ form_start(form) }}
 
-                                <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New nickname' } }) }}</p>
-                                <p><b>Email :  </b> <span>{{ user.email }}</span>  {{ form_widget(form.email,  { 'attr': { 'class': 'input-box-email', 'placeholder': 'New email'    } }) }}</p>
-                                <p><b>Avatar : </b>                                {{ form_widget(form.avatar, { 'attr': { 'class': 'input-box-email', 'placeholder': 'New avatar'   } }) }}</p>
+                                <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New nickname' } }) }}</p>
+                                <p><b>Email :  </b> <span>{{ user.email }}</span>  {{ form_widget(form.email,  { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New email'    } }) }}</p>
+                                <p><b>Avatar : </b>                                {{ form_widget(form.avatar, { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New avatar'   } }) }}</p>
                             {% else %}
                                 <p>No users found. Please login.</p>
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
                         <div>
-                            <a class="increment-button"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/></a>
+                            <!-- Remplacement du lien <a> par un bouton de type submit -->
+                            <button class="increment-button" type="submit">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/>
+                            </button>
+
                             {{ form_end(form) }}
-                            <a class="increment-button" href="{{ path('profil') }}"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/></a>
+
+                            <button class="increment-button" onclick="window.location.href='{{ path('profil') }}'">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/>
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -41,6 +53,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}

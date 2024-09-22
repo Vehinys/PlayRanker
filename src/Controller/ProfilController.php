@@ -12,10 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 
 class ProfilController extends AbstractController
 {
@@ -97,4 +100,25 @@ class ProfilController extends AbstractController
             'user' => $user
         ]);
     }
+
+    #[Route('/profil/delete', name: 'delete_profile')]
+    public function deleteProfile(
+        
+        EntityManagerInterface $entityManager,  
+        TokenStorageInterface $tokenStorage,
+        SessionInterface $session
+    
+        ): Response {
+            
+        $user = $this->getUser();
+    
+        $tokenStorage->setToken(null);
+        $session->invalidate();
+    
+        $entityManager->remove($user);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('register');
+    }
+    
 }

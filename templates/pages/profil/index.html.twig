@@ -14,54 +14,53 @@
                     <div class="profil-card-content">
                         <div class="profil-user-info">
                             {% if user %}
-                                <!-- Affiche l'avatar de l'utilisateur s'il existe -->
-                                <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
-                            {% else %}
-                                <!-- Affiche une image par défaut si l'utilisateur n'est pas connecté -->
-                                <img src="https://via.placeholder.com/50" alt="Photo de Profil par défaut" class="profil-image">
-                            {% endif %}
-                            <div class="profil-user-details">
-                                {% if user %}
-                                    <!-- Affiche les détails de l'utilisateur s'il est connecté -->
-                                    <p><b>Pseudo : </b> <span>{{ user.pseudo }} </span></p>
-                                    <p><b>Email  : </b> <span>{{ user.email }}  </span></p>
+                                {% if user.avatar %}
+                                    <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
                                 {% else %}
-                                    <!-- Message à afficher si aucun utilisateur n'est trouvé -->
-                                    <p>No users found. Please log in</p>
+                                    <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="profil-image">
                                 {% endif %}
-
-                                    <p><b> number of messages : </b> <span> </span></p>
-                                    <p><b> number of favorites : </b> <span> </span></p>
-                            </div>
+                                <div class="profil-user-details">
+                                    <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span></p>
+                                    <p><b>Email  : </b> <span>{{ user.email }}</span></p>
+                                    <p><b>Number of messages: </b><span></span></p>
+                                    <p><b>Number of favorites: </b><span></span></p>
+                                </div>
+                            {% else %}
+                                <p>No users found. Please log in</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div>
-                        <a class="increment-button" href="{{ path('edit_profile') }}"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC"/></a>
-                        <a class="increment-button" href=""><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container-profil">
-        <section class="profil-container">
-            <div class="profil-section">
-                <div class="profil-card">
-                    <div class="profil-title">
-                        <h2>My favorites</h2>
-                    </div>
-
-
-                    
-                    <div>
-                    <a class="increment-button" href="{{ path('jeux') }}"> Search game</a>
+                        <button class="increment-button" onclick="window.location.href='{{ path('edit_profile') }}'">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC"/>
+                        </button>
+                        <button class="increment-button" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href='{{ path('delete_profile') }}'; }">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC"/>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
     </section>
 
+    <!-- Section des favoris de l'utilisateur -->
+    <section class="container-profil">
+        <section class="profil-container">
+            <div class="profil-section">
+                <div class="profil-card">
+                    <div class="profil-title">
+                        <h2>My Favorites</h2>
+                    </div>
+                    <div class="profil-card-content">
+                        <a class="increment-button" href="{{ path('jeux') }}">Search Game</a>
+                        <!-- Ajouter ici des éléments de la liste de favoris -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Section de la liste de jeux de l'utilisateur -->
     <section class="container-profil">
         <section class="profil-container">
             <div class="profil-section">
@@ -69,11 +68,9 @@
                     <div class="profil-title">
                         <h2>My Gamelist</h2>
                     </div>
-
-
-
-                    <div>
-                    <a class="increment-button" href="{{ path('jeux') }}"> Search game</a>
+                    <div class="profil-card-content">
+                        <a class="increment-button" href="{{ path('jeux') }}">Search Game</a>
+                        <!-- Ajouter ici des éléments de la liste de jeux -->
                     </div>
                 </div>
             </div>

@@ -921,72 +921,184 @@ small b {
 
 /* Style pour les titres dans la section des liens */
 .liens p {
-  margin-bottom: 10px;                                         /* Espace sous le titre pour aérer le contenu */
-  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre légère pour donner du relief au texte */
-  font-size: 1rem;                                             /* Taille de la police pour les titres */
-  color: var(--border-orange);                                 /* Couleur orange pour les titres */
+  margin-bottom: 10px;                                          /* Espace sous le titre pour aérer le contenu */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre légère pour donner du relief au texte */
+  font-size: 1rem;                                              /* Taille de la police pour les titres */
+  color: var(--border-orange);                                  /* Couleur orange pour les titres */
 }
 
 /* Style des liens dans la section */
 .liens a {
-  color: var(--text-light);                                    /* Couleur du texte des liens (blanc ou clair) */
-  text-decoration: none;                                       /* Supprime le soulignement par défaut des liens */
-  transition: color 0.3s ease;                                 /* Transition douce pour le changement de couleur lors du survol */
-  text-shadow: var(--background-dark) 0px 0px 3px;             /* Ombre légère pour le texte des liens */
-  font-size: 0.7rem;                                           /* Taille réduite pour les liens */
+  color: var(--text-light);                                     /* Couleur du texte des liens (blanc ou clair) */
+  text-decoration: none;                                        /* Supprime le soulignement par défaut des liens */
+  transition: color 0.3s ease;                                  /* Transition douce pour le changement de couleur lors du survol */
+  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre légère pour le texte des liens */
+  font-size: 0.7rem;                                            /* Taille réduite pour les liens */
 }
 
 /* Effet hover sur les liens */
 .liens a:hover {
-  color: var(--text-yellow);                                   /* Change la couleur du lien au survol (jaune) */
+  color: var(--text-yellow);                                    /* Change la couleur du lien au survol (jaune) */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles pour la section des réseaux sociaux                  */
 /* ----------------------------------------------------------- */
 .reseaux {
-  flex: 1;                                                     /* Prend une largeur égale à celle des autres sections */
-  max-width: 30%;                                              /* Limite la largeur maximale à 30% */
-  padding: 10px;                                               /* Ajoute de l'espace interne autour de la section */
-  text-align: right;                                           /* Aligne le texte et les icônes à droite */
+  flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  padding: 10px;                                                /* Ajoute de l'espace interne autour de la section */
+  text-align: right;                                            /* Aligne le texte et les icônes à droite */
 }
 
 /* Conteneur pour le contenu des réseaux sociaux */
 .reseaux-content {
-  display: flex;                                               /* Utilise flexbox pour les éléments à l'intérieur */
-  flex-direction: column;                                      /* Aligne les éléments en colonne */
-  align-items: center;                                         /* Centre les éléments horizontalement */
+  display: flex;                                                /* Utilise flexbox pour les éléments à l'intérieur */
+  flex-direction: column;                                       /* Aligne les éléments en colonne */
+  align-items: center;                                          /* Centre les éléments horizontalement */
 }
 
 /* Style des liens vers les réseaux sociaux */
 .reseaux a {
-  margin: 0 10px;                                              /* Ajoute de l'espace entre chaque icône de réseau social */
+  margin: 0 10px;                                               /* Ajoute de l'espace entre chaque icône de réseau social */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles pour la section small                                */
 /* ----------------------------------------------------------- */
 .small {
-  text-align: center;                                          /* Centre le texte dans cette section */
-  background-color: var(--background-dark);                    /* Fond sombre pour le texte */
-  padding-bottom: 20px;                                        /* Ajoute de l'espace en bas de la section */
-  width: 100%;                                                 /* La section small prend toute la largeur du footer */
+  text-align: center;                                           /* Centre le texte dans cette section */
+  background-color: var(--background-dark);                     /* Fond sombre pour le texte */
+  padding-bottom: 20px;                                         /* Ajoute de l'espace en bas de la section */
+  width: 100%;                                                  /* La section small prend toute la largeur du footer */
 }
 
 /* Style pour le petit texte dans la section small */
 .small small {
-  font-size: 0.7rem;                                           /* Taille de police réduite pour le texte petit */
-  color: var(--border-orange);                                 /* Couleur orange pour le petit texte */
-  margin-bottom: 10px;                                         /* Espace sous le texte pour aérer le contenu */
+  font-size: 0.7rem;                                            /* Taille de police réduite pour le texte petit */
+  color: var(--border-orange);                                  /* Couleur orange pour le petit texte */
+  margin-bottom: 10px;                                          /* Espace sous le texte pour aérer le contenu */
 }
 
 /* Style des liens dans la section small */
 .small a {
-  color: var(--text-light);                                    /* Couleur du texte pour les liens (blanc ou clair) */
-  text-decoration: none;                                       /* Supprime le soulignement des liens */
+  color: var(--text-light);                                     /* Couleur du texte pour les liens (blanc ou clair) */
+  text-decoration: none;                                        /* Supprime le soulignement des liens */
 }
 
 /* Effet hover sur les liens dans la section small */
 .small a:hover {
-  color: var(--text-yellow);                                   /* Change la couleur des liens au survol (jaune) */
+  color: var(--text-yellow);                                    /* Change la couleur des liens au survol (jaune) */
 }
+
+/* --------------------------------------------------------------------- */
+/* Styles généraux pour la page de profil                                */
+/* --------------------------------------------------------------------- */
+
+.container-profil {
+  display: flex;                                                /* Utilise Flexbox pour aligner les éléments */
+  flex-direction: column;                                       /* Aligne les sections en colonne */
+  align-items: center;                                          /* Centre les éléments horizontalement */
+  justify-content: center;                                      /* Centre les éléments verticalement */
+  width: 100%;                                                  /* La section occupe toute la largeur */
+  background-color: var(--background-light);                    /* Applique une couleur de fond claire */
+  padding-top: 30px;                                            /* Ajoute de l'espace en haut de la section */
+}
+
+.profil-container {
+  width: 100%;                                                  /* La section prend 100% de la largeur disponible */
+  max-width: 1200px;                                            /* Limite la largeur maximale à 1200px */
+  margin-bottom: 30px;                                          /* Ajoute de l'espace en bas de chaque section */
+}
+
+.profil-card {
+  background-color: var(--background-dark);                     /* Utilise une couleur de fond sombre pour la carte */
+  padding: 20px;                                                /* Ajoute de l'espace interne autour du contenu */
+  border-radius: 10px;                                          /* Arrondit les coins de la carte */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);                   /* Ajoute une ombre pour donner de la profondeur */
+  width: 100%;                                                  /* La carte prend toute la largeur disponible */
+}
+
+.profil-title h2 {
+  font-size: 1.5rem;                                            /* Taille de police du titre */
+  color: var(--text-light);                                     /* Applique une couleur claire au texte du titre */
+}
+
+.profil-card-content {
+  display: flex;                                                /* Utilise Flexbox pour aligner les éléments horizontalement */
+  justify-content: space-between;                               /* Espace les éléments de manière uniforme */
+  align-items: center;                                          /* Aligne les éléments au centre verticalement */
+}
+
+.profil-user-info {
+  display: flex;                                                /* Aligne l'avatar et les informations sur une ligne */
+  align-items: center;                                          /* Centre verticalement l'avatar et les infos */
+}
+
+.profil-image {
+  width: 150px;                                                 /* Largeur de l'image de profil */
+  height: 150px;                                                /* Hauteur de l'image de profil */
+  border-radius: 50%;                                           /* Rend l'image ronde */
+  margin-right: 20px;                                           /* Ajoute de l'espace entre l'image et le texte */
+  margin-top: 30px;                                             /* Ajoute de l'espace entre l'image et le haut de la carte */
+}
+
+.profil-user-details {
+  display: flex;                                                /* Utilise Flexbox pour l'alignement des détails */
+  flex-direction: column;                                       /* Affiche les détails en colonne */
+}
+
+.input-profil-box {
+  font-size: 20px;                                              /* Définit la taille de la police à 20 pixels*/
+  border-radius: 10px;                                          /* Arrondit les coins de 10px*/
+  padding: 3px 20px;                                            /* Un espace interne de 20 pixels à gauche et à droite*/
+}
+
+
+.profil-user-details p {
+  color: var(--text-light);                                     /* Utilise une couleur claire pour le texte */
+  margin-bottom: 5px;                                           /* Ajoute un léger espacement entre chaque ligne de détail */
+  font-size: 20px;                                              /* Taille de police pour les détails p*/
+}
+
+.profil-user-details span {
+  font-weight: bold;                                            /* Met en gras le contenu des détails */
+  color: var(--text-yellow);                                    /* Utilise une couleur jaune pour les informations importantes */
+}
+
+.increment-button {
+  display: inline-block;                                        /* Définit le bouton comme un bloc en ligne */
+  background-color: var(--background-dark);                     /* Couleur de fond du bouton */
+  color: var(--text-yellow);                                    /* Couleur du texte du bouton */
+  padding: 10px 15px;                                           /* Espace interne du bouton */
+  margin-top: 15px;                                             /* Espace entre le bouton et les autres éléments */
+  border-radius: 5px;                                           /* Arrondit légèrement les coins du bouton */
+  text-decoration: none;                                        /* Supprime le soulignement du lien */
+  transition: background-color 0.3s ease;                       /* Transition douce pour le changement de couleur */
+}
+
+.increment-button a:hover {
+  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
+  color: var(--background-dark);                                /* Change la couleur du texte au survol */
+}
+
+.increment-button:hover {
+  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
+  color: var(--background-dark);                                /* Change la couleur du texte au survol */
+}
+
+.profil-card-content a {
+  background-color: var(--border-orange);                       /* Utilise une couleur claire pour les liens dans la carte */
+  color: var(--background-dark);                                /* Supprime le soulignement du lien */
+}
+
+.profil-card-content a:hover {
+  background-color: var(--background-dark);                     /* Utilise une couleur claire pour les liens dans la carte */
+  color: var(--border-orange);                                  /* Supprime le soulignement du lien */
+}
+
+.profil-title h1 {
+  color: var(--border-orange);                                  /* Définit la couleur du texte */
+  font-size: xx-large;                                          /* Définit la taille de la police à xx-large */
+}
+
