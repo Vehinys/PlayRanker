@@ -25,6 +25,7 @@
   font-family: 'Montserrat', sans-serif;                        /* Police par défaut (Montserrat) */
   text-decoration: none;                                        /* Suppression des soulignements de lien */
   box-sizing: border-box;                                       /* Inclusion des bordures et paddings dans le calcul de la taille */
+  font-family: lato ;
 }
 
 /* ----------------------------------------------------------- */
@@ -331,59 +332,59 @@ main {
 /* ----------------------------------------------------------- */
 
 .review-section {
-  width: 100%;                                                  /* Prend toute la largeur disponible                 */
-  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments  */
-  justify-content: center;                                      /* Centre le contenu horizontalement                  */
-  margin: 30px 0;                                               /* Marge en haut et en bas                           */
+  width: 100%;                                                  /* Prend toute la largeur disponible */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments */
+  justify-content: center;                                      /* Centre le contenu horizontalement */
+  margin: 30px 0;                                               /* Marge en haut et en bas */
 }
 
 .review-container {
-  width: 75%;                                                   /* Largeur de 60% pour le conteneur de critiques     */
-  flex-direction: column;                                       /* Orientation verticale des critiques                */
-  display: flex;                                                /* Utilise flexbox pour un alignement flexible       */
-  align-items: flex-start;                                      /* Aligne les éléments au début du conteneur         */
-  margin: 50px 0;                                               /* Marge en haut et en bas                           */
+  width: 75%;                                                   /* Largeur de 60% pour le conteneur de critiques */
+  flex-direction: column;                                       /* Orientation verticale des critiques */
+  display: flex;                                                /* Utilise flexbox pour un alignement flexible */
+  align-items: flex-start;                                      /* Aligne les éléments au début du conteneur */
+  margin: 50px 0;                                               /* Marge en haut et en bas */
 }
 
 .review-content, .review-content-reverse {
-  display: flex;                                                /* Utilisation de flexbox pour la mise en page       */
-  background-color: var(--background-dark);                     /* Couleur de fond sombre pour les critiques          */
-  border-radius: 30px;                                          /* Coins arrondis                                    */
-  color: var(--text-light);                                     /* Couleur du texte (blanc)                          */
-  padding: 20px 20px;                                           /* Espacement interne                                  */
-  margin-bottom: 50px;                                          /* Espace en bas pour séparer les critiques           */
-  width: 70%;                                                   /* Largeur de 70% du conteneur parent                */
-  box-shadow: #0C1D36 0px 0px 10px 0px;                       /* Ombre pour donner de la profondeur                 */
+  display: flex;                                                /* Utilisation de flexbox pour la mise en page */
+  background-color: var(--background-dark);                     /* Couleur de fond sombre pour les critiques */
+  border-radius: 30px;                                          /* Coins arrondis */
+  color: var(--text-light);                                     /* Couleur du texte (blanc) */
+  padding: 20px 20px;                                           /* Espacement interne */
+  margin: 60px;                                                 /* Espace pour séparer les critiques */
+  width: 70%;                                                   /* Largeur de 70% du conteneur parent */
+  box-shadow: #0C1D36 0px 0px 10px 0px;                       /* Ombre pour donner de la profondeur */
 }
 
 .review-content:hover, .review-content-reverse:hover {
-  transform: scale(1.3);                                        /* Effet d'agrandissement au survol                  */
-  transition: transform 0.3s ease;                              /* Transition fluide pour l'effet d'agrandissement   */
+  transform: scale(1.3);                                        /* Effet d'agrandissement au survol */
+  transition: transform 0.3s ease;                              /* Transition fluide pour l'effet d'agrandissement */
 }
 
 .review-content {
-  align-self: flex-start;                                       /* Aligne la critique au début du conteneur          */
+  align-self: flex-start;                                       /* Aligne la critique au début du conteneur */
 }
 
 .review-content-reverse {
-  flex-direction: row-reverse;                                  /* Inverse l'ordre des éléments dans la critique      */
-  align-self: flex-end;                                         /* Aligne la critique à la fin du conteneur          */
+  flex-direction: row-reverse;                                  /* Inverse l'ordre des éléments dans la critique */
+  align-self: flex-end;                                         /* Aligne la critique à la fin du conteneur */
 }
 
 .review-content-reverse .review-image {
   margin-left: 20px;                                            /* Marge à gauche pour l'image dans le conteneur inverse */
-  margin-right: 0;                                              /* Supprime la marge à droite                        */
+  margin-right: 0;                                              /* Supprime la marge à droite */
 }
 
 .review-content-reverse .review-text {
-  text-align: right;                                            /* Aligne le texte à droite                           */
-  align-items: flex-end;                                        /* Aligne les éléments à la fin du conteneur         */
+  text-align: right;                                            /* Aligne le texte à droite */
+  align-items: flex-end;                                        /* Aligne les éléments à la fin du conteneur */
 }
 
 .review-content h2, .review-content-reverse h2 {
-  color: var(--text-yellow);                                    /* Couleur du titre des critiques                     */
-  font-size: 1.4em;                                             /* Taille de police pour les titres                  */
-  font-weight: bold;                                            /* Gras pour le texte du titre                       */
+  color: var(--text-yellow);                                    /* Couleur du titre des critiques */
+  font-size: 1.4em;                                             /* Taille de police pour les titres */
+  font-weight: bold;                                            /* Gras pour le texte du titre */
 }
 
 .review-image {
@@ -411,8 +412,9 @@ main {
 .review-text p {
   width: 100%;                                                  /* Prend toute la largeur du conteneur                */
   margin: 15px 0;                                               /* Marge en haut et en bas                            */
-  font-size: 0.75em;                                            /* Taille de police pour le texte                    */
+  font-size: 1.15em;                                            /* Taille de police pour le texte                    */
   text-align: justify;                                          /* Justifie le texte                                  */
+  padding: 0 10px;                                              /* Espacement interne à gauche et à droite           */
 }
 
 .review-container > div:nth-child(even) {
@@ -423,15 +425,11 @@ main {
   width: 100%;                                                  /* Prend toute la largeur du conteneur                */
   display: flex;                                                /* Utilisation de flexbox pour le contenu de la critique */
 }
-.review-container-text p {
-  align-self: centerer;                                         /* Centre le texte verticalement                       */
-  text-align: center;                                           /* Centre le texte horizontalement                   */
-  font-size: large;                                             /* Taille de police plus grande pour le texte      */
-}
 
 .review-container-text p a {
   color: var(--text-yellow);                                    /* Couleur du texte des liens dans le bouton         */
   font-weight: 700;                                             /* Gras pour le texte du lien                         */
+  padding: 0 5px 0 3px;
 }
 
 .bouton-review {
@@ -470,7 +468,7 @@ main {
 /* ----------------------------------------------------------- */
 
 .contact-section {
-  padding: 40px 20px;                                           /* Espacement : 40px en haut/bas, 20px à gauche/droite */
+  padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite */
   background-color: var(--background-light);                    /* Couleur de fond pour la section de contact       */
   text-align: center;                                           /* Centre le texte horizontalement                   */
   display: flex;                                                /* Utilise Flexbox pour un alignement flexible      */
@@ -901,9 +899,6 @@ small b {
   text-shadow: var(--background-dark) 0px 0px 3px;              /* Ajoute une légère ombre au texte */
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour la section des liens                            */
-/* ----------------------------------------------------------- */
 .liens {
   flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
   max-width: 30%;                                               /* Limite la largeur maximale à 30% */
@@ -941,9 +936,6 @@ small b {
   color: var(--text-yellow);                                    /* Change la couleur du lien au survol (jaune) */
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour la section des réseaux sociaux                  */
-/* ----------------------------------------------------------- */
 .reseaux {
   flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
   max-width: 30%;                                               /* Limite la largeur maximale à 30% */
@@ -963,9 +955,6 @@ small b {
   margin: 0 10px;                                               /* Ajoute de l'espace entre chaque icône de réseau social */
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour la section small                                */
-/* ----------------------------------------------------------- */
 .small {
   text-align: center;                                           /* Centre le texte dans cette section */
   background-color: var(--background-dark);                     /* Fond sombre pour le texte */
