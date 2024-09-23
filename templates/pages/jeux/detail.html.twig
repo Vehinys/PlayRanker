@@ -6,7 +6,6 @@
 
 <div class="game-detail-container">
 
-
     <section class="game-detail-image">
         <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
     </section>
@@ -95,8 +94,7 @@
 
         <div class="container-multi-reponse">
             <p class="tag-label">Esrb</p> 
-            <p class="tag-list"> <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
-</p>
+            <p class="tag-list"> <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p></p>
         </div>
 
 
@@ -128,12 +126,11 @@
                 <span> Site Web</span> 
                 <a class href="{{gameDetail.website}}">{{gameDetail.name}}</a>
         </div>
-        {% endif %}Z
+        {% endif %}
 
     </section>
-
-
 </div>
+<section>
 
     <h3 class="section-video-h3"> Bande d'annonce </h3>
     <section class="section-video">
@@ -149,10 +146,13 @@
     </section>
 
     <section class="game-description">
-    <h3> Description </h3>
-        {% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
-        {{ cleaned_description|raw }}
+        <div class="game-description-detail">
+            <h3> Description </h3>
+            <p>{% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
+                {{ cleaned_description|raw }}</p>
+        </div>
     </section>
+</section>
 
 
 
