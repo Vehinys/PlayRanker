@@ -3,16 +3,10 @@
 /* ----------------------------------------------------------- */
 
 :root {
-  --background-dark: #0C1D36;                                 /* Noir pour l'arrière-plan principal */
-  --text-light: #FFFFFF;                                      /* Blanc pour le texte sur fond sombre */
-  --text-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent) */
-  --text-medium: #666;                                        /* Gris moyen pour le texte secondaire */
-  --text-dark: #333;                                          /* Gris foncé pour le texte principal */
-  --border-yellow: #efd807;                                   /* Jaune doré pour les bordures */
-  --border-orange: #ECC33E;                                   /* Orange vif pour les bordures au survol */
-  --button-bg-yellow: #efd807;                                /* Fond jaune doré pour les boutons */
-  --button-bg-orange: #ECC33E;                                /* Fond orange vif pour les boutons au survol */
-  --background-light: #e9f0fa;                                /* Gris clair pour l'arrière-plan secondaire */
+  --color-dark: #0C1D36;                                       /* bleu pour l'arrière-plan principal */
+  --color-dark-2: #09172b;                                     /* bleu plus foncé pour la navbar */
+  --color-light: #ebf1ff;                                      /* Blanc pour le texte sur fond sombre */
+  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent) */
 }
 
 /* ----------------------------------------------------------- */
@@ -33,7 +27,7 @@
 /* ----------------------------------------------------------- */
 
 .container-header {
-  background-color: var(--background-dark);                     /* Couleur d'arrière-plan pour le header */
+  background-color: var(--color-dark-2);                     /* Couleur d'arrière-plan pour le header */
   padding: 20px;                                                /* Espacement interne du header */
   position: fixed;                                              /* Fixe le header en haut de la page */
   top: 0;                                                       /* Positionne le header en haut */
@@ -55,19 +49,19 @@
 }
 
 .nav-a {
-  color: var(--text-light);                                     /* Couleur du texte (blanc) */
+  color: var(--color-light);                                     /* Couleur du texte (blanc) */
   font-size: 1.2rem;                                            /* Taille de police pour les liens */
   text-decoration: none;                                        /* Supprime le soulignement des liens */
   transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur */
 }
 
 .nav-a:hover {
-  color: var(--text-yellow);                                    /* Change la couleur au survol */
+  color: var(--color-yellow);                                    /* Change la couleur au survol */
 }
 
 .is-current {
   font-weight: bold;                                            /* Texte en gras pour le lien courant */
-  color: var(--border-yellow);                                  /* Couleur du lien actif (jaune doré) */
+  color: var(--color-yellow);                                  /* Couleur du lien actif (jaune doré) */
 }
 
 /* ----------------------------------------------------------- */
@@ -79,7 +73,7 @@ body {
 }
 
 main {
-  background-color: var(--background-light);                    /* Arrière-plan clair pour le contenu principal */
+  background-color: var(--color-light);                    /* Arrière-plan clair pour le contenu principal */
 }
 
 /* ----------------------------------------------------------- */
@@ -87,18 +81,18 @@ main {
 /* ----------------------------------------------------------- */
 
 .header-section {
-  background-color: var(--background-dark);                     /* Arrière-plan sombre pour l'en-tête */
-  color: var(--text-light);                                     /* Texte clair pour un bon contraste */
+  background-color: var(--color-dark);                     /* Arrière-plan sombre pour l'en-tête */
+  color: var(--color-light);                                     /* Texte clair pour un bon contraste */
   padding: 20px 0 40px 0;                                       /* Espacement interne de l'en-tête */
   text-align: center;                                           /* Centrage du contenu */
-  box-shadow: #0C1D36 0px 0px 10px;                           /* Ombre pour l'en-tête */
+  box-shadow: var(--color-dark) 0px 0px 10px;                           /* Ombre pour l'en-tête */
 }
 
 .header-section h1 {
   font-size: 4rem;                                              /* Taille très grande pour le titre principal */
   margin-bottom: 15px;                                          /* Espacement en bas du titre */
   font-weight: bold;                                            /* Met le titre en gras */
-  color: var(--border-yellow);                                  /* Utilisation du jaune doré pour le titre */
+  color: var(--color-yellow);                                  /* Utilisation du jaune doré pour le titre */
 }
 
 .header-section h3 {
@@ -128,35 +122,35 @@ main {
 .search-input {
   padding: 10px 50px;                                           /* Espacement interne avec padding symétrique */
   font-size: 16px;                                              /* Taille du texte du champ de recherche */
-  border: 3px solid var(--text-light);                          /* Bordure claire autour du champ */
+  border: 3px solid var(--color-light);                          /* Bordure claire autour du champ */
   border-radius: 25px;                                          /* Arrondit les coins du champ */
   outline: none;                                                /* Supprime l'outline par défaut */
   box-sizing: border-box;                                       /* Inclut bordures et padding dans les dimensions du champ */
 }
 
 .search-input:focus {
-  border-color: var(--border-orange);                           /* Change la couleur de la bordure au focus */
+  border-color: var(--color-yellow);                           /* Change la couleur de la bordure au focus */
   outline: none;                                                /* Supprime le contour par défaut au focus */
 }
 
 #search-btn {
   padding: 12px 20px;                                           /* Espacement interne du bouton */
-  background-color: var(--button-bg-yellow);                    /* Fond jaune doré pour le bouton */
-  color: var(--background-dark);                                /* Texte noir pour le contraste avec le fond */
+  background-color: var(--color-yellow);                        /* Fond jaune doré pour le bouton */
+  color: var(--color-dark);                                     /* Texte noir pour le contraste avec le fond */
   border: none;                                                 /* Supprime la bordure par défaut du bouton */
   cursor: pointer;                                              /* Change le curseur pour pointer lors du survol */
   transition: background-color 0.3s ease;                       /* Transition fluide pour les changements d'état (survol) */
 }
 
 #search-btn:hover {
-  background-color: var(--button-bg-orange);                    /* Change la couleur du fond au survol */
+  background-color: var(--color-yellow);                    /* Change la couleur du fond au survol */
 }
 
 .search-icon {
   position: absolute;                                           /* Positionnement absolu pour placer l'icône */
   top: 50%;                                                     /* Centrage vertical */
   transform: translateY(-50%);                                  /* Ajustement du centrage */
-  color: var(--background-dark);                                /* Couleur de l'icône (noir) */
+  color: var(--color-dark);                                /* Couleur de l'icône (noir) */
   font-size: 18px;                                              /* Taille de l'icône */
   margin: 0px 15px;                                             /* Marges autour de l'icône */
 }
@@ -176,12 +170,12 @@ main {
 /* Styles pour le titre de la section */
 .rate-section h2 {
   font-size: 4rem;                                              /* Très grande taille de police pour le titre */
-  color: var(--background-dark);                                /* Texte noir pour le titre */
+  color: var(--color-dark);                                /* Texte noir pour le titre */
   font-weight: bold;                                            /* Texte en gras */
   line-height: 1.4;                                             /* Hauteur de ligne pour améliorer la lisibilité */
   padding: 20px 0;                                              /* Espacement interne autour du titre */
-  width: 60%;                                                   /* Prend 60% la largeur du conteneur parent */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
+  width: 55%;                                                   /* Prend 60% la largeur du conteneur parent */
+  text-shadow: var(--color-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel */
 }
 
 
@@ -220,8 +214,8 @@ main {
 .separator span {
   font-size: 28px;                                              /* Taille de police importante pour le texte */
   font-weight: bold;                                            /* Texte en gras */
-  color: var(--text-yellow);                                    /* Couleur du texte (jaune doré) */
-  text-shadow: var(--background-dark) 0px 0px 5px;              /* Ombre de texte pour un effet visuel */
+  color: var(--color-yellow);                                   /* Couleur du texte (jaune doré) */
+  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel */
 }
 
 /* ----------------------------------------------------------- */
@@ -229,13 +223,13 @@ main {
 /* ----------------------------------------------------------- */
 
 .section-top {
-  background-color: var(--background-light);                    /* Couleur de fond pour la section de contact */
+  background-color: var(--color-light);                    /* Couleur de fond pour la section de contact */
   padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section */
 }
 
 .container-card {
   display: flex;                                                /* Utilisation de flexbox pour aligner les cartes */
-  gap: 20px;                                                    /* Espacement entre les cartes */
+  gap: 100px;                                                    /* Espacement entre les cartes */
   flex-wrap: wrap;                                              /* Permet aux cartes de passer à la ligne si nécessaire */
   justify-content: center;                                      /* Centre les cartes horizontalement */
   margin: 85px 0;                                               /* Marge en haut et en bas pour aérer la section */
@@ -244,7 +238,7 @@ main {
 .card {
   width: 400px;                                                 /* Largeur fixe pour les cartes */
   height: 320px;                                                /* Hauteur fixe pour les cartes */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);                 /* Ombre pour un effet d'élévation */
+  box-shadow: 0 3px 4px var(--color-dark);                 /* Ombre pour un effet d'élévation */
   border-radius: 10px;                                          /* Arrondir les coins */
   overflow: hidden;                                             /* Masque le débordement du contenu */
   transition: transform 0.8s;                                   /* Transition fluide pour les effets (si besoin) */
@@ -259,13 +253,13 @@ main {
   justify-content: center;                                      /* Centre le contenu verticalement */
   padding: 20px;                                                /* Espacement interne pour le contenu */
   text-align: center;                                           /* Centre le texte dans la carte */
-  background-color: var(--background-dark);                     /* Fond sombre pour les cartes */
+  background-color: var(--color-dark);                     /* Fond sombre pour les cartes */
 }
 
 /* Styles pour le numéro de notation */
 .number {
   font-size: 35px;                                              /* Taille de police pour le numéro */
-  color: var(--text-yellow);                                    /* Couleur du numéro (jaune doré) */
+  color: var(--color-yellow);                                    /* Couleur du numéro (jaune doré) */
   font-weight: bold;                                            /* Met le numéro en gras */
   margin-bottom: 10px;                                          /* Marge en bas pour espacement */
 }
@@ -273,21 +267,21 @@ main {
 /* Styles pour le titre de la carte */
 .title {
   font-size: 30px;                                              /* Taille de police pour le titre */
-  color: var(--text-light);                                     /* Couleur du titre (noir) */
+  color: var(--color-light);                                     /* Couleur du titre (noir) */
   margin: 10px 0;                                               /* Marge pour espacement */
 }
 
 /* Styles pour la description de la carte */
 .description {
   font-size: 15px;                                              /* Taille de police pour la description */
-  color: var(--text-light);                                     /* Couleur de la description (gris foncé) */
+  color: var(--color-light);                                     /* Couleur de la description (gris foncé) */
   margin: 10px 0;                                               /* Marge pour espacement */
 }
 
 /* Styles pour les étoiles (notation) */
 .stars {
   font-size: 18px;                                              /* Taille de police pour les étoiles */
-  color: var(--text-yellow);                                    /* Couleur des étoiles (jaune doré) */
+  color: var(--color-yellow);                                    /* Couleur des étoiles (jaune doré) */
   margin: 10px 0;                                               /* Marge pour espacement */
 }
 
@@ -298,8 +292,8 @@ main {
 
 .bouton-card {
   display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne */
-  background-color: var(--button-bg-yellow);                    /* Couleur de fond (jaune doré) */
-  color: var(--background-dark);                                /* Couleur du texte (noir) */
+  background-color: var(--color-yellow);                        /* Couleur de fond (jaune doré) */
+  color: var(--color-dark);                                     /* Couleur du texte (noir) */
   border-radius: 20px;                                          /* Coins arrondis */
   text-align: center;                                           /* Centre le texte dans le bouton */
   text-decoration: none;                                        /* Supprime le soulignement des liens */
@@ -312,10 +306,10 @@ main {
 }
 
 .bouton-card:hover {
-  background-color: var(--button-bg-orange);                    /* Change la couleur de fond au survol (orange) */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre de texte pour un effet visuel */
+  background-color: var(--color-yellow);                    /* Change la couleur de fond au survol (orange) */
+  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel */
   transform: scale(1.03);                                       /* Effet d'agrandissement au survol */
-  color: var(--text-light);                                     /* Change la couleur du texte au survol (blanc) */
+  color: var(--color-light);                                     /* Change la couleur du texte au survol (blanc) */
 }
 
 .bouton-card a {
@@ -328,39 +322,44 @@ main {
 }
 
 /* ----------------------------------------------------------- */
-/* Styles pour le conteneur Latest Releases                    */
+/* Styles pour le conteneur des critiques                      */
 /* ----------------------------------------------------------- */
 
 .review-section {
-  padding: 20px;
-  color: #ECC33E; /* Couleur du texte */
+  position: relative;
   overflow: hidden;
-  text-align: center;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .review-container {
-  position: relative;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
   width: 100%;
-  overflow: hidden;
 }
 
 .review-content {
-  display: none; /* Cacher les critiques par défaut */
-  width: 80%;
-  margin: 20px auto;
-  background-color: #1A2B48;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 90%;
+  box-sizing: border-box;
   padding: 20px;
-  color: #ECC33E;
+  background-color: var(--color-dark);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px var(--color-dark);
+  color: var(--color-light);
+  display: flex;
+  align-items: center;
+  margin: 70px;
 }
 
-.review-content.active {
-  display: flex; /* Affiche uniquement la critique active */
+.review-text h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: var(--color-yellow);
 }
 
 .review-image {
-  width: 20%;
+  width: 30%;
   height: auto;
   border-radius: 20px;
 }
@@ -370,10 +369,15 @@ main {
   width: 70%;
 }
 
+.review-text p {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
 .bouton-review a {
   text-decoration: none;
-  background-color: #ECC33E;
-  color: #0C1D36;
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
   padding: 10px 15px;
   border-radius: 4px;
   font-size: 0.9em;
@@ -381,7 +385,7 @@ main {
 }
 
 .bouton-review a:hover {
-  background-color: #FFD700;
+  background-color: var(--color-yellow);
 }
 
 .review-container-text {
@@ -389,18 +393,28 @@ main {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.review-container-text p a {
+  color: var(--color-yellow);
+  font-weight: 600;
+  font-size: 1em;
 }
 
 .prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-dark);
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
   z-index: 10;
+  font-size: 1.2em;
+  border-radius: 5px;
 }
 
 .prev {
@@ -411,20 +425,25 @@ main {
   right: 10px;
 }
 
+.prev:hover, .next:hover {
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+}
+
 /* ----------------------------------------------------------- */
 /* Styles pour la section de contact                           */
 /* ----------------------------------------------------------- */
 
 .contact-section {
   padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite */
-  background-color: var(--background-light);                    /* Couleur de fond pour la section de contact */
+  background-color: var(--color-light);                    /* Couleur de fond pour la section de contact */
   text-align: center;                                           /* Centre le texte horizontalement */
   display: flex;                                                /* Utilise Flexbox pour un alignement flexible */
   justify-content: center;                                      /* Centre le contenu à l'intérieur de la section */
 }
 
 .contact-container {
-  background-color: var(--background-dark);                     /* Couleur de fond pour le conteneur de contact */
+  background-color: var(--color-dark);                     /* Couleur de fond pour le conteneur de contact */
   width: 60%;                                                   /* Largeur de 60% du conteneur parent */
   margin: 30px auto;                                            /* Marge : 30px en haut/bas, auto à gauche/droite */
   padding: 50px;                                                /* Espacement interne de 50px */
@@ -433,9 +452,9 @@ main {
 
 .contact-section h2 {
   font-size: 2.5rem;                                            /* Taille de police pour le titre  */
-  color: var(--background-dark);                                /* Couleur du titre (noir) */
+  color: var(--color-dark);                                /* Couleur du titre (noir) */
   margin-bottom: 20px;                                          /* Marge en bas pour espacer du contenu suivant */
-  text-shadow: var(--background-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel */
+  text-shadow: var(--color-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel */
 }
 
 .contact-form {
@@ -453,34 +472,34 @@ main {
 
 .form-group label {
   font-size: 1rem;                                              /* Taille de police pour les labels                 */
-  color: var(--text-light);                                     /* Couleur du texte des labels                      */
+  color: var(--color-light);                                     /* Couleur du texte des labels                      */
   font-weight: 700;                                             /* Gras pour les labels                             */
   padding-bottom: 5px;                                          /* Espacement en bas                                */
-  text-shadow: var(--background-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
+  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
 }
 
 .form-input,
 .form-textarea {
   width: 100%;                                                  /* Prend toute la largeur du conteneur              */
   padding: 10px;                                                /* Espacement interne                               */
-  font-size: 16px;                                              /* Taille de texte pour les champs                 */
-  border: 2px solid var(--text-light);                          /* Bordure autour des champs                        */
+  font-size: 16px;                                              /* Taille de texte pour les champs                  */
+  border: 2px solid var(--color-light);                          /* Bordure autour des champs                        */
   border-radius: 10px;                                          /* Coins arrondis                                   */
   outline: none;                                                /* Supprime l'outline par défaut                    */
   box-sizing: border-box;                                       /* Inclut les bordures et le padding dans les dimensions */
   box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour donner de la profondeur               */
-  margin-top: 5px;                                              /* Marge en haut                                   */
+  margin-top: 5px;                                              /* Marge en haut                                    */
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--border-orange);                           /* Change la couleur de la bordure au focus        */
+  border-color: var(--color-yellow);                           /* Change la couleur de la bordure au focus        */
 }
 
 .contact-btn {
   padding: 12px 20px;                                           /* Espacement interne du bouton                     */
-  background-color: var(--button-bg-yellow);                    /* Couleur de fond pour le bouton                   */
-  color: var(--background-dark);                                /* Couleur du texte pour le bouton                  */
+  background-color: var(--color-yellow);                    /* Couleur de fond pour le bouton                   */
+  color: var(--color-dark);                                /* Couleur du texte pour le bouton                  */
   border: none;                                                 /* Supprime la bordure par défaut                   */
   border-radius: 10px;                                          /* Coins arrondis pour le bouton                   */
   cursor: pointer;                                              /* Change le curseur au survol                     */
@@ -491,8 +510,8 @@ main {
 }
 
 .contact-btn:hover {
-  background-color: var(--button-bg-orange);                    /* Change la couleur au survol                     */
-  text-shadow: var(--background-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
+  background-color: var(--color-yellow);                    /* Change la couleur au survol                     */
+  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
 }
 
 /* ----------------------------------------------------------- */
@@ -501,7 +520,7 @@ main {
 
 .container-search-jeux {
   padding: 20px;                                                /* Espacement interne */
-  background-color: var(--background-dark);                     /* Fond clair */
+  background-color: var(--color-dark);                     /* Fond clair */
 }
 
 .section-recherche-jeux {
@@ -548,8 +567,8 @@ main {
   position: fixed;                                              /* Position fixe dans la fenêtre                      */
   bottom: 20px;                                                 /* Positionné à 20px du bas                          */
   right: 20px;                                                  /* Positionné à 20px de la droite                    */
-  background-color: var(--background-dark);                     /* Fond sombre pour le bouton                        */
-  color: var(--border-orange);                                  /* Couleur du texte pour le bouton                   */
+  background-color: var(--color-dark);                     /* Fond sombre pour le bouton                        */
+  color: var(--color-yellow);                                  /* Couleur du texte pour le bouton                   */
   width: 50px;                                                  /* Largeur de 50px pour le bouton                    */
   height: 50px;                                                 /* Hauteur de 50px pour le bouton                    */
   border-radius: 50%;                                           /* Arrondi complet pour le bouton                    */
@@ -566,8 +585,8 @@ main {
 }
 
 .back-to-top:hover {
-  background-color: var(--border-orange);                       /* Change la couleur de fond au survol               */
-  color: var(--background-dark);                                /* Change la couleur du texte au survol              */
+  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol               */
+  color: var(--color-dark);                                /* Change la couleur du texte au survol              */
 }
 
 .back-to-top.show {
@@ -579,14 +598,27 @@ main {
 /* ------------------------------------------------------- */
 
 .container-login {
-  background-image: url('/img/bg-login.jpg');                   /* Image d'arrière-plan */
-  background-size: cover;                                       /* Couvre l'écran */
-  background-position: center;                                  /* Centre l'image */
-  background-repeat: no-repeat;                                 /* Empêche la répétition de l'image */
-  height: 100vh;                                                /* Pleine hauteur de l'écran */
-  display: flex;                                                /* Flexbox pour l'alignement */
-  justify-content: center;                                      /* Centrage horizontal */
-  align-items: center;                                          /* Centrage vertical */
+  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+/* Animation pour donner un effet dynamique */
+@keyframes gradientAnimation {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
 }
 
 .form-container {
@@ -598,7 +630,7 @@ main {
   width: 400px;                                                 /* Largeur du formulaire */
   max-width: 90%;                                               /* Largeur maximale pour petits écrans */
   border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
-  color: var(--background-dark);                                /* Texte blanc */
+  color: var(--color-dark);                                /* Texte blanc */
 }
 
 .login-h1 {
@@ -613,7 +645,14 @@ main {
 }
 
 .input-box label {
-  font-weight: bold;                                            /* Texte du label en gras */
+  font-weight: bold;          /* Texte du label en gras */
+  color: #09172b;             /* Couleur initiale du texte */
+  transition: color 0.3s ease; /* Transition fluide pour la couleur */
+}
+
+.input-box input:focus + label,
+.input-box input:hover + label {
+  color: #ECC33E;             /* Couleur du texte lors de l'animation (sur focus ou survol) */
 }
 
 .input-box input {
@@ -636,7 +675,7 @@ main {
   right: 10px;                                                  /* Espace à droite */
   top: 50%;                                                     /* Centrage vertical */
   transform: translateY(-50%);                                  /* Ajustement de centrage */
-  color: var(--background-dark);                                /* Couleur de l'icône */
+  color: var(--color-dark);                                /* Couleur de l'icône */
   cursor: pointer;                                              /* Pointeur sur icône */
 }
 
@@ -656,20 +695,19 @@ main {
 }
 
 .remember a {
-  color: var(--background-dark);                                /* Couleur du lien */
+  color: var(--color-dark);                                /* Couleur du lien */
   text-decoration: none;                                        /* Suppression du soulignement */
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour profondeur */
+  text-shadow: 0px 0px 1px var(--color-dark);               /* Ombre pour profondeur */
 }
 
 .remember a:hover {
   text-decoration: underline;                                   /* Soulignement au survol */
-  transition: text-shadow 0.3s ease;                            /* Transition pour l'ombre */
 }
 
 .btn-login {
   width: 100%;                                                  /* Bouton pleine largeur */
-  background-color: #ECC33E;                                  /* Couleur de fond du bouton */
-  color: #0C1D36;                                             /* Texte foncé */
+  background-color: var(--color-yellow);                                  /* Couleur de fond du bouton */
+  color: var(--color-dark);                                             /* Texte foncé */
   border: none;                                                 /* Suppression des bordures */
   padding: 15px;                                                /* Espacement interne */
   border-radius: 5px;                                           /* Bords arrondis */
@@ -679,7 +717,8 @@ main {
 }
 
 .btn-login:hover {
-  background-color: #FFD700;                                  /* Couleur en survol */
+  background-color: var(--color-dark);                                  /* Couleur en survol */
+  color: var(--color-yellow);
 }
 
 .register-login {
@@ -688,28 +727,43 @@ main {
 }
 
 .register-login a {
-  color: #ECC33E;                                             /* Couleur du lien */
+  color: var(--color-yellow);                                             /* Couleur du lien */
   text-decoration: none;                                        /* Pas de soulignement */
   font-weight: bold;                                            /* Lien en gras */
+  text-shadow: 0px 0px 1px var(--color-dark);               /* Ombre pour profondeur */
 }
 
 .register-login a:hover {
-  color: #FFD700;                                             /* Couleur du lien en survol */
+  text-decoration: underline;                                   /* Soulignement au survol */
 }
 
 /* ------------------------------------------------------- */
 /* Styles pour la page d'inscription                        */
 /* ------------------------------------------------------- */
 
+
 .background-inscription {
-  background-image: url('/img/bg-login.jpg');                   /* Image d'arrière-plan */
-  background-size: cover;                                       /* Couvre l'écran */
-  background-position: center;                                  /* Centre l'image */
-  background-repeat: no-repeat;                                 /* Empêche la répétition de l'image */
-  height: 100vh;                                                /* Pleine hauteur de l'écran */
-  display: flex;                                                /* Flexbox pour l'alignement */
-  justify-content: center;                                      /* Centrage horizontal */
-  align-items: center;                                          /* Centrage vertical */
+  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+/* Animation pour donner un effet dynamique */
+@keyframes gradientAnimation {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
 }
 
 .form-wrapper {
@@ -721,7 +775,7 @@ main {
   width: 400px;                                                 /* Largeur du formulaire */
   max-width: 90%;                                               /* Largeur maximale pour petits écrans */
   border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
-  color: var(--background-dark);                                /* Couleur du texte */
+  color: var(--color-dark);                                     /* Couleur du texte */
 }
 
 .register-heading {
@@ -774,7 +828,7 @@ main {
 }
 
 .terms-link {
-  color: var(--background-dark);                                /* Couleur du lien */
+  color: var(--color-dark);                                /* Couleur du lien */
   text-decoration: none;                                        /* Suppression du soulignement */
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour donner du relief */
 }
@@ -815,14 +869,14 @@ small b {
 /* Styles pour le conteneur de footer                          */
 /* ----------------------------------------------------------- */
 .container-footer {
-  background-color: var(--background-dark);                     /* Couleur de fond sombre pour le footer */
-  color: var(--text-light);                                     /* Couleur du texte (blanc ou clair) */
+  background-color: var(--color-dark);                          /* Couleur de fond sombre pour le footer */
+  color: var(--color-light);                                    /* Couleur du texte (blanc ou clair) */
   padding: 20px;                                                /* Espacement interne pour le footer */
   display: flex;                                                /* Flexbox pour disposer les sections */
   justify-content: space-between;                               /* Espace uniforme entre les sections */
   flex-wrap: wrap;                                              /* Permet aux sections de se réorganiser en ligne si nécessaire */
   align-items: flex-start;                                      /* Aligne les sections en haut verticalement */
-  box-shadow: #0C1D36 0px 0px 10px;                           /* Ajout d'une ombre pour la profondeur */
+  box-shadow: var(--color-dark)0px 0px 10px;                    /* Ajout d'une ombre pour la profondeur */
 }
 
 /* Section contenant les informations */
@@ -837,14 +891,14 @@ small b {
 .information h2 {
   font-size: 1.5rem;                                            /* Taille de la police pour le titre */
   margin-bottom: 10px;                                          /* Espace sous le titre */
-  color: var(--border-orange);                                  /* Couleur du titre (orange) */
+  color: var(--color-yellow);                                   /* Couleur du titre (orange) */
 }
 
 /* Styles pour le paragraphe d'information */
 .information p {
   font-size: 1rem;                                              /* Taille de la police du paragraphe */
   margin-bottom: 10px;                                          /* Espace sous le paragraphe */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ajoute une légère ombre au texte */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ajoute une légère ombre au texte */
 }
 
 .liens {
@@ -865,9 +919,9 @@ small b {
 /* Style pour les titres dans la section des liens */
 .liens p {
   margin-bottom: 10px;                                          /* Espace sous le titre pour aérer le contenu */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre légère pour donner du relief au texte */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour donner du relief au texte */
   font-size: 1rem;                                              /* Taille de la police pour les titres */
-  color: var(--border-orange);                                  /* Couleur orange pour les titres */
+  color: var(--color-yellow);                                   /* Couleur orange pour les titres */
 }
 
 /* Style des liens dans la section */
@@ -875,13 +929,13 @@ small b {
   color: var(--text-light);                                     /* Couleur du texte des liens (blanc ou clair) */
   text-decoration: none;                                        /* Supprime le soulignement par défaut des liens */
   transition: color 0.3s ease;                                  /* Transition douce pour le changement de couleur lors du survol */
-  text-shadow: var(--background-dark) 0px 0px 3px;              /* Ombre légère pour le texte des liens */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour le texte des liens */
   font-size: 0.7rem;                                            /* Taille réduite pour les liens */
 }
 
 /* Effet hover sur les liens */
 .liens a:hover {
-  color: var(--text-yellow);                                    /* Change la couleur du lien au survol (jaune) */
+  color: var(--color-yellow);                                    /* Change la couleur du lien au survol (jaune) */
 }
 
 .reseaux {
@@ -905,27 +959,27 @@ small b {
 
 .small {
   text-align: center;                                           /* Centre le texte dans cette section */
-  background-color: var(--background-dark);                     /* Fond sombre pour le texte */
-  padding-bottom: 20px;                                         /* Ajoute de l'espace en bas de la section */
+  background-color: var(--color-dark-2);                        /* Fond sombre pour le texte */
+  padding: 20px 0;                                              /* Ajoute de l'espace en bas de la section */
   width: 100%;                                                  /* La section small prend toute la largeur du footer */
 }
 
 /* Style pour le petit texte dans la section small */
 .small small {
   font-size: 0.7rem;                                            /* Taille de police réduite pour le texte petit */
-  color: var(--border-orange);                                  /* Couleur orange pour le petit texte */
+  color: var(--color-yellow);                                  /* Couleur orange pour le petit texte */
   margin-bottom: 10px;                                          /* Espace sous le texte pour aérer le contenu */
 }
 
 /* Style des liens dans la section small */
 .small a {
-  color: var(--text-light);                                     /* Couleur du texte pour les liens (blanc ou clair) */
+  color: var(--color-light);                                     /* Couleur du texte pour les liens (blanc ou clair) */
   text-decoration: none;                                        /* Supprime le soulignement des liens */
 }
 
 /* Effet hover sur les liens dans la section small */
 .small a:hover {
-  color: var(--text-yellow);                                    /* Change la couleur des liens au survol (jaune) */
+  color: var(--color-yellow);                                    /* Change la couleur des liens au survol (jaune) */
 }
 
 /* ----------------------------------------------------------- */
@@ -938,7 +992,7 @@ small b {
   align-items: center;                                          /* Centre les éléments horizontalement */
   justify-content: center;                                      /* Centre les éléments verticalement */
   width: 100%;                                                  /* La section occupe toute la largeur */
-  background-color: var(--background-light);                    /* Applique une couleur de fond claire */
+  background-color: var(--color-light);                    /* Applique une couleur de fond claire */
   padding-top: 30px;                                            /* Ajoute de l'espace en haut de la section */
 }
 
@@ -949,7 +1003,7 @@ small b {
 }
 
 .profil-card {
-  background-color: var(--background-dark);                     /* Utilise une couleur de fond sombre pour la carte */
+  background-color: var(--color-dark);                     /* Utilise une couleur de fond sombre pour la carte */
   padding: 20px;                                                /* Ajoute de l'espace interne autour du contenu */
   border-radius: 10px;                                          /* Arrondit les coins de la carte */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);                   /* Ajoute une ombre pour donner de la profondeur */
@@ -958,7 +1012,7 @@ small b {
 
 .profil-title h2 {
   font-size: 1.5rem;                                            /* Taille de police du titre */
-  color: var(--text-light);                                     /* Applique une couleur claire au texte du titre */
+  color: var(--color-light);                                     /* Applique une couleur claire au texte du titre */
 }
 
 .profil-card-content {
@@ -1005,7 +1059,7 @@ small b {
 
 .increment-button {
   display: inline-block;                                        /* Définit le bouton comme un bloc en ligne */
-  background-color: var(--background-dark);                     /* Couleur de fond du bouton */
+  background-color: var(--color-dark);                     /* Couleur de fond du bouton */
   color: var(--text-yellow);                                    /* Couleur du texte du bouton */
   padding: 10px 15px;                                           /* Espace interne du bouton */
   margin-top: 15px;                                             /* Espace entre le bouton et les autres éléments */
@@ -1016,21 +1070,21 @@ small b {
 
 .increment-button a:hover {
   background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
-  color: var(--background-dark);                                /* Change la couleur du texte au survol */
+  color: var(--color-dark);                                /* Change la couleur du texte au survol */
 }
 
 .increment-button:hover {
   background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
-  color: var(--background-dark);                                /* Change la couleur du texte au survol */
+  color: var(--color-dark);                                /* Change la couleur du texte au survol */
 }
 
 .profil-card-content a {
   background-color: var(--border-orange);                       /* Utilise une couleur claire pour les liens dans la carte */
-  color: var(--background-dark);                                /* Supprime le soulignement du lien */
+  color: var(--color-dark);                                /* Supprime le soulignement du lien */
 }
 
 .profil-card-content a:hover {
-  background-color: var(--background-dark);                     /* Utilise une couleur claire pour les liens dans la carte */
+  background-color: var(--color-dark);                     /* Utilise une couleur claire pour les liens dans la carte */
   color: var(--border-orange);                                  /* Supprime le soulignement du lien */
 }
 
@@ -1045,13 +1099,18 @@ small b {
 
 /* Styles for the games page */
 .container-search-jeux {
-  background-color: var(--background-dark);                     /* Fond sombre pour la section de recherche */
+  background-color: var(--color-dark);                     /* Fond sombre pour la section de recherche */
   padding: 20px;                                                /* Espacement intérieur */
 }
 
 .search-container {
   max-width: 600px;                                             /* Largeur maximale pour le conteneur de recherche */
   margin: 0 auto;                                               /* Centre le conteneur horizontalement */
+  padding: 20px;                                                /* Espacement intérieur */
+  
+}
+.all-container-jeux{
+  background-color: var(--color-dark);                     /* Fond sombre pour la section de jeux */
   padding: 20px;                                                /* Espacement intérieur */
 }
 
@@ -1064,10 +1123,10 @@ small b {
 }
 
 .game-card {
-  background-color: var(--background-dark);                     /* Fond sombre pour chaque carte de jeu */
+  background-color: #dbe1f0;                     /* Fond sombre pour chaque carte de jeu */
   border-radius: 10px;                                          /* Coins arrondis */
   overflow: hidden;                                             /* Cache le contenu débordant */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);                   /* Ombre pour un effet de profondeur */
+  box-shadow: 0 5px 3px var(--color-light);                   /* Ombre pour un effet de profondeur */
   transition: transform 0.3s ease;                              /* Transition douce lors du survol */
 }
 
@@ -1077,12 +1136,12 @@ small b {
 
 .game-card-header {
   padding: 10px;                                                /* Espacement intérieur pour l'en-tête de la carte */
-  background-color: var(--button-bg-yellow);                    /* Fond jaune pour l'en-tête */
+  background-color: var(--color-);                    /* Fond jaune pour l'en-tête */
 }
 
 .game-card-header h3 {
   margin: 0;                                                    /* Supprime la marge par défaut */
-  color: var(--background-dark);                                /* Couleur du texte dans l'en-tête */
+  color: var(--color-dark);                                /* Couleur du texte dans l'en-tête */
   font-size: 1.2rem;                                            /* Taille de police pour le titre */
   text-align: center;                                           /* Centre le texte dans l'en-tête */
 }
@@ -1126,16 +1185,18 @@ small b {
 
 .detail-button {
   display: inline-block;                                        /* Permet d'ajouter du padding autour du bouton */
-  padding: 8px 16px;                                            /* Espacement intérieur du bouton */
-  background-color: var(--button-bg-yellow);                    /* Fond jaune pour le bouton */
-  color: var(--background-dark);                                /* Couleur du texte */
+  padding: 10px 30px;                                           /* Espacement intérieur du bouton */
+  background-color: var(--color-dark);                    /* Fond jaune pour le bouton */
+  color: var(--color-yellow);                                /* Couleur du texte */
   text-decoration: none;                                        /* Supprime le soulignement */
   border-radius: 5px;                                           /* Coins arrondis */
   transition: background-color 0.3s ease;                       /* Transition douce pour le fond */
 }
 
 .detail-button:hover {
-  background-color: var(--button-bg-orange);                    /* Change la couleur de fond lors du survol */
+  background-color: var(--color-yellow);                    /* Change la couleur de fond lors du survol */
+  color: var(--color-dark);                                /* Couleur du texte lors du survol */
+  border-radius: 5px;                                           /* Coins arrondis */
 }
 
 .pagination {
@@ -1143,19 +1204,25 @@ small b {
   justify-content: center;                                      /* Centre les éléments de pagination */
   margin-top: 20px;                                             /* Espace au-dessus */
   padding-bottom: 20px;                                         /* Espacement en bas */
+  border-radius: 20px;
 }
 
 .pagination a, .pagination span {
   margin: 0 10px;                                               /* Espace autour des éléments de pagination */
   padding: 5px 10px;                                            /* Espacement intérieur */
-  background-color: var(--button-bg-yellow);                    /* Fond jaune pour les éléments de pagination */
-  color: var(--background-dark);                                /* Couleur du texte */
+  background-color: var(--color-yellow);                    /* Fond jaune pour les éléments de pagination */
+  color: var(--color-dark);                                /* Couleur du texte */
   text-decoration: none;                                        /* Supprime le soulignement */
-  border-radius: 5px;                                           /* Coins arrondis */
+  border-radius: 8px;                                           /* Coins arrondis */
+  border: var(--color-dark-2) 3px solid;
 }
 
 .pagination a:hover {
-background-color: var(--button-bg-orange);                      /* Change la couleur de fond lors du survol */
+  background-color: var(--color-dark-2);                      /* Change la couleur de fond lors du survol */
+  color: var(--color-yellow);
+  border: var(--color-yellow) 3px solid;
+  border-radius: 5px;                                           /* Coins arrondis */
+
 }
 
 /* ----------------------------------------------------------- */
@@ -1167,7 +1234,7 @@ background-color: var(--button-bg-orange);                      /* Change la cou
   max-width: 1200px;                                            /* Largeur maximale pour le conteneur de détails du jeu */
   margin: 30px auto;                                            /* Centre le conteneur horizontalement */
   padding: 20px;                                                /* Espacement intérieur */
-  background-color: var(--background-dark);                     /* Fond sombre */
+  background-color: var(--color-dark);                     /* Fond sombre */
   color: var(--text-light);                                     /* Couleur du texte */
   border-radius: 20px;                                          /* Coins arrondis */
 }

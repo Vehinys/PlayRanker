@@ -93,32 +93,45 @@ document.addEventListener('DOMContentLoaded', () => {
 // ------------------------------------------------------------------------------------------------ //
 
 document.addEventListener('DOMContentLoaded', () => {
+    const reviewContainer = document.querySelector('.review-container');
     const reviews = document.querySelectorAll('.review-content');
     const nextButton = document.querySelector('.next');
     const prevButton = document.querySelector('.prev');
     let currentIndex = 0;
-  
-    function showReview(index) {
-      reviews.forEach((review, i) => {
-        review.classList.remove('active');
-        if (i === index) {
-          review.classList.add('active');
-        }
-      });
+    const totalReviews = reviews.length;
+
+    function updateSlide() {
+        const offset = -currentIndex * 100;
+        reviewContainer.style.transform = `translateX(${offset}%)`;
     }
-  
+
     nextButton.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % reviews.length;
-      showReview(currentIndex);
+        currentIndex = (currentIndex + 1) % totalReviews;
+        updateSlide();
     });
-  
+
     prevButton.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
-      showReview(currentIndex);
+        currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
+        updateSlide();
     });
-  
+
     // Initialisation
-    showReview(currentIndex);
-  });
-  
+    updateSlide();
+});
+
+
+function toggleContent(event) {
+    event.preventDefault();
+    const moreContent = document.querySelector('.more-content');
+    const seeMoreLink = document.getElementById('see-more');
+
+    if (moreContent.style.display === "none") {
+        moreContent.style.display = "block";
+        seeMoreLink.textContent = "Voir moins";
+    } else {
+        moreContent.style.display = "none";
+        seeMoreLink.textContent = "Voir plus";
+    }
+}
+
 
