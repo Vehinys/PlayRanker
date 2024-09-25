@@ -90,15 +90,18 @@
                                 <a href="{{ gameDetail.website }}">{{ gameDetail.name }}</a>
                             </p>
                         </div>
-                </div>
-                    <div class="container-multi-reponse">
-                        <p class="tag-label">Tag(s)</p>
-                        <p style="font-size: 15px">
-                            {% for tag in gameDetail.tags %}
-                                {{ tag.name }} {% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </p>
                     </div>
+                        <div class="container-multi-reponse">
+                            <p class="tag-label">Tag(s)</p>
+                            <p style="font-size: 15px">
+                                {% for tag in gameDetail.tags %}
+                                    {{ tag.name }} {% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                    </div>
+                    <a href="{{ path('games_favoris', {'gameId': gameDetail.id}) }}"style="color:red; font-size:40px; font-weight:bold;">
+                        <i class="fa-solid fa-heart"></i>
+                    </a>
                     {% endif %}
             </div>
         </section>

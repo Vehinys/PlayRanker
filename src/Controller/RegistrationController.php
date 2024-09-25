@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\GamesList;
 use App\Entity\User;
+use App\Entity\GamesList;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +19,17 @@ class RegistrationController extends AbstractController
 
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        GamesList $gameList = null,
 
     ): Response {
         // Création d'une nouvelle instance de User
         $user = new User();
-        $favoris = new GamesList();
+        $gameList = new GamesList();
         
+        // Dés qu'un utilisateur s'inscrit, il a une liste de jeux par défaut (Favoris )
+        $gameList->setName('Favoris');
+
         // Création du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -38,6 +42,9 @@ class RegistrationController extends AbstractController
             // Encodage du mot de passe
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
             
+            // Associer la liste nouvellement créer au nouvel utilisateur
+            $user->addGamesList($gameList);
+            
             // Assurer que ROLE_USER est ajouté si aucun rôle n'est défini
             if (empty($user->getRoles())) {
                 $user->setRoles(['ROLE_USER']);
@@ -45,6 +52,7 @@ class RegistrationController extends AbstractController
 
             // Persistance et enregistrement en base de données
             $entityManager->persist($user);
+            $entityManager->persist($gameList);
             $entityManager->flush();
 
             // Redirection après inscription réussie

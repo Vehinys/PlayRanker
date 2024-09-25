@@ -6,6 +6,8 @@
  */
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -121,4 +123,30 @@ class ProfilController extends AbstractController
         return $this->redirectToRoute('register');
     }
     
+    #[Route ('/game/favoris/{gameId}', name: 'games_favoris')]
+    public function addFavoris(
+
+        Game $game,
+        GamesListRepository $repository,
+        Request $request,
+
+    ): Response {
+
+        $user = $this->getUser();
+        $gameList = $repository->findOneBy(['name' => 'Favoris']);
+        
+        $game = new Game();
+        $gameId = $request->get('gameId');
+        $gameName = $request->get('gameName');
+        $gameData = $request->get('gameData');
+
+
+        $game->setIdGameApi($gameId);
+        $game->setName($gameName);
+        $game->setData($gameData);
+
+
+
+        return $this->redirectToRoute('detail_jeu');
+    }
 }
