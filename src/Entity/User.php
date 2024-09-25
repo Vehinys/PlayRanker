@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
@@ -35,9 +37,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
+    /**
+     * @var Collection<int, GamesList>
+     */
+    #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'user')]
+    private Collection $gamesLists;
+
     public function __construct()
     {
         $this->roles[] = 'ROLE_USER';
+        $this->gamesLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,5 +136,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->email,
             $this->password,
         ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Collection<int, GamesList>
+     */
+    public function getGamesLists(): Collection
+    {
+        return $this->gamesLists;
+    }
+
+    public function addGamesList(GamesList $gamesList): static
+    {
+        if (!$this->gamesLists->contains($gamesList)) {
+            $this->gamesLists->add($gamesList);
+            $gamesList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGamesList(GamesList $gamesList): static
+    {
+        if ($this->gamesLists->removeElement($gamesList)) {
+            // set the owning side to null (unless already changed)
+            if ($gamesList->getUser() === $this) {
+                $gamesList->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

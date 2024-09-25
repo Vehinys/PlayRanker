@@ -98,9 +98,9 @@ class ApiController extends AbstractController
         
     ): Response {
 
-        // Je defini la variable $input et je stock la valeur du champ input de la requete a l'interieur de $input
+        // Je defini la variable $input et je stock les donnée saisi par l'utilisateur, en recupérent le champ 'input' de la requete.
         $input = $request->get('input');
-        // Je défini la variable Games et 
+        // Je défini la variable Games et je stock la reponse de la requete faite à l'API
         $games = $apiHttpClient->gamesSearch($input);
 
         return $this->render('pages/jeux/index.html.twig', [

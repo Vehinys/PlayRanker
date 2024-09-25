@@ -30,9 +30,16 @@ class Game
     #[ORM\ManyToMany(targetEntity: Platform::class, inversedBy: 'games')]
     private Collection $platform;
 
+    /**
+     * @var Collection<int, GamesList>
+     */
+    #[ORM\ManyToMany(targetEntity: GamesList::class, mappedBy: 'games')]
+    private Collection $gamesLists;
+
     public function __construct()
     {
         $this->platform = new ArrayCollection();
+        $this->gamesLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +103,33 @@ class Game
     public function removePlatform(Platform $platform): static
     {
         $this->platform->removeElement($platform);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GamesList>
+     */
+    public function getGamesLists(): Collection
+    {
+        return $this->gamesLists;
+    }
+
+    public function addGamesList(GamesList $gamesList): static
+    {
+        if (!$this->gamesLists->contains($gamesList)) {
+            $this->gamesLists->add($gamesList);
+            $gamesList->addGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGamesList(GamesList $gamesList): static
+    {
+        if ($this->gamesLists->removeElement($gamesList)) {
+            $gamesList->removeGame($this);
+        }
 
         return $this;
     }

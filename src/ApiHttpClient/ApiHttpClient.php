@@ -56,10 +56,11 @@ class ApiHttpClient extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
-     * 
+     * Récupère une liste de jeux qui correspondent à la recherche de l'utilisateur.
      *
-     * @param int $page Le numéro de page à récupérer.
+     * @param string $input La recherche de l'utilisateur.
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
+     *
      */
 
         public function gamesSearch($input)

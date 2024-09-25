@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\GamesList;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,12 +16,15 @@ class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'register')]
     public function register(
+
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
         EntityManagerInterface $entityManager
+
     ): Response {
         // Création d'une nouvelle instance de User
         $user = new User();
+        $favoris = new GamesList();
         
         // Création du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
