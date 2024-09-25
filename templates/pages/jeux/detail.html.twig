@@ -1,160 +1,131 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jeux{% endblock %}
+{% block title %} Games {% endblock %}
 
 {% block body %}
 
-<div class="game-detail-container">
-
-    <section class="game-detail-image">
-        <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
-    </section>
-
-    <section class="game-detail-info">
-        <div>
-            <p class="game-detail-p"><span>Nom</span> {{gameDetail.name}}</p>
-        </div>
-
-        <div>
-            <p class="game-detail-p"><span>Date de sortie</span> {{gameDetail.released|date("m/d/Y")}}</p>
-        </div>
-
-        <div>
-            <p class="game-detail-p">
-                <span>Éditeur(s)</span> 
-                {% for editeur in gameDetail.publishers %}
-                    {{ editeur.name }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        </div>
-
-        <div class="container-multi-reponse">
-            <p class="tag-label">Studio(s)</p>
-            <p class="tag-list">
-                {% for developer in gameDetail.developers %}
-                    {{ developer.name }}<br>
-                {% endfor %}
-            </p>
-        </div>
-
-        
-        <div class="platforms-detail">
-            <div class="platform-detail">
-                {% set platform_logos = {
-                    'PlayStation 1': 'img/ps1.png',
-                    'PlayStation 2': 'img/ps2.png',
-                    'PlayStation 3': 'img/ps3.png',
-                    'PlayStation 4': 'img/ps4.png',
-                    'PlayStation 5': 'img/ps5.png',
-                    'PS Vita': 'img/ps vita.png',
-                    'PC': 'img/pc.png',
-                    'Linux': 'img/linux.png',
-                    'macOS': 'img/macOS.png',
-                    'Web': 'img/Web.png',
-                    'iOS': 'img/ios.png',
-                    'Android': 'img/Android.png',
-                    'Xbox Series S/X': 'img/Xbox Series SX.png',
-                    'Xbox 360': 'img/Xbox 360.png',
-                    'Xbox One': 'img/Xbox One.png',
-                    'Xbox': 'img/xbox.png',
-                    'Nintendo Switch': 'img/Nintendo Switch.png',
-                    'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                    'Wii U': 'img/Wii U.png',
-                } %}
-                <p class="tag-label">Plateforme(s)</p>
-                
-                {% for element in gameDetail.platforms  %}
-                
-                <div class="platform-item-detail">
+<div class="all-game-detail-container">
+    <div class="game-detail-container">
+        <section class="game-detail-image">
+            <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
+            <div class="overlay">
+                <p class="game-detail-p">{{gameDetail.name}}</p>
+                <div class="game-detail-info">
                     
-                    {% set logo_path = platform_logos[element.platform.name ] ?? '' %}
-                    
-                    {% if logo_path %}
-                    
-                    <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ element.platform.name }} " alt="{{ element.platform.name }} logo" />
-                    
+                    <p class="game-detail-p"><span>Date de sortie</span> {{gameDetail.released|date("m/d/Y")}}</p>
+                    <p class="game-detail-p">
+                        <span>Éditeur(s)</span>
+                        {% for editeur in gameDetail.publishers %}
+                            {{ editeur.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <div class="container-multi-reponse">
+                        <p class="tag-label">Studio(s)</p>
+                        <p class="tag-list">
+                            {% for developer in gameDetail.developers %}
+                                {{ developer.name }}<br>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="platforms-detail">
+                        <div class="platform-detail">
+                            {% set platform_logos = {
+                                'PlayStation 1': 'img/ps1.png',
+                                'PlayStation 2': 'img/ps2.png',
+                                'PlayStation 3': 'img/ps3.png',
+                                'PlayStation 4': 'img/ps4.png',
+                                'PlayStation 5': 'img/ps5.png',
+                                'PS Vita': 'img/ps vita.png',
+                                'PC': 'img/pc.png',
+                                'Linux': 'img/linux.png',
+                                'macOS': 'img/macOS.png',
+                                'Web': 'img/Web.png',
+                                'iOS': 'img/ios.png',
+                                'Android': 'img/Android.png',
+                                'Xbox Series S/X': 'img/Xbox Series SX.png',
+                                'Xbox 360': 'img/Xbox 360.png',
+                                'Xbox One': 'img/Xbox One.png',
+                                'Xbox': 'img/xbox.png',
+                                'Nintendo Switch': 'img/Nintendo Switch.png',
+                                'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                                'Wii U': 'img/Wii U.png',
+                            } %}
+                            <p class="tag-label">Plateforme(s)</p>
+                            {% for element in gameDetail.platforms %}
+                                <div class="platform-item-detail">
+                                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
+                                    {% if logo_path %}
+                                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="container-multi-reponse">
+                        <p class="tag-label">Genre(s)</p>
+                        <p class="tag-list">
+                            {% for genre in gameDetail.genres %}
+                                {{ genre.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="container-multi-reponse">
+                        <p class="tag-label">Esrb</p>
+                        <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
+                    </div>
+                    <div class="container-multi-reponse">
+                        <p class="tag-label">Metacritic</p>
+                        <p class="tag-list">{{ gameDetail.metacritic }} sur 100</p>
+                    </div>
+                    {% if gameDetail.metacritic_url %}
+                        <div class="container-multi-reponse">
+                            <p class="tag-label">Plateforme Metacritic</p>
+                            <a href="{{ gameDetail.metacritic_url }}">{{ gameDetail.name }}</a>
+                        </div>
                     {% endif %}
-                    
+                    {% if gameDetail.website %}
+                        <div>
+                            <p class="game-detail-p">
+                                <span>Site Web</span>
+                                <a href="{{ gameDetail.website }}">{{ gameDetail.name }}</a>
+                            </p>
+                        </div>
                 </div>
-
-                {% endfor %}
-
+                    <div class="container-multi-reponse">
+                        <p class="tag-label">Tag(s)</p>
+                        <p style="font-size: 15px">
+                            {% for tag in gameDetail.tags %}
+                                {{ tag.name }} {% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    {% endif %}
             </div>
+        </section>
 
-        </div>
+        <section class="all-game-description">
+            <section class="section-video">
+                <h3 class="section-video-h3">Bande d'annonce</h3>
+                <div class='ifram'>
+                    {% set count = 0 %}
+                    {% for trailer in gameAnnonce.results %}
+                        {% if count < 2 %}
+                            <iframe src="{{ trailer.data.max }}" title='Video trailer' width="380" height="222"></iframe>
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
 
-        <div class="container-multi-reponse">
-            <p class="tag-label">Genre(s)</p> 
-            <p class="tag-list">
-                {% for genre in gameDetail.genres %}
-                    {{ genre.name }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        </div>
-
-        <div class="container-multi-reponse">
-            <p class="tag-label">Esrb</p> 
-            <p class="tag-list"> <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p></p>
-        </div>
-
-
-
-        <div class="container-multi-reponse">
-            <p class="tag-label">Tag(s)</p>
-            <p style="font-size: 15px">
-                {% for tag in gameDetail.tags %}
-                    {{ tag.name }} {% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        </div>
-
-        <div class="container-multi-reponse">
-            <p class="tag-label">metacritic(s)</p>
-            <p class="tag-list">{{gameDetail.metacritic }} sur 100</p>
-        </div>
-
-        {% if gameDetail.metacritic_url %}
-        <div class="container-multi-reponse">
-            <p class="tag-label">Plateforme metacritic(s)</p>
-                <a href="{{ gameDetail.metacritic_url }}">{{ gameDetail.name }}</a>
-        </div>
-        {% endif %}
-
-        {% if gameDetail.website %}
-        <div>
-            <p class="game-detail-p">
-                <span> Site Web</span> 
-                <a class href="{{gameDetail.website}}">{{gameDetail.name}}</a>
-        </div>
-        {% endif %}
-
-    </section>
-
-<section>
-
-    <h3 class="section-video-h3"> Bande d'annonce </h3>
-    <section class="section-video">
-        <div class='ifram'>
-            {% set count = 0 %}
-            {% for trailer in gameAnnonce.results %}
-                {% if count < 2 %}
-                    <iframe  src="{{ trailer.data.max }}" title='Video trailer' width="380" height="222">{{ trailer.name }} </iframe>
-                    {% set count = count + 1 %}
-                {% endif %}
-            {% endfor %}
-        </div>
-    </section>
-
-    <section class="game-description">
-        <div class="game-description-detail">
-            <h3> Description </h3>
-            <p>{% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
-                {{ cleaned_description|raw }}</p>
-        </div>
-    </section>
-</section>
+            <section class="game-description">
+                <div class="game-description-detail">
+                    <h3>Description</h3>
+                    <p>{% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}{{ cleaned_description|raw }}</p>
+                </div>
+            </section>
+        </section>
+    </div>
 </div>
-
 
 
 {% endblock %}

@@ -3,10 +3,10 @@
 /* ----------------------------------------------------------- */
 
 :root {
-  --color-dark: #0C1D36;                                       /* bleu pour l'arrière-plan principal */
-  --color-dark-2: #09172b;                                     /* bleu plus foncé pour la navbar */
-  --color-light: #ebf1ff;                                      /* Blanc pour le texte sur fond sombre */
-  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent) */
+  --color-dark: #0C1D36;                                       /* bleu pour l'arrière-plan principal                 */
+  --color-dark-2: #09172b;                                     /* bleu plus foncé pour la navbar                     */
+  --color-light: #ebf1ff;                                      /* Blanc pour le texte sur fond sombre                */
+  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent)                 */
 }
 
 /* ----------------------------------------------------------- */
@@ -14,12 +14,12 @@
 /* ----------------------------------------------------------- */
 
 * {
-  margin: 0;                                                    /* Réinitialisation des marges */
-  padding: 0;                                                   /* Réinitialisation des espacements internes */
-  font-family: 'Montserrat', sans-serif;                        /* Police par défaut (Montserrat) */
-  text-decoration: none;                                        /* Suppression des soulignements de lien */
+  margin: 0;                                                    /* Réinitialisation des marges                         */
+  padding: 0;                                                   /* Réinitialisation des espacements internes           */
+  font-family: 'Montserrat', sans-serif;                        /* Police par défaut (Montserrat)                      */
+  text-decoration: none;                                        /* Suppression des soulignements de lien               */
   box-sizing: border-box;                                       /* Inclusion des bordures et paddings dans le calcul de la taille */
-  font-family: lato ;
+  font-family: lato;                                           /* Police par défaut (Lato)                            */
 }
 
 /* ----------------------------------------------------------- */
@@ -27,21 +27,21 @@
 /* ----------------------------------------------------------- */
 
 .container-header {
-  background-color: var(--color-dark-2);                     /* Couleur d'arrière-plan pour le header */
-  padding: 20px;                                                /* Espacement interne du header */
-  position: fixed;                                              /* Fixe le header en haut de la page */
-  top: 0;                                                       /* Positionne le header en haut */
-  left: 0;                                                      /* Positionne le header à gauche */
-  right: 0;                                                     /* Positionne le header à droite */
+  background-color: var(--color-dark-2);                        /* Couleur d'arrière-plan pour le header               */
+  padding: 20px;                                                /* Espacement interne du header                        */
+  position: fixed;                                              /* Fixe le header en haut de la page                  */
+  top: 0;                                                       /* Positionne le header en haut                        */
+  left: 0;                                                      /* Positionne le header à gauche                       */
+  right: 0;                                                     /* Positionne le header à droite                       */
   z-index: 1000;                                                /* Assure que le header reste au-dessus des autres éléments */
 }
 
 .nav-list {
-  list-style-type: none;                                        /* Supprime les puces de la liste */
+  list-style-type: none;                                        /* Supprime les puces de la liste                      */
   display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                      /* Centre les éléments de la liste */
-  margin: 0;                                                    /* Réinitialisation de la marge */
-  padding: 0;                                                   /* Réinitialisation du padding */
+  justify-content: center;                                      /* Centre les éléments de la liste                     */
+  margin: 0;                                                    /* Réinitialisation de la marge                        */
+  padding: 0;                                                   /* Réinitialisation du padding                         */
 }
 
 .nav-list li {
@@ -49,19 +49,19 @@
 }
 
 .nav-a {
-  color: var(--color-light);                                     /* Couleur du texte (blanc) */
-  font-size: 1.2rem;                                            /* Taille de police pour les liens */
-  text-decoration: none;                                        /* Supprime le soulignement des liens */
-  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur */
+  color: var(--color-light);                                    /* Couleur du texte (blanc)                            */
+  font-size: 1.2rem;                                            /* Taille de police pour les liens                     */
+  text-decoration: none;                                        /* Supprime le soulignement des liens                  */
+  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur     */
 }
 
 .nav-a:hover {
-  color: var(--color-yellow);                                    /* Change la couleur au survol */
+  color: var(--color-yellow);                                   /* Change la couleur au survol                         */
 }
 
 .is-current {
-  font-weight: bold;                                            /* Texte en gras pour le lien courant */
-  color: var(--color-yellow);                                  /* Couleur du lien actif (jaune doré) */
+  font-weight: bold;                                            /* Texte en gras pour le lien courant                 */
+  color: var(--color-yellow);                                   /* Couleur du lien actif (jaune doré)                 */
 }
 
 /* ----------------------------------------------------------- */
@@ -69,11 +69,11 @@
 /* ----------------------------------------------------------- */
 
 body {
-  padding-top: 63px;                                            /* Ajout d'espace en haut pour le header fixe */
+  padding-top: 60px;                                            /* Ajout d'espace en haut pour le header fixe         */
 }
 
 main {
-  background-color: var(--color-light);                    /* Arrière-plan clair pour le contenu principal */
+  background-color: var(--color-light);                         /* Arrière-plan clair pour le contenu principal        */
 }
 
 /* ----------------------------------------------------------- */
@@ -81,27 +81,27 @@ main {
 /* ----------------------------------------------------------- */
 
 .header-section {
-  background-color: var(--color-dark);                     /* Arrière-plan sombre pour l'en-tête */
-  color: var(--color-light);                                     /* Texte clair pour un bon contraste */
-  padding: 20px 0 40px 0;                                       /* Espacement interne de l'en-tête */
-  text-align: center;                                           /* Centrage du contenu */
-  box-shadow: var(--color-dark) 0px 0px 10px;                           /* Ombre pour l'en-tête */
+  background-color: var(--color-dark);                          /* Arrière-plan sombre pour l'en-tête                  */
+  color: var(--color-light);                                    /* Texte clair pour un bon contraste                  */
+  padding: 20px 0 40px 0;                                       /* Espacement interne de l'en-tête                     */
+  text-align: center;                                           /* Centrage du contenu                                 */
+  box-shadow: var(--color-dark) 0px 0px 10px;                   /* Ombre pour l'en-tête                                */
 }
 
 .header-section h1 {
-  font-size: 4rem;                                              /* Taille très grande pour le titre principal */
-  margin-bottom: 15px;                                          /* Espacement en bas du titre */
-  font-weight: bold;                                            /* Met le titre en gras */
-  color: var(--color-yellow);                                  /* Utilisation du jaune doré pour le titre */
+  font-size: 4rem;                                              /* Taille très grande pour le titre principal          */
+  margin-bottom: 15px;                                          /* Espacement en bas du titre                          */
+  font-weight: bold;                                            /* Met le titre en gras                                */
+  color: var(--color-yellow);                                   /* Utilisation du jaune doré pour le titre             */
 }
 
 .header-section h3 {
-  width: 55%;                                                   /* Largeur du sous-titre à 55% de son conteneur */
-  text-align: center;                                           /* Centre le texte */
-  font-size: 1.1rem;                                            /* Taille moyenne pour le sous-titre */
-  margin: 5px 0 30px 0;                                         /* Marges pour aérer le sous-titre */
-  line-height: 1.5;                                             /* Hauteur de ligne pour meilleure lisibilité */
-  display: -webkit-inline-box;                                  /* Alignement pour l'affichage en boîte */
+  width: 55%;                                                   /* Largeur du sous-titre à 55% de son conteneur       */
+  text-align: center;                                           /* Centre le texte                                     */
+  font-size: 1.1rem;                                            /* Taille moyenne pour le sous-titre                   */
+  margin: 5px 0 30px 0;                                         /* Marges pour aérer le sous-titre                     */
+  line-height: 1.5;                                             /* Hauteur de ligne pour meilleure lisibilité          */
+  display: -webkit-inline-box;                                  /* Alignement pour l'affichage en boîte                */
 }
 
 /* ----------------------------------------------------------- */
@@ -110,9 +110,9 @@ main {
 
 .search-container {
   display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                      /* Centrage du formulaire dans la page */
-  position: relative;                                           /* Position relative pour gérer l'icône */
-  width: 100%;                                                  /* Prend toute la largeur du conteneur parent */
+  justify-content: center;                                      /* Centrage du formulaire dans la page                 */
+  position: relative;                                           /* Position relative pour gérer l'icône                */
+  width: 100%;                                                  /* Prend toute la largeur du conteneur parent          */
 }
 
 .search-form {
@@ -120,39 +120,39 @@ main {
 }
 
 .search-input {
-  padding: 10px 50px;                                           /* Espacement interne avec padding symétrique */
-  font-size: 16px;                                              /* Taille du texte du champ de recherche */
-  border: 3px solid var(--color-light);                          /* Bordure claire autour du champ */
-  border-radius: 25px;                                          /* Arrondit les coins du champ */
-  outline: none;                                                /* Supprime l'outline par défaut */
+  padding: 10px 50px;                                           /* Espacement interne avec padding symétrique          */
+  font-size: 16px;                                              /* Taille du texte du champ de recherche                */
+  border: 3px solid var(--color-light);                         /* Bordure claire autour du champ                       */
+  border-radius: 25px;                                          /* Arrondit les coins du champ                          */
+  outline: none;                                                /* Supprime l'outline par défaut                        */
   box-sizing: border-box;                                       /* Inclut bordures et padding dans les dimensions du champ */
 }
 
 .search-input:focus {
-  border-color: var(--color-yellow);                           /* Change la couleur de la bordure au focus */
-  outline: none;                                                /* Supprime le contour par défaut au focus */
+  border-color: var(--color-yellow);                            /* Change la couleur de la bordure au focus            */
+  outline: none;                                                /* Supprime le contour par défaut au focus              */
 }
 
 #search-btn {
-  padding: 12px 20px;                                           /* Espacement interne du bouton */
-  background-color: var(--color-yellow);                        /* Fond jaune doré pour le bouton */
-  color: var(--color-dark);                                     /* Texte noir pour le contraste avec le fond */
-  border: none;                                                 /* Supprime la bordure par défaut du bouton */
-  cursor: pointer;                                              /* Change le curseur pour pointer lors du survol */
+  padding: 12px 20px;                                           /* Espacement interne du bouton                          */
+  background-color: var(--color-yellow);                        /* Fond jaune doré pour le bouton                       */
+  color: var(--color-dark);                                     /* Texte noir pour le contraste avec le fond           */
+  border: none;                                                 /* Supprime la bordure par défaut du bouton             */
+  cursor: pointer;                                              /* Change le curseur pour pointer lors du survol       */
   transition: background-color 0.3s ease;                       /* Transition fluide pour les changements d'état (survol) */
 }
 
 #search-btn:hover {
-  background-color: var(--color-yellow);                    /* Change la couleur du fond au survol */
+  background-color: var(--color-yellow);                        /* Change la couleur du fond au survol                 */
 }
 
 .search-icon {
-  position: absolute;                                           /* Positionnement absolu pour placer l'icône */
-  top: 50%;                                                     /* Centrage vertical */
-  transform: translateY(-50%);                                  /* Ajustement du centrage */
-  color: var(--color-dark);                                /* Couleur de l'icône (noir) */
-  font-size: 18px;                                              /* Taille de l'icône */
-  margin: 0px 15px;                                             /* Marges autour de l'icône */
+  position: absolute;                                           /* Positionnement absolu pour placer l'icône           */
+  top: 50%;                                                     /* Centrage vertical                                    */
+  transform: translateY(-50%);                                  /* Ajustement du centrage                               */
+  color: var(--color-dark);                                     /* Couleur de l'icône (noir)                           */
+  font-size: 18px;                                              /* Taille de l'icône                                   */
+  margin: 0px 15px;                                             /* Marges autour de l'icône                            */
 }
 
 /* ----------------------------------------------------------- */
@@ -161,23 +161,22 @@ main {
 
 /* Styles pour la section de notation */
 .rate-section {
-  text-align: center;                                           /* Centrage du texte de la section */
-  padding: 45px 0 15px 0;                                       /* Espacement interne de la section */
-  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments */
-  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement */
+  text-align: center;                                           /* Centrage du texte de la section                     */
+  padding: 45px 0 15px 0;                                       /* Espacement interne de la section                     */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments     */
+  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement      */
 }
 
 /* Styles pour le titre de la section */
 .rate-section h2 {
-  font-size: 4rem;                                              /* Très grande taille de police pour le titre */
-  color: var(--color-dark);                                /* Texte noir pour le titre */
-  font-weight: bold;                                            /* Texte en gras */
-  line-height: 1.4;                                             /* Hauteur de ligne pour améliorer la lisibilité */
-  padding: 20px 0;                                              /* Espacement interne autour du titre */
-  width: 55%;                                                   /* Prend 60% la largeur du conteneur parent */
-  text-shadow: var(--color-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel */
+  font-size: 4rem;                                              /* Très grande taille de police pour le titre          */
+  color: var(--color-dark);                                     /* Texte noir pour le titre                            */
+  font-weight: bold;                                            /* Texte en gras                                       */
+  line-height: 1.4;                                             /* Hauteur de ligne pour améliorer la lisibilité       */
+  padding: 20px 0;                                            /* Espacement interne autour du titre                   */
+  width: 55%;                                                   /* Prend 60% la largeur du conteneur parent            */
+  text-shadow: var(--color-dark) 0px 0px 2px;                   /* Ombre de texte pour un effet visuel                 */
 }
-
 
 /* ----------------------------------------------------------- */
 /* Styles pour le séparateur avec des lignes de part et d'autre*/
@@ -185,37 +184,37 @@ main {
 
 /* Styles pour le séparateur */
 .separator {
-  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments */
-  align-items: center;                                          /* Aligne verticalement le texte et les lignes */
-  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement */
-  margin: 20px auto;                                            /* Marge pour centrer le séparateur */
-  width: 80%;                                                   /* Largeur du séparateur à 80% du conteneur parent */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments     */
+  align-items: center;                                          /* Aligne verticalement le texte et les lignes          */
+  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement      */
+  margin: 20px auto;                                            /* Marge pour centrer le séparateur                    */
+  width: 80%;                                                   /* Largeur du séparateur à 80% du conteneur parent     */
 }
 
 /* Styles pour les lignes de séparation avant et après le texte */
 .separator::before,
 .separator::after {
-  content: '';                                                  /* Génère un contenu vide pour les lignes */
-  width: 300px;                                                 /* Taille des lignes avant et après le texte */
-  border-bottom: 4px solid;                                     /* Ligne solide en bas (séparateur) */
+  content: '';                                                  /* Génère un contenu vide pour les lignes               */
+  width: 300px;                                                 /* Taille des lignes avant et après le texte           */
+  border-bottom: 4px solid;                                     /* Ligne solide en bas (séparateur)                    */
 }
 
 /* Marge à droite de la ligne avant le texte */
 .separator::before {
-  margin-right: 20px;                                           /* Espace de 10px entre la ligne avant et le texte */
+  margin-right: 20px;                                           /* Espace de 10px entre la ligne avant et le texte     */
 }
 
 /* Marge à gauche de la ligne après le texte */
 .separator::after {
-  margin-left: 20px;                                            /* Espace de 10px entre la ligne après et le texte */
+  margin-left: 20px;                                            /* Espace de 10px entre la ligne après et le texte     */
 }
 
 /* Styles pour le texte centré entre les lignes */
 .separator span {
-  font-size: 28px;                                              /* Taille de police importante pour le texte */
-  font-weight: bold;                                            /* Texte en gras */
-  color: var(--color-yellow);                                   /* Couleur du texte (jaune doré) */
-  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel */
+  font-size: 28px;                                              /* Taille de police importante pour le texte           */
+  font-weight: bold;                                            /* Texte en gras                                       */
+  color: var(--color-yellow);                                   /* Couleur du texte (jaune doré)                       */
+  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel                 */
 }
 
 /* ----------------------------------------------------------- */
@@ -223,211 +222,210 @@ main {
 /* ----------------------------------------------------------- */
 
 .section-top {
-  background-color: var(--color-light);                    /* Couleur de fond pour la section de contact */
-  padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section */
+  background-color: var(--color-light);                         /* Couleur de fond pour la section de contact          */
+  padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section   */
 }
 
 .container-card {
-  display: flex;                                                /* Utilisation de flexbox pour aligner les cartes */
-  gap: 100px;                                                    /* Espacement entre les cartes */
-  flex-wrap: wrap;                                              /* Permet aux cartes de passer à la ligne si nécessaire */
-  justify-content: center;                                      /* Centre les cartes horizontalement */
-  margin: 85px 0;                                               /* Marge en haut et en bas pour aérer la section */
+  display: flex;                                                /* Utilisation de flexbox pour aligner les cartes      */
+  gap: 100px;                                                   /* Espacement entre les cartes                          */
+  flex-wrap: wrap;                                              /* Permet aux cartes de passer à la ligne si nécessaire  */
+  justify-content: center;                                      /* Centre les cartes horizontalement                    */
+  margin: 85px 0;                                               /* Marge en haut et en bas pour aérer la section        */
 }
 
 .card {
-  width: 400px;                                                 /* Largeur fixe pour les cartes */
-  height: 320px;                                                /* Hauteur fixe pour les cartes */
-  box-shadow: 0 3px 4px var(--color-dark);                 /* Ombre pour un effet d'élévation */
-  border-radius: 10px;                                          /* Arrondir les coins */
-  overflow: hidden;                                             /* Masque le débordement du contenu */
-  transition: transform 0.8s;                                   /* Transition fluide pour les effets (si besoin) */
-  
+  width: 400px;                                                 /* Largeur fixe pour les cartes                        */
+  height: 320px;                                                /* Hauteur fixe pour les cartes                        */
+  box-shadow: 0 3px 4px var(--color-dark);                      /* Ombre pour un effet d'élévation                    */
+  border-radius: 10px;                                          /* Arrondir les coins                                  */
+  overflow: hidden;                                             /* Masque le débordement du contenu                    */
+  transition: transform 0.8s;                                   /* Transition fluide pour les effets (si besoin)      */
 }
 
 .front-face {
-  width: 100%;                                                  /* Prend toute la largeur de la carte */
-  height: 100%;                                                 /* Prend toute la hauteur de la carte */
-  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
-  flex-direction: column;                                       /* Aligne le contenu verticalement */
-  justify-content: center;                                      /* Centre le contenu verticalement */
-  padding: 20px;                                                /* Espacement interne pour le contenu */
-  text-align: center;                                           /* Centre le texte dans la carte */
-  background-color: var(--color-dark);                     /* Fond sombre pour les cartes */
+  width: 100%;                                                  /* Prend toute la largeur de la carte                  */
+  height: 100%;                                                 /* Prend toute la hauteur de la carte                  */
+  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu      */
+  flex-direction: column;                                       /* Aligne le contenu verticalement                      */
+  justify-content: center;                                      /* Centre le contenu verticalement                      */
+  padding: 20px;                                                /* Espacement interne pour le contenu                  */
+  text-align: center;                                           /* Centre le texte dans la carte                       */
+  background-color: var(--color-dark);                          /* Fond sombre pour les cartes                          */
 }
 
 /* Styles pour le numéro de notation */
 .number {
-  font-size: 35px;                                              /* Taille de police pour le numéro */
-  color: var(--color-yellow);                                    /* Couleur du numéro (jaune doré) */
-  font-weight: bold;                                            /* Met le numéro en gras */
-  margin-bottom: 10px;                                          /* Marge en bas pour espacement */
+  font-size: 35px;                                              /* Taille de police pour le numéro                     */
+  color: var(--color-yellow);                                   /* Couleur du numéro (jaune doré)                     */
+  font-weight: bold;                                            /* Met le numéro en gras                               */
+  margin-bottom: 10px;                                          /* Marge en bas pour espacement                        */
 }
 
 /* Styles pour le titre de la carte */
 .title {
-  font-size: 30px;                                              /* Taille de police pour le titre */
-  color: var(--color-light);                                     /* Couleur du titre (noir) */
-  margin: 10px 0;                                               /* Marge pour espacement */
+  font-size: 30px;                                              /* Taille de police pour le titre                      */
+  color: var(--color-light);                                    /* Couleur du titre (noir)                             */
+  margin: 10px 0;                                               /* Marge pour espacement                                */
 }
 
 /* Styles pour la description de la carte */
 .description {
-  font-size: 15px;                                              /* Taille de police pour la description */
-  color: var(--color-light);                                     /* Couleur de la description (gris foncé) */
-  margin: 10px 0;                                               /* Marge pour espacement */
+  font-size: 15px;                                              /* Taille de police pour la description                */
+  color: var(--color-light);                                    /* Couleur de la description (gris foncé)             */
+  margin: 10px 0;                                               /* Marge pour espacement                                */
 }
 
 /* Styles pour les étoiles (notation) */
 .stars {
-  font-size: 18px;                                              /* Taille de police pour les étoiles */
-  color: var(--color-yellow);                                    /* Couleur des étoiles (jaune doré) */
-  margin: 10px 0;                                               /* Marge pour espacement */
+  font-size: 18px;                                              /* Taille de police pour les étoiles                   */
+  color: var(--color-yellow);                                   /* Couleur des étoiles (jaune doré)                   */
+  margin: 10px 0;                                               /* Marge pour espacement                                */
 }
 
 /* Style général pour la carte */
 .card:hover {
-  transform: scale(1.3);                                        /* Effet d'agrandissement au survol (optionnel) */
+  transform: scale(1.3);                                        /* Effet d'agrandissement au survol (optionnel)       */
 }
 
 .bouton-card {
-  display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne */
-  background-color: var(--color-yellow);                        /* Couleur de fond (jaune doré) */
-  color: var(--color-dark);                                     /* Couleur du texte (noir) */
-  border-radius: 20px;                                          /* Coins arrondis */
-  text-align: center;                                           /* Centre le texte dans le bouton */
-  text-decoration: none;                                        /* Supprime le soulignement des liens */
-  font-weight: bold;                                            /* Met le texte en gras */
-  font-size: 1rem;                                              /* Taille de police */
-  transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation */
-  width: 35%;                                                   /* Prend toute la largeur de la carte */
-  padding: 10px;                                                /* Espacement interne pour le bouton */
-  margin-top: 10px ;                                            /* Marge pour espacement */
+  display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne     */
+  background-color: var(--color-yellow);                        /* Couleur de fond (jaune doré)                       */
+  color: var(--color-dark);                                     /* Couleur du texte (noir)                            */
+  border-radius: 20px;                                          /* Coins arrondis                                      */
+  text-align: center;                                           /* Centre le texte dans le bouton                      */
+  text-decoration: none;                                        /* Supprime le soulignement des liens                  */
+  font-weight: bold;                                            /* Met le texte en gras                                */
+  font-size: 1rem;                                              /* Taille de police                                    */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation  */
+  width: 35%;                                                   /* Prend toute la largeur de la carte                  */
+  padding: 10px;                                                /* Espacement interne pour le bouton                   */
+  margin-top: 10px ;                                            /* Marge pour espacement                                */
 }
 
 .bouton-card:hover {
-  background-color: var(--color-yellow);                    /* Change la couleur de fond au survol (orange) */
-  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel */
-  transform: scale(1.03);                                       /* Effet d'agrandissement au survol */
-  color: var(--color-light);                                     /* Change la couleur du texte au survol (blanc) */
+  background-color: var(--color-yellow);                        /* Change la couleur de fond au survol (orange)       */
+  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel                 */
+  transform: scale(1.03);                                       /* Effet d'agrandissement au survol                    */
+  color: var(--color-light);                                    /* Change la couleur du texte au survol (blanc)       */
 }
 
 .bouton-card a {
-  color: inherit;                                               /* Hérite de la couleur du bouton */
-  text-decoration: none;                                        /* Supprime le soulignement du lien */
-  display: block;                                               /* Permet au lien de remplir tout le bouton */
-  width: 100%;                                                  /* Prend toute la largeur du bouton */
-  height: 100%;                                                 /* Prend toute la hauteur du bouton */
-  line-height: normal;                                          /* Hauteur de ligne normale */
+  color: inherit;                                               /* Hérite de la couleur du bouton                      */
+  text-decoration: none;                                        /* Supprime le soulignement du lien                    */
+  display: block;                                               /* Permet au lien de remplir tout le bouton            */
+  width: 100%;                                                  /* Prend toute la largeur du bouton                    */
+  height: 100%;                                                 /* Prend toute la hauteur du bouton                    */
+  line-height: normal;                                          /* Hauteur de ligne normale                            */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles pour le conteneur des critiques                      */
 /* ----------------------------------------------------------- */
 
-.review-section {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
+.review-section {                                               /* Section des critiques                     */
+  position: relative;                                           /* Position relative pour le slider          */
+  overflow: hidden;                                             /* Masquer le contenu débordant              */
+  width: 100%;                                                  /* Largeur de 100%                           */
+  max-width: 1500px;                                            /* Largeur maximale                          */
+  margin: 0 auto;                                               /* Centrer horizontalement                   */
 }
 
-.review-container {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
+.review-container {                                             /* Conteneur des avis                       */
+  display: flex;                                                /* Flexbox pour l'agencement horizontal     */
+  transition: transform 0.5s ease-in-out;                       /* Animation de transition fluide            */
+  width: 100%;                                                  /* Largeur de 100%                          */
 }
 
-.review-content {
-  min-width: 90%;
-  box-sizing: border-box;
-  padding: 20px;
-  background-color: var(--color-dark);
-  border-radius: 20px;
-  box-shadow: 0 4px 8px var(--color-dark);
-  color: var(--color-light);
-  display: flex;
-  align-items: center;
-  margin: 70px;
+.review-content {                                               /* Contenu des avis                        */
+  min-width: 90%;                                               /* Largeur minimale de 90%                  */
+  box-sizing: border-box;                                       /* Inclure les bordures et padding          */
+  padding: 20px;                                                /* Padding de 20px                          */
+  background-color: var(--color-dark);                          /* Couleur d'arrière-plan                   */
+  border-radius: 20px;                                          /* Coins arrondis                           */
+  box-shadow: 0 4px 8px var(--color-dark);                      /* Effet d'ombre                          */
+  color: var(--color-light);                                    /* Couleur du texte                         */
+  display: flex;                                                /* Disposition en flex                      */
+  align-items: center;                                          /* Centrer verticalement les éléments       */
+  margin: 70px;                                                 /* Marge extérieure                         */
 }
 
-.review-text h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
-  color: var(--color-yellow);
+.review-text h2 {                                               /* Titre des avis                          */
+  font-size: 2em;                                               /* Taille de la police                     */
+  margin-bottom: 15px;                                          /* Marge inférieure                        */
+  color: var(--color-yellow);                                   /* Couleur du texte                        */
 }
 
-.review-image {
-  width: 30%;
-  height: auto;
-  border-radius: 20px;
+.review-image {                                                 /* Image des avis                          */
+  width: 30%;                                                   /* Largeur de 30%                         */
+  height: auto;                                                 /* Hauteur automatique                     */
+  border-radius: 20px;                                          /* Coins arrondis                          */
 }
 
-.review-text {
-  margin-left: 20px;
-  width: 70%;
+.review-text {                                                  /* Texte des avis                          */
+  margin-left: 20px;                                            /* Marge gauche                            */
+  width: 70%;                                                   /* Largeur de 70%                         */
 }
 
-.review-text p {
-  font-size: 1.2em;
-  line-height: 1.5;
+.review-text p {                                                /* Paragraphe des avis                     */
+  font-size: 1.2em;                                             /* Taille de la police                     */
+  line-height: 1.5;                                             /* Hauteur de ligne                        */
 }
 
-.bouton-review a {
-  text-decoration: none;
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease;
+.bouton-review a {                                              /* Bouton pour les avis                    */
+  text-decoration: none;                                        /* Pas de soulignement                     */
+  background-color: var(--color-yellow);                        /* Couleur de fond                         */
+  color: var(--color-dark);                                     /* Couleur du texte                        */
+  padding: 10px 15px;                                           /* Padding du bouton                       */
+  border-radius: 4px;                                           /* Coins arrondis                          */
+  font-size: 0.9em;                                             /* Taille de la police                     */
+  transition: background-color 0.3s ease;                       /* Transition fluide                       */
 }
 
-.bouton-review a:hover {
-  background-color: var(--color-yellow);
+.bouton-review a:hover {                                        /* Bouton en survol                        */
+  background-color: var(--color-yellow);                        /* Couleur de fond au survol               */
 }
 
-.review-container-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 40px;
-  font-size: 20px;
+.review-container-text {                                        /* Conteneur du texte des avis             */
+  display: flex;                                                /* Disposition en flex                     */
+  justify-content: space-between;                               /* Espace entre les éléments               */
+  align-items: center;                                          /* Aligner verticalement au centre         */
+  width: 100%;                                                  /* Largeur de 100%                        */
+  margin-top: 40px;                                             /* Marge supérieure                        */
+  font-size: 20px;                                              /* Taille de la police                    */
 }
 
-.review-container-text p a {
-  color: var(--color-yellow);
-  font-weight: 600;
-  font-size: 1em;
+.review-container-text p a {                                    /* Lien dans le texte des avis             */
+  color: var(--color-yellow);                                   /* Couleur du lien                        */
+  font-weight: 600;                                             /* Poids de la police                     */
+  font-size: 1em;                                               /* Taille de la police                    */
 }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-dark);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 1.2em;
-  border-radius: 5px;
+.prev, .next {                                                  /* Boutons de navigation                   */
+  position: absolute;                                           /* Position absolue                        */
+  top: 50%;                                                     /* Position verticale centrée              */
+  transform: translateY(-50%);                                  /* Ajustement de la position               */
+  background-color: var(--color-dark);                          /* Couleur de fond                        */
+  color: white;                                               /* Couleur du texte                       */
+  border: none;                                                 /* Pas de bordure                         */
+  padding: 10px;                                                /* Padding des boutons                     */
+  cursor: pointer;                                              /* Curseur en forme de main               */
+  z-index: 10;                                                  /* Couche au-dessus                       */
+  font-size: 1.2em;                                             /* Taille de la police                    */
+  border-radius: 5px;                                           /* Coins arrondis                         */
 }
 
-.prev {
-  left: 10px;
+.prev {                                                         /* Bouton précédent                        */
+  left: 10px;                                                   /* Position à gauche                      */
 }
 
-.next {
-  right: 10px;
+.next {                                                         /* Bouton suivant                         */
+  right: 10px;                                                  /* Position à droite                      */
 }
 
-.prev:hover, .next:hover {
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
+.prev:hover, .next:hover {                                      /* Boutons en survol                       */
+  background-color: var(--color-yellow);                        /* Couleur de fond au survol              */
+  color: var(--color-dark);                                     /* Couleur du texte au survol             */
 }
 
 /* ----------------------------------------------------------- */
@@ -435,83 +433,83 @@ main {
 /* ----------------------------------------------------------- */
 
 .contact-section {
-  padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite */
-  background-color: var(--color-light);                    /* Couleur de fond pour la section de contact */
-  text-align: center;                                           /* Centre le texte horizontalement */
-  display: flex;                                                /* Utilise Flexbox pour un alignement flexible */
+  padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite                  */
+  background-color: var(--color-light);                         /* Couleur de fond pour la section de contact   */
+  text-align: center;                                           /* Centre le texte horizontalement              */
+  display: flex;                                                /* Utilise Flexbox pour un alignement flexible  */
   justify-content: center;                                      /* Centre le contenu à l'intérieur de la section */
 }
 
 .contact-container {
-  background-color: var(--color-dark);                     /* Couleur de fond pour le conteneur de contact */
-  width: 60%;                                                   /* Largeur de 60% du conteneur parent */
+  background-color: var(--color-dark);                          /* Couleur de fond pour le conteneur de contact  */
+  width: 60%;                                                   /* Largeur de 60% du conteneur parent           */
   margin: 30px auto;                                            /* Marge : 30px en haut/bas, auto à gauche/droite */
-  padding: 50px;                                                /* Espacement interne de 50px */
-  border-radius: 20px;                                          /* Coins arrondis */
+  padding: 50px;                                                /* Espacement interne de 50px                   */
+  border-radius: 20px;                                          /* Coins arrondis                              */
 }
 
 .contact-section h2 {
-  font-size: 2.5rem;                                            /* Taille de police pour le titre  */
-  color: var(--color-dark);                                /* Couleur du titre (noir) */
-  margin-bottom: 20px;                                          /* Marge en bas pour espacer du contenu suivant */
-  text-shadow: var(--color-dark) 0px 0px 2px;              /* Ombre de texte pour un effet visuel */
+  font-size: 2.5rem;                                            /* Taille de police pour le titre               */
+  color: var(--color-dark);                                     /* Couleur du titre (noir)                      */
+  margin-bottom: 20px;                                          /* Marge en bas pour espacer du contenu suivant  */
+  text-shadow: var(--color-dark) 0px 0px 2px;                   /* Ombre de texte pour un effet visuel          */
 }
 
 .contact-form {
   display: flex;                                                /* Utilisation de Flexbox pour aligner les éléments */
-  flex-direction: column;                                       /* Aligne les champs verticalement */
-  width: 100%;                                                  /* Prend toute la largeur du conteneur */
-  max-width: 1000px;                                             /* Largeur maximale pour le formulaire */
-  margin: 0 auto;                                               /* Centre le formulaire */
+  flex-direction: column;                                       /* Aligne les champs verticalement               */
+  width: 100%;                                                  /* Prend toute la largeur du conteneur          */
+  max-width: 1000px;                                            /* Largeur maximale pour le formulaire           */
+  margin: 0 auto;                                               /* Centre le formulaire                          */
 }
 
 .form-group {
-  margin-bottom: 15px;                                          /* Marge en bas pour espacement entre les champs    */
-  text-align: left;                                             /* Aligne le texte à gauche                         */
+  margin-bottom: 15px;                                          /* Marge en bas pour espacement entre les champs   */
+  text-align: left;                                             /* Aligne le texte à gauche                       */
 }
 
 .form-group label {
-  font-size: 1rem;                                              /* Taille de police pour les labels                 */
-  color: var(--color-light);                                     /* Couleur du texte des labels                      */
-  font-weight: 700;                                             /* Gras pour les labels                             */
-  padding-bottom: 5px;                                          /* Espacement en bas                                */
-  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
+  font-size: 1rem;                                              /* Taille de police pour les labels               */
+  color: var(--color-light);                                    /* Couleur du texte des labels                    */
+  font-weight: 700;                                             /* Gras pour les labels                           */
+  padding-bottom: 5px;                                          /* Espacement en bas                              */
+  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel            */
 }
 
 .form-input,
 .form-textarea {
-  width: 100%;                                                  /* Prend toute la largeur du conteneur              */
-  padding: 10px;                                                /* Espacement interne                               */
-  font-size: 16px;                                              /* Taille de texte pour les champs                  */
-  border: 2px solid var(--color-light);                          /* Bordure autour des champs                        */
-  border-radius: 10px;                                          /* Coins arrondis                                   */
-  outline: none;                                                /* Supprime l'outline par défaut                    */
+  width: 100%;                                                  /* Prend toute la largeur du conteneur            */
+  padding: 10px;                                                /* Espacement interne                             */
+  font-size: 16px;                                              /* Taille de texte pour les champs                */
+  border: 2px solid var(--color-light);                         /* Bordure autour des champs                      */
+  border-radius: 10px;                                          /* Coins arrondis                                */
+  outline: none;                                                /* Supprime l'outline par défaut                  */
   box-sizing: border-box;                                       /* Inclut les bordures et le padding dans les dimensions */
-  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour donner de la profondeur               */
-  margin-top: 5px;                                              /* Marge en haut                                    */
+  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour donner de la profondeur             */
+  margin-top: 5px;                                              /* Marge en haut                                  */
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--color-yellow);                           /* Change la couleur de la bordure au focus        */
+  border-color: var(--color-yellow);                            /* Change la couleur de la bordure au focus      */
 }
 
 .contact-btn {
-  padding: 12px 20px;                                           /* Espacement interne du bouton                     */
-  background-color: var(--color-yellow);                    /* Couleur de fond pour le bouton                   */
-  color: var(--color-dark);                                /* Couleur du texte pour le bouton                  */
-  border: none;                                                 /* Supprime la bordure par défaut                   */
-  border-radius: 10px;                                          /* Coins arrondis pour le bouton                   */
-  cursor: pointer;                                              /* Change le curseur au survol                     */
-  transition: background-color 0.3s ease;                       /* Transition fluide pour le changement de couleur  */
-  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour le bouton                             */
-  font-size: 17px;                                              /* Taille de police pour le bouton                  */
-  font-weight: 700;                                             /* Gras pour le texte du bouton                     */
+  padding: 12px 20px;                                           /* Espacement interne du bouton                   */
+  background-color: var(--color-yellow);                        /* Couleur de fond pour le bouton                 */
+  color: var(--color-dark);                                     /* Couleur du texte pour le bouton                */
+  border: none;                                                 /* Supprime la bordure par défaut                 */
+  border-radius: 10px;                                          /* Coins arrondis pour le bouton                 */
+  cursor: pointer;                                              /* Change le curseur au survol                   */
+  transition: background-color 0.3s ease;                       /* Transition fluide pour le changement de couleur */
+  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour le bouton                           */
+  font-size: 17px;                                              /* Taille de police pour le bouton                */
+  font-weight: 700;                                             /* Gras pour le texte du bouton                   */
 }
 
 .contact-btn:hover {
-  background-color: var(--color-yellow);                    /* Change la couleur au survol                     */
-  text-shadow: var(--color-dark) 0px 0px 1px;              /* Ombre de texte pour un effet visuel              */
+  background-color: var(--color-yellow);                        /* Change la couleur au survol                    */
+  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel            */
 }
 
 /* ----------------------------------------------------------- */
@@ -519,43 +517,43 @@ main {
 /* ----------------------------------------------------------- */
 
 .container-search-jeux {
-  padding: 20px;                                                /* Espacement interne */
-  background-color: var(--color-dark);                     /* Fond clair */
+  padding: 20px;                                                /* Espacement interne                            */
+  background-color: var(--color-dark);                          /* Fond clair                                   */
 }
 
 .section-recherche-jeux {
-  display: flex;                                                /* Flexbox pour l'alignement */
-  justify-content: center;                                      /* Centre le contenu */
-  margin-bottom: 20px;                                          /* Espace en bas */
+  display: flex;                                                /* Flexbox pour l'alignement                    */
+  justify-content: center;                                      /* Centre le contenu                            */
+  margin-bottom: 20px;                                          /* Espace en bas                               */
 }
 
 .recherche-form-jeux {
-  display: flex;                                                /* Flexbox pour le formulaire */
+  display: flex;                                                /* Flexbox pour le formulaire                   */
 }
 
 .recherche {
-  padding: 10px;                                                /* Espacement interne */
-  border: 1px solid var(--border-color);                        /* Bordure */
-  border-radius: 5px;                                           /* Coins arrondis */
-  margin-right: 10px;                                           /* Espace à droite */
+  padding: 10px;                                                /* Espacement interne                           */
+  border: 1px solid var(--border-color);                        /* Bordure                                     */
+  border-radius: 5px;                                           /* Coins arrondis                              */
+  margin-right: 10px;                                           /* Espace à droite                             */
 }
 
 #search-btn {
-  padding: 10px 15px;                                           /* Espacement interne */
-  background-color: var(--primary-color);                       /* Couleur de fond */
-  color: white;                                               /* Couleur du texte */
-  border: none;                                                 /* Pas de bordure */
-  border-radius: 5px;                                           /* Coins arrondis */
-  cursor: pointer;                                              /* Curseur en main */
-  transition: background-color 0.3s ease;                       /* Transition au survol */
+  padding: 10px 15px;                                           /* Espacement interne                           */
+  background-color: var(--primary-color);                       /* Couleur de fond                             */
+  color: white;                                               /* Couleur du texte                             */
+  border: none;                                                 /* Pas de bordure                              */
+  border-radius: 5px;                                           /* Coins arrondis                              */
+  cursor: pointer;                                              /* Curseur en main                             */
+  transition: background-color 0.3s ease;                       /* Transition au survol                         */
 }
 
 #search-btn:hover {
-  background-color: var(--primary-color-hover);                 /* Couleur de fond au survol */
+  background-color: var(--primary-color-hover);                 /* Couleur de fond au survol                   */
 }
 
 .all-container-jeux {
-  background-color: var(--background-light);                    /* Fond clair */
+  background-color: var(--background-light);                    /* Fond clair                                 */
 }
 
 /* ----------------------------------------------------------- */
@@ -564,33 +562,33 @@ main {
 
 /* Styles pour le bouton "Retour en haut" */
 .back-to-top {
-  position: fixed;                                              /* Position fixe dans la fenêtre                      */
-  bottom: 20px;                                                 /* Positionné à 20px du bas                          */
-  right: 20px;                                                  /* Positionné à 20px de la droite                    */
-  background-color: var(--color-dark);                     /* Fond sombre pour le bouton                        */
-  color: var(--color-yellow);                                  /* Couleur du texte pour le bouton                   */
-  width: 50px;                                                  /* Largeur de 50px pour le bouton                    */
-  height: 50px;                                                 /* Hauteur de 50px pour le bouton                    */
-  border-radius: 50%;                                           /* Arrondi complet pour le bouton                    */
-  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu    */
-  justify-content: center;                                      /* Centre le contenu horizontalement                  */
-  font-size: 24px;                                              /* Taille de police par défaut                        */
-  text-decoration: none;                                        /* Supprime le soulignement                           */
-  opacity: 0;                                                   /* Rend le bouton invisible par défaut                */
-  transition: opacity 0.3s, background-color 0.3s;              /* Transition fluide pour l'opacité et la couleur    */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                   /* Ombre pour donner de la profondeur                 */
-  z-index: 1000;                                                /* Positionnement au-dessus des autres éléments       */
-  font-size: 50px;                                              /* Taille de police agrandie pour le bouton           */
-  align-items: center;                                          /* Centre le contenu verticalement                    */
+  position: fixed;                                              /* Position fixe dans la fenêtre                  */
+  bottom: 20px;                                                 /* Positionné à 20px du bas                      */
+  right: 20px;                                                  /* Positionné à 20px de la droite                */
+  background-color: var(--color-dark);                          /* Fond sombre pour le bouton                    */
+  color: var(--color-yellow);                                   /* Couleur du texte pour le bouton               */
+  width: 50px;                                                  /* Largeur de 50px pour le bouton                */
+  height: 50px;                                                 /* Hauteur de 50px pour le bouton                */
+  border-radius: 50%;                                           /* Arrondi complet pour le bouton                */
+  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
+  justify-content: center;                                      /* Centre le contenu horizontalement              */
+  font-size: 24px;                                              /* Taille de police par défaut                   */
+  text-decoration: none;                                        /* Supprime le soulignement                       */
+  opacity: 0;                                                   /* Rend le bouton invisible par défaut            */
+  transition: opacity 0.3s, background-color 0.3s;              /* Transition fluide pour l'opacité et la couleur */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                   /* Ombre pour donner de la profondeur             */
+  z-index: 1000;                                                /* Positionnement au-dessus des autres éléments   */
+  font-size: 50px;                                              /* Taille de police agrandie pour le bouton       */
+  align-items: center;                                          /* Centre le contenu verticalement                */
 }
 
 .back-to-top:hover {
-  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol               */
-  color: var(--color-dark);                                /* Change la couleur du texte au survol              */
+  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol           */
+  color: var(--color-dark);                                    /* Change la couleur du texte au survol          */
 }
 
 .back-to-top.show {
-  opacity: 1;                                                   /* Rend le bouton visible quand actif                 */
+  opacity: 1;                                                   /* Rend le bouton visible quand actif             */
 }
 
 /* ------------------------------------------------------- */
@@ -598,223 +596,224 @@ main {
 /* ------------------------------------------------------- */
 
 .container-login {
-  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
-  min-height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);   /* Dégradé avec 3 couleurs */
+  background-size: 400% 400%;                                             /* Taille du fond pour l'animation fluide */
+  animation: gradientAnimation 15s ease infinite;                         /* Animation du fond sur 15 secondes en boucle */
+  min-height: 70vh;                                                       /* Hauteur minimale de 70% de la hauteur de la fenêtre */
+  display: flex;                                                          /* Utilisation de Flexbox pour centrer le contenu */
+  justify-content: center;                                                /* Centrage horizontal du contenu */
+  align-items: center;                                                    /* Centrage vertical du contenu */
+  align-content: center;                                                  /* Centrage des éléments multiples dans le conteneur */
 }
 
-/* Animation pour donner un effet dynamique */
+/* Animation du fond pour créer un mouvement fluide */
 @keyframes gradientAnimation {
-0% {
-    background-position: 0% 50%;
+  0% {
+      background-position: 0% 50%;                                        /* Position initiale du fond à gauche */
+  }
+  50% {
+      background-position: 100% 50%;                                      /* Milieu de l'animation : le fond est à droite */
+  }
+  100% {
+      background-position: 0% 50%;                                        /* Retour à la position initiale pour boucle infinie */
+  }
 }
-50% {
-    background-position: 100% 50%;
-}
-100% {
-    background-position: 0% 50%;
-}
-}
+
 
 .form-container {
-  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent */
-  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond */
-  padding: 40px;                                                /* Espacement intérieur */
-  border-radius: 15px;                                          /* Bords arrondis */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur */
-  width: 400px;                                                 /* Largeur du formulaire */
-  max-width: 90%;                                               /* Largeur maximale pour petits écrans */
-  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
-  color: var(--color-dark);                                /* Texte blanc */
+  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent                       */
+  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond                    */
+  padding: 40px;                                                /* Espacement intérieur                          */
+  border-radius: 15px;                                          /* Bords arrondis                               */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur                         */
+  width: 400px;                                                 /* Largeur du formulaire                        */
+  max-width: 90%;                                               /* Largeur maximale pour petits écrans          */
+  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile                              */
+  color: var(--color-dark);                                     /* Texte blanc                                  */
 }
 
 .login-h1 {
-  text-align: center;                                           /* Titre centré */
-  font-size: 32px;                                              /* Taille du titre */
-  margin-bottom: 30px;                                          /* Espacement en bas du titre */
+  text-align: center;                                           /* Titre centré                                */
+  font-size: 32px;                                              /* Taille du titre                              */
+  margin-bottom: 30px;                                          /* Espacement en bas du titre                   */
 }
 
 .input-box {
   position: relative;
-  margin-bottom: 20px;                                          /* Espacement entre champs */
+  margin-bottom: 20px;                                          /* Espacement entre champs                       */
 }
 
 .input-box label {
-  font-weight: bold;          /* Texte du label en gras */
-  color: #09172b;             /* Couleur initiale du texte */
-  transition: color 0.3s ease; /* Transition fluide pour la couleur */
+  font-weight: bold;                                            /* Texte du label en gras                    */
+  color: #09172b;                                             /* Couleur initiale du texte                 */
+  transition: color 0.3s ease;                                  /* Transition fluide pour la couleur         */
 }
 
 .input-box input:focus + label,
 .input-box input:hover + label {
-  color: #ECC33E;             /* Couleur du texte lors de l'animation (sur focus ou survol) */
+  color: #ECC33E;                                             /* Couleur du texte lors de l'animation (sur focus ou survol) */
 }
 
 .input-box input {
-  width: 100%;                                                  /* Champ en pleine largeur */
-  padding: 10px 40px 10px 10px;                                 /* Espacement interne */
-  border-radius: 5px;                                           /* Bords arrondis */
-  border: none;                                                 /* Suppression des bordures*/
-  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
-  color: var(--text-dark);                                      /* Texte blanc */
-  font-size: 16px;                                              /* Taille du texte */
+  width: 100%;                                                  /* Champ en pleine largeur                      */
+  padding: 10px 40px 10px 10px;                                 /* Espacement interne                           */
+  border-radius: 5px;                                           /* Bords arrondis                              */
+  border: none;                                                 /* Suppression des bordures                     */
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent                            */
+  color: var(--text-dark);                                      /* Texte blanc                                 */
+  font-size: 16px;                                              /* Taille du texte                             */
   font-weight: 400;
 }
 
 .input-box input::placeholder {
-  color: var(--text-dark);                                      /* Couleur du texte du placeholder */
+  color: var(--text-dark);                                      /* Couleur du texte du placeholder              */
 }
 
 .input-box i {
-  position: absolute;                                           /* Icone absolue dans le champ */
-  right: 10px;                                                  /* Espace à droite */
-  top: 50%;                                                     /* Centrage vertical */
-  transform: translateY(-50%);                                  /* Ajustement de centrage */
-  color: var(--color-dark);                                /* Couleur de l'icône */
-  cursor: pointer;                                              /* Pointeur sur icône */
+  position: absolute;                                           /* Icone absolue dans le champ                  */
+  right: 10px;                                                  /* Espace à droite                             */
+  top: 50%;                                                     /* Centrage vertical                            */
+  transform: translateY(-50%);                                  /* Ajustement de centrage                       */
+  color: var(--color-dark);                                     /* Couleur de l'icône                           */
+  cursor: pointer;                                              /* Pointeur sur icône                           */
 }
 
 .remember {
-  display: flex;                                                /* Aligne le texte et checkbox */
-  justify-content: space-between;                               /* Espace entre les éléments */
-  margin-bottom: 20px;                                          /* Espacement en bas */
+  display: flex;                                                /* Aligne le texte et checkbox                  */
+  justify-content: space-between;                               /* Espace entre les éléments                    */
+  margin-bottom: 20px;                                          /* Espacement en bas                            */
 }
 
 .remember label {
-  display: flex;                                                /* Flex pour aligner */
-  align-items: center;                                          /* Centrer verticalement */
+  display: flex;                                                /* Flex pour aligner                            */
+  align-items: center;                                          /* Centrer verticalement                        */
 }
 
 .remember input {
-  margin-right: 10px;                                           /* Espace entre checkbox et texte */
+  margin-right: 10px;                                           /* Espace entre checkbox et texte               */
 }
 
 .remember a {
-  color: var(--color-dark);                                /* Couleur du lien */
-  text-decoration: none;                                        /* Suppression du soulignement */
-  text-shadow: 0px 0px 1px var(--color-dark);               /* Ombre pour profondeur */
+  color: var(--color-dark);                                     /* Couleur du lien                              */
+  text-decoration: none;                                        /* Suppression du soulignement                  */
+  text-shadow: 0px 0px 1px var(--color-dark);                   /* Ombre pour profondeur                        */
 }
 
 .remember a:hover {
-  text-decoration: underline;                                   /* Soulignement au survol */
+  text-decoration: underline;                                   /* Soulignement au survol                       */
 }
 
 .btn-login {
-  width: 100%;                                                  /* Bouton pleine largeur */
-  background-color: var(--color-yellow);                                  /* Couleur de fond du bouton */
-  color: var(--color-dark);                                             /* Texte foncé */
-  border: none;                                                 /* Suppression des bordures */
-  padding: 15px;                                                /* Espacement interne */
-  border-radius: 5px;                                           /* Bords arrondis */
-  font-size: 18px;                                              /* Taille du texte */
-  cursor: pointer;                                              /* Curseur pointeur */
-  transition: background-color 0.3s ease;                       /* Transition fluide */
+  width: 100%;                                                  /* Bouton pleine largeur                        */
+  background-color: var(--color-yellow);                        /* Couleur de fond du bouton                     */
+  color: var(--color-dark);                                     /* Texte foncé                                  */
+  border: none;                                                 /* Suppression des bordures                     */
+  padding: 15px;                                                /* Espacement interne                           */
+  border-radius: 5px;                                           /* Bords arrondis                              */
+  font-size: 18px;                                              /* Taille du texte                             */
+  cursor: pointer;                                              /* Curseur pointeur                             */
+  transition: background-color 0.3s ease;                       /* Transition fluide                            */
 }
 
 .btn-login:hover {
-  background-color: var(--color-dark);                                  /* Couleur en survol */
-  color: var(--color-yellow);
+  background-color: var(--color-dark);                          /* Couleur en survol                            */
+  color: var(--color-yellow);                                   /* Couleur en survol                            */
 }
 
 .register-login {
-  text-align: center;                                           /* Centrer le texte */
-  margin-top: 20px;                                             /* Espacement en haut */
+  text-align: center;                                           /* Centrer le texte                             */
+  margin-top: 20px;                                             /* Espacement en haut                           */
 }
 
 .register-login a {
-  color: var(--color-yellow);                                             /* Couleur du lien */
-  text-decoration: none;                                        /* Pas de soulignement */
-  font-weight: bold;                                            /* Lien en gras */
-  text-shadow: 0px 0px 1px var(--color-dark);               /* Ombre pour profondeur */
+  color: var(--color-yellow);                                   /* Couleur du lien                             */
+  text-decoration: none;                                        /* Pas de soulignement                          */
+  font-weight: bold;                                            /* Lien en gras                                */
+  text-shadow: 0px 0px 1px var(--color-dark);                   /* Ombre pour profondeur                        */
 }
 
 .register-login a:hover {
-  text-decoration: underline;                                   /* Soulignement au survol */
+  text-decoration: underline;                                   /* Soulignement au survol                       */
 }
 
 /* ------------------------------------------------------- */
-/* Styles pour la page d'inscription                        */
+/* Styles pour la page d'inscription                       */
 /* ------------------------------------------------------- */
-
 
 .background-inscription {
-  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
-  min-height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  background: linear-gradient(135deg, #0C1D36, #ebf1ff, #ECC33E);   /* Dégradé avec 3 couleurs */
+  background-size: 400% 400%;                                             /* Taille du fond pour l'animation fluide */
+  animation: gradientAnimation 15s ease infinite;                         /* Animation du fond sur 15 secondes en boucle */
+  min-height: 80vh;                                                       /* Hauteur minimale de 70% de la hauteur de la fenêtre */
+  display: flex;                                                          /* Utilisation de Flexbox pour centrer le contenu */
+  justify-content: center;                                                /* Centrage horizontal du contenu */
+  align-items: center;                                                    /* Centrage vertical du contenu */
+  align-content: center;                                                  /* Centrage des éléments multiples dans le conteneur */
 }
 
-/* Animation pour donner un effet dynamique */
+/* Animation du fond pour créer un mouvement fluide */
 @keyframes gradientAnimation {
-0% {
-    background-position: 0% 50%;
+  0% {
+      background-position: 0% 50%;                                        /* Position initiale du fond à gauche */
+  }
+  50% {
+      background-position: 100% 50%;                                      /* Milieu de l'animation : le fond est à droite */
+  }
+  100% {
+      background-position: 0% 50%;                                        /* Retour à la position initiale pour boucle infinie */
+  }
 }
-50% {
-    background-position: 100% 50%;
-}
-100% {
-    background-position: 0% 50%;
-}
-}
+
 
 .form-wrapper {
-  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent */
-  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond */
-  padding: 40px;                                                /* Espacement intérieur */
-  border-radius: 15px;                                          /* Bords arrondis */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur */
-  width: 400px;                                                 /* Largeur du formulaire */
-  max-width: 90%;                                               /* Largeur maximale pour petits écrans */
-  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile */
-  color: var(--color-dark);                                     /* Couleur du texte */
+  background-color: rgba(255, 255, 255, 0.1);                 /* Fond semi-transparent                       */
+  backdrop-filter: blur(10px);                                  /* Effet de flou sur le fond                    */
+  padding: 40px;                                                /* Espacement intérieur                          */
+  border-radius: 15px;                                          /* Bords arrondis                               */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);                  /* Ombre pour profondeur                         */
+  width: 400px;                                                 /* Largeur du formulaire                        */
+  max-width: 90%;                                               /* Largeur maximale pour petits écrans          */
+  border: 1px solid rgba(255, 255, 255, 0.3);                 /* Bordure subtile                              */
+  color: var(--color-dark);                                     /* Couleur du texte                             */
 }
 
 .register-heading {
-  text-align: center;                                           /* Titre centré */
-  font-size: 32px;                                              /* Taille du titre */
-  margin-bottom: 30px;                                          /* Espacement en bas du titre */
+  text-align: center;                                           /* Titre centré                                */
+  font-size: 32px;                                              /* Taille du titre                              */
+  margin-bottom: 30px;                                          /* Espacement en bas du titre                   */
 }
 
 .input-field {
   position: relative;
-  margin-bottom: 20px;                                          /* Espacement entre les champs */
+  margin-bottom: 20px;                                          /* Espacement entre les champs                   */
 }
 
 .input-field label {
-  font-weight: bold;                                            /* Texte du label en gras */
+  font-weight: bold;                                            /* Texte du label en gras                       */
 }
 
 .input-field-text {
-  width: 100%;                                                  /* Champ en pleine largeur */
-  padding: 10px 40px 10px 10px;                                 /* Espacement interne */
-  border-radius: 5px;                                           /* Bords arrondis */
-  border: none;                                                 /* Suppression des bordures */
-  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
-  color: var(--text-dark);                                      /* Couleur du texte */
-  font-size: 16px;                                              /* Taille du texte */
+  width: 100%;                                                  /* Champ en pleine largeur                      */
+  padding: 10px 40px 10px 10px;                                 /* Espacement interne                           */
+  border-radius: 5px;                                           /* Bords arrondis                              */
+  border: none;                                                 /* Suppression des bordures                     */
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent                            */
+  color: var(--text-dark);                                      /* Couleur du texte                            */
+  font-size: 16px;                                              /* Taille du texte                             */
   font-weight: 400;
 }
 
 .input-field-text::placeholder {
-  color: var(--text-dark);                                      /* Couleur du placeholder */
+  color: var(--text-dark);                                      /* Couleur du placeholder                       */
 }
 
 .input-field-password {
-  width: 100%;                                                  /* Largeur du champ de mot de passe */
-  padding: 10px 40px 10px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent */
-  color: var(--text-dark);                                      /* Couleur du texte */
+  width: 100%;                                                  /* Largeur du champ de mot de passe            */
+  padding: 10px 40px 10px 10px;                                 /* Espacement interne                           */
+  border-radius: 5px;                                           /* Bords arrondis                              */
+  border: none;                                                 /* Suppression des bordures                     */
+  background-color: rgba(255, 255, 255, 0.3);                 /* Fond transparent                            */
+  color: var(--text-dark);                                      /* Couleur du texte                            */
 }
 
 .password-container {
@@ -828,128 +827,128 @@ main {
 }
 
 .terms-link {
-  color: var(--color-dark);                                /* Couleur du lien */
-  text-decoration: none;                                        /* Suppression du soulignement */
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour donner du relief */
+  color: var(--color-dark);                                     /* Couleur du lien                              */
+  text-decoration: none;                                        /* Suppression du soulignement                  */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);               /* Ombre pour donner du relief                  */
 }
 
 .terms-link:hover {
-  text-decoration: underline;                                   /* Soulignement au survol */
+  text-decoration: underline;                                   /* Soulignement au survol                       */
 }
 
 .btn-submit {
-  width: 100%;                                                  /* Bouton pleine largeur */
-  background-color: #ECC33E;                                  /* Couleur de fond du bouton */
-  color: #0C1D36;                                             /* Couleur du texte */
-  border: none;                                                 /* Suppression des bordures */
-  padding: 15px;                                                /* Espacement interne */
-  border-radius: 5px;                                           /* Bords arrondis */
-  font-size: 18px;                                              /* Taille du texte */
-  cursor: pointer;                                              /* Curseur pointeur */
-  transition: background-color 0.3s ease;                       /* Transition pour le hover */
-  }
+  width: 100%;                                                  /* Bouton pleine largeur                        */
+  background-color: #ECC33E;                                  /* Couleur de fond du bouton                     */
+  color: #0C1D36;                                             /* Couleur du texte                             */
+  border: none;                                                 /* Suppression des bordures                     */
+  padding: 15px;                                                /* Espacement interne                           */
+  border-radius: 5px;                                           /* Bords arrondis                              */
+  font-size: 18px;                                              /* Taille du texte                             */
+  cursor: pointer;                                              /* Curseur pointeur                             */
+  transition: background-color 0.3s ease;                       /* Transition pour le hover                     */
+}
 
 .btn-submit:hover {
-  background-color: #FFD700;                                  /* Couleur au survol */
+  background-color: #FFD700;                                  /* Couleur au survol                             */
 }
 
 small b {
-  color: #FF0000;                                             /* Couleur du texte */
+  color: #FF0000;                                             /* Couleur du texte                             */
 }
 
 .required:after {
-  content: '*';                                                 /* Ajouter une étoile après le label */
-  color: red;                                                 /* Couleur de l'étoile */
-  margin-left: 5px;                                             /* Espacement entre le label et l'étoile */
-  font-weight: bold;                                            /* Rendre l'étoile en gras */
-  font-size: 1.2em;                                             /* Agrandir légèrement l'étoile */
+  content: '*';                                                 /* Ajouter une étoile après le label           */
+  color: red;                                                 /* Couleur de l'étoile                          */
+  margin-left: 5px;                                             /* Espacement entre le label et l'étoile        */
+  font-weight: bold;                                            /* Rendre l'étoile en gras                      */
+  font-size: 1.2em;                                             /* Agrandir légèrement l'étoile                 */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles pour le conteneur de footer                          */
 /* ----------------------------------------------------------- */
 .container-footer {
-  background-color: var(--color-dark);                          /* Couleur de fond sombre pour le footer */
-  color: var(--color-light);                                    /* Couleur du texte (blanc ou clair) */
-  padding: 20px;                                                /* Espacement interne pour le footer */
-  display: flex;                                                /* Flexbox pour disposer les sections */
-  justify-content: space-between;                               /* Espace uniforme entre les sections */
+  background-color: var(--color-dark);                          /* Couleur de fond sombre pour le footer         */
+  color: var(--color-light);                                    /* Couleur du texte (blanc ou clair)            */
+  padding: 20px;                                                /* Espacement interne pour le footer             */
+  display: flex;                                                /* Flexbox pour disposer les sections            */
+  justify-content: space-between;                               /* Espace uniforme entre les sections             */
   flex-wrap: wrap;                                              /* Permet aux sections de se réorganiser en ligne si nécessaire */
-  align-items: flex-start;                                      /* Aligne les sections en haut verticalement */
-  box-shadow: var(--color-dark)0px 0px 10px;                    /* Ajout d'une ombre pour la profondeur */
+  align-items: flex-start;                                      /* Aligne les sections en haut verticalement     */
+  box-shadow: var(--color-dark) 0px 0px 10px;                    /* Ajout d'une ombre pour la profondeur         */
 }
 
 /* Section contenant les informations */
 .information {
   flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
-  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30%               */
   padding: 10px;                                                /* Ajout d'un peu de marge interne pour l'aération */
-  text-align: left;                                             /* Aligne le texte à gauche */
+  text-align: left;                                             /* Aligne le texte à gauche                       */
 }
 
 /* Styles pour le titre de la section information */
 .information h2 {
-  font-size: 1.5rem;                                            /* Taille de la police pour le titre */
-  margin-bottom: 10px;                                          /* Espace sous le titre */
-  color: var(--color-yellow);                                   /* Couleur du titre (orange) */
+  font-size: 1.5rem;                                            /* Taille de la police pour le titre              */
+  margin-bottom: 10px;                                          /* Espace sous le titre                           */
+  color: var(--color-yellow);                                   /* Couleur du titre (orange)                     */
 }
 
 /* Styles pour le paragraphe d'information */
 .information p {
-  font-size: 1rem;                                              /* Taille de la police du paragraphe */
-  margin-bottom: 10px;                                          /* Espace sous le paragraphe */
-  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ajoute une légère ombre au texte */
+  font-size: 1rem;                                              /* Taille de la police du paragraphe              */
+  margin-bottom: 10px;                                          /* Espace sous le paragraphe                      */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ajoute une légère ombre au texte               */
 }
 
 .liens {
   flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
-  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30%               */
   padding: 10px;                                                /* Ajoute de l'espace interne autour de la section */
   display: flex;                                                /* Utilise flexbox pour disposer les éléments à l'intérieur */
-  align-items: center;                                          /* Centre les éléments verticalement */
+  align-items: center;                                          /* Centre les éléments verticalement               */
   justify-content: space-evenly;                                /* Espace uniforme entre les éléments dans la section */
 }
 
 /* Conteneur pour le contenu des liens */
 .liens-content {
   display: flex;                                                /* Utilise flexbox pour les éléments à l'intérieur */
-  flex-direction: column;                                       /* Aligne les éléments en colonne */
+  flex-direction: column;                                       /* Aligne les éléments en colonne                */
 }
 
 /* Style pour les titres dans la section des liens */
 .liens p {
-  margin-bottom: 10px;                                          /* Espace sous le titre pour aérer le contenu */
-  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour donner du relief au texte */
-  font-size: 1rem;                                              /* Taille de la police pour les titres */
-  color: var(--color-yellow);                                   /* Couleur orange pour les titres */
+  margin-bottom: 10px;                                          /* Espace sous le titre pour aérer le contenu     */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour donner du relief au texte    */
+  font-size: 1rem;                                              /* Taille de la police pour les titres            */
+  color: var(--color-yellow);                                   /* Couleur orange pour les titres                 */
 }
 
 /* Style des liens dans la section */
 .liens a {
-  color: var(--text-light);                                     /* Couleur du texte des liens (blanc ou clair) */
-  text-decoration: none;                                        /* Supprime le soulignement par défaut des liens */
+  color: var(--text-light);                                     /* Couleur du texte des liens (blanc ou clair)    */
+  text-decoration: none;                                        /* Supprime le soulignement par défaut des liens   */
   transition: color 0.3s ease;                                  /* Transition douce pour le changement de couleur lors du survol */
-  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour le texte des liens */
-  font-size: 0.7rem;                                            /* Taille réduite pour les liens */
+  text-shadow: var(--color-dark) 0px 0px 3px;                   /* Ombre légère pour le texte des liens           */
+  font-size: 0.7rem;                                            /* Taille réduite pour les liens                  */
 }
 
 /* Effet hover sur les liens */
 .liens a:hover {
-  color: var(--color-yellow);                                    /* Change la couleur du lien au survol (jaune) */
+  color: var(--color-yellow);                                    /* Change la couleur du lien au survol (jaune)   */
 }
 
 .reseaux {
   flex: 1;                                                      /* Prend une largeur égale à celle des autres sections */
-  max-width: 30%;                                               /* Limite la largeur maximale à 30% */
+  max-width: 30%;                                               /* Limite la largeur maximale à 30%               */
   padding: 10px;                                                /* Ajoute de l'espace interne autour de la section */
-  text-align: right;                                            /* Aligne le texte et les icônes à droite */
+  text-align: right;                                            /* Aligne le texte et les icônes à droite         */
 }
 
 /* Conteneur pour le contenu des réseaux sociaux */
 .reseaux-content {
   display: flex;                                                /* Utilise flexbox pour les éléments à l'intérieur */
-  flex-direction: column;                                       /* Aligne les éléments en colonne */
-  align-items: center;                                          /* Centre les éléments horizontalement */
+  flex-direction: column;                                       /* Aligne les éléments en colonne                */
+  align-items: center;                                          /* Centre les éléments horizontalement             */
 }
 
 /* Style des liens vers les réseaux sociaux */
@@ -958,28 +957,28 @@ small b {
 }
 
 .small {
-  text-align: center;                                           /* Centre le texte dans cette section */
-  background-color: var(--color-dark-2);                        /* Fond sombre pour le texte */
-  padding: 20px 0;                                              /* Ajoute de l'espace en bas de la section */
+  text-align: center;                                           /* Centre le texte dans cette section              */
+  background-color: var(--color-dark-2);                        /* Fond sombre pour le texte                      */
+  padding: 20px 0;                                              /* Ajoute de l'espace en bas de la section        */
   width: 100%;                                                  /* La section small prend toute la largeur du footer */
 }
 
 /* Style pour le petit texte dans la section small */
 .small small {
-  font-size: 0.7rem;                                            /* Taille de police réduite pour le texte petit */
-  color: var(--color-yellow);                                  /* Couleur orange pour le petit texte */
-  margin-bottom: 10px;                                          /* Espace sous le texte pour aérer le contenu */
+  font-size: 0.7rem;                                            /* Taille de police réduite pour le texte petit   */
+  color: var(--color-yellow);                                   /* Couleur orange pour le petit texte             */
+  margin-bottom: 10px;                                          /* Espace sous le texte pour aérer le contenu      */
 }
 
 /* Style des liens dans la section small */
 .small a {
-  color: var(--color-light);                                     /* Couleur du texte pour les liens (blanc ou clair) */
-  text-decoration: none;                                        /* Supprime le soulignement des liens */
+  color: var(--color-light);                                    /* Couleur du texte pour les liens (blanc ou clair) */
+  text-decoration: none;                                        /* Supprime le soulignement des liens              */
 }
 
 /* Effet hover sur les liens dans la section small */
 .small a:hover {
-  color: var(--color-yellow);                                    /* Change la couleur des liens au survol (jaune) */
+  color: var(--color-yellow);                                   /* Change la couleur des liens au survol (jaune)  */
 }
 
 /* ----------------------------------------------------------- */
@@ -987,110 +986,109 @@ small b {
 /* ----------------------------------------------------------- */
 
 .container-profil {
-  display: flex;                                                /* Utilise Flexbox pour aligner les éléments */
-  flex-direction: column;                                       /* Aligne les sections en colonne */
-  align-items: center;                                          /* Centre les éléments horizontalement */
-  justify-content: center;                                      /* Centre les éléments verticalement */
-  width: 100%;                                                  /* La section occupe toute la largeur */
-  background-color: var(--color-light);                    /* Applique une couleur de fond claire */
-  padding-top: 30px;                                            /* Ajoute de l'espace en haut de la section */
+  display: flex;                                                /* Utilise Flexbox pour aligner les éléments        */
+  flex-direction: column;                                       /* Aligne les sections en colonne                  */
+  align-items: center;                                          /* Centre les éléments horizontalement              */
+  justify-content: center;                                      /* Centre les éléments verticalement                */
+  width: 100%;                                                  /* La section occupe toute la largeur              */
+  background-color: var(--color-light);                         /* Applique une couleur de fond claire             */
+  padding-top: 30px;                                            /* Ajoute de l'espace en haut de la section        */
 }
 
 .profil-container {
-  width: 100%;                                                  /* La section prend 100% de la largeur disponible */
-  max-width: 1200px;                                            /* Limite la largeur maximale à 1200px */
-  margin-bottom: 30px;                                          /* Ajoute de l'espace en bas de chaque section */
+  width: 100%;                                                  /* La section prend 100% de la largeur disponible   */
+  max-width: 1200px;                                            /* Limite la largeur maximale à 1200px             */
+  margin-bottom: 30px;                                          /* Ajoute de l'espace en bas de chaque section      */
 }
 
 .profil-card {
-  background-color: var(--color-dark);                     /* Utilise une couleur de fond sombre pour la carte */
-  padding: 20px;                                                /* Ajoute de l'espace interne autour du contenu */
-  border-radius: 10px;                                          /* Arrondit les coins de la carte */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);                   /* Ajoute une ombre pour donner de la profondeur */
-  width: 100%;                                                  /* La carte prend toute la largeur disponible */
+  background-color: var(--color-dark);                          /* Utilise une couleur de fond sombre pour la carte */
+  padding: 20px;                                                /* Ajoute de l'espace interne autour du contenu     */
+  border-radius: 10px;                                          /* Arrondit les coins de la carte                  */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);                   /* Ajoute une ombre pour donner de la profondeur    */
+  width: 100%;                                                  /* La carte prend toute la largeur disponible       */
 }
 
 .profil-title h2 {
-  font-size: 1.5rem;                                            /* Taille de police du titre */
-  color: var(--color-light);                                     /* Applique une couleur claire au texte du titre */
+  font-size: 1.5rem;                                            /* Taille de police du titre                       */
+  color: var(--color-light);                                    /* Applique une couleur claire au texte du titre    */
 }
 
 .profil-card-content {
   display: flex;                                                /* Utilise Flexbox pour aligner les éléments horizontalement */
-  justify-content: space-between;                               /* Espace les éléments de manière uniforme */
-  align-items: center;                                          /* Aligne les éléments au centre verticalement */
+  justify-content: space-between;                               /* Espace les éléments de manière uniforme         */
+  align-items: center;                                          /* Aligne les éléments au centre verticalement      */
 }
 
 .profil-user-info {
   display: flex;                                                /* Aligne l'avatar et les informations sur une ligne */
-  align-items: center;                                          /* Centre verticalement l'avatar et les infos */
+  align-items: center;                                          /* Centre verticalement l'avatar et les infos      */
 }
 
 .profil-image {
-  width: 150px;                                                 /* Largeur de l'image de profil */
-  height: 150px;                                                /* Hauteur de l'image de profil */
-  border-radius: 50%;                                           /* Rend l'image ronde */
-  margin-right: 20px;                                           /* Ajoute de l'espace entre l'image et le texte */
+  width: 150px;                                                 /* Largeur de l'image de profil                    */
+  height: 150px;                                                /* Hauteur de l'image de profil                    */
+  border-radius: 50%;                                           /* Rend l'image ronde                             */
+  margin-right: 20px;                                           /* Ajoute de l'espace entre l'image et le texte    */
   margin-top: 30px;                                             /* Ajoute de l'espace entre l'image et le haut de la carte */
 }
 
 .profil-user-details {
-  display: flex;                                                /* Utilise Flexbox pour l'alignement des détails */
-  flex-direction: column;                                       /* Affiche les détails en colonne */
+  display: flex;                                                /* Utilise Flexbox pour l'alignement des détails    */
+  flex-direction: column;                                       /* Affiche les détails en colonne                  */
 }
 
 .input-profil-box {
-  font-size: 20px;                                              /* Définit la taille de la police à 20 pixels*/
-  border-radius: 10px;                                          /* Arrondit les coins de 10px*/
-  padding: 3px 20px;                                            /* Un espace interne de 20 pixels à gauche et à droite*/
+  font-size: 20px;                                              /* Définit la taille de la police à 20 pixels      */
+  border-radius: 10px;                                          /* Arrondit les coins de 10px                      */
+  padding: 3px 20px;                                            /* Un espace interne de 20 pixels à gauche et à droite */
 }
 
-
 .profil-user-details p {
-  color: var(--text-light);                                     /* Utilise une couleur claire pour le texte */
+  color: var(--text-light);                                     /* Utilise une couleur claire pour le texte        */
   margin-bottom: 5px;                                           /* Ajoute un léger espacement entre chaque ligne de détail */
-  font-size: 20px;                                              /* Taille de police pour les détails p*/
+  font-size: 20px;                                              /* Taille de police pour les détails p             */
 }
 
 .profil-user-details span {
-  font-weight: bold;                                            /* Met en gras le contenu des détails */
+  font-weight: bold;                                            /* Met en gras le contenu des détails              */
   color: var(--text-yellow);                                    /* Utilise une couleur jaune pour les informations importantes */
 }
 
 .increment-button {
-  display: inline-block;                                        /* Définit le bouton comme un bloc en ligne */
-  background-color: var(--color-dark);                     /* Couleur de fond du bouton */
-  color: var(--text-yellow);                                    /* Couleur du texte du bouton */
-  padding: 10px 15px;                                           /* Espace interne du bouton */
-  margin-top: 15px;                                             /* Espace entre le bouton et les autres éléments */
-  border-radius: 5px;                                           /* Arrondit légèrement les coins du bouton */
-  text-decoration: none;                                        /* Supprime le soulignement du lien */
-  transition: background-color 0.3s ease;                       /* Transition douce pour le changement de couleur */
+  display: inline-block;                                        /* Définit le bouton comme un bloc en ligne       */
+  background-color: var(--color-dark);                     /* Couleur de fond du bouton                       */
+  color: var(--text-yellow);                                    /* Couleur du texte du bouton                      */
+  padding: 10px 15px;                                           /* Espace interne du bouton                        */
+  margin-top: 15px;                                             /* Espace entre le bouton et les autres éléments   */
+  border-radius: 5px;                                           /* Arrondit légèrement les coins du bouton         */
+  text-decoration: none;                                        /* Supprime le soulignement du lien                */
+  transition: background-color 0.3s ease;                       /* Transition douce pour le changement de couleur   */
 }
 
 .increment-button a:hover {
-  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
-  color: var(--color-dark);                                /* Change la couleur du texte au survol */
+  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol            */
+  color: var(--color-dark);                                /* Change la couleur du texte au survol           */
 }
 
 .increment-button:hover {
-  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol */
-  color: var(--color-dark);                                /* Change la couleur du texte au survol */
+  background-color: var(--text-yellow);                         /* Change la couleur de fond au survol            */
+  color: var(--color-dark);                                /* Change la couleur du texte au survol           */
 }
 
 .profil-card-content a {
   background-color: var(--border-orange);                       /* Utilise une couleur claire pour les liens dans la carte */
-  color: var(--color-dark);                                /* Supprime le soulignement du lien */
+  color: var(--color-dark);                                /* Supprime le soulignement du lien                */
 }
 
 .profil-card-content a:hover {
   background-color: var(--color-dark);                     /* Utilise une couleur claire pour les liens dans la carte */
-  color: var(--border-orange);                                  /* Supprime le soulignement du lien */
+  color: var(--border-orange);                                  /* Supprime le soulignement du lien                */
 }
 
 .profil-title h1 {
-  color: var(--border-orange);                                  /* Définit la couleur du texte */
-  font-size: xx-large;                                          /* Définit la taille de la police à xx-large */
+  color: var(--border-orange);                                  /* Définit la couleur du texte                    */
+  font-size: xx-large;                                          /* Définit la taille de la police à xx-large      */
 }
 
 /* ----------------------------------------------------------- */
@@ -1099,262 +1097,259 @@ small b {
 
 /* Styles for the games page */
 .container-search-jeux {
-  background-color: var(--color-dark);                     /* Fond sombre pour la section de recherche */
-  padding: 20px;                                                /* Espacement intérieur */
+  background-color: var(--color-dark);                          /* Fond sombre pour la section de recherche      */
+  padding: 20px;                                                /* Espacement intérieur                            */
 }
 
 .search-container {
   max-width: 600px;                                             /* Largeur maximale pour le conteneur de recherche */
-  margin: 0 auto;                                               /* Centre le conteneur horizontalement */
-  padding: 20px;                                                /* Espacement intérieur */
-  
+  margin: 0 auto;                                               /* Centre le conteneur horizontalement            */
+  padding: 20px;                                                /* Espacement intérieur                            */
 }
-.all-container-jeux{
-  background-color: var(--color-dark);                     /* Fond sombre pour la section de jeux */
-  padding: 20px;                                                /* Espacement intérieur */
+
+.all-container-jeux {
+  background-color: var(--color-dark);                          /* Fond sombre pour la section de jeux           */
+  padding: 20px;                                                /* Espacement intérieur                            */
 }
 
 .game-card-container {
   display: grid;                                                /* Utilise une grille pour disposer les cartes de jeu */
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée des colonnes flexibles */
-  gap: 60px;                                                    /* Espace entre les cartes de jeu */
-  padding: 40px;                                                /* Espacement intérieur */
-  margin: 0 50px;                                               /* Marge supérieure et inférieure */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée des colonnes flexibles                   */
+  gap: 60px;                                                    /* Espace entre les cartes de jeu                 */
+  padding: 40px;                                                /* Espacement intérieur                            */
+  margin: 0 50px;                                               /* Marge supérieure et inférieure                 */
 }
 
 .game-card {
-  background-color: #dbe1f0;                     /* Fond sombre pour chaque carte de jeu */
-  border-radius: 10px;                                          /* Coins arrondis */
-  overflow: hidden;                                             /* Cache le contenu débordant */
-  box-shadow: 0 5px 3px var(--color-light);                   /* Ombre pour un effet de profondeur */
-  transition: transform 0.3s ease;                              /* Transition douce lors du survol */
+  background-color: #dbe1f0;                                  /* Fond sombre pour chaque carte de jeu          */
+  border-radius: 10px;                                          /* Coins arrondis                                */
+  overflow: hidden;                                             /* Cache le contenu débordant                     */
+  box-shadow: 0 5px 3px var(--color-light);                     /* Ombre pour un effet de profondeur              */
+  transition: transform 0.3s ease;                              /* Transition douce lors du survol                */
 }
 
 .game-card:hover {
-  transform: translateY(-5px);                                  /* Lève légèrement la carte lors du survol */
+  transform: scale(1.2);                                        /* Effet d'agrandissement au survol               */
 }
 
 .game-card-header {
   padding: 10px;                                                /* Espacement intérieur pour l'en-tête de la carte */
-  background-color: var(--color-);                    /* Fond jaune pour l'en-tête */
+  background-color: var(--color-);                              /* Fond jaune pour l'en-tête                     */
 }
 
 .game-card-header h3 {
-  margin: 0;                                                    /* Supprime la marge par défaut */
-  color: var(--color-dark);                                /* Couleur du texte dans l'en-tête */
-  font-size: 1.2rem;                                            /* Taille de police pour le titre */
-  text-align: center;                                           /* Centre le texte dans l'en-tête */
+  margin: 0;                                                    /* Supprime la marge par défaut                   */
+  color: var(--color-dark);                                     /* Couleur du texte dans l'en-tête                */
+  font-size: 1.2rem;                                            /* Taille de police pour le titre                 */
+  text-align: center;                                           /* Centre le texte dans l'en-tête                 */
 }
 
 .game-card-image {
-  width: 100%;                                                  /* Prend toute la largeur de la carte */
-  height: 250px;                                                /* Hauteur fixe pour l'image */
-  object-fit: cover;                                            /* Couvre l'espace sans déformer l'image */
-}                                           
+  width: 100%;                                                  /* Prend toute la largeur de la carte             */
+  height: 250px;                                                /* Hauteur fixe pour l'image                      */
+  object-fit: cover;                                            /* Couvre l'espace sans déformer l'image          */
+}
 
 .platforms {
-  display: flex;                                                /* Utilise flexbox pour les plateformes */
-  justify-content: center;                                      /* Centre les plateformes horizontalement */
-  align-items: center;                                          /* Centre les plateformes verticalement */
+  display: flex;                                                /* Utilise flexbox pour les plateformes           */
+  justify-content: center;                                      /* Centre les plateformes horizontalement          */
+  align-items: center;                                          /* Centre les plateformes verticalement            */
   flex-wrap: wrap;                                              /* Permet aux éléments de se plier sur plusieurs lignes */
-  margin-top: 10px;                                             /* Espace au-dessus */
-  padding: 5px;                                                 /* Espacement intérieur */
+  margin-top: 10px;                                             /* Espace au-dessus                               */
+  padding: 5px;                                                 /* Espacement intérieur                            */
 }
 
 .platform {
   display: flex;                                                /* Utilise flexbox pour les éléments de plateforme */
-  flex-wrap: wrap;                                              /* Permet aux éléments de se plier */
-  justify-content: center;                                      /* Centre les éléments de plateforme */
+  flex-wrap: wrap;                                              /* Permet aux éléments de se plier                 */
+  justify-content: center;                                      /* Centre les éléments de plateforme               */
 }
 
 .platform-item {
-  margin: 3px;                                                  /* Espace autour de chaque élément de plateforme */
+  margin: 3px;                                                  /* Espace autour de chaque élément de plateforme   */
   display: flex;                                                /* Utilise flexbox pour chaque élément de plateforme */
-  align-items: center;                                          /* Centre les éléments verticalement */
+  align-items: center;                                          /* Centre les éléments verticalement               */
+  width: 40px;                                                  /* Largeur fixe pour les icônes                   */
 }
 
 .platform-item img {
-  width: 25px;                                                  /* Largeur fixe pour les icônes de plateforme */
-  height: auto;                                                 /* Hauteur automatique pour garder le ratio */
+  width: 25px;                                                  /* Largeur fixe pour les icônes de plateforme      */
+  height: auto;                                                 /* Hauteur automatique pour garder le ratio       */
 }
 
 .button-container {
-  text-align: center;                                           /* Centre les boutons dans le conteneur */
-  padding: 10px 10px 20px 10px;                                 /* Espacement intérieur */
+  text-align: center;                                           /* Centre les boutons dans le conteneur           */
+  padding: 10px 10px 20px 10px;                                 /* Espacement intérieur                            */
 }
 
 .detail-button {
-  display: inline-block;                                        /* Permet d'ajouter du padding autour du bouton */
-  padding: 10px 30px;                                           /* Espacement intérieur du bouton */
-  background-color: var(--color-dark);                    /* Fond jaune pour le bouton */
-  color: var(--color-yellow);                                /* Couleur du texte */
-  text-decoration: none;                                        /* Supprime le soulignement */
-  border-radius: 5px;                                           /* Coins arrondis */
-  transition: background-color 0.3s ease;                       /* Transition douce pour le fond */
+  display: inline-block;                                        /* Permet d'ajouter du padding autour du bouton    */
+  padding: 10px 30px;                                           /* Espacement intérieur du bouton                  */
+  background-color: var(--color-dark);                          /* Fond jaune pour le bouton                      */
+  color: var(--color-yellow);                                   /* Couleur du texte                               */
+  text-decoration: none;                                        /* Supprime le soulignement                       */
+  border-radius: 5px;                                           /* Coins arrondis                                */
+  transition: background-color 0.3s ease;                       /* Transition douce pour le fond                  */
 }
 
 .detail-button:hover {
-  background-color: var(--color-yellow);                    /* Change la couleur de fond lors du survol */
-  color: var(--color-dark);                                /* Couleur du texte lors du survol */
-  border-radius: 5px;                                           /* Coins arrondis */
+  background-color: var(--color-yellow);                        /* Change la couleur de fond lors du survol       */
+  color: var(--color-dark);                                     /* Couleur du texte lors du survol                */
+  border-radius: 5px;                                           /* Coins arrondis                                */
 }
 
 .pagination {
-  display: flex;                                                /* Utilise flexbox pour la pagination */
-  justify-content: center;                                      /* Centre les éléments de pagination */
-  margin-top: 20px;                                             /* Espace au-dessus */
-  padding-bottom: 20px;                                         /* Espacement en bas */
+  display: flex;                                                /* Utilise flexbox pour la pagination             */
+  justify-content: center;                                      /* Centre les éléments de pagination              */
+  margin-top: 20px;                                             /* Espace au-dessus                               */
+  padding-bottom: 20px;                                         /* Espacement en bas                             */
   border-radius: 20px;
 }
 
 .pagination a, .pagination span {
-  margin: 0 10px;                                               /* Espace autour des éléments de pagination */
-  padding: 5px 10px;                                            /* Espacement intérieur */
-  background-color: var(--color-yellow);                    /* Fond jaune pour les éléments de pagination */
-  color: var(--color-dark);                                /* Couleur du texte */
-  text-decoration: none;                                        /* Supprime le soulignement */
-  border-radius: 8px;                                           /* Coins arrondis */
-  border: var(--color-dark-2) 3px solid;
+  margin: 0 10px;                                               /* Espace autour des éléments de pagination       */
+  padding: 5px 10px;                                            /* Espacement intérieur                           */
+  background-color: var(--color-yellow);                    /* Fond jaune pour les éléments de pagination     */
+  color: var(--color-dark);                                /* Couleur du texte                              */
+  text-decoration: none;                                        /* Supprime le soulignement                       */
+  border-radius: 8px;                                           /* Coins arrondis                                */
+  border: var(--color-dark-2) 3px solid;                       /* Bordure                                       */
 }
 
 .pagination a:hover {
-  background-color: var(--color-dark-2);                      /* Change la couleur de fond lors du survol */
-  color: var(--color-yellow);
-  border: var(--color-yellow) 3px solid;
-  border-radius: 5px;                                           /* Coins arrondis */
-
+  background-color: var(--color-dark-2);                      /* Change la couleur de fond lors du survol      */
+  color: var(--color-yellow);                                    /* Couleur du texte                              */
+  border: var(--color-yellow) 3px solid;                       /* Bordure                                       */
+  border-radius: 5px;                                           /* Coins arrondis                                */
 }
 
 /* ----------------------------------------------------------- */
 /* Styles généraux pour la page de games detail                */
 /* ----------------------------------------------------------- */
 
+.container-wrap {
+  background-color: var(--color-dark);
+}
 
-.game-detail-container {
-  max-width: 1200px;                                            /* Largeur maximale pour le conteneur de détails du jeu */
-  margin: 30px auto;                                            /* Centre le conteneur horizontalement */
-  padding: 20px;                                                /* Espacement intérieur */
-  background-color: var(--color-dark);                     /* Fond sombre */
-  color: var(--text-light);                                     /* Couleur du texte */
-  border-radius: 20px;                                          /* Coins arrondis */
+.game-detail-image {
+  position: relative; /* Pour positionner les éléments enfants */
 }
 
 .game-detail-image img {
-  width: 100%;                                                  /* Prend toute la largeur du conteneur */
-  height: auto;                                                 /* Hauteur automatique */
-  border-radius: 10px;                                          /* Coins arrondis pour l'image */
-  margin-bottom: 20px;                                          /* Espace en bas de l'image */
+  width: 100%; /* Prend toute la largeur du conteneur */
+  height: auto; /* Hauteur automatique */
+  opacity: 1; /* Opacité normale pour l'image */
+  border-radius: 10px; /* Coins arrondis pour l'image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre autour de l'image */
+}
+
+.overlay {
+  position: absolute; /* Pour superposer l'information */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  color: white; /* Couleur du texte */
+  padding: 20px; /* Espacement interne */
+  border-radius: 10px; /* Coins arrondis pour l'overlay */
+  display: flex; /* Utiliser flexbox pour centrer le contenu */
+  flex-direction: column; /* Colonne pour l'info */
+  justify-content: center; /* Centrer verticalement */
+}
+
+.game-detail-container {
+  max-width: 1200px; /* Largeur maximale pour le conteneur de détails du jeu */
+  padding: 20px; /* Espacement intérieur */
+  color: var(--color-light); /* Couleur du texte */
+  border-radius: 20px; /* Coins arrondis */
 }
 
 .game-detail-info {
-  display: grid;                                                /* Utilise une grille pour les informations de jeu */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Crée des colonnes flexibles */
-  gap: 20px;                                                    /* Espace entre les éléments */
+  display: grid; /* Utilise une grille pour les informations de jeu */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crée des colonnes flexibles */
+  gap: 20px; /* Espace entre les éléments */
 }
 
 .game-detail-p {
-  display: flex;                                                /* Utilise flexbox pour les éléments de paragraphe */
-  flex-direction: column;                                      /* Aligne les éléments verticalement */
+  display: flex; /* Utilise flexbox pour les éléments de paragraphe */
+  flex-direction: column; /* Aligne les éléments verticalement */
 }
 
 .game-detail-p a {
-  color: var(--text-light);                                    /* Couleur white pour les liens */
+  color: var(--color-light); /* Couleur white pour les liens */
 }
 
 .game-detail-p a:hover {
-  color: var(--text-yellow);                                    /* Couleur jaune pour les liens */
+  color: var(--color-yellow); /* Couleur jaune pour les liens */
 }
 
 .game-detail-p span {
-  font-weight: bold;                                            /* Met en gras le texte */
-  color: var(--text-yellow);                                    /* Couleur jaune pour le texte */
-  margin-bottom: 5px;                                           /* Espace en bas du texte */
-  font-size: 1.3em;                                             /* Taille de la police */
+  font-weight: bold; /* Met en gras le texte */
+  color: var(--color-yellow); /* Couleur jaune pour le texte */
+  margin-bottom: 5px; /* Espace en bas du texte */
+  font-size: 1.3em; /* Taille de la police */
 }
 
 .container-multi-reponse {
-  margin-bottom: 15px;                                          /* Espace en bas pour les réponses multiples */
+  margin-bottom: 15px; /* Espace en bas pour les réponses multiples */
 }
 
 .tag-label {
-  font-weight: bold;                                            /* Met en gras les étiquettes de tags */
-  color: var(--text-yellow);                                    /* Couleur jaune pour les étiquettes de tags */
-  margin-bottom: 5px;                                           /* Espace en bas des étiquettes */
-  font-size: 1.2em ;                                            /* Taille de la police */
+  font-weight: bold; /* Met en gras les étiquettes de tags */
+  color: var(--color-yellow); /* Couleur jaune pour les étiquettes de tags */
+  margin-bottom: 5px; /* Espace en bas des étiquettes */
+  font-size: 1.2em; /* Taille de la police */
 }
 
 .container-multi-reponse a {
-  color: var(--text-light);                                     /* Couleur white pour les étiquettes de tags */
+  color: var(--color-light); /* Couleur white pour les étiquettes de tags */
 }
 
 .container-multi-reponse a:hover {
-  color: var(--text-yellow);                                    /* Couleur jaune pour les étiquettes de tags */
+  color: var(--color-yellow); /* Couleur jaune pour les étiquettes de tags */
 }
 
 .tag-list {
-  font-size: 1.2em;                                             /* Taille de police pour la liste de tags */
+  font-size: 1.2em; /* Taille police pour la liste de tags */
 }
 
 .platforms-detail {
-  margin-top: 10px;                                             /* Espace au-dessus des détails de plateforme */
+  margin-top: 10px; /* Espace au-dessus des détails de plateforme */
 }
 
 .platform-detail {
-  display: flex;                                                /* Utilise flexbox pour les détails de plateforme */
-  flex-wrap: wrap;                                              /* Permet aux éléments de se plier */
-  gap: 10px;                                                    /* Espace entre les éléments */
-  align-items: center;                                          /* Centre les éléments verticalement */
+  display: flex; /* Utilise flexbox pour les détails de plateforme */
+  align-items: center; /* Centre verticalement */
 }
 
-.platform-item-detail {
-  display: flex;                                                /* Utilise flexbox pour chaque élément de plateforme */
-  align-items: center;                                          /* Centre les éléments verticalement */
+.platform-detail img {
+  margin-right: 10px; /* Espace à droite des logos de plateforme */
 }
 
-.platform-item-detail img {
-  width: 30px;                                                  /* Largeur fixe pour les icônes de plateforme */
-  height: auto;                                                 /* Hauteur automatique pour garder le ratio */
-}
-
-.section-video-h3 {
-  text-align: center;                                           /* Centre le titre de la section vidéo */
-  color: var(--text-yellow);                                    /* Couleur jaune pour le titre */
-  margin: 20px 0;                                               /* Marge en haut et en bas */
-  font-size: 2rem;                                              /* Taille de police pour le titre */
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);                /* Ombre pour le texte */
+.all-game-description {
+  margin-top: 20px; /* Espace au-dessus de la description du jeu */
 }
 
 .section-video {
-  display: flex;                                                /* Utilise flexbox pour la section vidéo */
-  justify-content: center;                                      /* Centre les vidéos */
-  gap: 20px;                                                    /* Espace entre les vidéos */
-  margin-bottom: 20px;                                          /* Espace en bas de la section */
+  margin-bottom: 20px; /* Espace au-dessous de la section vidéo */
+}
+
+.section-video-h3 {
+  margin-bottom: 10px; /* Espace en bas du titre vidéo */
 }
 
 .ifram {
-  display: flex;                                                /* Utilise flexbox pour les iframes */
-  flex-wrap: wrap;                                              /* Permet aux iframes de se plier */
-  justify-content: center;                                      /* Centre les iframes */
-  gap: 20px;                                                    /* Espace entre les iframes */
-}
-  
-.game-description {
-  padding: 20px 20px 45px 20px;                                               /* Espacement intérieur */
-  width: 100%;                                                  /* Prend toute la largeur disponible */
-  text-align: justify;                                          /* Justifie le texte */
-  display: flex;                                                /* Utilise flexbox pour disposer les éléments */
-  flex-direction: column;                                       /* Organise les éléments en colonne */
-  align-items: center;                                          /* Centre les éléments enfants */
+  display: flex; /* Utilise flexbox pour les iframes */
+  gap: 10px; /* Espace entre les iframes */
 }
 
-.game-description-detail {
-  width: 80%;                                                   /* Largeur de la description */
-  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);                /* Ombre pour le texte */
+.game-description {
+  color: var(--color-light); /* Fond pour la description */
+  padding: 15px; /* Espacement interne */
+  border-radius: 8px; /* Coins arrondis pour la description */
 }
-  
-.game-description h3 {
-  color: var(--text-yellow);                                    /* Couleur jaune pour le titre de description */
-  font-size: 2rem;                                              /* Taille de police pour le titre */
-  margin-bottom: 10px;                                          /* Espace en bas du titre */
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);                /* Ombre pour le texte */
+
+.game-description-detail h3 {
+  margin-bottom: 10px; /* Espace en bas du titre de la description */
 }
