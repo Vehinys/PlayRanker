@@ -15,18 +15,18 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 200, nullable: false)]
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     /**
-     * @var Collection<int, SousCategory>
+     * @var Collection<int, Platform>
      */
-    #[ORM\ManyToMany(targetEntity: SousCategory::class, inversedBy: 'categories')]
-    private Collection $category;
+    #[ORM\OneToMany(targetEntity: Platform::class, mappedBy: 'category')]
+    private Collection $platforms;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
+        $this->platforms = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -39,7 +39,7 @@ class Category
         return $this->name;
     }
 
-    public function setName(?string $name): static
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -47,27 +47,32 @@ class Category
     }
 
     /**
-     * @return Collection<int, SousCategory>
+     * @return Collection<int, Platform>
      */
-    public function getCategory(): Collection
+    public function getPlatforms(): Collection
     {
-        return $this->category;
+        return $this->platforms;
     }
 
-    public function addCategory(SousCategory $category): static
+    public function addPlatform(Platform $platform): static
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
+        if (!$this->platforms->contains($platform)) {
+            $this->platforms->add($platform);
+            $platform->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(SousCategory $category): static
+    public function removePlatform(Platform $platform): static
     {
-        $this->category->removeElement($category);
+        if ($this->platforms->removeElement($platform)) {
+            // set the owning side to null (unless already changed)
+            if ($platform->getCategory() === $this) {
+                $platform->setCategory(null);
+            }
+        }
 
         return $this;
     }
-
 }

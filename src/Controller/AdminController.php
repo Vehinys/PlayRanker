@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
-use App\Entity\SousCategory;
-use App\Form\SousCategoryType;
+use App\Entity\Platform;
+use App\Form\PlatformType;
 use App\Repository\CategoryRepository;
-use App\Repository\SousCategoryRepository;
+use App\Repository\PlatformRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ class AdminController extends AbstractController
      * Affiche la page du tableau de bord administrateur, présentant une liste de toutes les catégories et sous-catégories.
      *
      * @param CategoryRepository $categoryRepository Le repository pour gérer les entités Category.
-     * @param SousCategoryRepository $sousCategoryRepository Le repository pour gérer les entités SousCategory.
+     * @param PlatformRepository $PlatformRepository Le repository pour gérer les entités SousCategory.
      *
      * @return Response La page du tableau de bord administrateur rendue.
      */
@@ -33,16 +33,16 @@ class AdminController extends AbstractController
         public function index(
             
             CategoryRepository $categoryRepository, 
-            SousCategoryRepository $sousCategoryRepository
+            PlatformRepository $PlatformRepository
             
         ): Response {
 
             $categories = $categoryRepository->findAll();
-            $subcategory = $sousCategoryRepository->findAll();
+            $platform = $PlatformRepository->findAll();
         
             return $this->render('admin/index.html.twig', [
                 'categories' => $categories,
-                'subcategory' => $subcategory,
+                'platform' => $platform,
             ]);
         }
 
@@ -60,7 +60,7 @@ class AdminController extends AbstractController
      * @return Response Le template rendu pour le formulaire de création de catégorie.
      */
 
-        #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
+        #[Route('/admin/category/new', name: 'category.add', methods: ['GET', 'POST'])]
         public function newCategory(
             
             Request $request,
@@ -81,7 +81,7 @@ class AdminController extends AbstractController
                 return $this->redirectToRoute('admin');
             }   
 
-            return $this->render('admin/platformAdd.html.twig', [
+            return $this->render('admin/categoryAdd.html.twig', [
                 'form' => $form,
                 'sessionId'=> $category->getId()
             ]);
@@ -198,7 +198,7 @@ class AdminController extends AbstractController
      */
 
 
-        #[Route('/admin/subcategory/new', name: 'subcategory.add', methods: ['GET', 'POST'])]
+        #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
         public function newsubcategory(
             
             Request $request,
@@ -206,22 +206,22 @@ class AdminController extends AbstractController
             
         ): Response {
 
-            $subcategory = new SousCategory();
-            $form = $this->createForm(SousCategoryType::class, $subcategory);
+            $Platform = new Platform();
+            $form = $this->createForm(PlatformType::class, $Platform);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $subcategory = $form->getData();
-                $manager->persist($subcategory);
+                $Platform = $form->getData();
+                $manager->persist($Platform);
                 $manager->flush();
 
                 return $this->redirectToRoute('admin');
             }   
 
-            return $this->render('admin/subcategoryadd.html.twig', [
+            return $this->render('admin/platformadd.html.twig', [
                 'form' => $form,
-                'sessionId'=> $subcategory->getId()
+                'sessionId'=> $Platform->getId()
             ]);
         }
 
@@ -242,37 +242,37 @@ class AdminController extends AbstractController
      */
 
 
-        #[Route('/admin/subcategory/edit/{subcategoryId}', name: 'subcategory.edit', methods: ['GET', 'POST'])]
+        #[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
         public function editsubcategory(
 
-            int $subcategoryId, 
-            SousCategoryRepository $repository,  
+            int $platformId, 
+            PlatformRepository $repository,  
             Request $request, 
             EntityManagerInterface $manager
 
         ): Response {
 
-            $subcategory = $repository->find($subcategoryId);
+            $platform = $repository->find($platformId);
         
-            if (!$subcategory) {
+            if (!$platform) {
                 throw $this->createNotFoundException('ubcategory not found');
             }
         
-            $form = $this->createForm(SousCategoryType::class, $subcategory);
+            $form = $this->createForm(platformType::class, $platform);
             $form->handleRequest($request);
         
             if ($form->isSubmitted() && $form->isValid()) {
-                $subcategory = $form->getData();
-                $manager->persist($subcategory);
+                $platform = $form->getData();
+                $manager->persist($platform);
                 $manager->flush();
         
                 $this->addFlash('success', 'The category has been successfully updated');
-                return $this->redirectToRoute('admin', ['id' => $subcategory->getId()]);
+                return $this->redirectToRoute('admin', ['id' => $platform->getId()]);
             }
         
             return $this->render('admin/platformEdit.html.twig', [
                 'form' => $form->createView(),
-                'subcategoryId' => $subcategory->getId(),
+                'platformId' => $platform->getId(),
             ]);
         }
 
@@ -294,33 +294,33 @@ class AdminController extends AbstractController
      */
 
 
-        #[Route('/admin/subcategory/delete/{subcategoryId}', name: 'subcategory.delete', methods: ['POST'])]
+        #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
         public function deletesubcategory(
 
-            int $subcategoryId, 
-            SousCategoryRepository $repository, 
+            int $platformId, 
+            PlatformRepository $repository, 
             EntityManagerInterface $manager, 
             Request $request, 
             CsrfTokenManagerInterface $csrfTokenManager
 
         ): Response {
-            $subcategory = $repository->find($subcategoryId);
+            $platform = $repository->find($platformId);
         
-            if (!$subcategory) {
+            if (!$platform) {
                 throw $this->createNotFoundException('Category not found');
             }
         
             // Vérification du token CSRF
             $csrfToken = $request->request->get('_token');
-            if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$subcategoryId, $csrfToken))) {
+            if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$platformId, $csrfToken))) {
                 throw $this->createAccessDeniedException('Invalid CSRF token');
             }
         
             // Supprimer la catégorie
-            $manager->remove($subcategory);
+            $manager->remove($platform);
             $manager->flush();
         
-            $this->addFlash('success', 'The subcategory has been successfully deleted');
+            $this->addFlash('success', 'The platform has been successfully deleted');
             
             return $this->redirectToRoute('admin');
         }
