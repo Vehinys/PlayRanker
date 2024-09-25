@@ -2,7 +2,7 @@
 
 namespace App\HttpClient;
 
-use App\Repository\SousCategoryRepository;
+use App\Repository\PlatformRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -16,13 +16,13 @@ class ApiHttpClient extends AbstractController
      * @property HttpClientInterface $httpClient Le client HTTP utilisé pour effectuer les requêtes API.
      * @property string $url L'URL de base pour l'API RAWG.
      * @property string $key La clé API utilisée pour l'API RAWG.
-     * @property SousCategoryRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
+     * @property PlatformRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
      */
 
         private $httpClient;
         private $url = 'https://api.rawg.io/api/games?';
         private $key = 'key=c2caa004df8a4f65b23177fa9ca935f9';
-        private $sousCategoryRepository;
+        private $platformRepository;
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
@@ -30,13 +30,13 @@ class ApiHttpClient extends AbstractController
      * Construit une nouvelle instance de la classe ApiHttpClient.
      *
      * @param HttpClientInterface $httpClient Le client HTTP à utiliser pour effectuer les requêtes API.
-     * @param SousCategoryRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
+     * @param PlatformRepository $sousCategoryRepository Le repository pour gérer les sous-catégories.
      */
 
-        public function __construct(HttpClientInterface $httpClient, SousCategoryRepository $sousCategoryRepository)
+        public function __construct(HttpClientInterface $httpClient, PlatformRepository $platformRepository)
         {
             $this->httpClient = $httpClient;
-            $this->sousCategoryRepository = $sousCategoryRepository;
+            $this->platformRepository = $platformRepository;
         }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
@@ -56,7 +56,7 @@ class ApiHttpClient extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
-     * Récupère la page suivante de données de jeux depuis l'API RAWG.
+     * 
      *
      * @param int $page Le numéro de page à récupérer.
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
@@ -71,10 +71,10 @@ class ApiHttpClient extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
-     * Retrieves the next page of game data from the RAWG API.
+     * Récupère la page suivante de données de jeux depuis l'API RAWG.
      *
-     * @param int $page The page number to retrieve.
-     * @return array The response data from the RAWG API as an array.
+     * @param int $page Le numéro de page à récupérer.
+     * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
         public function nextPage($page)
@@ -152,13 +152,13 @@ class ApiHttpClient extends AbstractController
     /**
      * Récupère la page suivante de données de jeux depuis l'API RAWG, filtrée par le nom de sous-catégorie fourni.
      *
-     * @param string $sousCategoryName Le nom de la sous-catégorie pour filtrer les jeux.
+     * @param string  Le nom de la sous-catégorie pour filtrer les jeux.
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-        public function searchBySousCategory($sousCategoryName)
+        public function findByPlatform($platformName)
         {
-            $response = $this->httpClient->request('GET', $this->url.$this->key.'&genres='.$sousCategoryName);
+            $response = $this->httpClient->request('GET', $this->url.$this->key.'&genres='.$platformName);
             return $response->toArray();
         }
 

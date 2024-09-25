@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\HttpClient\ApiHttpClient;
 use App\Repository\CategoryRepository;
-use App\Repository\SousCategoryRepository;
+use App\Repository\PlatformRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,11 +89,20 @@ class ApiController extends AbstractController
      */
 
     #[Route('/jeux/search', name: 'search', methods: ['POST'])]
-    public function search(ApiHttpClient $apiHttpClient, Request $request): Response
-    {
-        $input = $request->get('input');
-        $games = $apiHttpClient->gamesSearch($input);
+    public function search(
+
+        // ApiHttpClient et Request sont les deux paramètres demander par la fonction search
+
+        ApiHttpClient $apiHttpClient, // J'injecte le service ApiHttpClient dans la fonction search pour pouvoir utiliser les fonction qui lui sont associées.
+        Request $request // j'injecte la requete dans la fonction search
         
+    ): Response {
+
+        // Je defini la variable $input et je stock la valeur du champ input de la requete a l'interieur de $input
+        $input = $request->get('input');
+        // Je défini la variable Games et 
+        $games = $apiHttpClient->gamesSearch($input);
+
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
         ]);
@@ -161,19 +170,25 @@ class ApiController extends AbstractController
      * Le template `pages/jeux/index.html.twig` est ensuite rendu avec les jeux et les catégories récupérés.
      *
      * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
-     * @param SousCategoryRepository $sousCategoryRepository Le service de repository des sous-catégories.
+     * @param PlatformRepository $sousCategoryRepository Le service de repository des sous-catégories.
      * @param CategoryRepository $categoryRepository Le service de repository des catégories.
      * @param int $id L'ID de la sous-catégorie à rechercher.
      *
      * @return Response La réponse rendue.
      */
 
-    #[Route('/search/sous-category/{id}', name: 'searchBySousCategory')]
-    public function searchBySousCategory(ApiHttpClient $apiHttpClient, SousCategoryRepository $sousCategoryRepository, CategoryRepository $categoryRepository, int $id): Response
-    {
+    #[Route('/search/platform/{id}', name: 'searchByPlatform')]
+    public function searchByPlatform(
+        
+        ApiHttpClient $apiHttpClient, 
+        PlatformRepository $platformRepository, 
+        CategoryRepository $categoryRepository, 
+        int $id
+        
+    ): Response {
 
-        $sousCategory = $sousCategoryRepository->find($id);
-        $games = $sousCategory ? $apiHttpClient->searchBySousCategory($sousCategory->getName()) : [];
+        $platform = $platformRepository->find($id);
+        $games = $platform ? $apiHttpClient->findByPlatform($platform->getName()) : [];
         $categories = $categoryRepository->findAll();
     
         return $this->render('pages/jeux/index.html.twig', [

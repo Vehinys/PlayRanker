@@ -234,7 +234,7 @@ class AdminController extends AbstractController
      * Elle permet à l'utilisateur de modifier une sous-catégorie existante en traitant la soumission du formulaire et en persistant la sous-catégorie mise à jour dans la base de données.
      *
      * @param int $subcategoryId L'ID de la sous-catégorie à modifier.
-     * @param SousCategoryRepository $repository Le repository pour récupérer la sous-catégorie.
+     * @param PlatformRepository $repository Le repository pour récupérer la sous-catégorie.
      * @param Request $request La requête HTTP courante.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister la sous-catégorie mise à jour.
      *
@@ -285,7 +285,7 @@ class AdminController extends AbstractController
      * Elle permet à l'utilisateur de supprimer une sous-catégorie existante en traitant la soumission du formulaire et en supprimant la sous-catégorie de la base de données.
      *
      * @param int $subcategoryId L'ID de la sous-catégorie à supprimer.
-     * @param SousCategoryRepository $repository Le repository pour récupérer la sous-catégorie.
+     * @param PlatformRepository $repository Le repository pour récupérer la sous-catégorie.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour supprimer la sous-catégorie.
      * @param Request $request La requête HTTP courante.
      * @param CsrfTokenManagerInterface $csrfTokenManager Le gestionnaire de jetons CSRF pour vérifier le jeton CSRF.

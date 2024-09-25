@@ -16,28 +16,20 @@ class PlatformRepository extends ServiceEntityRepository
         parent::__construct($registry, Platform::class);
     }
 
-//    /**
-//     * @return Platform[] Returns an array of Platform objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        /**
+     * Trouve toutes les entités SousCategory ayant l'ID spécifié.
+     *
+     * @param int $sousCategoryId L'ID de la SousCategory à trouver.
+     * @return platform[] Un tableau d'entités SousCategory correspondant à l'ID spécifié.
+     */
 
-//    public function findOneBySomeField($value): ?Platform
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByPlatform(int $platformId): array
+    {
+    return $this->createQueryBuilder('c')
+        ->join('c.platform', 'cp')
+        ->andWhere('cp.id = :platformId')
+        ->setParameter('platformId', $platformId)
+        ->getQuery()
+        ->getResult();
+    }
 }

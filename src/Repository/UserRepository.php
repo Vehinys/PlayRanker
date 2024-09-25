@@ -41,21 +41,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-    //     /**
-    //  * Trouve toutes les entités SousCategory ayant l'ID spécifié.
-    //  *
-    //  * @param int $sousCategoryId L'ID de la SousCategory à trouver.
-    //  * @return SousCategory[] Un tableau d'entités SousCategory correspondant à l'ID spécifié.
-    //  */
-
-    //  public function findBySousCategory(int $sousCategoryId): array
-    //  {
-    //  return $this->createQueryBuilder('g')
-    //      ->join('g.sousCategories', 'sc')
-    //      ->andWhere('sc.id = :sousCategoryId')
-    //      ->setParameter('sousCategoryId', $sousCategoryId)
-    //      ->getQuery()
-    //      ->getResult();
-    //  }
-
 }
