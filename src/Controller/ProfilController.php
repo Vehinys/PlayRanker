@@ -7,6 +7,7 @@
 namespace App\Controller;
 
 use App\Entity\Game;
+use App\Entity\GamesList;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ProfilController extends AbstractController
 {
-
         /**
          * Rend la page de profil de l'utilisateur.
          *
@@ -123,30 +123,46 @@ class ProfilController extends AbstractController
         return $this->redirectToRoute('register');
     }
     
-    #[Route ('/game/favoris/{gameId}', name: 'games_favoris')]
+    
+    #[Route('/game/favoris/{gameId}', name: 'games_favoris')]
     public function addFavoris(
 
-        Game $game,
+        int $gameId,
         GamesListRepository $repository,
-        Request $request,
+        Request $request,                
+        EntityManagerInterface $manager  
 
     ): Response {
 
-        $user = $this->getUser();
-        $gameList = $repository->findOneBy(['name' => 'Favoris']);
-        
+        $user = $this->getUser(); 
+    
+        // Récupérer la liste des favoris existante
+        $gameList = $repository->findOneBy(['name' => 'Favoris']); 
+    
+        // Créer une nouvelle instance de Game
         $game = new Game();
-        $gameId = $request->get('gameId');
-        $gameName = $request->get('gameName');
-        $gameData = $request->get('gameData');
-
 
         $game->setIdGameApi($gameId);
+    
+        // Récupérer le nom et les données du jeu depuis la requête
+        $gameName = $request->get('gameName'); 
+        $gameData = $request->get('gameData');
+    
+        // Configurer les propriétés du jeu
         $game->setName($gameName);
-        $game->setData($gameData);
-
-
-
-        return $this->redirectToRoute('detail_jeu');
+        $game->setData([$gameData]);
+    
+        // Ajouter le jeu à la liste de favoris
+        $gameList->addGame($game); // Assurez-vous que addGame gère la relation inverse
+    
+        // Persister les entités
+        $manager->persist($game);        // Persist le nouveau jeu
+        $manager->persist($gameList);    // Persist la liste mise à jour
+        $manager->flush();
+    
+        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]); 
     }
+    
+    
+    
 }

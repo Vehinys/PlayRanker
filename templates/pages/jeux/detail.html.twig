@@ -99,10 +99,17 @@
                                 {% endfor %}
                             </p>
                     </div>
-                    <a href="{{ path('games_favoris', {'gameId': gameDetail.id}) }}"style="color:red; font-size:40px; font-weight:bold;">
-                        <i class="fa-solid fa-heart"></i>
-                    </a>
-                    {% endif %}
+                        {% if app.user %}
+                    <form class="form-add-favoris" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
+                        <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
+                        <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
+                        <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
+                        <button class="btn-add-favoris" type="submit"><i class="fa-solid fa-heart"></i></button>
+                    </form>
+                        {% else %}
+                        {% endif %}
+
+                {% endif %}
             </div>
         </section>
 

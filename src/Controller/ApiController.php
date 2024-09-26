@@ -170,7 +170,7 @@ class ApiController extends AbstractController
      * Le template `pages/jeux/index.html.twig` est ensuite rendu avec les jeux et les catégories récupérés.
      *
      * @param ApiHttpClient $apiHttpClient Le service client HTTP de l'API.
-     * @param PlatformRepository $sousCategoryRepository Le service de repository des sous-catégories.
+     * @param PlatformRepository $platformRepository Le service de repository des sous-catégories.
      * @param CategoryRepository $categoryRepository Le service de repository des catégories.
      * @param int $id L'ID de la sous-catégorie à rechercher.
      *
