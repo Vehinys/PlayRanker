@@ -126,44 +126,40 @@ class ProfilController extends AbstractController
     
     #[Route('/game/favoris/{gameId}', name: 'games_favoris')]
     public function addFavoris(
-
-        int $gamesList,
         int $gameId,                
         GamesListRepository $repository,
         Request $request,                
         EntityManagerInterface $manager  
     ): Response {
 
-        $user = $this->getUser(); 
-    
-        // Récupérer la liste des favoris existante
-        $gameList = $repository->findOneBy(['listId' => '$gamesList']); 
-    
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer la liste de favoris de l'utilisateur (en supposant qu'il n'a qu'une seule liste)
+        $gameList = $repository->findOneBy(['user' => $user, 'name' => 'Favoris']);
+
         // Créer une nouvelle instance de Game
         $game = new Game();
         $game->setIdGameApi($gameId);
-    
+
         // Récupérer le nom et les données du jeu depuis la requête
-        $gameName = $request->get('gameName'); 
+        $gameName = $request->get('gameName');
         $gameData = $request->get('gameData');
-    
+
         // Configurer les propriétés du jeu
         $game->setName($gameName);
         $game->setData([$gameData]);
-    
+
         // Ajouter le jeu à la liste de favoris
-        $gameList->addGame($game); // Assurez-vous que addGame gère la relation inverse
-    
+        $gameList->addGame($game); // Gère la relation ManyToOne automatiquement
+
         // Persister les entités
         $manager->persist($game);        // Persist le nouveau jeu
         $manager->persist($gameList);    // Persist la liste mise à jour
         $manager->flush();
-    
-        return $this->render('favoris/index.html.twig', [
-            'gameList' => $gameList->getGames(), // Passer les jeux à Twig
-        ]);
+
+        // Rendre une vue Twig avec la liste des jeux mis à jour
+        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]); 
     }
-    
-    
     
 }
