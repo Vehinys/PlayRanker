@@ -127,21 +127,20 @@ class ProfilController extends AbstractController
     #[Route('/game/favoris/{gameId}', name: 'games_favoris')]
     public function addFavoris(
 
-        int $gameId,
+        int $gamesList,
+        int $gameId,                
         GamesListRepository $repository,
         Request $request,                
         EntityManagerInterface $manager  
-
     ): Response {
 
         $user = $this->getUser(); 
     
         // Récupérer la liste des favoris existante
-        $gameList = $repository->findOneBy(['name' => 'Favoris']); 
+        $gameList = $repository->findOneBy(['listId' => '$gamesList']); 
     
         // Créer une nouvelle instance de Game
         $game = new Game();
-
         $game->setIdGameApi($gameId);
     
         // Récupérer le nom et les données du jeu depuis la requête
@@ -160,7 +159,9 @@ class ProfilController extends AbstractController
         $manager->persist($gameList);    // Persist la liste mise à jour
         $manager->flush();
     
-        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]); 
+        return $this->render('favoris/index.html.twig', [
+            'gameList' => $gameList->getGames(), // Passer les jeux à Twig
+        ]);
     }
     
     

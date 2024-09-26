@@ -34,19 +34,21 @@
                             {% endif %}
                         </div>
                     </div>
-                        <div>
-                            <!-- Remplacement du lien <a> par un bouton de type submit -->
-                            <button class="increment-button" type="submit">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/>
-                            </button>
+                    <div>
+                        <!-- Remplacement du lien <a> par un bouton de type submit -->
+                        <button class="increment-button" type="submit">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/>
+                        </button>
 
-                            {{ form_end(form) }}
+                        {{ form_end(form) }}
 
-                            <button class="increment-button" onclick="window.location.href='{{ path('profil') }}'">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/>
-                            </button>
+                        <button class="increment-button" onclick="window.location.href='{{ path('profil') }}'">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/>
+                        </button>
 
-                        </div>
+                    </div>
+
+                    
                     </div>
                 </div>
             </div>
