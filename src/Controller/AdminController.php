@@ -38,11 +38,11 @@ class AdminController extends AbstractController
         ): Response {
 
             $categories = $categoryRepository->findAll();
-            $platform = $PlatformRepository->findAll();
+            $platforms = $PlatformRepository->findAll();
         
             return $this->render('admin/index.html.twig', [
                 'categories' => $categories,
-                'platform' => $platform,
+                'platforms' => $platforms,
             ]);
         }
 
@@ -103,16 +103,13 @@ class AdminController extends AbstractController
      * @return Response Le template rendu pour le formulaire de modification de la catégorie.
      */
 
-        #[Route('/admin/platform/edit/{categoryId}', name: 'platform.edit', methods: ['GET', 'POST'])]
+        #[Route('/admin/category/edit/{categoryId}', name: 'category.edit', methods: ['GET', 'POST'])]
         public function editCategory(
-
             int $categoryId, 
             CategoryRepository $repository,  
             Request $request, 
             EntityManagerInterface $manager
-
         ): Response {
-
             $category = $repository->find($categoryId);
         
             if (!$category) {
@@ -123,19 +120,19 @@ class AdminController extends AbstractController
             $form->handleRequest($request);
         
             if ($form->isSubmitted() && $form->isValid()) {
-                $category = $form->getData();
                 $manager->persist($category);
                 $manager->flush();
         
                 $this->addFlash('success', 'The category has been successfully updated');
-                return $this->redirectToRoute('admin', ['id' => $category->getId()]);
+                return $this->redirectToRoute('admin');
             }
         
-            return $this->render('admin/platformEdit.html.twig', [
+            return $this->render('admin/categoryEdit.html.twig', [
                 'form' => $form->createView(),
                 'categoryId' => $category->getId(),
             ]);
         }
+    
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -154,41 +151,41 @@ class AdminController extends AbstractController
      * @return Response La réponse de redirection vers la page d'administration.
      */
 
-        #[Route('/admin/platform/delete/{categoryId}', name: 'platform.delete', methods: ['POST'])]
-        public function deleteCategory(
-            int $categoryId, 
-            CategoryRepository $repository, 
-            EntityManagerInterface $manager, 
-            Request $request, 
-            CsrfTokenManagerInterface $csrfTokenManager
-        ): Response {
-            $category = $repository->find($categoryId);
-        
-            if (!$category) {
-                throw $this->createNotFoundException('Category not found');
-            }
-        
-            // Vérification du token CSRF
-            $csrfToken = $request->request->get('_token');
-            if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$categoryId, $csrfToken))) {
-                throw $this->createAccessDeniedException('Invalid CSRF token');
-            }
-        
-            // Supprimer la catégorie
-            $manager->remove($category);
-            $manager->flush();
-        
-            $this->addFlash('success', 'The category has been successfully deleted');
-            
-            return $this->redirectToRoute('admin');
+    #[Route('/admin/category/delete/{categoryId}', name: 'category.delete', methods: ['POST'])]
+    public function deleteCategory(
+        int $categoryId,
+        CategoryRepository $repository,
+        EntityManagerInterface $manager,
+        Request $request,
+        CsrfTokenManagerInterface $csrfTokenManager
+    ): Response {
+        $category = $repository->find($categoryId);
+    
+        if (!$category) {
+            throw $this->createNotFoundException('Category not found');
         }
+    
+        // Vérification du token CSRF
+        $csrfToken = $request->request->get('_token');
+        if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$categoryId, $csrfToken))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token');
+        }
+    
+        // Supprimer la catégorie
+        $manager->remove($category);
+        $manager->flush();
+    
+        $this->addFlash('success', 'The category has been successfully deleted');
+    
+        return $this->redirectToRoute('admin');
+    }
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
      * Gère la création d'une nouvelle sous-catégorie.
      *
-     * Cette action est mappée à la route '/admin/subcategory/new' avec le nom 'subcategory.add'.
+     * Cette action est mappée à la route '/admin/platform/new' avec le nom 'platform.add'.
      * Elle permet à l'utilisateur de créer une nouvelle sous-catégorie en traitant la soumission du formulaire et en persistant la sous-catégorie dans la base de données.
      *
      * @param Request $request La requête HTTP courante.
@@ -199,7 +196,7 @@ class AdminController extends AbstractController
 
 
         #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
-        public function newsubcategory(
+        public function addPlatform(
             
             Request $request,
             EntityManagerInterface $manager
@@ -230,10 +227,10 @@ class AdminController extends AbstractController
     /**
      * Gère la modification d'une sous-catégorie existante.
      *
-     * Cette action est mappée à la route '/admin/subcategory/edit/{subcategoryId}' avec le nom 'subcategory.edit'.
+     * Cette action est mappée à la route '/admin/platform/edit/{platformId}' avec le nom 'platform.edit'.
      * Elle permet à l'utilisateur de modifier une sous-catégorie existante en traitant la soumission du formulaire et en persistant la sous-catégorie mise à jour dans la base de données.
      *
-     * @param int $subcategoryId L'ID de la sous-catégorie à modifier.
+     * @param int $platformId L'ID de la sous-catégorie à modifier.
      * @param PlatformRepository $repository Le repository pour récupérer la sous-catégorie.
      * @param Request $request La requête HTTP courante.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour persister la sous-catégorie mise à jour.
@@ -242,49 +239,56 @@ class AdminController extends AbstractController
      */
 
 
-        #[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
-        public function editsubcategory(
-
-            int $platformId, 
-            PlatformRepository $repository,  
-            Request $request, 
-            EntityManagerInterface $manager
-
-        ): Response {
-
-            $platform = $repository->find($platformId);
-        
-            if (!$platform) {
-                throw $this->createNotFoundException('ubcategory not found');
-            }
-        
-            $form = $this->createForm(platformType::class, $platform);
-            $form->handleRequest($request);
-        
-            if ($form->isSubmitted() && $form->isValid()) {
-                $platform = $form->getData();
-                $manager->persist($platform);
-                $manager->flush();
-        
-                $this->addFlash('success', 'The category has been successfully updated');
-                return $this->redirectToRoute('admin', ['id' => $platform->getId()]);
-            }
-        
-            return $this->render('admin/platformEdit.html.twig', [
-                'form' => $form->createView(),
-                'platformId' => $platform->getId(),
-            ]);
+    #[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
+    public function editPlatform(
+        int $platformId, 
+        PlatformRepository $repository,  
+        Request $request, 
+        EntityManagerInterface $manager
+    ): Response {
+    
+        // Recherche de la plateforme par son ID
+        $platform = $repository->find($platformId);
+    
+        // Si la plateforme n'est pas trouvée, on lance une exception
+        if (!$platform) {
+            throw $this->createNotFoundException('Platform not found');
         }
+    
+        // Création du formulaire en utilisant PlatformType
+        $form = $this->createForm(PlatformType::class, $platform);
+        $form->handleRequest($request);
+    
+        // Si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            $platform = $form->getData();
+            $manager->persist($platform); // Persistance des modifications
+            $manager->flush(); // Sauvegarde en base de données
+    
+            // Message flash pour indiquer que la plateforme a été mise à jour
+            $this->addFlash('success', 'The platform has been successfully updated');
+            
+            // Redirection vers l'édition de la plateforme avec l'ID mis à jour
+            return $this->redirectToRoute('platform.edit', ['platformId' => $platform->getId()]);
+        }
+    
+        // Rendu du formulaire d'édition dans le template
+        return $this->render('admin/platformEdit.html.twig', [
+            'form' => $form->createView(),
+            'platformId' => $platform->getId(),
+        ]);
+    }
+    
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
      * Gère la suppression d'une sous-catégorie existante.
      *
-     * Cette action est mappée à la route '/admin/subcategory/delete/{subcategoryId}' avec le nom 'subcategory.delete'.
+     * Cette action est mappée à la route '/admin/plateform/delete/{plateformId}' avec le nom 'plateform.delete'.
      * Elle permet à l'utilisateur de supprimer une sous-catégorie existante en traitant la soumission du formulaire et en supprimant la sous-catégorie de la base de données.
      *
-     * @param int $subcategoryId L'ID de la sous-catégorie à supprimer.
+     * @param int $plateformId L'ID de la sous-catégorie à supprimer.
      * @param PlatformRepository $repository Le repository pour récupérer la sous-catégorie.
      * @param EntityManagerInterface $manager Le gestionnaire d'entités pour supprimer la sous-catégorie.
      * @param Request $request La requête HTTP courante.
@@ -295,7 +299,7 @@ class AdminController extends AbstractController
 
 
         #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
-        public function deletesubcategory(
+        public function deletePlatform(
 
             int $platformId, 
             PlatformRepository $repository, 

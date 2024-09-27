@@ -16,12 +16,12 @@ class PlatformType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name subcategory',
+                'label' => 'Name platform',
                 
                 'attr' => [
                     'minlength' => 2,
                     'maxlength' => 100,
-                    'placeholder' => 'Add subcategory'
+                    'placeholder' => 'Add platform'
                 ],
 
                 'constraints' => [

@@ -6,14 +6,15 @@
 
 <div>
     <section>
-        
+        <!-- Section d'ajout de catégories -->
         <div class="container-add-category">
             <h2>Add category :</h2>
-            <a href="{{ path('platform.add') }}">
+            <a href="{{ path('category.add') }}">
                 <button class="button-add-category">ADD</button>
             </a>
         </div>
 
+        <!-- Section d'édition et suppression de catégories -->
         <div class="container-edit-category">
             <table>
                 <tbody>
@@ -22,17 +23,15 @@
                             <td>{{ category.name }}</td>
                             <td>
                                 <div class="container-all-category">
-                                    <!-- Lien d'édition -->
-                                    
-                                    <a href="{{ path('platform.edit', {'categoryId': category.id}) }}">
-                                        <img src="img/editer.png" alt="Edit" width="20px">
+                                    <!-- Lien d'édition de la catégorie -->
+                                    <a href="{{ path('category.edit', {'categoryId': category.id}) }}">
+                                        <img src="/img/editer.png" alt="Edit" width="20px">
                                     </a>
-        
-                                    <!-- Formulaire pour suppression -->
-                                    <form action="{{ path('platform.delete', {'categoryId': category.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                    <!-- Formulaire pour suppression de la catégorie -->
+                                    <form action="{{ path('category.delete', {'categoryId': category.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
                                         <button type="submit" style="border:none; background:none;">
-                                            <img src="img/supprimer.png" alt="Delete" width="20px">
+                                            <img src="/img/supprimer.png" alt="Delete" width="20px">
                                         </button>
                                     </form>
                                 </div>
@@ -44,33 +43,34 @@
         </div>
     </section>
 
-    <section class="section-all-subcategory">
+    <!-- Section d'ajout de plateformes -->
+    <section class="section-all-platforms">
         <div class="container-add-category">
-            <h2>Add subcategory :</h2>
-            <a href="{{ path('subcategory.add') }}">
+            <h2>Add platforms :</h2>
+            <a href="{{ path('platform.add') }}">
                 <button class="button-add-category">ADD</button>
             </a>
         </div>
 
+        <!-- Section d'édition et suppression de plateformes -->
         <div class="container-edit-category">
             <table>
                 <tbody>
-                    {% for subcategory in subcategory %}
+                    {% for platform in platforms %}
                         <tr>
-                            <td>{{ subcategory.name }}</td>
+                            <td>{{ platform.name }}</td>
                             <td>
                                 <div class="container-all-category">
-                                    <!-- Lien d'édition -->
-                                    
-                                    <a href="{{ path('subcategory.edit', {'subcategoryId': subcategory.id}) }}">
-                                        <img src="img/editer.png" alt="Edit" width="20px">
+                                    <!-- Lien d'édition de la plateforme -->
+                                    <a href="{{ path('platform.edit', {'platformId': platform.id}) }}">
+                                        <img src="/img/editer.png" alt="Edit" width="20px">
                                     </a>
-        
-                                    <!-- Formulaire pour suppression -->
-                                    <form action="{{ path('subcategory.delete', {'subcategoryId': subcategory.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this subcategory?');">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ subcategory.id) }}">
+
+                                    <!-- Formulaire pour suppression de la plateforme -->
+                                    <form action="{{ path('platform.delete', {'platformId': platform.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this platform?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ platform.id) }}">
                                         <button type="submit" style="border:none; background:none;">
-                                            <img src="img/supprimer.png" alt="Delete" width="20px">
+                                            <img src="/img/supprimer.png" alt="Delete" width="20px">
                                         </button>
                                     </form>
                                 </div>
@@ -83,6 +83,5 @@
     </section>
 
 </div>
-
 
 {% endblock %}
