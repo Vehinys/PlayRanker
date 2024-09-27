@@ -4,30 +4,58 @@
 
 {% block body %}
 
-<div> 
+<div class='flex p-12'> 
     <section class="container_forum">
-
             <table>   
-
                 {% for category in categories %}
-
                 <tr>
-                    <td> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
+                    <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff] '> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
                 </tr>
-
                 {% endfor %}
-
             </table>
-            
     </section>
 
-    <section>
-        <h2> Les derniers topics</h2>
+    <section class="ml-7">
+        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>
     </section>
 
-    <section>
-        <h2> Les derniers post</h2>
+    <section class="ml-7">
+        <div>
+            <h2 class="text-4xl text-[#ebf1ff] pt-5 pb-5">Latest topics</h2>
+            <div class="flex space-x-4">
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Topic 1</h3>
+                    <p>Description du topic 1.</p>
+                </div>
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Topic 2</h3>
+                    <p>Description du topic 2.</p>
+                </div>
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Topic 3</h3>
+                    <p>Description du topic 3.</p>
+                </div>
+            </div>  
+        </div>
+        <div>
+            <h2 class="text-4xl text-[#ebf1ff] pt-10 pb-5">Latest posts</h2>
+            <div class="flex space-x-4">
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Post 1</h3>
+                    <p>Description du post 1.</p>
+                </div>
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Post 2</h3>
+                    <p>Description du post 2.</p>
+                </div>
+                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-lg font-bold">Post 3</h3>
+                    <p>Description du post 3.</p>
+                </div>
+            </div>  
+        </div>
     </section>
+
 
 </div>    
 
