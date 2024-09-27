@@ -16,20 +16,21 @@ class TopicRepository extends ServiceEntityRepository
         parent::__construct($registry, Topic::class);
     }
 
-//    /**
-//     * @return Topic[] Returns an array of Topic objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Topic[] Returns an array of Topic objects
+     */
+    public function findTopicsByCategory($categoryId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.categoryForum', 'e')
+            ->innerJoin('c.user', 'u')
+            ->addSelect('u.pseudo')
+            ->andWhere('c.categoryForum = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Topic
 //    {
