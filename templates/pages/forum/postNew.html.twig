@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Créer un nouveau sujet</h1>
+
+    {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <button type="submit">{{ form.submit.vars.label }}</button>
+
+    {{ form_end(form) }}
+    
+{% endblock %}

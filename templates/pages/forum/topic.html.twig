@@ -4,31 +4,48 @@
 
 {% block body %}
 
-<div>
-    <section>
-        <table>   
-            {% for category in categories %}
-            <tr>
-                <td> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </section>
-
-    <section class="container_topic">
-        <div>
-            <table>  
-                {% for topic in topics %}
+<div class='flex p-12'> 
+    <section class="container_forum">
+            <table>   
+                {% for category in categories %}
                 <tr>
-                    <td> 
-                        <a href="{{path('post', {id:topic.id})}}"> {{ topic.title }} </a> </td>
-                        <td> {{ topic.createdAt | date ('d/m/Y H:i') }}</td>
-                    </tr>
+                    <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff] '> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
+                </tr>
                 {% endfor %}
             </table>
-        </div>
     </section>
+
+    <section class="ml-7">
+        <div class="border-l-2 border-[#ebf1ff] bg-[#ebf1ff] h-full flex"></div>
+    </section>
+
+    <section class="mx-7">
+            {% for topic in topics %}
+                <a class"" href="{{path('post', {id:topic.id})}}"> 
+                    <div class="text-[#000000]  rounded bg-[#ebf1ff] py-4 px-4 my-2 hover:bg-[#09172b] hover:text-[#ebf1ff]">
+                        <h3> {{ topic.title }} </h3>  
+                        <div> By  {{ topic.user.pseudo}} -  {{ topic.createdAt | date ('Y M d H:i') }} </div>
+                        {# <p> {{ topic.content }} </p> #}
+                        <div>
+                            <button class="color-black" onclick="">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC">
+                                </button>
+                            <button class="" onclick="">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC">
+                            </button>
+                        </div>
+                    </div>
+                </a> 
+            {% endfor %}
+    </section>
+
+    
 </div>
 
+    <section class="text-center p-4">
+        <button class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E]">
+            Create a new topic
+        </button>
+    </section>
 
 {% endblock %}
