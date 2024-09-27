@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Topic;
-use App\Repository\CategoryForumRepository;
+use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\CategoryForumRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,29 +15,53 @@ class ForumController extends AbstractController
     #[Route('/forum', name: 'forum')]
     public function index (
 
-        CategoryForumRepository $repository,
+        CategoryForumRepository $categoryForumRepository,
 
     ): Response {
 
-        $category = $repository -> findBy([ ],['name' => 'ASC']);
+        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
 
         return $this->render('pages/forum/index.html.twig', [
-            'category' => $category,
+            'categories' => $categories,
         ]);
     }
 
-    #[Route('/forum/topic/{id}', name: 'forum_topic')]
-    public function listTopic (
+    #[Route('/forum/topics/{id}', name: 'topic')]
+    public function findTopicByCategoryForum (
 
-        TopicRepository $repository,
-        ?Topic $topic,
+        CategoryRepository $categoryForumRepository,
+        TopicRepository $topicRepository,
+        String $id
 
     ): Response {
 
-        $topic = $repository -> findTopicsByCategory($categoryId);
+        $categoryForum = $categoryForumRepository ->find($id);
+        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
+        $topics = $topicRepository -> findBy(['categoryForum' => $categoryForum]);
 
         return $this->render('pages/forum/topic.html.twig', [
-            'topic' => $topic,
+            'topics' => $topics,
+            'categories'=> $categories
+        ]);
+    }
+
+    #[Route('/forum/topics/post/{id}', name: 'post')]
+    public function findPostByTopic (
+
+        CategoryRepository $categoryForumRepository,
+        TopicRepository $topicRepository,
+        PostRepository $postRepository,
+        String $id
+
+    ): Response {
+
+        $topic = $topicRepository ->find($id);
+        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
+        $posts = $postRepository -> findBy(['topic' => $topic]);
+
+        return $this->render('pages/forum/post.html.twig', [
+            'posts' => $posts,
+            'categories'=> $categories
         ]);
     }
 

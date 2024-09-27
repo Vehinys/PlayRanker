@@ -4,19 +4,31 @@
 
 {% block body %}
 
-<section class="container_forum">
-    <div>
-        <table>
+<div>
+    <section>
+        <table>   
+            {% for category in categories %}
             <tr>
-                <th> Forum categories </th>
-            </tr>    
-            {% for categories in category %}
-            <tr>
-                <td> <a href=""> {{categories.name}} </a> </td>
+                <td> <a href="{{path('post', {id:category.id})}}"> {{category.name}} </a> </td>
             </tr>
             {% endfor %}
         </table>
-    </div>
-</section>
+    </section>
+
+    <section class="container_topic">
+        <div>
+            <table>  
+                {% for topic in topics %}
+                <tr>
+                    <td> 
+                        <a href="{{path('post', {id:topic.id})}}"> {{ topic.title }} </a> </td>
+                        <td> {{ topic.createdAt | date ('d/m/Y H:i') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+</div>
+
 
 {% endblock %}

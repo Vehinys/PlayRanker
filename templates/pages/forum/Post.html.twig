@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} FORUM - POST {% endblock %}
+
+{% block body %}
+
+<div>
+    <section>
+        <table>   
+            {% for category in categories %}
+                <tr>
+                    <td> <a href="{{path('post', {id:category.id})}}"> {{category.name}} </a> </td>
+                </tr>
+            {% endfor %}
+    
+        </table>
+        
+    </section>
+
+    <section>
+        <div>
+            <table>  
+                {% for post in posts %}
+                    <tr>
+                        <td> {{ post.content }}</td>
+                        <td> {{ post.createdAt | date ('d/m/Y H:i') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

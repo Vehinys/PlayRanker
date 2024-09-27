@@ -1,22 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} FORUM {% endblock %}
+{% block title %} INDEX FORUM {% endblock %}
 
 {% block body %}
 
-<section class="container_forum">
-    <div>
-        <table>
-            <tr>
-                <th> Forum categories </th>
-            </tr>    
-            {% for categories in category %}
-            <tr>
-                <td> <a href=""> {{categories.name}} </a> </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-</section>
+<div> 
+    <section class="container_forum">
+
+            <table>   
+
+                {% for category in categories %}
+
+                <tr>
+                    <td> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+            
+    </section>
+
+    <section>
+        <h2> Les derniers topics</h2>
+    </section>
+
+    <section>
+        <h2> Les derniers post</h2>
+    </section>
+
+</div>    
+
+
 
 {% endblock %}
