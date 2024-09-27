@@ -9,7 +9,7 @@
         <table>   
             {% for category in categories %}
                 <tr>
-                    <td> <a href="{{path('post', {id:category.id})}}"> {{category.name}} </a> </td>
+                    <td> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
                 </tr>
             {% endfor %}
     
