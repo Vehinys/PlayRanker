@@ -135,12 +135,16 @@ class ProfilController extends AbstractController
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
-        // Récupérer la liste de favoris de l'utilisateur (en supposant qu'il n'a qu'une seule liste)
+        // Récupérer la liste de favoris de l'utilisateur
         $gameList = $repository->findOneBy(['user' => $user, 'name' => 'Favoris']);
 
         // Créer une nouvelle instance de Game
         $game = new Game();
         $game->setIdGameApi($gameId);
+
+        if($game) {
+            
+        }
 
         // Récupérer le nom et les données du jeu depuis la requête
         $gameName = $request->get('gameName');

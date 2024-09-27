@@ -9,7 +9,7 @@
         <section class="game-detail-image">
             <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
             <div class="overlay">
-                <p class="game-detail-p">{{gameDetail.name}}</p>
+                <p class="game-detail-p"> <h1>{{gameDetail.name}}</h1></p>
                 <div class="game-detail-info">
                     
                     <p class="game-detail-p"><span>Date de sortie</span> {{gameDetail.released|date("m/d/Y")}}</p>
@@ -27,40 +27,7 @@
                             {% endfor %}
                         </p>
                     </div>
-                    <div class="platforms-detail">
-                        <div class="platform-detail">
-                            {% set platform_logos = {
-                                'PlayStation 1': 'img/ps1.png',
-                                'PlayStation 2': 'img/ps2.png',
-                                'PlayStation 3': 'img/ps3.png',
-                                'PlayStation 4': 'img/ps4.png',
-                                'PlayStation 5': 'img/ps5.png',
-                                'PS Vita': 'img/ps vita.png',
-                                'PC': 'img/pc.png',
-                                'Linux': 'img/linux.png',
-                                'macOS': 'img/macOS.png',
-                                'Web': 'img/Web.png',
-                                'iOS': 'img/ios.png',
-                                'Android': 'img/Android.png',
-                                'Xbox Series S/X': 'img/Xbox Series SX.png',
-                                'Xbox 360': 'img/Xbox 360.png',
-                                'Xbox One': 'img/Xbox One.png',
-                                'Xbox': 'img/xbox.png',
-                                'Nintendo Switch': 'img/Nintendo Switch.png',
-                                'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                                'Wii U': 'img/Wii U.png',
-                            } %}
-                            <p class="tag-label">Plateforme(s)</p>
-                            {% for element in gameDetail.platforms %}
-                                <div class="platform-item-detail">
-                                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
-                                    {% if logo_path %}
-                                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
+
                     <div class="container-multi-reponse">
                         <p class="tag-label">Genre(s)</p>
                         <p class="tag-list">
@@ -90,15 +57,7 @@
                                 <a href="{{ gameDetail.website }}">{{ gameDetail.name }}</a>
                             </p>
                         </div>
-                    </div>
-                        <div class="container-multi-reponse">
-                            <p class="tag-label">Tag(s)</p>
-                            <p style="font-size: 15px">
-                                {% for tag in gameDetail.tags %}
-                                    {{ tag.name }} {% if not loop.last %}, {% endif %}
-                                {% endfor %}
-                            </p>
-                    </div>
+
                         {% if app.user %}
                     <form class="form-add-favoris" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
                         <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
@@ -112,6 +71,51 @@
                 {% endif %}
             </div>
         </section>
+    </div>
+
+    <div class="platforms-detail">
+        <div class="platform-detail">
+            {% set platform_logos = {
+                'PlayStation 1': 'img/ps1.png',
+                'PlayStation 2': 'img/ps2.png',
+                'PlayStation 3': 'img/ps3.png',
+                'PlayStation 4': 'img/ps4.png',
+                'PlayStation 5': 'img/ps5.png',
+                'PS Vita': 'img/ps vita.png',
+                'PC': 'img/pc.png',
+                'Linux': 'img/linux.png',
+                'macOS': 'img/macOS.png',
+                'Web': 'img/Web.png',
+                'iOS': 'img/ios.png',
+                'Android': 'img/Android.png',
+                'Xbox Series S/X': 'img/Xbox Series SX.png',
+                'Xbox 360': 'img/Xbox 360.png',
+                'Xbox One': 'img/Xbox One.png',
+                'Xbox': 'img/xbox.png',
+                'Nintendo Switch': 'img/Nintendo Switch.png',
+                'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                'Wii U': 'img/Wii U.png',
+            } %}
+            <p class="tag-label">Plateforme(s)</p>
+            {% for element in gameDetail.platforms %}
+                <div class="platform-item-detail">
+                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
+                    {% if logo_path %}
+                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+        <div class="container-multi-reponse">
+            <p class="tag-label">Tag(s)</p>
+            <p style="font-size: 15px">
+                {% for tag in gameDetail.tags %}
+                    {{ tag.name }} {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
 
         <section class="all-game-description">
             <section class="section-video">
