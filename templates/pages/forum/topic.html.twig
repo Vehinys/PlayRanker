@@ -44,11 +44,11 @@
                                 <button class="color-black mr-2">
                                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC">
                                 </button>
-                                <form action="{{ path('delete_topic', { id: topic.id }) }}" method="post" onsubmit="return confirm('Are you sure you want to delete your topic?');">
-                                    <button type="submit" class="">
-                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC">
-                                    </button>
+                            <div>
+                                <form action="{{ path('delete_topic', { id: topic.id }) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this topic?');">
+                                    <button type="submit" class="color-black mr-2">Delete topic</button>
                                 </form>
+                            </div>
                             </div>
                         </div>
                     </a>

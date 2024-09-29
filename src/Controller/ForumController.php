@@ -5,10 +5,7 @@ namespace App\Controller;
 use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
 use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryForumRepository;
-use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,143 +15,83 @@ class ForumController extends AbstractController
     #[Route('/forum', name: 'forum')]
     public function index (
 
-        CategoryForumRepository $categoryForumRepository,
-        TopicRepository $topicRepository,
-        PostRepository $postRepository,
-
-    ): Response {
-
-        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
-        $topics = $topicRepository -> findBy([ ],['createdAt' => 'DESC'],6);
-        $post = $postRepository -> findOneBy([ ],['createdAt' => 'ASC']);
-
+        CategoryForumRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
+        TopicRepository $topicRepository, // Injection du repository pour gérer les topics
+        
+    ): Response { // La méthode retourne un objet Response
+    
+        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
+        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+        
+        // Récupération des 6 derniers topics, triés par date de création de manière décroissante (DESC)
+        $topics = $topicRepository->findBy([], ['createdAt' => 'DESC'], 6);
+    
+        // Rendu de la vue 'index.html.twig' et passage des données (catégories et topics) à cette vue
         return $this->render('pages/forum/index.html.twig', [
-            'categories' => $categories,
-            'topics' => $topics,
-            'post' => $post,
+            'categories' => $categories, // Les catégories sont passées à la vue pour affichage
+            'topics' => $topics, // Les topics sont passés à la vue pour affichage
         ]);
     }
+    
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/forum/topics/{id}', name: 'topic')]
     public function findTopicByCategoryForum (
 
-        CategoryRepository $categoryForumRepository,
-        TopicRepository $topicRepository,
-        String $id
+        String $id, // Paramètre dynamique représentant l'ID de la catégorie de forum
+        CategoryRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
+        TopicRepository $topicRepository // Injection du repository pour gérer les topics
 
-    ): Response {
+    ): Response { // La méthode retourne un objet Response
 
-        $categoryForum = $categoryForumRepository ->find($id);
-        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
-        $topics = $topicRepository -> findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
+        // Récupération de la catégorie de forum correspondant à l'ID donné
+        $categoryForum = $categoryForumRepository->find($id);
+        
+        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
+        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+        
+        // Récupération des topics associés à la catégorie de forum, triés par date de création de manière décroissante (DESC)
+        $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
 
+        // Rendu de la vue 'topic.html.twig' et passage des données (topics et catégories) à cette vue
         return $this->render('pages/forum/topic.html.twig', [
-            'topics' => $topics,
-            'categories'=> $categories
+            'topics' => $topics, // Les topics sont passés à la vue pour affichage
+            'categories' => $categories // Les catégories sont passées à la vue pour affichage
         ]);
     }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/forum/topics/post/{id}', name: 'post')]
+    #[Route('/forum/topics/post/{id}', name: 'post')] 
     public function findPostByTopic (
 
-        CategoryRepository $categoryForumRepository,
-        TopicRepository $topicRepository,
-        PostRepository $postRepository,
-        String $id
+        CategoryRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
+        TopicRepository $topicRepository, // Injection du repository pour gérer les topics
+        PostRepository $postRepository, // Injection du repository pour gérer les posts
+        String $id // Paramètre dynamique représentant l'ID du topic
+    ): Response { // La méthode retourne un objet Response
 
-    ): Response {
+        // Récupération du topic correspondant à l'ID donné
+        $topics = $topicRepository->find($id);
+        
+        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
+        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+        
+        // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
+        $posts = $postRepository->findBy(['topic' => $topics], ['createdAt' => 'DESC']);
 
-        $topics = $topicRepository ->find($id);
-        $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
-        $posts = $postRepository -> findBy(['topic' => $topics], ['createdAt' => 'DESC']);
-
+        // Rendu de la vue 'post.html.twig' et passage des données (posts, catégories et topic) à cette vue
         return $this->render('pages/forum/post.html.twig', [
-            'posts' => $posts,
-            'categories'=> $categories,
-            'topics' => $topics
+            'posts' => $posts, // Les posts sont passés à la vue pour affichage
+            'categories' => $categories, // Les catégories sont passées à la vue pour affichage
+            'topics' => $topics // Le topic est passé à la vue pour affichage
         ]);
     }
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-    #[Route('/forum/delete/topic/{id}', name: 'delete_topic')]
-    public function deleteTopic(
-        int $id,
-        TopicRepository $topicRepository,
-        EntityManagerInterface $entityManager,
-        Security $security,
-        Request $request
-    ): Response {
-        // Recherche le topic avec l'ID
-        $topic = $topicRepository->findOneBy(['id' => $id]);
-
-        if (!$topic) {
-            // Si le topic n'est pas trouvé, redirection vers le forum
-            return $this->redirectToRoute('forum');
-        }
-
-        // Vérifie si l'utilisateur est connecté
-        $user = $security->getUser();
-        if (!$user) {
-            // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
-            return $this->redirectToRoute('login');
-        }
-
-        // Vérifie si l'utilisateur est l'auteur du topic
-        if ($topic->getAuthor() !== $user) {
-            // Si l'utilisateur n'est pas l'auteur, redirection vers le forum
-            return $this->redirectToRoute('forum');
-        }
-
-        // Supprime le topic
-        $entityManager->remove($topic);
-        $entityManager->flush();
-
-        // Redirection vers le forum après suppression
-        return $this->redirectToRoute('forum');
-    }
-
-
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/forum/delete/post/{id}', name: 'delete_post')]
-    public function deletePost(
-        int $id,
-        PostRepository $postRepository,
-        EntityManagerInterface $entityManager,
-        Security $security,
-        Request $request
-    ): Response {
-        // Recherche le post avec l'ID
-        $post = $postRepository->findOneBy(['id' => $id ]);
 
-        if (!$post) {
-            return $this->redirectToRoute('forum');
-        }
-
-        // Vérifie si l'utilisateur est connecté
-        $user = $security->getUser();
-        if (!$user) {
-
-           // Redirige vers la page de connexion
-            return $this->redirectToRoute('login'); 
-        }
-
-        // Vérifie si l'utilisateur est l'auteur du post
-        if ($post->getAuthor() !== $user) {
-            return $this->redirectToRoute('forum');
-        }
-
-        // Supprime le post
-        $entityManager->remove($post);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('forum');
-    }
 
 }

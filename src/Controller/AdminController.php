@@ -153,23 +153,13 @@ class AdminController extends AbstractController
 
     #[Route('/admin/category/delete/{categoryId}', name: 'category.delete', methods: ['POST'])]
     public function deleteCategory(
+
         int $categoryId,
         CategoryRepository $repository,
         EntityManagerInterface $manager,
-        Request $request,
-        CsrfTokenManagerInterface $csrfTokenManager
+
     ): Response {
         $category = $repository->find($categoryId);
-    
-        if (!$category) {
-            throw $this->createNotFoundException('Category not found');
-        }
-    
-        // Vérification du token CSRF
-        $csrfToken = $request->request->get('_token');
-        if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$categoryId, $csrfToken))) {
-            throw $this->createAccessDeniedException('Invalid CSRF token');
-        }
     
         // Supprimer la catégorie
         $manager->remove($category);
@@ -304,21 +294,9 @@ class AdminController extends AbstractController
             int $platformId, 
             PlatformRepository $repository, 
             EntityManagerInterface $manager, 
-            Request $request, 
-            CsrfTokenManagerInterface $csrfTokenManager
 
         ): Response {
             $platform = $repository->find($platformId);
-        
-            if (!$platform) {
-                throw $this->createNotFoundException('Category not found');
-            }
-        
-            // Vérification du token CSRF
-            $csrfToken = $request->request->get('_token');
-            if (!$csrfTokenManager->isTokenValid(new CsrfToken('delete'.$platformId, $csrfToken))) {
-                throw $this->createAccessDeniedException('Invalid CSRF token');
-            }
         
             // Supprimer la catégorie
             $manager->remove($platform);
