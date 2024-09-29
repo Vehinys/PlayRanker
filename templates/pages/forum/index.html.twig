@@ -10,21 +10,17 @@
 <div class='flex p-12'>  
     <section class="flex">
         <table>
-
-            {# Boucle à travers chaque catégorie #}   
+            {# Boucle à travers chaque catégorie #}
             {% for category in categories %}
-            <tr>  
-                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>  
-
+            <tr>
+                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
                     {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
-                    <a href="{{ path('topic', { id: category.id }) }}">
-
-                        {# Affiche le nom des catégories #} 
-                        {{ category.name }}  
+                    <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
+                        {{ category.name }} {# Affiche le nom des catégories #}
                     </a>
                 </td>
-            </tr>  
-            {% endfor %} 
+            </tr>
+            {% endfor %}
         </table>  
     </section>
 
@@ -58,7 +54,7 @@
                         {% set firstPost = topic.posts|first %} 
                         
                         {# Affiche le contenu du premier post #}
-                        <h4 class="text-md font-bold text-justify mb-3"> {{ firstPost.content }} </h4>
+                        <h4 class="text-md font-bold text-justify mb-3">{{ firstPost.content }}</h4>
                         <div class="flex justify-between items-center"> 
 
                             {# Affiche le pseudo de l'utilisateur et la date de création du post #}
@@ -67,21 +63,16 @@
                             {# Lien vers le post avec des styles pour le bouton #}
                             <a href="{{ path('post', { id: firstPost.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
                         </div>
-
                     {# Si aucun post n'est disponible #}
                     {% else %}  
                         <p>No posts available for this topic.</p> 
-
-                    {# Fin de la vérification pour les posts #}
-                    {% endif %}  
+                    {% endif %}  {# Fin de la vérification pour les posts #}
                 </div>
-
-                {# Fin de la boucle sur les sujets #}
-                {% endfor %}  
+                {% endfor %}  {# Fin de la boucle sur les sujets #}
             </div>  
         </div>
     </section>
 </div>
 
 {# Fin du bloc de contenu principal #}
-{% endblock %} 
+{% endblock %}  

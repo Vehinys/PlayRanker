@@ -7,21 +7,18 @@
 <div class='flex p-12'>  
     <section class="flex">
         <table>
-
-            {# Boucle à travers chaque catégorie #}   
+            {# Boucle à travers chaque catégorie #}
             {% for category in categories %}
-            <tr>  
-                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>  
-
-                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
-                    <a href="{{ path('topic', { id: category.id }) }}">
-
-                        {# Affiche le nom des catégories #} 
-                        {{ category.name }}  
+            <tr>
+                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
+                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie et de l'id du topic #}
+                    <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
+                        {# Affiche le nom des catégories #}
+                        {{ category.name }}
                     </a>
                 </td>
-            </tr>  
-            {% endfor %} 
+            </tr>
+            {% endfor %}
         </table>  
     </section>
 
@@ -35,36 +32,45 @@
             {% for topic in topics %}
                 <div class="bg-[#dbe1f0] text-[#000000] rounded bg-[#ebf1ff] py-4 px-8 my-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
                     <a href="{{ path('post', {id: topic.id}) }}">
-                        <h3 class="font-black text-2xl mb-5">{{ topic.title }}</h3>  
+                        <h3 class="font-black text-2xl mr- 10 mb-5">{{ topic.title }}</h3>
                         <div class="flex items-center justify-between">
-                            <div> 
-                                By {{ topic.user.pseudo }} - {{ topic.createdAt | date('Y M d H:i') }}
-                            </div>
-                            <div class="flex pl-7">
-                                <button class="color-black mr-2">
-                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC">
-                                </button>
                             <div>
-                                <form action="{{ path('delete_topic', { id: topic.id }) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this topic?');">
-                                    <button type="submit" class="color-black mr-2">Delete topic</button>
-                                </form>
+                                By {{ topic.user.pseudo }} - {{ topic.createdAt | date('Y M d') }}
                             </div>
+                            <div class="flex space-x-2">
+                                <!-- Bouton pour modifier le topic -->
+                                <a href="{{ path('topic_edit', { id: topic.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                    Edit
+                                </a>
+                                <!-- Formulaire pour supprimer le topic -->
+                                <form action="{{ path('topic_delete', { id: topic.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce topic ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ topic.id) }}">
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </a>
                 </div>
+            {% else %}
+                <p>Aucun topic disponible.</p>
             {% endfor %}
         </div>
     </section>
-
-
-    
 </div>
 
-    <section class="text-center p-4">
-        <button class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E]">
-            Create a new topic
-        </button>
-    </section>
+
+<section class="text-center p-4">
+
+    <div>
+        <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
+            Create a new topic in {{ category.name }}
+        </a>
+    </div>
+    
+</section>
+
+
 
 {% endblock %}

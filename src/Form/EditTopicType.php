@@ -10,22 +10,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class TopicType extends AbstractType
+class EditTopicType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('post', TextareaType::class, [
-                'label' => 'Content of the first message',
-                'mapped' => false,
-                'attr' => [
-                    'placeholder' => 'Your first message in this topic...',
-                ],
-                'required' => true,
-            ])
-            ->add('submit', SubmitType::class)
-            ;
+            ->add('title', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

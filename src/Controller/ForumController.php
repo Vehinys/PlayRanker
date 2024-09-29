@@ -22,7 +22,8 @@ class ForumController extends AbstractController
     
         // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
         $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
-        
+        $topics = [];
+
         // Récupération des 6 derniers topics, triés par date de création de manière décroissante (DESC)
         $topics = $topicRepository->findBy([], ['createdAt' => 'DESC'], 6);
     
@@ -36,58 +37,89 @@ class ForumController extends AbstractController
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/forum/topics/{id}', name: 'topic')]
-    public function findTopicByCategoryForum (
+#[Route('/forum/topics/{categoryId}', name: 'topic')]
+public function findTopicByCategoryForum(
+    string $categoryId,
+    CategoryRepository $categoryForumRepository,
+    TopicRepository $topicRepository
+): Response {
+    // Récupération de la catégorie de forum
+    $categoryForum = $categoryForumRepository->find($categoryId);
 
-        String $id, // Paramètre dynamique représentant l'ID de la catégorie de forum
-        CategoryRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
-        TopicRepository $topicRepository // Injection du repository pour gérer les topics
-
-    ): Response { // La méthode retourne un objet Response
-
-        // Récupération de la catégorie de forum correspondant à l'ID donné
-        $categoryForum = $categoryForumRepository->find($id);
-        
-        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
-        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
-        
-        // Récupération des topics associés à la catégorie de forum, triés par date de création de manière décroissante (DESC)
-        $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
-
-        // Rendu de la vue 'topic.html.twig' et passage des données (topics et catégories) à cette vue
-        return $this->render('pages/forum/topic.html.twig', [
-            'topics' => $topics, // Les topics sont passés à la vue pour affichage
-            'categories' => $categories // Les catégories sont passées à la vue pour affichage
-        ]);
+    // Vérifiez si la catégorie existe
+    if (!$categoryForum) {
+        throw $this->createNotFoundException('Catégorie de forum non trouvée.');
     }
+
+    // Récupération de toutes les catégories de forum, triées par nom
+    $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+
+    // Récupération des topics associés à la catégorie de forum
+    $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
+
+    // Initialisation d'un tableau pour stocker les posts
+    $posts = [];
+
+    // Récupération des posts de chaque topic
+    foreach ($topics as $topic) {
+        $posts[$topic->getId()] = $topic->getPosts(); // On associe les posts à leur topic respectif
+    }
+
+    // Rendu de la vue 'topic.html.twig'
+    return $this->render('pages/forum/topic.html.twig', [
+        'topics' => $topics,
+        'categories' => $categories,
+        'category' => $categoryForum,
+        'posts' => $posts,
+        'topic' => $topic
+    ]);
+}
+
+
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/forum/topics/post/{id}', name: 'post')] 
-    public function findPostByTopic (
+#[Route('/forum/topics/post/{id}', name: 'post')]
+public function findPostByTopic(
+    CategoryRepository $categoryForumRepository,
+    TopicRepository $topicRepository,
+    PostRepository $postRepository,
+    string $id
+): Response {
 
-        CategoryRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
-        TopicRepository $topicRepository, // Injection du repository pour gérer les topics
-        PostRepository $postRepository, // Injection du repository pour gérer les posts
-        String $id // Paramètre dynamique représentant l'ID du topic
-    ): Response { // La méthode retourne un objet Response
-
-        // Récupération du topic correspondant à l'ID donné
-        $topics = $topicRepository->find($id);
-        
-        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
-        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
-        
-        // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
-        $posts = $postRepository->findBy(['topic' => $topics], ['createdAt' => 'DESC']);
-
-        // Rendu de la vue 'post.html.twig' et passage des données (posts, catégories et topic) à cette vue
-        return $this->render('pages/forum/post.html.twig', [
-            'posts' => $posts, // Les posts sont passés à la vue pour affichage
-            'categories' => $categories, // Les catégories sont passées à la vue pour affichage
-            'topics' => $topics // Le topic est passé à la vue pour affichage
-        ]);
+    // Récupération du topic correspondant à l'ID donné
+    $topic = $topicRepository->find((int)$id);
+    
+    dump($topic);
+    // Vérifier si le topic existe
+    if (!$topic) {
+        throw $this->createNotFoundException('Le topic avec l\'id ' . $id . ' n\'existe pas.');
     }
+
+    // Récupérer la catégorie du topic
+    $category = $topic->getCategoryForum();
+    
+    // Récupération de toutes les catégories de forum
+    $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+    
+    // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
+    $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC']);
+    
+    // Récupérer les topics associés à la catégorie
+    $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);
+    
+    // Rendu de la vue 'post.html.twig'
+    return $this->render('pages/forum/post.html.twig', [
+        'posts' => $posts,
+        'categories' => $categories,
+        'topic' => $topic,
+        'category' => $category,
+        'topics' => $topics
+    ]);
+}
+
+
+
 
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
