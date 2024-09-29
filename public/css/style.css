@@ -16,10 +16,10 @@
 * {
   margin: 0;                                                    /* Réinitialisation des marges                         */
   padding: 0;                                                   /* Réinitialisation des espacements internes           */
-  font-family: 'Montserrat', sans-serif;                        /* Police par défaut (Montserrat)                      */
+  font-family: 'Poppins', sans-serif;                           /* Police par défaut (Montserrat)                      */
   text-decoration: none;                                        /* Suppression des soulignements de lien               */
   box-sizing: border-box;                                       /* Inclusion des bordures et paddings dans le calcul de la taille */
-  font-family: lato;                                           /* Police par défaut (Lato)                            */
+  font-family: lato;                                            /* Police par défaut (Lato)                            */
 }
 
 /* ----------------------------------------------------------- */

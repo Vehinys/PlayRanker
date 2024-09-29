@@ -1,64 +1,94 @@
-{% extends 'base.html.twig' %}
+{# Étend le template de base pour hériter de sa structure #}
+{% extends 'base.html.twig' %}  
 
-{% block title %} INDEX FORUM {% endblock %}
+{# Définit le titre de la page #}
+{% block title %}INDEX FORUM{% endblock %}  
 
-{% block body %}
+{# Début du bloc de contenu principal #}
+{% block body %}  
 
-<div class='flex p-12'> 
-    <section class="container_forum">
-            <table>   
-                {% for category in categories %}
-                <tr>
-                    <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff] '> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
-                </tr>
-                {% endfor %}
-            </table>
+<div class='flex p-12'>  
+    <section class="flex">
+        <table>
+
+            {# Boucle à travers chaque catégorie #}   
+            {% for category in categories %}
+            <tr>  
+                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>  
+
+                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
+                    <a href="{{ path('topic', { id: category.id }) }}">
+
+                        {# Affiche le nom des catégories #} 
+                        {{ category.name }}  
+                    </a>
+                </td>
+            </tr>  
+            {% endfor %} 
+        </table>  
     </section>
 
-    <section class="ml-7">
-        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>
+    <!-- Séparateur entre les sections -->
+    <section class="ml-7"> 
+        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
     </section>
 
-    <section class="ml-7">
+    {# Section pour afficher les derniers sujets #}
+    <section class="ml-4">  
         <div>
-            <h2 class="text-4xl text-[#ebf1ff] pt-5 pb-5">Latest topics</h2>
-            <div class="flex space-x-4">
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Topic 1</h3>
-                    <p>Description du topic 1.</p>
+
+            <h2 class="text-3xl text-[#ebf1ff] pt-4 pb-4">Latest Topics</h2>  
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+                {# Boucle à travers chaque sujet #}
+                {% for topic in topics %}
+
+                <div class="flex flex-col justify-between bg-slate-100 rounded-lg p-6 dark:bg-slate-800 hover:scale-105 hover:-translate-y-1 transition-transform duration-300 shadow-lg">
+                    
+                    <div class="flex items-center mb-4">
+                    
+                        {# Affiche le nom de la catégorie du sujet #}
+                        <h3 class="font-bold text-2xl mr-1">{{ topic.categoryForum.name }} :</h3>  
+
+                        {# Affiche le titre du sujet #}
+                        <h2 class="font-black text-2xl">{{ topic.title }}</h2>  
+                    </div>
+
+                    {# Vérifie s'il y a des posts dans le sujet #}
+                    {% if topic.posts is not empty %}  
+
+                        {# Récupère le premier post du sujet #}
+                        {% set firstPost = topic.posts|first %}  
+
+                        <h4 class="text-md font-medium mb-3">
+
+                            {# Affiche le contenu du premier post #}
+                            {{ firstPost.content }}  
+                        </h4>
+                        <div class="flex justify-between items-center"> 
+
+                            {# Affiche le pseudo de l'utilisateur et la date de création du post #}
+                            <p>{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('Y M d') }}</p>  
+
+                            {# Lien vers le post avec des styles pour le bouton #}
+                            <a href="{{ path('post', { id: firstPost.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
+                        </div>
+
+                    {# Si aucun post n'est disponible #}
+                    {% else %}  
+                        <p>No posts available for this topic.</p> 
+
+                    {# Fin de la vérification pour les posts #}
+                    {% endif %}  
                 </div>
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Topic 2</h3>
-                    <p>Description du topic 2.</p>
-                </div>
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Topic 3</h3>
-                    <p>Description du topic 3.</p>
-                </div>
+
+                {# Fin de la boucle sur les sujets #}
+                {% endfor %}  
             </div>  
         </div>
-        <div>
-            <h2 class="text-4xl text-[#ebf1ff] pt-10 pb-5">Latest posts</h2>
-            <div class="flex space-x-4">
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Post 1</h3>
-                    <p>Description du post 1.</p>
-                </div>
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Post 2</h3>
-                    <p>Description du post 2.</p>
-                </div>
-                <div class="bg-slate-100 rounded-xl p-10 dark:bg-slate-800 flex-1 hover:scale-105 hover:-translate-y-1">
-                    <h3 class="text-lg font-bold">Post 3</h3>
-                    <p>Description du post 3.</p>
-                </div>
-            </div>  
-        </div>
     </section>
+</div>
 
-
-</div>    
-
-
-
-{% endblock %}
+{# Fin du bloc de contenu principal #}
+{% endblock %} 

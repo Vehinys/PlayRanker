@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Post;
-use App\Entity\Topic;
-use App\Form\TopicFormType;
 use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryForumRepository;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,13 +19,19 @@ class ForumController extends AbstractController
     public function index (
 
         CategoryForumRepository $categoryForumRepository,
+        TopicRepository $topicRepository,
+        PostRepository $postRepository,
 
     ): Response {
 
         $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
+        $topics = $topicRepository -> findBy([ ],['createdAt' => 'DESC'],6);
+        $post = $postRepository -> findOneBy([ ],['createdAt' => 'ASC']);
 
         return $this->render('pages/forum/index.html.twig', [
             'categories' => $categories,
+            'topics' => $topics,
+            'post' => $post,
         ]);
     }
 
@@ -76,35 +80,83 @@ class ForumController extends AbstractController
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/forum/topics/post/create/{id}', name: 'post_create')]
-    public function createPost (
-            
-            Topic $topic,
-            Post $post,
-            Request $request,
-            EntityManagerInterface $manager,
+    #[Route('/forum/delete/topic/{id}', name: 'delete_topic')]
+    public function deleteTopic(
+        int $id,
+        TopicRepository $topicRepository,
+        EntityManagerInterface $entityManager,
+        Security $security,
+        Request $request
+    ): Response {
+        // Recherche le topic avec l'ID
+        $topic = $topicRepository->findOneBy(['id' => $id]);
 
-        ): Response {
-
-            $topic = new Topic();
-            $post  = new Post();
-
-            $form = $this->createForm(TopicFormType::class, $post);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $topic = $form->getData();
-                $post = $form->getData();
-
-                $manager -> persist($topic);
-                $manager -> persist($post);
-                $manager -> flush();
-
-                return $this->redirectToRoute('post');
+        if (!$topic) {
+            // Si le topic n'est pas trouvé, redirection vers le forum
+            return $this->redirectToRoute('forum');
         }
-            return $this->render('pages/forum/topics/postNew.html.twig', [
-                'form' => $form,
-        ]);
+
+        // Vérifie si l'utilisateur est connecté
+        $user = $security->getUser();
+        if (!$user) {
+            // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+            return $this->redirectToRoute('login');
+        }
+
+        // Vérifie si l'utilisateur est l'auteur du topic
+        if ($topic->getAuthor() !== $user) {
+            // Si l'utilisateur n'est pas l'auteur, redirection vers le forum
+            return $this->redirectToRoute('forum');
+        }
+
+        // Supprime le topic
+        $entityManager->remove($topic);
+        $entityManager->flush();
+
+        // Redirection vers le forum après suppression
+        return $this->redirectToRoute('forum');
     }
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    #[Route('/forum/delete/post/{id}', name: 'delete_post')]
+    public function deletePost(
+        int $id,
+        PostRepository $postRepository,
+        EntityManagerInterface $entityManager,
+        Security $security,
+        Request $request
+    ): Response {
+        // Recherche le post avec l'ID
+        $post = $postRepository->findOneBy(['id' => $id ]);
+
+        if (!$post) {
+            return $this->redirectToRoute('forum');
+        }
+
+        // Vérifie si l'utilisateur est connecté
+        $user = $security->getUser();
+        if (!$user) {
+
+           // Redirige vers la page de connexion
+            return $this->redirectToRoute('login'); 
+        }
+
+        // Vérifie si l'utilisateur est l'auteur du post
+        if ($post->getAuthor() !== $user) {
+            return $this->redirectToRoute('forum');
+        }
+
+        // Supprime le post
+        $entityManager->remove($post);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('forum');
+    }
+
+
+
+
 }
