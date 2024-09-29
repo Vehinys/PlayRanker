@@ -36,16 +36,12 @@
     {# Section pour afficher les derniers sujets #}
     <section class="ml-4">  
         <div>
-
-            <h2 class="text-3xl text-[#ebf1ff] pt-4 pb-4">Latest Topics</h2>  
-
+            <h2 class="text-4xl text-[#ebf1ff] pl-2 pt-4 pb-4">Latest Topics</h2>  
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                 {# Boucle à travers chaque sujet #}
                 {% for topic in topics %}
-
-                <div class="flex flex-col justify-between bg-slate-100 rounded-lg p-6 dark:bg-slate-800 hover:scale-105 hover:-translate-y-1 transition-transform duration-300 shadow-lg">
-                    
+                <div class="bg-[#dbe1f0] flex flex-col justify-between bg-slate-100 rounded-lg m-2 p-8 dark:bg-slate-800 hover:scale-105 hover:-translate-y-1 transition-transform duration-300 shadow-lg">
                     <div class="flex items-center mb-4">
                     
                         {# Affiche le nom de la catégorie du sujet #}
@@ -59,17 +55,14 @@
                     {% if topic.posts is not empty %}  
 
                         {# Récupère le premier post du sujet #}
-                        {% set firstPost = topic.posts|first %}  
-
-                        <h4 class="text-md font-medium mb-3">
-
-                            {# Affiche le contenu du premier post #}
-                            {{ firstPost.content }}  
-                        </h4>
+                        {% set firstPost = topic.posts|first %} 
+                        
+                        {# Affiche le contenu du premier post #}
+                        <h4 class="text-md font-bold text-justify mb-3"> {{ firstPost.content }} </h4>
                         <div class="flex justify-between items-center"> 
 
                             {# Affiche le pseudo de l'utilisateur et la date de création du post #}
-                            <p>{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('Y M d') }}</p>  
+                            <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('Y m d') }}</p>  
 
                             {# Lien vers le post avec des styles pour le bouton #}
                             <a href="{{ path('post', { id: firstPost.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>

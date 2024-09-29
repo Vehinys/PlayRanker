@@ -68,13 +68,14 @@ class ForumController extends AbstractController
 
     ): Response {
 
-        $topic = $topicRepository ->find($id);
+        $topics = $topicRepository ->find($id);
         $categories = $categoryForumRepository -> findBy([ ],['name' => 'ASC']);
-        $posts = $postRepository -> findBy(['topic' => $topic], ['createdAt' => 'DESC']);
+        $posts = $postRepository -> findBy(['topic' => $topics], ['createdAt' => 'DESC']);
 
         return $this->render('pages/forum/post.html.twig', [
             'posts' => $posts,
-            'categories'=> $categories
+            'categories'=> $categories,
+            'topics' => $topics
         ]);
     }
 
@@ -155,8 +156,5 @@ class ForumController extends AbstractController
 
         return $this->redirectToRoute('forum');
     }
-
-
-
 
 }

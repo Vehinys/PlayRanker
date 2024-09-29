@@ -4,39 +4,54 @@
 
 {% block body %}
 
-<div class='flex p-12'> 
-    <section class="container_forum">
-            <table>   
-                {% for category in categories %}
-                <tr>
-                    <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff] '> <a href="{{path('topic', {id:category.id})}}"> {{category.name}} </a> </td>
-                </tr>
-                {% endfor %}
-            </table>
+<div class='flex p-12'>  
+    <section class="flex">
+        <table>
+
+            {# Boucle à travers chaque catégorie #}   
+            {% for category in categories %}
+            <tr>  
+                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>  
+
+                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
+                    <a href="{{ path('topic', { id: category.id }) }}">
+
+                        {# Affiche le nom des catégories #} 
+                        {{ category.name }}  
+                    </a>
+                </td>
+            </tr>  
+            {% endfor %} 
+        </table>  
     </section>
 
-    <section class="ml-7">
-        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>
+    <!-- Séparateur entre les sections -->
+    <section class="ml-7"> 
+        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
     </section>
 
 <section>
+
         {% for post in posts %}
-            <div class="text-[#000000]  rounded bg-[#ebf1ff] mx-7 my-3 py-4 px-4 hover:bg-[#09172b] hover:text-[#ebf1ff]">
+            <div class="bg-[#dbe1f0] text-[#000000] rounded bg-[#ebf1ff] m-3 p-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
+            <h3 class="font-black text-2xl mb-5">{{ post.topic.title }}</h3>
+                <p class="text-justify">{{ post.content }}</p>
 
-                <p class=""> {{ post.content }}</p>
-                <p class="">  By  {{ post.user.pseudo}} - {{ post.createdAt | date ('Y M d H:i') }} - Modified on {{post.updatedAt | date ('Y M d H:i')}} </p>  
-
-                <div>
-                    <button class="color-black">
+                <div class="flex mt-4 justify-between">
+                    <p>By {{ post.user.pseudo }} - {{ post.createdAt | date('Y m d H:i') }}</p>
+                    <div class="">
+                    <button class="color-black mr-2">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC">
                     </button>
-                    <button onclick=" if(confirm('Are you sure you want to delete your post?')) { window.location.href='{{ path('delete_topic', {id:post.id}) }}'; }">
+                    <button onclick="if(confirm('Are you sure you want to delete your post?')) { window.location.href='{{ path('delete_topic', {id: post.id}) }}'; }">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC">
                     </button>
+                    </div>
                 </div>
             </div>
-        {% endfor %}
+    {% endfor %}
 </section>
+
 
 </div>
 
