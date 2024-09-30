@@ -6,20 +6,23 @@
 
 <div class='flex p-12'>  
     <section class="flex">
-        <table>
-            {# Boucle à travers chaque catégorie #}
-            {% for category in categories %}
-            <tr>
-                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
-                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie et de l'id du topic #}
-                    <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
-                        {# Affiche le nom des catégories #}
-                        {{ category.name|upper }}
-                    </a>
-                </td>
-            </tr>
+        <div>
+            <h2 class=" text-4xl text-[#ebf1ff] pb-4" > Category </h2>
+
+                {# Boucle à travers chaque catégorie #}
+                {% for category in categories %}
+                    <div class='text-xl text-[#ECC33E] hover:text-[#ebf1ff]'>
+
+                        {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
+                        <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
+                            
+                            {# Affiche le nom des catégories #}
+                            {{ category.name|upper }} 
+                        </a>
+                        
+                    </div>
             {% endfor %}
-        </table>  
+        </div>    
     </section>
 
     <!-- Séparateur entre les sections -->
@@ -27,29 +30,35 @@
         <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
     </section>
 
-    <section class="mx-7">
-        <div>
+    <section class="mx-7 w-full">
+        <div class="grid grid-cols-3 gap-4 w-full">
             {% for topic in topics %}
-                <div class="bg-[#dbe1f0] text-[#000000] rounded bg-[#ebf1ff] py-4 px-8 my-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
+                <div class="bg-[#dbe1f0] w-full text-[#000000] rounded py-6 px-6 my-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
                     <a href="{{ path('post', {id: topic.id}) }}">
-                        <h3 class="font-black text-2xl mr- 10 mb-5">{{ topic.title }}</h3>
+                        <h3 class="font-black text-2xl mb-5">{{ topic.title }}</h3>
                         <div class="flex items-center justify-between">
                             <div>
-                                By {{ topic.user.pseudo }} - {{ topic.createdAt | date('Y M d') }}
+                                <p class="mr-5"> By {{ topic.user.pseudo }} - {{ topic.createdAt | date('d/m/Y h:i') }} </p>
                             </div>
-                            <div class="flex space-x-2">
-                                <!-- Bouton pour modifier le topic -->
-                                <a href="{{ path('topic_edit', { id: topic.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
-                                    Edit
-                                </a>
-                                <!-- Formulaire pour supprimer le topic -->
-                                <form action="{{ path('topic_delete', { id: topic.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce topic ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ topic.id) }}">
-                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
+
+                            {% if app.user and app.user.id == topic.user.id %}
+
+                                <div class="flex space-x-2">
+                                    <!-- Bouton pour modifier le topic -->
+                                    <a href="{{ path('topic_edit', { id: topic.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                        Edit
+                                    </a>
+                                    <!-- Formulaire pour supprimer le topic -->
+                                    <form action="{{ path('topic_delete', { id: topic.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce topic ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ topic.id) }}">
+                                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+
+                            {% endif %}
+
                         </div>
                     </a>
                 </div>
@@ -58,6 +67,7 @@
             {% endfor %}
         </div>
     </section>
+    
 </div>
 
 
@@ -65,9 +75,15 @@
 
     <div>
         <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
-            NEW TOPIC IN {{ category.name }}
+            NEW TOPIC IN {{ category.name|upper }}
         </a>
     </div>
+
+    <div>
+        {{ knp_pagination_render(topics) }}
+    </div>
+
+
     
 </section>
 

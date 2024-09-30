@@ -6,9 +6,11 @@ use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CategoryForumRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ForumController extends AbstractController
 {
@@ -42,7 +44,9 @@ public function findTopicByCategoryForum(
 
     string $categoryId,
     CategoryRepository $categoryForumRepository,
-    TopicRepository $topicRepository
+    TopicRepository $topicRepository,
+    PaginatorInterface $paginatorInterface,
+    Request $request
 
 ): Response {
     // Récupération de la catégorie de forum
@@ -59,6 +63,12 @@ public function findTopicByCategoryForum(
     // Récupération des topics associés à la catégorie de forum
     $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
 
+    $topics = $paginatorInterface->paginate(
+        $topics,
+        $request->query->getint('page', 1),
+        12
+    );
+
     // Initialisation d'un tableau pour stocker les posts
     $posts = [];
 
@@ -73,7 +83,7 @@ public function findTopicByCategoryForum(
         'categories' => $categories,
         'category' => $categoryForum,
         'posts' => $posts,
-        'topic' => $topic
+        'topic' => $topic,
     ]);
 }
 
@@ -105,7 +115,7 @@ public function findPostByTopic(
     $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
     
     // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
-    $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC']);
+    $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC'],12);
     
     // Récupérer les topics associés à la catégorie
     $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);

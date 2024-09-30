@@ -6,19 +6,23 @@
 
 <div class='flex p-12'>  
     <section class="flex">
-        <table>
-            {# Boucle à travers chaque catégorie #}
-            {% for category in categories %}
-            <tr>
-                <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
-                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
-                    <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
-                        {{ category.name|upper }} {# Affiche le nom des catégories #}
-                    </a>
-                </td>
-            </tr>
+        <div>
+            <h2 class=" text-4xl text-[#ebf1ff] pb-4" > Category </h2>
+
+                {# Boucle à travers chaque catégorie #}
+                {% for category in categories %}
+                    <div class='text-xl text-[#ECC33E] hover:text-[#ebf1ff]'>
+
+                        {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
+                        <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
+                            
+                            {# Affiche le nom des catégories #}
+                            {{ category.name|upper }} 
+                        </a>
+                        
+                    </div>
             {% endfor %}
-        </table>  
+        </div>    
     </section>
 
     <!-- Séparateur entre les sections -->
@@ -26,33 +30,39 @@
         <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
     </section>
 
-    <section>
+    <section class="w-full">
+        <h1 class=" ml-4 mt-1 text-[#ebf1ff] font-black text-3xl mb-4">{{ topic.title }}</h1>
+
         {# Boucle à travers chaque post #}
         {% for post in posts %}
-            <div class="bg-[#dbe1f0] text-[#000000] rounded bg-[#ebf1ff] m-3 p-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
-                <h3 class="font-black text-2xl mb-5">{{ post.topic.title }}</h3>
-                <p class="text-justify">{{ post.content }}</p>
+            <div class="bg-[#dbe1f0] w-full text-[#000000] rounded m-4 p-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
+                
+                <p class="text-justify text-xl">{{ post.content }}</p>
 
                 <div class="flex items-center justify-between">
-                    <p class="mr-5">By {{ post.user.pseudo }} - {{ post.createdAt | date('Y m d') }}</p>
+                    <p class="mr-5 text-s">By {{ post.user.pseudo }} - {{ post.createdAt | date('d/m/Y H:i') }}</p>
 
-                    <div class="flex space-x-2">
-                        {# Bouton pour modifier le post #}
-                        <a href="{{ path('post_edit', { id: post.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Edit</a>
-                        {# Formulaire pour supprimer le post avec confirmation #}
-                        <form action="{{ path('delete_post', { id: post.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
-                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
-                        </form>
-                    </div>
+                    {% if app.user and app.user.id == post.user.id %}
+
+                        <div class="flex space-x-2 text-sm">
+                            {# Bouton pour modifier le post #}
+                            <a href="{{ path('post_edit', { id: post.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Edit</a>
+                            {# Formulaire pour supprimer le post avec confirmation #}
+                            <form action="{{ path('delete_post', { id: post.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+                            </form>
+                        </div>
+
+                    {% endif %}
                 </div>
             </div>
         {% else %}
             <p>Aucun post disponible.</p>
         {% endfor %}
     </section>
-</div>
 
+</div>
 
 <section class="text-center p-4">
     {# Lien pour créer un nouveau post dans le topic actuel #}
@@ -60,6 +70,7 @@
         NEW POST
     </a>
 </section>
+
 
 
 {% endblock %}
