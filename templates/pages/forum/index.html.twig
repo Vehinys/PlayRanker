@@ -16,7 +16,7 @@
                 <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
                     {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
                     <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
-                        {{ category.name }} {# Affiche le nom des catégories #}
+                        {{ category.name|upper }} {# Affiche le nom des catégories #}
                     </a>
                 </td>
             </tr>
@@ -61,7 +61,7 @@
                             <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('Y m d') }}</p>  
 
                             {# Lien vers le post avec des styles pour le bouton #}
-                            <a href="{{ path('post', { id: firstPost.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
+                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
                         </div>
                     {# Si aucun post n'est disponible #}
                     {% else %}  

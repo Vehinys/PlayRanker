@@ -14,7 +14,7 @@
                     {# Lien vers le topic correspondant avec l'identifiant de la catégorie et de l'id du topic #}
                     <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
                         {# Affiche le nom des catégories #}
-                        {{ category.name }}
+                        {{ category.name|upper }}
                     </a>
                 </td>
             </tr>
@@ -65,7 +65,7 @@
 
     <div>
         <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
-            Create a new topic in {{ category.name }}
+            NEW TOPIC IN {{ category.name }}
         </a>
     </div>
     

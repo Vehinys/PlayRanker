@@ -13,7 +13,7 @@
                 <td class='text-4xl pb-5 pt-5 text-[#ECC33E] hover:text-[#ebf1ff]'>
                     {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
                     <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
-                        {{ category.name }} {# Affiche le nom des catégories #}
+                        {{ category.name|upper }} {# Affiche le nom des catégories #}
                     </a>
                 </td>
             </tr>
@@ -57,7 +57,7 @@
 <section class="text-center p-4">
     {# Lien pour créer un nouveau post dans le topic actuel #}
     <a href="{{ path('new_post', { topicId: topic.id, categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
-        Create a new post
+        NEW POST
     </a>
 </section>
 

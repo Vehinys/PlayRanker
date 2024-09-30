@@ -39,9 +39,11 @@ class ForumController extends AbstractController
 
 #[Route('/forum/topics/{categoryId}', name: 'topic')]
 public function findTopicByCategoryForum(
+
     string $categoryId,
     CategoryRepository $categoryForumRepository,
     TopicRepository $topicRepository
+
 ): Response {
     // Récupération de la catégorie de forum
     $categoryForum = $categoryForumRepository->find($categoryId);
@@ -75,26 +77,26 @@ public function findTopicByCategoryForum(
     ]);
 }
 
-
-
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 #[Route('/forum/topics/post/{id}', name: 'post')]
 public function findPostByTopic(
+
     CategoryRepository $categoryForumRepository,
     TopicRepository $topicRepository,
     PostRepository $postRepository,
-    string $id
+    int $id
+
 ): Response {
 
     // Récupération du topic correspondant à l'ID donné
-    $topic = $topicRepository->find((int)$id);
+    $topic = $topicRepository->findOneBy(['id' => $id]);
     
-    dump($topic);
+    
     // Vérifier si le topic existe
-    if (!$topic) {
-        throw $this->createNotFoundException('Le topic avec l\'id ' . $id . ' n\'existe pas.');
-    }
+    // if (!$topic) {
+    //     throw $this->createNotFoundException('Le post avec l\'id ' . $id . ' n\'existe pas.');
+    // }
 
     // Récupérer la catégorie du topic
     $category = $topic->getCategoryForum();
@@ -117,10 +119,6 @@ public function findPostByTopic(
         'topics' => $topics
     ]);
 }
-
-
-
-
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
