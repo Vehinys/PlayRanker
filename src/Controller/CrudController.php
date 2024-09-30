@@ -22,6 +22,7 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Création d'un nouveau topic
     // -------------------------------------------------------------------------
+
     #[Route('/forum/category/{categoryId}/topic/new', name: 'topic_new')]
     public function newTopic(
         string $categoryId,
@@ -29,13 +30,12 @@ class CrudController extends AbstractController
         Request $request,
         EntityManagerInterface $em
     ): Response {
-        // Convertir $categoryId en entier
+
         $categoryId = (int)$categoryId;
     
-        // Vérifier si l'utilisateur est connecté
         $user = $this->getUser();
         if (!$user) {
-            return $this->redirectToRoute('login'); // Rediriger si non connecté
+            return $this->redirectToRoute('login');
         }
     
         // Récupérer la catégorie
@@ -46,16 +46,16 @@ class CrudController extends AbstractController
     
         // Créer un nouveau topic
         $topic = new Topic();
-        $topic->setCategoryForum($categoryForum) // Associer la catégorie
+        $topic->setCategoryForum($categoryForum)
               ->setCreatedAt(new \DateTimeImmutable())
-              ->setUser($user); // Associer l'utilisateur au topic
+              ->setUser($user);
     
         // Créer le formulaire
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer le contenu du premier message
+
             $postContent = $form->get('post')->getData();
     
             // Créer un nouveau post
@@ -63,19 +63,17 @@ class CrudController extends AbstractController
             $post->setContent($postContent)
                  ->setCreatedAt(new \DateTimeImmutable())
                  ->setTopic($topic)
-                 ->setUser($user); // Associer l'utilisateur ici
+                 ->setUser($user);
     
-            $topic->addPost($post); // Ajoute le post au topic
+            $topic->addPost($post);
     
-            // Sauvegarder le topic et le post
-            $em->persist($topic); // Persist le topic
-            $em->persist($post);  // Persist le post
+            $em->persist($topic);
+            $em->persist($post);  
             $em->flush();
     
-            // Redirection vers le topic, en ajoutant categoryId et id
             return $this->redirectToRoute('topic', [
-                'categoryId' => $categoryForum->getId(), // ID de la catégorie
-                'id' => $topic->getId(), // ID du topic
+                'categoryId' => $categoryForum->getId(),
+                'id' => $topic->getId(),
             ]);
         }
 
@@ -88,6 +86,7 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Édition d'un topic existant
     // -------------------------------------------------------------------------
+
     #[Route('/topic/{id}/edit', name: 'topic_edit')]
     public function editTopic(Request $request, Topic $topic, EntityManagerInterface $em): Response
     {
@@ -95,7 +94,7 @@ class CrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush(); // Met à jour le topic
+            $em->flush(); 
 
             return $this->redirectToRoute('topic', ['categoryId' => $topic->getCategoryForum()->getId()]);
         }
@@ -109,11 +108,12 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Suppression d'un topic
     // -------------------------------------------------------------------------
+
     #[Route('/forum/topic/delete/{id}', name: 'topic_delete', methods: ['POST'])]
     public function deleteTopic(Request $request, Topic $topic, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete'.$topic->getId(), $request->request->get('_token'))) {
-            // Suppression du topic, les posts sont supprimés grâce à orphanRemoval=true
+
             $em->remove($topic);
             $em->flush();
         }
@@ -124,6 +124,7 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Création d'un nouveau post
     // -------------------------------------------------------------------------
+
     #[Route('/forum/new-post/{topicId}/{categoryId}', name: 'new_post')]
     public function newPost(
         Request $request, 
@@ -132,29 +133,27 @@ class CrudController extends AbstractController
         string $topicId, 
         string $categoryId
     ): Response {
-        // Récupération du topic
+
         $topic = $topicRepository->find($topicId);
         if (!$topic) {
             throw $this->createNotFoundException('Le topic avec l\'id ' . $topicId . ' n\'existe pas.');
         }
 
-        // Création d'un nouveau post
         $post = new Post();
-        $form = $this->createForm(PostType::class, $post); // Corrigé pour utiliser $post
+        $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setCreatedAt(new \DateTimeImmutable()) // Associer la date de création
-                 ->setTopic($topic) // Associer le post au topic
-                 ->setUser($this->getUser()); // Associer l'utilisateur ici
+            $post->setCreatedAt(new \DateTimeImmutable())
+                 ->setTopic($topic)
+                 ->setUser($this->getUser());
 
             $em->persist($post);
             $em->flush();
 
-            // Redirection vers le topic en fournissant categoryId et topicId
             return $this->redirectToRoute('topic', [
-                'categoryId' => $categoryId, // L'ID de la catégorie
-                'id' => $topicId // L'ID du topic
+                'categoryId' => $categoryId,
+                'id' => $topicId
             ]);
         }
 
@@ -166,6 +165,7 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Édition d'un post existant
     // -------------------------------------------------------------------------
+
     #[Route('/forum/post/{id}/edit', name: 'post_edit')]
     public function editPost(Request $request, Post $post, EntityManagerInterface $em): Response
     {
@@ -173,14 +173,13 @@ class CrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush(); // Met à jour le post
+            $em->flush();
 
-            // Récupérer le categoryId à partir du topic du post
             $categoryId = $post->getTopic()->getCategoryForum()->getId();
             
             return $this->redirectToRoute('topic', [
                 'id' => $post->getTopic()->getId(),
-                'categoryId' => $categoryId, // Ajout du categoryId ici
+                'categoryId' => $categoryId, 
             ]);
         }
 
@@ -193,6 +192,7 @@ class CrudController extends AbstractController
     // -------------------------------------------------------------------------
     // Suppression d'un post
     // -------------------------------------------------------------------------
+
     #[Route('/forum/post/delete/{id}', name: 'delete_post')]
     public function deletePost(
         int $id,
@@ -208,6 +208,6 @@ class CrudController extends AbstractController
         $em->remove($post);
         $em->flush();
 
-        return $this->redirectToRoute('forum'); // Redirigez vers une route appropriée après la suppression
+        return $this->redirectToRoute('forum');
     }
 }
