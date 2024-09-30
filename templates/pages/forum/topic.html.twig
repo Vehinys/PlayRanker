@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class='flex p-12'>  
+<div class='flex p-8'>  
     <section class="flex">
         <div>
             <h2 class=" text-4xl text-[#ebf1ff] pb-4" > Category </h2>
@@ -30,7 +30,13 @@
         <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
     </section>
 
-    <section class="mx-7 w-full">
+    <section class="mx-7 w-full ">
+        <div class="flex mb-7">
+            <h2 class="text-[#ebf1ff] text-4xl mr-5"> TOPIC OF {{ category.name|upper }}</h2>
+            <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
+                NEW TOPIC
+            </a>
+        </div>
         <div class="grid grid-cols-3 gap-4 w-full">
             {% for topic in topics %}
                 <div class="bg-[#dbe1f0] w-full text-[#000000] rounded py-6 px-6 my-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
@@ -67,25 +73,17 @@
             {% endfor %}
         </div>
     </section>
-    
 </div>
 
+<section class="">
 
-<section class="text-center p-4">
-
-    <div>
-        <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
-            NEW TOPIC IN {{ category.name|upper }}
-        </a>
-    </div>
-
-    <div>
+    <div class="text-white text-center">
         {{ knp_pagination_render(topics) }}
     </div>
 
-
-    
 </section>
+
+
 
 
 

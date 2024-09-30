@@ -7,7 +7,7 @@
 {# Début du bloc de contenu principal #}
 {% block body %}  
 
-<div class='flex p-12'>  
+<div class='flex p-8'>  
     <section class="flex">
         <div class="">
             <h2 class="text-4xl text-[#ebf1ff] pb-4">Category</h2>
@@ -15,8 +15,10 @@
             {# Boucle à travers chaque catégorie #}
             {% for category in categories %}
                 <div class='text-xl text-[#ECC33E] hover:text-[#ebf1ff]'>
+                    
                     {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
                     <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
+
                         {# Affiche le nom des catégories #}
                         {{ category.name|upper }} 
                     </a>
@@ -40,30 +42,39 @@
                 {% for topic in topics %}
                 <div class="bg-[#dbe1f0] flex flex-col justify-between rounded-lg m-2 p-8 dark:bg-slate-800 hover:scale-105 hover:-translate-y-1 transition-transform duration-300 shadow-lg">
                     <div class="flex items-center mb-4">
+
                         {# Affiche le nom de la catégorie du sujet #}
                         <h3 class="font-bold text-2xl mr-1">{{ topic.categoryForum.name }} :</h3>  
+
                         {# Affiche le titre du sujet #}
                         <h2 class="font-black text-2xl">{{ topic.title }}</h2>  
                     </div>
 
                     {# Vérifie s'il y a des posts dans le sujet #}
                     {% if topic.posts is not empty %}  
+
                         {# Récupère le premier post du sujet #}
                         {% set firstPost = topic.posts|first %} 
+
                         {# Affiche le contenu du premier post #}
                         <h4 class="text-md font-bold text-justify mb-3">{{ firstPost.content }}</h4>
                         <div class="flex justify-between items-center"> 
+
                             {# Affiche le pseudo de l'utilisateur et la date de création du post #}
                             <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date(' d m ') }}</p>  
+
                             {# Lien vers le post avec des styles pour le bouton #}
                             <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
                         </div>
+
                     {# Si aucun post n'est disponible #}
                     {% else %}  
                         <p>No posts available for this topic.</p> 
-                    {% endif %}  {# Fin de la vérification pour les posts #}
+
+                    {% endif %}
                 </div>
-                {% endfor %}  {# Fin de la boucle sur les sujets #}
+
+                {% endfor %}
             </div>  
         </div>
     </section>

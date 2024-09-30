@@ -401,7 +401,7 @@ main {
   font-size: 1em;                                               /* Taille de la police                    */
 }
 
-.prev, .next {                                                  /* Boutons de navigation                   */
+.precedent, .suivant {                                                  /* Boutons de navigation                   */
   position: absolute;                                           /* Position absolue                        */
   top: 50%;                                                     /* Position verticale centrée              */
   transform: translateY(-50%);                                  /* Ajustement de la position               */
@@ -415,15 +415,15 @@ main {
   border-radius: 5px;                                           /* Coins arrondis                         */
 }
 
-.prev {                                                         /* Bouton précédent                        */
+.precedent {                                                         /* Bouton précédent                        */
   left: 10px;                                                   /* Position à gauche                      */
 }
 
-.next {                                                         /* Bouton suivant                         */
+.suivant {                                                         /* Bouton suivant                         */
   right: 10px;                                                  /* Position à droite                      */
 }
 
-.prev:hover, .next:hover {                                      /* Boutons en survol                       */
+.precedent:hover, .suivant:hover {                                      /* Boutons en survol                       */
   background-color: var(--color-yellow);                        /* Couleur de fond au survol              */
   color: var(--color-dark);                                     /* Couleur du texte au survol             */
 }
@@ -1195,31 +1195,6 @@ small b {
 .detail-button:hover {
   background-color: var(--color-yellow);                        /* Change la couleur de fond lors du survol       */
   color: var(--color-dark);                                     /* Couleur du texte lors du survol                */
-  border-radius: 5px;                                           /* Coins arrondis                                */
-}
-
-.pagination {
-  display: flex;                                                /* Utilise flexbox pour la pagination             */
-  justify-content: center;                                      /* Centre les éléments de pagination              */
-  margin-top: 20px;                                             /* Espace au-dessus                               */
-  padding-bottom: 20px;                                         /* Espacement en bas                             */
-  border-radius: 20px;
-}
-
-.pagination a, .pagination span {
-  margin: 0 10px;                                               /* Espace autour des éléments de pagination       */
-  padding: 5px 10px;                                            /* Espacement intérieur                           */
-  background-color: var(--color-yellow);                    /* Fond jaune pour les éléments de pagination     */
-  color: var(--color-dark);                                /* Couleur du texte                              */
-  text-decoration: none;                                        /* Supprime le soulignement                       */
-  border-radius: 8px;                                           /* Coins arrondis                                */
-  border: var(--color-dark-2) 3px solid;                       /* Bordure                                       */
-}
-
-.pagination a:hover {
-  background-color: var(--color-dark-2);                      /* Change la couleur de fond lors du survol      */
-  color: var(--color-yellow);                                    /* Couleur du texte                              */
-  border: var(--color-yellow) 3px solid;                       /* Bordure                                       */
   border-radius: 5px;                                           /* Coins arrondis                                */
 }
 

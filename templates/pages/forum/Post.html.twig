@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class='flex p-12'>  
+<div class='flex p-8'>  
     <section class="flex">
         <div>
             <h2 class=" text-4xl text-[#ebf1ff] pb-4" > Category </h2>
@@ -31,7 +31,15 @@
     </section>
 
     <section class="w-full">
-        <h1 class=" ml-4 mt-1 text-[#ebf1ff] font-black text-3xl mb-4">{{ topic.title }}</h1>
+        <div>
+            <div class="text-center flex p-4">
+                <h1 class=" mr-5 ml-4 mt-1 text-[#ebf1ff] font-black text-3xl">{{ topic.title }}</h1>
+                {# Lien pour créer un nouveau post dans le topic actuel #}
+                <a href="{{ path('new_post', { topicId: topic.id, categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-3 rounded hover:bg-[#ECC33E] transition duration-200">
+                    NEW POST
+                </a>
+            </div>
+        </div>
 
         {# Boucle à travers chaque post #}
         {% for post in posts %}
@@ -62,14 +70,11 @@
         {% endfor %}
     </section>
 
+
+
 </div>
 
-<section class="text-center p-4">
-    {# Lien pour créer un nouveau post dans le topic actuel #}
-    <a href="{{ path('new_post', { topicId: topic.id, categoryId: category.id }) }}" class="bg-[#ebf1ff] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ECC33E] transition duration-200">
-        NEW POST
-    </a>
-</section>
+
 
 
 
