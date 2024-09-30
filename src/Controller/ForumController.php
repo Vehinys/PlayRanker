@@ -83,7 +83,6 @@ public function findTopicByCategoryForum(
         'categories' => $categories,
         'category' => $categoryForum,
         'posts' => $posts,
-        'topic' => $topic,
     ]);
 }
 
@@ -93,6 +92,8 @@ public function findTopicByCategoryForum(
 public function findPostByTopic(
 
     CategoryRepository $categoryForumRepository,
+    PaginatorInterface $paginatorInterface,
+    Request $request,
     TopicRepository $topicRepository,
     PostRepository $postRepository,
     int $id
@@ -102,11 +103,10 @@ public function findPostByTopic(
     // Récupération du topic correspondant à l'ID donné
     $topic = $topicRepository->findOneBy(['id' => $id]);
     
-    
     // Vérifier si le topic existe
-    // if (!$topic) {
-    //     throw $this->createNotFoundException('Le post avec l\'id ' . $id . ' n\'existe pas.');
-    // }
+    if (!$topic) {
+        throw $this->createNotFoundException('Le post avec l\'id ' . $id . ' n\'existe pas.');
+    }
 
     // Récupérer la catégorie du topic
     $category = $topic->getCategoryForum();
@@ -116,6 +116,13 @@ public function findPostByTopic(
     
     // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
     $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC'],12);
+
+    $posts = $paginatorInterface->paginate(
+        $posts,
+        $request->query->getint('page', 1),
+        5
+    );
+
     
     // Récupérer les topics associés à la catégorie
     $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);

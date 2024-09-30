@@ -25,7 +25,7 @@ class GamesList
     #[ORM\ManyToMany(targetEntity: Game::class, inversedBy: 'gamesLists')]
     private Collection $games;
 
-    #[ORM\ManyToOne(inversedBy: 'gamesLists')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'gamesLists', cascade: ["remove"])]
     private ?User $user = null;
 
     public function __construct()

@@ -62,15 +62,21 @@
                             </form>
                         </div>
 
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% else %}
-            <p>Aucun post disponible.</p>
-        {% endfor %}
-    </section>
-
-
+                {% else %}
+                <p>Aucun post disponible.</p>
+                {% endfor %}
+            </section>
+            
+            <section class="">
+                
+                <div class="text-white text-center my-4">
+                    {{ knp_pagination_render(posts) }}
+                </div>
+                
+            </section>
 
 </div>
 

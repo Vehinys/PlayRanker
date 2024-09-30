@@ -38,6 +38,7 @@
             </a>
         </div>
         <div class="grid grid-cols-3 gap-4 w-full">
+
             {% for topic in topics %}
                 <div class="bg-[#dbe1f0] w-full text-[#000000] rounded py-6 px-6 my-3 hover:bg-[#09172b] hover:text-[#ebf1ff]">
                     <a href="{{ path('post', {id: topic.id}) }}">
@@ -75,12 +76,10 @@
     </section>
 </div>
 
-<section class="">
-
-    <div class="text-white text-center">
+<section>
+    <div class="text-white flex text-center my-4">
         {{ knp_pagination_render(topics) }}
     </div>
-
 </section>
 
 
