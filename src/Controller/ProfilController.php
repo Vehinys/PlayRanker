@@ -226,7 +226,7 @@ class ProfilController extends AbstractController
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
     
-        // Récupérer la liste de favoris de l'utilisateur
+        // Récupérer la liste de readyPlayed de l'utilisateur
 
         $gameList= $repository->findOneBy(['user' => $user, 'name' => 'Already played']);
 
@@ -259,6 +259,122 @@ class ProfilController extends AbstractController
             $gameList->removeGame($game);
         } else {
             // Sinon, ajouter le jeu à la liste d'Already played'
+            $gameList->addGame($game);
+        }
+    
+        // Persister la liste mise à jour
+        $manager->persist($gameList);
+        $manager->flush();
+        
+        // Rendre une vue Twig avec la liste des jeux mis à jour
+        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]);
+    }
+
+    #[Route('/game/mydesires/{gameId}', name: 'games_myDesires')]
+    public function addMyDesires (
+
+        int $gameId,
+        GamesListRepository $repository,
+        Request $request,
+        EntityManagerInterface $manager,
+        GameRepository $gameRepository
+
+    ): Response {
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+    
+        // Récupérer la liste de readyPlayed de l'utilisateur
+
+        $gameList= $repository->findOneBy(['user' => $user, 'name' => 'My desires']);
+
+        // Vérifier si le jeu existe déjà dans la base de données
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $gameId]);
+    
+        // Si le jeu n'existe pas, créer une nouvelle instance de Game
+        if (!$existingGame) {
+            $game = new Game();
+            $game->setIdGameApi($gameId);
+    
+            // Récupérer le nom et les données du jeu depuis la requête
+            $gameName = $request->get('gameName');
+            $gameData = $request->get('gameData');
+    
+            // Configurer les propriétés du jeu
+            $game->setName($gameName);
+            $game->setData([$gameData]);
+    
+            // Persister le nouveau jeu
+            $manager->persist($game);
+        } else {
+            // Si le jeu existe déjà, utiliser l'instance existante
+            $game = $existingGame;
+        }
+    
+        // Vérifier si le jeu est déjà dans la liste d'Already played'
+        if ($gameList->getGames()->contains($game)) {
+            // Si le jeu est déjà dans la liste, le retirer
+            $gameList->removeGame($game);
+        } else {
+            // Sinon, ajouter le jeu à la liste d'Already played'
+            $gameList->addGame($game);
+        }
+    
+        // Persister la liste mise à jour
+        $manager->persist($gameList);
+        $manager->flush();
+        
+        // Rendre une vue Twig avec la liste des jeux mis à jour
+        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]);
+    }
+
+    #[Route('/game/gotest/{gameId}', name: 'games_goTest')]
+    public function addGoTest (
+
+        int $gameId,
+        GamesListRepository $repository,
+        Request $request,
+        EntityManagerInterface $manager,
+        GameRepository $gameRepository
+
+    ): Response {
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+    
+        // Récupérer la liste de Go test de l'utilisateur
+
+        $gameList= $repository->findOneBy(['user' => $user, 'name' => 'Go test']);
+
+        // Vérifier si le jeu existe déjà dans la base de données
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $gameId]);
+    
+        // Si le jeu n'existe pas, créer une nouvelle instance de Game
+        if (!$existingGame) {
+            $game = new Game();
+            $game->setIdGameApi($gameId);
+    
+            // Récupérer le nom et les données du jeu depuis la requête
+            $gameName = $request->get('gameName');
+            $gameData = $request->get('gameData');
+    
+            // Configurer les propriétés du jeu
+            $game->setName($gameName);
+            $game->setData([$gameData]);
+    
+            // Persister le nouveau jeu
+            $manager->persist($game);
+        } else {
+            // Si le jeu existe déjà, utiliser l'instance existante
+            $game = $existingGame;
+        }
+    
+        // Vérifier si le jeu est déjà dans la liste Go test'
+        if ($gameList->getGames()->contains($game)) {
+            // Si le jeu est déjà dans la liste, le retirer
+            $gameList->removeGame($game);
+        } else {
+            // Sinon, ajouter le jeu à la liste Go test'
             $gameList->addGame($game);
         }
     

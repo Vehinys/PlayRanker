@@ -29,7 +29,7 @@
 
                     <div>
                         <p class="font-bold text-yellow-500 text-[30px]">Studio(s)</p>
-                        <p class="font-medium text-[20px]">
+                        <p class="font-medium text-[20px ">
                             {% for developer in gameDetail.developers %}
                                 {{ developer.name|lower|capitalize }}<br>
                             {% endfor %}
@@ -109,6 +109,7 @@
                             </form>
                         {% endif %}
                     </div>
+
                     <div class="text-center">
                         <p class="font-bold text-yellow-500 text-[30px]">goTest</p>
                         {% if app.user %}
@@ -179,7 +180,7 @@
 
         <!-- Section des tags -->
         <div class="mt-5">
-            <h3 class="font-bold my-5 text-[30px] text-yellow-500 text-center">Tag(s) : </h3>
+            <h3 class="font-bold my-5 text-[30px] text-yellow-500 text-center"> Tag(s) : </h3>
             <p class="font-medium text-lg text-white grid grid-cols-3">
                 {% for tag in gameDetail.tags %}
                     <span>{{ tag.name }}</span>
