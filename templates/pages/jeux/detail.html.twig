@@ -4,88 +4,120 @@
 
 {% block body %}
 
-<div class="all-game-detail-container">
-    <div class="game-detail-container">
-        <section class="game-detail-image">
-            <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}">
-            <div class="overlay">
-                <p class="game-detail-p"> <h1>{{gameDetail.name}}</h1></p>
-                <div class="game-detail-info">
-                    
-                    <p class="game-detail-p"><span>Date de sortie</span> {{gameDetail.released|date("m/d/Y")}}</p>
-                    <p class="game-detail-p">
-                        <span>Éditeur(s)</span>
-                        {% for editeur in gameDetail.publishers %}
-                            {{ editeur.name }}{% if not loop.last %}, {% endif %}
-                        {% endfor %}
-                    </p>
-                    <div class="container-multi-reponse">
-                        <p class="tag-label">Studio(s)</p>
-                        <p class="tag-list">
+<div class="mx-auto text-center bg-slate-950">
+    <section class="w-4/5 mx-auto pt-5">
+        <section class="m-7 relative">
+            <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}" class="w-full rounded-lg shadow-lg opacity-100">
+            <div class=" m-4 absolute inset-0 bg-black bg-opacity-50 rounded-lg p-4 flex flex-col justify-center">
+                <h1 class="text-6xl mb-20 text-white text-shadow-lg">{{gameDetail.name}}</h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-white">
+
+                    <div>    
+                        <p class="font-bold text-yellow-500 text-[30px] "> Date de sortie :</p>
+                        <p class="font-medium text-[20px]"> {{gameDetail.released|date("m/d/Y")}}</p>
+                    </div>
+
+                    <div>    
+                        <p class="font-bold text-yellow-500 text-[30px]"> Éditeur(s):</p>
+                        <p class="font-medium text-[20px]">
+                            {% for editeur in gameDetail.publishers %}
+                                {{ editeur.name|lower|capitalize }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>   
+
+                    <div>
+                        <p class="font-bold text-yellow-500 text-[30px]">Studio(s)</p>
+                        <p class="font-medium text-[20px]">
                             {% for developer in gameDetail.developers %}
-                                {{ developer.name }}<br>
+                                {{ developer.name|lower|capitalize }}<br>
                             {% endfor %}
                         </p>
                     </div>
 
-                    <div class="container-multi-reponse">
-                        <p class="tag-label">Genre(s)</p>
-                        <p class="tag-list">
+                    <div>
+                        <p class="font-bold text-yellow-500 text-[30px]">Genre(s)</p>
+                        <p class="font-medium text-[20px]">
                             {% for genre in gameDetail.genres %}
                                 {{ genre.name }}{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </p>
                     </div>
-                    <div class="container-multi-reponse">
-                        <p class="tag-label">Esrb</p>
-                        <p class="tag-list">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
+                    
+                    <div>
+                        <p class="font-bold text-yellow-500 text-[30px]">Esrb</p>
+                        <p class="font-medium text-[20px]">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
                     </div>
-                    <div class="container-multi-reponse">
-                        <p class="tag-label">Metacritic</p>
-                        <p class="tag-list">{{ gameDetail.metacritic }} sur 100</p>
+                    
+                    <div>
+                        <p class="font-bold text-yellow-500 text-[30px]">Metacritic</p>
+                        <p class="font-medium text-[20px]">{{ gameDetail.metacritic }} sur 100</p>
                     </div>
-                    {% if gameDetail.metacritic_url %}
-                        <div class="container-multi-reponse">
-                            <p class="tag-label">Plateforme Metacritic</p>
-                            <a href="{{ gameDetail.metacritic_url }}">{{ gameDetail.name }}</a>
-                        </div>
-                    {% endif %}
-                    {% if gameDetail.website %}
-                        <div>
-                            <p class="game-detail-p">
-                                <span>Site Web</span>
-                                <a href="{{ gameDetail.website }}">{{ gameDetail.name }}</a>
-                            </p>
-                        </div>
-
-                        {% if app.user %}
-                    <form class="form-add-favoris" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
-                        <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
-                        <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
-                        <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
-                        <button class="btn-add-favoris" type="submit"><i class="fa-sharp fa-solid fa-heart"></i></button>
-                    </form>
-                        {% else %}
+                    
+                    <div>
+                        {% if gameDetail.metacritic_url %}
+                            <p class="font-bold text-yellow-500 text-[30px]">Plateforme Metacritic</p>
+                            <a class="text-white text-[20px] hover:text-yellow-500" href="{{ gameDetail.metacritic_url }}" >{{ gameDetail.name }}</a>
                         {% endif %}
+                    </div>
+                    
+                    <div>
+                        {% if gameDetail.website %}
+                            <p class="font-bold text-yellow-500 text-[30px]">Site Web:</p>
+                            <a href="{{ gameDetail.website }}" class="text-white text-[20px] hover:text-yellow-500">{{ gameDetail.name }}</a>
+                        {% endif %}
+                    </div>
 
-                {% endif %}
+                    <div class="text-center">
+                        <p class="font-bold text-yellow-500 text-[30px]">Add to my favorites</p>
+                        {% if app.user %}
+                            <form class="mt-5" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
+                                <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
+                                <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
+                                <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
+                                <button class="text-5xl hover:text-red-600" type="submit">
+                                    <i class="fa-sharp fa-solid fa-heart"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                    <div class="text-center">
+                        <p class="font-bold text-yellow-500 text-[30px]">Add to a list</p>
+                        {% if app.user %}
+                            <form class="mt-5" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
+                                <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
+                                <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
+                                <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
+                                <button class="text-5xl hover:text-black " type="submit">
+                                    <i class="fa-sharp fa-solid fas fa-plus"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                </div>
             </div>
         </section>
-    </div>
+    </section>
 
-    <div class="platforms-detail">
-        <div class="platform-detail">
-            {% set platform_logos = {
+    <section class="w-4/5 mx-auto pb-10">
+        <!-- Section des plateformes -->
+        <h3 class=" text-[30px] my-5 font-bold text-yellow-500 text-center">Plateforme(s) : </h3>
+        <div class="grid grid-cols-4 justify-items-center">
+                {% set platform_logos = {
                 'PlayStation 1': 'img/ps1.png',
                 'PlayStation 2': 'img/ps2.png',
                 'PlayStation 3': 'img/ps3.png',
                 'PlayStation 4': 'img/ps4.png',
                 'PlayStation 5': 'img/ps5.png',
-                'PS Vita': 'img/ps vita.png',
+                'PS Vita':       'img/ps-vita.png',
+                'PSP':           'img/psp.png',
                 'PC': 'img/pc.png',
                 'Linux': 'img/linux.png',
-                'macOS': 'img/macOS.png',
                 'Web': 'img/Web.png',
+                'macOS': 'img/macOS.png',
                 'iOS': 'img/ios.png',
                 'Android': 'img/Android.png',
                 'Xbox Series S/X': 'img/Xbox Series SX.png',
@@ -95,51 +127,67 @@
                 'Nintendo Switch': 'img/Nintendo Switch.png',
                 'Nintendo 3DS': 'img/Nintendo 3DS.png',
                 'Wii U': 'img/Wii U.png',
-            } %}
-            <p class="tag-label">Plateforme(s)</p>
+                'Wii': 'img/Wii.png',
+                'GameCube': 'img/gameCube.png',
+                
+                'Nintendo DSi ': 'img/Wii U.png',
+                'Nintendo DS ': 'img/Wii U.png',
+                'Game Boy Advance': 'img/Wii U.png',
+                'Game Boy Color': 'img/Wii U.png',
+                'Game Boy': 'img/Wii U.png',
+                'Nintendo 64': 'img/Wii U.png',
+                'SNES': 'img/Wii U.png',
+                'Wii U': 'img/Wii U.png',
+                'NES': 'img/Wii U.png',
+                } %}
+
             {% for element in gameDetail.platforms %}
-                <div class="platform-item-detail">
-                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
-                    {% if logo_path %}
-                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
-                    {% endif %}
-                </div>
+            <div class="flex items-center justify-center">
+                {% set logo_path = platform_logos[element.platform.name] ?? '' %}
+                {% if logo_path %}
+                <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
+                {% endif %}
+            </div>
             {% endfor %}
         </div>
-    </div>
 
-        <div class="container-multi-reponse">
-            <p class="tag-label">Tag(s)</p>
-            <p style="font-size: 15px">
+        <!-- Section des tags -->
+        <div class="mt-5">
+            <h3 class="font-bold my-5 text-[30px] text-yellow-500 text-center">Tag(s) : </h3>
+            <p class="font-medium text-lg text-white grid grid-cols-3">
                 {% for tag in gameDetail.tags %}
-                    {{ tag.name }} {% if not loop.last %}, {% endif %}
+                    <span>{{ tag.name }}</span>
                 {% endfor %}
             </p>
         </div>
 
-        <section class="all-game-description">
-            <section class="section-video">
-                <h3 class="section-video-h3">Bande d'annonce</h3>
-                <div class='ifram'>
+        <!-- Section de la description et des vidéos -->
+        <section class="m-10">
+            <!-- Bande d'annonce -->
+            <div>
+                <h3 class="text-[30px] my-5 font-bold text-yellow-500">Bande d'annonce</h3>
+                <div class="flex gap-5 justify-center w-100 h-1/2">
                     {% set count = 0 %}
                     {% for trailer in gameAnnonce.results %}
                         {% if count < 2 %}
-                            <iframe src="{{ trailer.data.max }}" title='Video trailer' width="380" height="222"></iframe>
+                        <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-[50%] h-[300px]"></iframe>
                             {% set count = count + 1 %}
                         {% endif %}
                     {% endfor %}
                 </div>
-            </section>
-
-            <section class="game-description">
-                <div class="game-description-detail">
-                    <h3>Description</h3>
-                    <p>{% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}{{ cleaned_description|raw }}</p>
-                </div>
-            </section>
+            </div>
         </section>
-    </div>
+            <!-- Description du jeu -->
+        <section class="mt-5">
+            <div class="bg-gray-800 p-5 rounded-lg">
+                <h3 class="text-[30px] font-bold mb-2 text-yellow-500">Description</h3>
+                <p class="text-white">
+                    {% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
+                    {{ cleaned_description|raw }}
+                </p>
+            </div>
+        </section>
+    </section>
 </div>
-
 
 {% endblock %}
