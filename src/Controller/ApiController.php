@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\HttpClient\ApiHttpClient;
+use App\Repository\GameRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\PlatformRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,8 +32,14 @@ class ApiController extends AbstractController
 
 
     #[Route('/jeux', name: 'jeux')]
-    public function index( ApiHttpClient $apiHttpClient, Request $request,CategoryRepository $repository): Response 
-    {
+    public function index(
+        
+        ApiHttpClient $apiHttpClient, 
+        Request $request,
+        CategoryRepository $repository,
+        GameRepository $gameRepository,
+
+    ): Response {
 
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
@@ -40,8 +48,7 @@ class ApiController extends AbstractController
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'currentPage' => $page,
-            'categories' => $categories
-
+            'categories' => $categories,
         ]);
     }
 
