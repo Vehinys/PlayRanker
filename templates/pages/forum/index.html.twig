@@ -40,14 +40,14 @@
 
                 {# Boucle à travers chaque sujet #}
                 {% for topic in topics %}
-                <div class="bg-[#dbe1f0] flex flex-col justify-between rounded-lg m-2 p-8 dark:bg-slate-800 hover:scale-105 hover:-translate-y-1 transition-transform duration-300 shadow-lg">
+                <div class="bg-[#dbe1f0] flex flex-col justify-between rounded-lg m-2 p-8 dark:bg-slate-800">
                     <div class="flex items-center mb-4">
 
                         {# Affiche le nom de la catégorie du sujet #}
-                        <h3 class="font-bold text-2xl mr-1">{{ topic.categoryForum.name }} :</h3>  
+                        <h3 class="font-black text-3xl mr-1">{{ topic.categoryForum.name }} :</h3>  
 
                         {# Affiche le titre du sujet #}
-                        <h2 class="font-black text-2xl">{{ topic.title }}</h2>  
+                        <h2 class="font-bold self-end text-2xl">{{ topic.title }}</h2>  
                     </div>
 
                     {# Vérifie s'il y a des posts dans le sujet #}
@@ -57,11 +57,11 @@
                         {% set firstPost = topic.posts|first %} 
 
                         {# Affiche le contenu du premier post #}
-                        <h4 class="text-md font-bold text-justify mb-3">{{ firstPost.content }}</h4>
+                        <h4 class="text-[30px] font-bold text-justify mb-3">{{ firstPost.content }}</h4>
                         <div class="flex justify-between items-center"> 
 
                             {# Affiche le pseudo de l'utilisateur et la date de création du post #}
-                            <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>  
+                            <p class="text-[12px]">{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>  
 
                             {# Lien vers le post avec des styles pour le bouton #}
                             <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
