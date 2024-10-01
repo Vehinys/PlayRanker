@@ -23,13 +23,21 @@ class RegistrationController extends AbstractController
         GamesList $gameList = null,
 
     ): Response {
-        // Création d'une nouvelle instance de User
+        // Création d'une nouvelle instance de l'entité User
         $user = new User();
+        // Création des nouvelles instance de l'entité GamesList
         $gameList = new GamesList();
-        
-        // Dés qu'un utilisateur s'inscrit, il a une liste de jeux par défaut (Favoris )
-        $gameList->setName('Favoris');
+        $gameList1 = new GamesList();
+        $gameList2 = new GamesList();
+        $gameList3 = new GamesList();
 
+        
+        // Dés qu'un utilisateur s'inscrit, il a 4 listes de jeux par défaut
+        $gameList->setName('Favoris');
+        $gameList1->setName('Already played');
+        $gameList2->setName('My desires');
+        $gameList3->setName('Go test');
+        
         // Création du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -44,6 +52,9 @@ class RegistrationController extends AbstractController
             
             // Associer la liste nouvellement créer au nouvel utilisateur
             $user->addGamesList($gameList);
+            $user->addGamesList($gameList1);
+            $user->addGamesList($gameList2);
+            $user->addGamesList($gameList3);
             
             // Assurer que ROLE_USER est ajouté si aucun rôle n'est défini
             if (empty($user->getRoles())) {
@@ -53,6 +64,9 @@ class RegistrationController extends AbstractController
             // Persistance et enregistrement en base de données
             $entityManager->persist($user);
             $entityManager->persist($gameList);
+            $entityManager->persist($gameList1);
+            $entityManager->persist($gameList2);
+            $entityManager->persist($gameList3);
             $entityManager->flush();
 
             // Redirection après inscription réussie
