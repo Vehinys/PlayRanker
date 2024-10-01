@@ -39,12 +39,30 @@ class ProfilController extends AbstractController
      */
 
         #[Route('/profil', name: 'profil')]
-        public function index(): Response
-        {
-            $user = $this->getUser();
+        public function index(
 
+            GamesListRepository $GamesListRepository,
+
+        ): Response {
+
+        // Récupérer l'utilisateur courant
+        $user = $this->getUser();
+
+        // Récupère la liste des favoris pour cet utilisateur
+        $favoritesList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Favoris']);
+        $alreadyPlayedList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Already played']);
+        $myDesiresList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'My desires']);
+        $goTestList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Go test']);
+
+        // Récupère la liste des jeux favoris pour cet utilisateur
+        $gamesList = $GamesListRepository->findBy([], ['id' => 'ASC']);
+            
             return $this->render('pages/profil/index.html.twig', [
-                'user' => $user
+                'user' => $user,
+                'favoritesList' => $favoritesList,
+                'alreadyPlayedList' => $alreadyPlayedList,
+                'myDesiresList' => $myDesiresList,
+                'goTestList' => $goTestList,
             ]);
         }
         

@@ -3,71 +3,119 @@
 {% block title %} My Profile {% endblock %}
 
 {% block body %}
-<div>
-    <section class="container-profil">
-        <section class="profil-container">
-            <div class="profil-section">
-                <div class="profil-card">
-                    <div class="profil-title">
-                        <h2>My Profile</h2>
+<div class="min-h-screen  py-8">
+    <section class="container mx-auto p-6">
+        <!-- Section du profil utilisateur -->
+        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
+            <div class="flex flex-col items-center md:flex-row">
+                <!-- Profil User -->
+                <div class="w-full md:w-1/2">
+                        <h2 class="text-4xl text-center font-bold text-[#ECC33E]">My Profile</h2>
+                    <div class="text-center mb-6">
                     </div>
-                    <div class="profil-card-content">
-                        <div class="profil-user-info">
-                            {% if user %}
-                                {% if user.avatar %}
-                                    <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
-                                {% else %}
-                                    <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="profil-image">
-                                {% endif %}
-                                <div class="profil-user-details">
-                                    <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span></p>
-                                    <p><b>Email  : </b> <span>{{ user.email }}</span></p>
-                                    <p><b>Number of messages: </b><span></span></p>
-                                    <p><b>Number of favorites: </b><span></span></p>
-                                </div>
+                    <div class="flex flex-col items-center">
+                        {% if user %}
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="w-48 h-48 rounded-full border-4 border-white transition-transform duration-500 transform hover:scale-110">
                             {% else %}
-                                <p>No users found. Please log in</p>
+                                <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="w-24 h-24 rounded-full border-4 transition-transform duration-500 transform hover:scale-110">
                             {% endif %}
-                        </div>
+                            <div class="mt-4 text-center text-white">
+                                <p><b class="text-[20px] text-[#ECC33E] ">Pseudo :</b> <span class="text-[20px]">{{ user.pseudo }}</span></p>
+                                <p><b class="text-[20px] text-[#ECC33E]">Email :</b> <span class="text-[20px]">{{ user.email }}</span></p>
+                                <p><b class="text-[20px] text-[#ECC33E]">Nb of topics created :</b> <span class="text-[20px]">{{ user.topics|length }}</span></p>
+                            </div>
+                        {% else %}
+                            <p class="text-red-500">No users found. Please log in</p>
+                        {% endif %}
                     </div>
-                    <div>
-                        <button class="increment-button" onclick="window.location.href='{{ path('edit_profile') }}'">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAR9JREFUSEu9lb1OwlAUgL/DC8BgSFxx9gVcfAtiw2DcZaOTLITAoIzsTtrG1yDhDZxIXJlIZDWGAyVooN72tr2tdz2333f+bipUfKRiPk4CDRgC3+IxSEq0sEADnoDeAeyLx8QkKSTQV84Q3oHmL1Toyw2juCS3QJ9pyB2fGnKBMgPOD9AH8Rg7CTTkHqXPhivp8KEvtKgxBybOLdJg3++o79FZsuFaOiz0jbq0WTsNWUN8lMcYZMkXl3LLKm3VrTOIZX7MmopH1/aOUgWu8EieKEiBRwP1bZn/xI2CsuDGCsqEJwnUUH6uthx//6dFGhAXFIZnqcAJnrpFWbfEds/60GwAW/z/BYYh25I8ie/+bidJZ9micgW5aBkuVz6DLXkmVBlFW4cwAAAAAElFTkSuQmCC"/>
+                    <div class="flex justify-center mt-6 space-x-4">
+                        <button class="bg-[#09172b] hover:bg-white text-white hover:text-[#0C1D36] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="window.location.href='{{ path('edit_profile') }}'">
+                            Edit
                         </button>
-                        <button class="increment-button" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href='{{ path('delete_profile') }}'; }">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKdJREFUSEvt1bsNwjAURuHvFmxCBStkDIbIEPSMgNiBGRiAHiRmoTBVBER5OBGhSVxa1n+uj+3rMPGIifP1AhIlji2FlMGpq8hOQKLABauWkCeK4NoG+QIk0i+UhbeZ/wJ+UX09o/EMxqr6VFOBZgCotl3X1jQ/StEC6L1Fi6IZKBrSAIc8tBs2Q8JxD7a53XSHA9aZkAf2wTkLkBmataz3089K6Vj0Agj0UBlV+lXFAAAAAElFTkSuQmCC"/>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href='{{ path('delete_profile') }}'; }">
+                            <i class='fas fa-trash-can'></i> 
                         </button>
+                    </div>
+                </div>
+
+                <!-- Topics de l'utilisateur -->
+                <div class="w-full md:w-1/2 mt-6 md:mt-0">
+                    <h3 class="text-3xl font-semibold text-[#ECC33E] text-center mb-4">My Topics</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
+                        {% for topic in user.topics %}
+                            <a href="" class="bg-[#09172b] p-3 rounded-lg text-center text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
+
+                        {% else %}
+                            <p class="text-gray-400">No topics created yet.</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </section>
-    </section>
 
-    <!-- Section des favoris de l'utilisateur -->
-    <section class="container-profil">
-        <section class="profil-container">
-            <div class="profil-section">
-                <div class="profil-card">
-                    <div class="profil-title">
-                        <h2>My Favorites</h2>
+        <!-- Section des favoris de l'utilisateur -->
+        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 mt-8 transition-transform duration-300 hover:shadow-xl">
+            <div>
+                <div class="text-center mb-7">
+                    <h2 class="text-4xl font-bold text-[#ECC33E]">My Favorites</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for listFavoris in favoritesList.games %}
+                    <div class="flex items-center">
+                        <p class="bg-[#09172b] hover:bg-white p-2 rounded-lg text-center text-white hover:text-[#09172b] mr-3 transition-transform duration-500 hover:scale-105">{{ listFavoris.name }}</p>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
                     </div>
-                    <div class="profil-card-content">
-                        <a class="increment-button" href="{{ path('jeux') }}">Search Game</a>
-                    </div>
+                    {% else %}
+                        <p class="text-gray-400">No favorites added yet.</p>
+                    {% endfor %}
+                </div>
+
+                <div class="text-center mt-6">
+                    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">Search Game </a>
                 </div>
             </div>
         </section>
-    </section>
 
-    <!-- Section de la liste de jeux de l'utilisateur -->
-    <section class="container-profil">
-        <section class="profil-container">
-            <div class="profil-section">
-                <div class="profil-card">
-                    <div class="profil-title">
-                        <h2>My Gamelist</h2>
+        <!-- Section des listes de jeux de l'utilisateur -->
+        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 mt-8 text-center transition-transform duration-300 hover:shadow-xl">
+            <h2 class="text-4xl mb-7 font-bold text-[#ECC33E]">My Lists</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <div class="text-center">
+                    <h2 class="text-3xl font-semibold mb-6 text-white">Already played</h2>
+                    <div class="w-3/4 flex flex-col">
+                        {% for alreadyPlayedList in alreadyPlayedList.games %}
+                            <div class="flex justify-stretch">
+                                <p class="bg-[#09172b] hover:bg-white p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ alreadyPlayedList.name }}</p>
+                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your choice?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i> </button>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="profil-card-content">
+                </div>
+
+                <div class="text-center">
+                    <h2 class="text-3xl font-semibold mb-6 text-white">My desires</h2>
+                    <div class="w-3/4 flex flex-col">
+                        {% for myDesiresList in myDesiresList.games %}
+                            <div class="flex justify-stretch">
+                                <p class="bg-[#09172b] hover:bg-white  p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ myDesiresList.name }}</p>
+                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h2 class="text-3xl font-semibold mb-6 text-white">To test</h2>
+                    <div class="w-3/4 flex flex-col">
+                        {% for goTestList in goTestList.games %}
+                            <div class="flex justify-stretch">
+                                <p class="bg-[#09172b] hover:bg-white  p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ goTestList.name }}</p>
+                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
