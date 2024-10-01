@@ -7,7 +7,7 @@
 namespace App\Controller;
 
 use App\Entity\Game;
-use App\Entity\GamesList;
+use App\Entity\User;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,18 +21,20 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 class ProfilController extends AbstractController
 {
-        /**
-         * Rend la page de profil de l'utilisateur.
-         *
-         * Cette action récupère l'utilisateur actuellement authentifié et le transmet au
-         * Modèle 'pages/profil/index.html.twig' pour le rendu.
-         *
-         * @return Response La page de profil rendue.
-         */
+
+    /**
+     * Rend la page de profil de l'utilisateur.
+     *
+     * Cette action récupère l'utilisateur actuellement authentifié et le transmet au
+     * Modèle 'pages/profil/index.html.twig' pour le rendu.
+     *
+     * @return Response La page de profil rendue.
+     */
 
         #[Route('/profil', name: 'profil')]
         public function index(): Response
@@ -43,22 +45,22 @@ class ProfilController extends AbstractController
                 'user' => $user
             ]);
         }
-
+        
+    /**
+     * Gère la modification des informations de profil de l'utilisateur, y compris son pseudo, son e-mail et son avatar.
+     *
+     * Cette action crée un formulaire permettant à l'utilisateur de mettre à jour ses informations de profil, valide les données du formulaire,
+     * puis conserve les modifications apportées à la base de données à l'aide de l'EntityManagerInterface fournie.
+     *
+     * @param Request $request La requête HTTP actuelle.
+     * @param EntityManagerInterface $entityManager Le gestionnaire d'entités Doctrine.
+     * @return Response La page d'édition du profil rendue.
+     */
         #[Route('/profil/editProfil', name: 'edit_profile')]
         public function editProfile(Request $request, EntityManagerInterface $entityManager): Response {
 
         $user = $this->getUser();
 
-        /**
-         * Gère la modification des informations de profil de l'utilisateur, y compris son pseudo, son e-mail et son avatar.
-         *
-         * Cette action crée un formulaire permettant à l'utilisateur de mettre à jour ses informations de profil, valide les données du formulaire,
-         * puis conserve les modifications apportées à la base de données à l'aide de l'EntityManagerInterface fournie.
-         *
-         * @param Request $request La requête HTTP actuelle.
-         * @param EntityManagerInterface $entityManager Le gestionnaire d'entités Doctrine.
-         * @return Response La page d'édition du profil rendue.
-         */
 
         $form = $this->createFormBuilder($user)
             ->add('pseudo', TextType::class, [
@@ -102,28 +104,44 @@ class ProfilController extends AbstractController
             'user' => $user
         ]);
     }
+    private UserPasswordHasherInterface $passwordHasher;
 
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+    
     #[Route('/profil/delete', name: 'delete_profile')]
     public function deleteProfile(
-        
-        EntityManagerInterface $entityManager,  
+        EntityManagerInterface $entityManager,
         TokenStorageInterface $tokenStorage,
         SessionInterface $session
-    
-        ): Response {
-            
+    ): Response {
+
+        // Récupérer l'utilisateur courant
         $user = $this->getUser();
     
+        // Débogage : Vérifiez si $user est bien une instance de User
+        if (!$user instanceof User) {
+            throw new \Exception('The user is invalid');
+        }
+    
+        // Anonymiser l'utilisateur
+        $user->anonymize($this->passwordHasher);
+    
+        // Enregistrer les changements (anonymisation)
+        $entityManager->flush();
+    
+        // Déconnecter l'utilisateur
         $tokenStorage->setToken(null);
         $session->invalidate();
     
-        $entityManager->remove($user);
-        $entityManager->flush();
-    
+        // Rediriger vers la page d'inscription
         return $this->redirectToRoute('register');
     }
     
     
+
     #[Route('/game/favoris/{gameId}', name: 'games_favoris')]
     public function addFavoris(
         int $gameId,                

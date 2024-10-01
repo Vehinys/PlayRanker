@@ -61,7 +61,7 @@
                         <div class="flex justify-between items-center"> 
 
                             {# Affiche le pseudo de l'utilisateur et la date de création du post #}
-                            <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date(' d m ') }}</p>  
+                            <p>{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>  
 
                             {# Lien vers le post avec des styles pour le bouton #}
                             <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>

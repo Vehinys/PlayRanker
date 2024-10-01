@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -17,141 +18,93 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[UniqueEntity(fields: ['pseudo'], message: 'Un compte est déjà associé à cette information.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // ** Propriétés de l'entité User **
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    private ?int $id = null; // Identifiant unique de l'utilisateur
 
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
-    #[Assert\Email]
-    private ?string $email = null;
-    
+    #[Assert\NotBlank] // Validation pour s'assurer que le champ n'est pas vide
+    #[Assert\Email] // Validation pour vérifier que le champ contient une adresse e-mail valide
+    private ?string $email = null; // Adresse e-mail de l'utilisateur
+
     #[ORM\Column(length: 100)]
-    private ?string $pseudo = null;
-    
+    private ?string $pseudo = null; // Pseudo de l'utilisateur
+
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $avatar = null;
+    private ?string $avatar = null; // URL de l'avatar de l'utilisateur
 
     #[ORM\Column]
-    private ?string $password = null;
-    
+    private ?string $password = null; // Mot de passe de l'utilisateur
+
     #[ORM\Column(type: 'json')]
-    private array $roles = [];
+    private array $roles = []; // Rôles de l'utilisateur (ex: ROLE_USER, ROLE_ADMIN)
 
     /**
      * @var Collection<int, GamesList>
      */
     #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'user', cascade: ["remove"])]
-    private Collection $gamesLists;
+    private Collection $gamesLists; // Liste des jeux associés à l'utilisateur
 
     /**
      * @var Collection<int, Post>
      */
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $posts;
+    private Collection $posts; // Liste des posts associés à l'utilisateur
 
     /**
      * @var Collection<int, Topic>
      */
-    #[ORM\OneToMany(targetEntity: Topic::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $topics;
+    #[ORM\OneToMany(targetEntity: Topic::class, mappedBy: 'user', orphanRemoval: true, cascade: ["remove"])]
+    private Collection $topics; // Liste des topics associés à l'utilisateur
+
+    // ** Constructeur **
 
     public function __construct()
     {
-        $this->roles[] = 'ROLE_USER';
-        $this->gamesLists = new ArrayCollection();
-        $this->posts = new ArrayCollection();
-        $this->topics = new ArrayCollection();
+        $this->roles[] = 'ROLE_USER'; // Attribution d'un rôle par défaut
+        $this->gamesLists = new ArrayCollection(); // Initialisation de la collection de jeux
+        $this->posts = new ArrayCollection(); // Initialisation de la collection de posts
+        $this->topics = new ArrayCollection(); // Initialisation de la collection de topics
     }
+
+    // ** Getters **
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id; // Retourne l'identifiant de l'utilisateur
     }
 
     public function getEmail(): ?string
     {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-        return $this;
+        return $this->email; // Retourne l'e-mail de l'utilisateur
     }
 
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->email; // Retourne l'identifiant de l'utilisateur pour l'authentification
     }
 
     public function getRoles(): array
     {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles): static
-    {
-        $this->roles = $roles;
-        return $this;
+        return $this->roles; // Retourne les rôles de l'utilisateur
     }
 
     public function getPassword(): ?string
     {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    public function eraseCredentials(): void
-    {
-
+        return $this->password; // Retourne le mot de passe de l'utilisateur
     }
 
     public function getPseudo(): ?string
     {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(string $pseudo): static
-    {
-        $this->pseudo = $pseudo;
-        return $this;
+        return $this->pseudo; // Retourne le pseudo de l'utilisateur
     }
 
     public function getAvatar(): ?string
     {
-        return $this->avatar;
-    }
-
-    public function setAvatar(?string $avatar): static
-    {
-        $this->avatar = $avatar;
-        return $this;
-    }
-
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->email,
-            $this->password,
-
-        ]);
-    }
-
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->email,
-            $this->password,
-        ) = unserialize($serialized);
+        return $this->avatar; // Retourne l'avatar de l'utilisateur
     }
 
     /**
@@ -159,14 +112,87 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getGamesLists(): Collection
     {
-        return $this->gamesLists;
+        return $this->gamesLists; // Retourne la collection de jeux associés
     }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts; // Retourne la collection de posts associés
+    }
+
+    /**
+     * @return Collection<int, Topic>
+     */
+    public function getTopics(): Collection
+    {
+        return $this->topics; // Retourne la collection de topics associés
+    }
+
+    // ** Setters **
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email; // Définit l'e-mail de l'utilisateur
+        return $this;
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles; // Définit les rôles de l'utilisateur
+        return $this;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password; // Définit le mot de passe de l'utilisateur
+        return $this;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo; // Définit le pseudo de l'utilisateur
+        return $this;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar; // Définit l'avatar de l'utilisateur
+        return $this;
+    }
+
+    // ** Méthodes d'interface pour l'authentification **
+
+    public function eraseCredentials(): void
+    {
+        // N'implémente pas de logique ici pour effacer les informations sensibles
+    }
+
+    // ** Méthode d'anonymisation **
+    public function anonymize(
+        
+        UserPasswordHasherInterface $passwordHasher
+        
+    ): void {
+        // Remplace les données personnelles par des valeurs anonymisées
+        $this->email = 'emaildelete-' . uniqid() . '@example.com'; // E-mail anonyme
+        $this->pseudo = 'UserDelete'; // Pseudo anonyme
+        $this->avatar = null; // Supprime l'avatar
+    
+        // Hachez le nouveau mot de passe
+        $this->password = $passwordHasher->hashPassword($this, 'PasswordDelete'); // Hachage du nouveau mot de passe
+        $this->roles = ['ROLE_USERDELETE']; // Restaure le rôle par défaut
+    }
+
+    // ** Méthodes de gestion des collections (GamesList) **
 
     public function addGamesList(GamesList $gamesList): static
     {
         if (!$this->gamesLists->contains($gamesList)) {
-            $this->gamesLists->add($gamesList);
-            $gamesList->setUser($this);
+            $this->gamesLists->add($gamesList); // Ajoute un jeu à la liste de jeux
+            $gamesList->setUser($this); // Définit l'utilisateur du jeu
         }
 
         return $this;
@@ -175,28 +201,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeGamesList(GamesList $gamesList): static
     {
         if ($this->gamesLists->removeElement($gamesList)) {
-            // set the owning side to null (unless already changed)
+            // Si le jeu est retiré de la collection
             if ($gamesList->getUser() === $this) {
-                $gamesList->setUser(null);
+                $gamesList->setUser(null); // Supprime l'utilisateur du jeu
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Post>
-     */
-    public function getPosts(): Collection
-    {
-        return $this->posts;
-    }
+    // ** Méthodes de gestion des collections (Post) **
 
     public function addPost(Post $post): static
     {
         if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setUser($this);
+            $this->posts->add($post); // Ajoute un post à la collection de posts
+            $post->setUser($this); // Définit l'utilisateur du post
         }
 
         return $this;
@@ -205,28 +225,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePost(Post $post): static
     {
         if ($this->posts->removeElement($post)) {
-            // set the owning side to null (unless already changed)
+            // Si le post est retiré de la collection
             if ($post->getUser() === $this) {
-                $post->setUser(null);
+                $post->setUser(null); // Supprime l'utilisateur du post
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Topic>
-     */
-    public function getTopics(): Collection
-    {
-        return $this->topics;
-    }
+    // ** Méthodes de gestion des collections (Topic) **
 
     public function addTopic(Topic $topic): static
     {
         if (!$this->topics->contains($topic)) {
-            $this->topics->add($topic);
-            $topic->setUser($this);
+            $this->topics->add($topic); // Ajoute un topic à la collection de topics
+            $topic->setUser($this); // Définit l'utilisateur du topic
         }
 
         return $this;
@@ -235,9 +249,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeTopic(Topic $topic): static
     {
         if ($this->topics->removeElement($topic)) {
-            // set the owning side to null (unless already changed)
+            // Si le topic est retiré de la collection
             if ($topic->getUser() === $this) {
-                $topic->setUser(null);
+                $topic->setUser(null); // Supprime l'utilisateur du topic
             }
         }
 
