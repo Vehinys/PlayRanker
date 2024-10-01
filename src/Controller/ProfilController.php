@@ -7,7 +7,9 @@
 namespace App\Controller;
 
 use App\Entity\Game;
+use App\Entity\GamesList;
 use App\Entity\User;
+use App\Repository\GameRepository;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -104,6 +106,7 @@ class ProfilController extends AbstractController
             'user' => $user
         ]);
     }
+
     private UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -115,16 +118,18 @@ class ProfilController extends AbstractController
     public function deleteProfile(
         EntityManagerInterface $entityManager,
         TokenStorageInterface $tokenStorage,
-        SessionInterface $session
+        SessionInterface $session,
     ): Response {
-
         // Récupérer l'utilisateur courant
         $user = $this->getUser();
     
-        // Débogage : Vérifiez si $user est bien une instance de User
+        // Vérifier que l'utilisateur est bien authentifié et est une instance de User
         if (!$user instanceof User) {
             throw new \Exception('The user is invalid');
         }
+    
+        // Rechercher l'id de la gameList de l'utilisateur
+        $gameList = $entityManager->getRepository(GamesList::class)->findOneBy(['user' => $user]);
     
         // Anonymiser l'utilisateur
         $user->anonymize($this->passwordHasher);
@@ -132,56 +137,79 @@ class ProfilController extends AbstractController
         // Enregistrer les changements (anonymisation)
         $entityManager->flush();
     
+        // Vérifier si une liste de jeux a été trouvée
+        if ($gameList) {
+            // Supprimer la gameList de l'utilisateur
+            $entityManager->remove($gameList);
+            // Enregistrer les changements après la suppression
+            $entityManager->flush();
+        }
+    
         // Déconnecter l'utilisateur
         $tokenStorage->setToken(null);
         $session->invalidate();
-    
+        
         // Rediriger vers la page d'inscription
         return $this->redirectToRoute('register');
     }
     
     
-
     #[Route('/game/favoris/{gameId}', name: 'games_favoris')]
     public function addFavoris(
-        int $gameId,                
+
+        int $gameId,
         GamesListRepository $repository,
-        Request $request,                
-        EntityManagerInterface $manager  
+        Request $request,
+        EntityManagerInterface $manager,
+        GameRepository $gameRepository
+
     ): Response {
 
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
-
+    
         // Récupérer la liste de favoris de l'utilisateur
         $gameList = $repository->findOneBy(['user' => $user, 'name' => 'Favoris']);
-
-        // Créer une nouvelle instance de Game
-        $game = new Game();
-        $game->setIdGameApi($gameId);
-
-        if($game) {
-            
+    
+        // Vérifier si le jeu existe déjà dans la base de données
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $gameId]);
+    
+        // Si le jeu n'existe pas, créer une nouvelle instance de Game
+        if (!$existingGame) {
+            $game = new Game();
+            $game->setIdGameApi($gameId);
+    
+            // Récupérer le nom et les données du jeu depuis la requête
+            $gameName = $request->get('gameName');
+            $gameData = $request->get('gameData');
+    
+            // Configurer les propriétés du jeu
+            $game->setName($gameName);
+            $game->setData([$gameData]);
+    
+            // Persister le nouveau jeu
+            $manager->persist($game);
+        } else {
+            // Si le jeu existe déjà, utiliser l'instance existante
+            $game = $existingGame;
         }
-
-        // Récupérer le nom et les données du jeu depuis la requête
-        $gameName = $request->get('gameName');
-        $gameData = $request->get('gameData');
-
-        // Configurer les propriétés du jeu
-        $game->setName($gameName);
-        $game->setData([$gameData]);
-
-        // Ajouter le jeu à la liste de favoris
-        $gameList->addGame($game); // Gère la relation ManyToOne automatiquement
-
-        // Persister les entités
-        $manager->persist($game);        // Persist le nouveau jeu
-        $manager->persist($gameList);    // Persist la liste mise à jour
+    
+        // Vérifier si le jeu est déjà dans la liste de favoris
+        if ($gameList->getGames()->contains($game)) {
+            // Si le jeu est déjà dans la liste, le retirer
+            $gameList->removeGame($game);
+        } else {
+            // Sinon, ajouter le jeu à la liste de favoris
+            $gameList->addGame($game);
+        }
+    
+        // Persister la liste mise à jour
+        $manager->persist($gameList);
         $manager->flush();
-
+    
         // Rendre une vue Twig avec la liste des jeux mis à jour
-        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]); 
+        return $this->redirectToRoute('detail_jeu', ['id' => $gameId]);
     }
     
+
 }

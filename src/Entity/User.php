@@ -180,8 +180,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = 'emaildelete-' . uniqid() . '@example.com'; // E-mail anonyme
         $this->pseudo = 'UserDelete'; // Pseudo anonyme
         $this->avatar = null; // Supprime l'avatar
-    
-        // Hachez le nouveau mot de passe
         $this->password = $passwordHasher->hashPassword($this, 'PasswordDelete'); // Hachage du nouveau mot de passe
         $this->roles = ['ROLE_USERDELETE']; // Restaure le rôle par défaut
     }
