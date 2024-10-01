@@ -84,9 +84,35 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="font-bold text-yellow-500 text-[30px]">Add to a list</p>
+                        <p class="font-bold text-yellow-500 text-[30px]">readyPlayed</p>
                         {% if app.user %}
-                            <form class="mt-5" action="{{ path('games_favoris', {'gameId': gameDetail.id}) }}" method="post">
+                            <form class="mt-5" action="{{ path('games_readyPlayed', {'gameId': gameDetail.id}) }}" method="post">
+                                <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
+                                <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
+                                <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
+                                <button class="text-5xl hover:text-black " type="submit">
+                                    <i class="fa-sharp fa-solid fas fa-plus"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-yellow-500 text-[30px]">myDesires</p>
+                        {% if app.user %}
+                            <form class="mt-5" action="{{ path('games_myDesires', {'gameId': gameDetail.id}) }}" method="post">
+                                <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
+                                <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
+                                <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
+                                <button class="text-5xl hover:text-black " type="submit">
+                                    <i class="fa-sharp fa-solid fas fa-plus"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-yellow-500 text-[30px]">goTest</p>
+                        {% if app.user %}
+                            <form class="mt-5" action="{{ path('games_goTest', {'gameId': gameDetail.id}) }}" method="post">
                                 <input type="hidden" name="gameId" value="{{ gameDetail.id }}">
                                 <input type="hidden" name="gameName" value="{{ gameDetail.name }}">
                                 <input type="hidden" name="gameData" value="{{ gameDetail|json_encode }}">
