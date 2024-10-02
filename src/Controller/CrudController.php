@@ -26,7 +26,7 @@ class CrudController extends AbstractController
     #[Route('/forum/category/{categoryId}/topic/new', name: 'topic_new')]
     public function newTopic(
 
-        string $categoryId, 
+        int $categoryId, 
         Request $request,
         EntityManagerInterface $manager
 
