@@ -1,9 +1,4 @@
 <?php
-
-/**
- * This namespace contains the application's controllers.
- * Controllers are responsible for handling incoming HTTP requests and returning appropriate responses.
- */
 namespace App\Controller;
 
 use App\Entity\Game;
@@ -28,15 +23,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfilController extends AbstractController
 {
-
-    /**
-     * Rend la page de profil de l'utilisateur.
-     *
-     * Cette action récupère l'utilisateur actuellement authentifié et le transmet au
-     * Modèle 'pages/profil/index.html.twig' pour le rendu.
-     *
-     * @return Response La page de profil rendue.
-     */
 
         #[Route('/profil', name: 'profil')]
         public function index(
@@ -66,16 +52,8 @@ class ProfilController extends AbstractController
             ]);
         }
         
-    /**
-     * Gère la modification des informations de profil de l'utilisateur, y compris son pseudo, son e-mail et son avatar.
-     *
-     * Cette action crée un formulaire permettant à l'utilisateur de mettre à jour ses informations de profil, valide les données du formulaire,
-     * puis conserve les modifications apportées à la base de données à l'aide de l'EntityManagerInterface fournie.
-     *
-     * @param Request $request La requête HTTP actuelle.
-     * @param EntityManagerInterface $entityManager Le gestionnaire d'entités Doctrine.
-     * @return Response La page d'édition du profil rendue.
-     */
+
+        
         #[Route('/profil/editProfil', name: 'edit_profile')]
         public function editProfile(Request $request, EntityManagerInterface $entityManager): Response {
 

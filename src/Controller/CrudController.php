@@ -47,8 +47,8 @@ class CrudController extends AbstractController
         // Créer un nouveau topic
         $topic = new Topic();
         $topic->setCategoryForum($categoryForum)
-              ->setCreatedAt(new \DateTimeImmutable())
-              ->setUser($user);
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUser($user);
     
         // Créer le formulaire
         $form = $this->createForm(TopicType::class, $topic);
@@ -61,9 +61,9 @@ class CrudController extends AbstractController
             // Créer un nouveau post
             $post = new Post();
             $post->setContent($postContent)
-                 ->setCreatedAt(new \DateTimeImmutable())
-                 ->setTopic($topic)
-                 ->setUser($user);
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setTopic($topic)
+                ->setUser($user);
     
             $topic->addPost($post);
     
@@ -145,8 +145,8 @@ class CrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setCreatedAt(new \DateTimeImmutable())
-                 ->setTopic($topic)
-                 ->setUser($this->getUser());
+                ->setTopic($topic)
+                ->setUser($this->getUser());
 
             $em->persist($post);
             $em->flush();

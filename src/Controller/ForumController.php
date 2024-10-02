@@ -20,7 +20,7 @@ class ForumController extends AbstractController
         CategoryForumRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
         TopicRepository $topicRepository, // Injection du repository pour gérer les topics
         
-    ): Response { // La méthode retourne un objet Response
+    ): Response {
     
         // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
         $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
@@ -127,7 +127,6 @@ public function findPostByTopic(
     // Récupérer les topics associés à la catégorie
     $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);
     
-    // Rendu de la vue 'post.html.twig'
     return $this->render('pages/forum/post.html.twig', [
         'posts' => $posts,
         'categories' => $categories,
