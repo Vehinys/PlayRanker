@@ -56,7 +56,7 @@
                             {# Bouton pour modifier le post #}
                             <a href="{{ path('post_edit', { id: post.id }) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Edit</a>
                             {# Formulaire pour supprimer le post avec confirmation #}
-                            <form action="{{ path('delete_post', { id: post.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?');">
+                            <form action="{{ path('post_delete', { id: post.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
                                 <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
                             </form>

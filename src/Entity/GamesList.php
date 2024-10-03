@@ -28,9 +28,17 @@ class GamesList
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'gamesLists', cascade: ["remove"])]
     private ?User $user = null;
 
+    /**
+     * @var Collection<int, Type>
+     */
+    #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'Types')]
+    private Collection $types;
+
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
+        $this->types = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,5 +92,37 @@ class GamesList
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Type>
+     */
+    public function getTypes(): Collection
+    {
+        return $this->types;
+    }
+
+    public function addType(Type $type): static
+    {
+        if (!$this->types->contains($type)) {
+            $this->types->add($type);
+            $type->addType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeType(Type $type): static
+    {
+        if ($this->types->removeElement($type)) {
+            $type->removeType($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

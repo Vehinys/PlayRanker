@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Admin {% endblock %}
+
+{% block body %}
+
+    <div class="container mx-auto p-2 pt-4">
+        <h1 class="text-3xl p-7 text-center font-bold">Edit a Type</h1>
+
+        <div class="bg-white shadow-md rounded p-2">
+            <h2 class="text-xl font-bold mb-1">Type Edition Form</h2>
+
+            {{ form_start(formType) }}
+                <div class="mb-4">
+                    {{ form_widget(formType) }}
+                </div>
+
+                <div class="flex">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Update</button>
+                </div>
+            {{ form_end(formType) }}
+        </div>
+    </div>
+
+{% endblock %}

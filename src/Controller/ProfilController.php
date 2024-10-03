@@ -112,10 +112,14 @@ class ProfilController extends AbstractController
     
     #[Route('/profil/delete', name: 'delete_profile')]
     public function deleteProfile(
+
         EntityManagerInterface $entityManager,
         TokenStorageInterface $tokenStorage,
+        GamesListRepository $gamesListRepository,
         SessionInterface $session,
+
     ): Response {
+
         // Récupérer l'utilisateur courant
         $user = $this->getUser();
     
@@ -125,7 +129,7 @@ class ProfilController extends AbstractController
         }
     
         // Rechercher l'id de la gameList de l'utilisateur
-        $gameList = $entityManager->getRepository(GamesList::class)->findOneBy(['user' => $user]);
+        // $gameList = $gamesListRepository->findOneBy(['user' => $user]);
     
         // Anonymiser l'utilisateur
         $user->anonymize($this->passwordHasher);
@@ -134,12 +138,12 @@ class ProfilController extends AbstractController
         $entityManager->flush();
     
         // Vérifier si une liste de jeux a été trouvée
-        if ($gameList) {
-            // Supprimer la gameList de l'utilisateur
-            $entityManager->remove($gameList);
-            // Enregistrer les changements après la suppression
-            $entityManager->flush();
-        }
+        // if ($gameList) {
+        //     // Supprimer la gameList de l'utilisateur
+        //     $entityManager->remove($gameList);
+        //     // Enregistrer les changements après la suppression
+        //     $entityManager->flush();
+        // }
     
         // Déconnecter l'utilisateur
         $tokenStorage->setToken(null);

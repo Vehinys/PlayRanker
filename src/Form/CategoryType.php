@@ -28,10 +28,6 @@ class CategoryType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 50]),
                     new Assert\NotBlank()
                 ]
-            ])
-
-            ->add('submit', SubmitType::class, [
-                'label' => 'add',
             ]);
         
     }

@@ -29,10 +29,8 @@ class PlatformType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-
-            ->add('submit', SubmitType::class, [
-                'label' => 'add',
-            ]);
+            
+            ;
         
     }
 

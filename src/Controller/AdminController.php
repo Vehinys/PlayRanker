@@ -8,6 +8,7 @@ use App\Entity\Platform;
 use App\Form\PlatformType;
 use App\Repository\CategoryRepository;
 use App\Repository\PlatformRepository;
+use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,26 +18,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/admin', name: 'admin')]
     public function index(
         
         CategoryRepository $categoryRepository, 
-        PlatformRepository $PlatformRepository
+        PlatformRepository $PlatformRepository,
+        TypeRepository $typeRepository
         
     ): Response {
 
         $categories = $categoryRepository->findAll();
         $platforms = $PlatformRepository->findAll();
+        $types = $typeRepository->findAll();
     
         return $this->render('admin/index.html.twig', [
             'categories' => $categories,
             'platforms' => $platforms,
+            'types' => $types,
         ]);
     }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 
@@ -66,8 +70,9 @@ class AdminController extends AbstractController
             'sessionId'=> $category->getId()
         ]);
     }
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/admin/category/edit/{categoryId}', name: 'category.edit', methods: ['GET', 'POST'])]
     public function editCategory(
@@ -100,6 +105,7 @@ class AdminController extends AbstractController
     }
     
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/admin/category/delete/{categoryId}', name: 'category.delete', methods: ['POST'])]
     public function deleteCategory(
@@ -120,6 +126,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin');
     }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
@@ -149,6 +156,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
 #[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
@@ -181,7 +189,7 @@ public function editPlatform(
         $this->addFlash('success', 'The platform has been successfully updated');
         
         // Redirection vers l'édition de la plateforme avec l'ID mis à jour
-        return $this->redirectToRoute('platform.edit', ['platformId' => $platform->getId()]);
+        return $this->redirectToRoute('admin');
     }
 
     return $this->render('admin/platformEdit.html.twig', [
@@ -190,6 +198,7 @@ public function editPlatform(
     ]);
 }
     
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
@@ -211,6 +220,7 @@ public function editPlatform(
         return $this->redirectToRoute('admin');
     }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
 }
