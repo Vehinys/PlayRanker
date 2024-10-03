@@ -122,16 +122,17 @@ class TypeController extends AbstractController
 
     #[Route('/types/{id}', name: 'type_delete')]
     public function delete(
+
         Request $request,
         Type $type,
         EntityManagerInterface $entityManager
 
-    ): Response
-    {
+    ): Response {
+
         // Vérifie si le token CSRF est valide
         if (!$this->isCsrfTokenValid('delete', $request->request->get('_token'))) {
-
-            // Redirige vers la liste des types
+            
+            // Redirige vers la liste des types 
             return $this->redirectToRoute('admin');
         }
 
