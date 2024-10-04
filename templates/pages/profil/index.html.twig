@@ -4,10 +4,10 @@
 
 {% block body %}
 <div class="min-h-screen  py-8">
-    <section class="container mx-auto p-6">
+    <div class="container mx-auto p-4">
         <!-- Section du profil utilisateur -->
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
-            <div class="flex flex-col items-center md:flex-row">
+            <div class="flex flex-col py-7 items-center md:flex-row">
                 <!-- Profil User -->
                 <div class="w-full md:w-1/2">
                         <h2 class="text-4xl text-center font-bold text-[#ECC33E]">My Profile</h2>
@@ -29,22 +29,30 @@
                             <p class="text-red-500">No users found. Please log in</p>
                         {% endif %}
                     </div>
+
                     <div class="flex justify-center mt-6 space-x-4">
-                        <button class="bg-[#09172b] hover:bg-white text-white hover:text-[#0C1D36] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="window.location.href='{{ path('edit_profile') }}'">
-                            Edit
-                        </button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href='{{ path('delete_profile') }}'; }">
-                            <i class='fas fa-trash-can'></i> 
-                        </button>
+                        <!-- Formulaire pour Editer le profil -->
+                        <form action="{{ path('edit_profile') }}" method="get">
+                            <button type="submit" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                Edit
+                            </button>
+                        </form>
+                    
+                        <!-- Formulaire pour Supprimer le profil -->
+                        <form action="{{ path('delete_profile') }}" method="post">
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                <i class='fas fa-trash-can'></i> 
+                            </button>
+                        </form>
                     </div>
                 </div>
 
                 <!-- Topics de l'utilisateur -->
                 <div class="w-1/5 md:w-1/2 mt-6 md:mt-0">
-                    <h3 class="text-3xl font-semibold text-[#ECC33E] text-center mb-4">My Topics</h3>
+                    <h3 class="font-semibold text-[#ECC33E] text-center mb-4  lg:text-3xl ">My Topics</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                         {% for topic in user.topics %}
-                            <a href="" class="bg-[#09172b] p-3 rounded-lg text-center text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
+                            <a href="" class="bg-[#09172b] p-3 rounded-lg text-center text-white md:text-xl hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
 
                         {% else %}
                             <p class="text-gray-400">No topics created yet.</p>
@@ -55,19 +63,44 @@
         </section>
 
         <!-- Section des listes de jeux de l'utilisateur -->
-        {% for type in types %}
-        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 mt-8 text-center transition-transform duration-300 hover:shadow-xl">
-            <h2 class="text-4xl mb-7 font-bold text-[#ECC33E]">{{ type.name|capitalize }}</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="w-3/4 flex flex-col">
-                        {{ type.name|capitalize }}
-                    </div>
+
+        <section class=" rounded p-2 w-full mt-4 ">
+            
+            {% for type in types %}
+
+                <div class="my-5 mx-auto bg-[#0C1D36] px-7 py-4 rounded-lg shadow-lg gap-5 ">
+
+                    <h2 class="bg-[#0C1D36] rounded text-center text-[#ECC33E] md:text-2xl lg:text-2xl"> {{type.name|capitalize}} </h2>
+
+                        <div class="">
+
+                            {% for ListsGames in favoris.games  %}
+
+                            <div class="flex items-center">
+
+                                <p class="bg-[#09172b] hover:bg-white p-2 rounded-lg text-center text-white hover:text-[#09172b] mr-3 transition-transform duration-500 hover:scale-105"> {{ ListsGames.name }} </p>
+                                
+                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
+                            
+                            </div>
+                            
+                            {% else %}
+
+                                <p class="text-gray-400">No favorites added yet.</p>
+                            
+                            {% endfor %}
+                        </div>
+
                 </div>
-            </section>
-        {% endfor %}
-    </section>
-</div>
-<div class="text-center mt-6">
-    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">Search Game </a>
+
+            {% endfor %}
+
+        </section>    
+
+    </div>
+    <div class="text-center mt-6">
+        <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
+    </div>
+
 </div>
 {% endblock %}
