@@ -43,12 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = []; // Rôles de l'utilisateur (ex: ROLE_USER, ROLE_ADMIN)
 
     /**
-     * @var Collection<int, GamesList>
-     */
-    #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'user', cascade: ["remove"])]
-    private Collection $gamesLists; // Liste des jeux associés à l'utilisateur
-
-    /**
      * @var Collection<int, Post>
      */
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user', orphanRemoval: true)]
@@ -65,7 +59,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->roles[] = 'ROLE_USER'; // Attribution d'un rôle par défaut
-        $this->gamesLists = new ArrayCollection(); // Initialisation de la collection de jeux
         $this->posts = new ArrayCollection(); // Initialisation de la collection de posts
         $this->topics = new ArrayCollection(); // Initialisation de la collection de topics
     }
@@ -105,14 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getAvatar(): ?string
     {
         return $this->avatar; // Retourne l'avatar de l'utilisateur
-    }
-
-    /**
-     * @return Collection<int, GamesList>
-     */
-    public function getGamesLists(): Collection
-    {
-        return $this->gamesLists; // Retourne la collection de jeux associés
     }
 
     /**
@@ -184,29 +169,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = ['ROLE_USERDELETE']; // Restaure le rôle par défaut
     }
 
-    // ** Méthodes de gestion des collections (GamesList) **
-
-    public function addGamesList(GamesList $gamesList): static
-    {
-        if (!$this->gamesLists->contains($gamesList)) {
-            $this->gamesLists->add($gamesList); // Ajoute un jeu à la liste de jeux
-            $gamesList->setUser($this); // Définit l'utilisateur du jeu
-        }
-
-        return $this;
-    }
-
-    public function removeGamesList(GamesList $gamesList): static
-    {
-        if ($this->gamesLists->removeElement($gamesList)) {
-            // Si le jeu est retiré de la collection
-            if ($gamesList->getUser() === $this) {
-                $gamesList->setUser(null); // Supprime l'utilisateur du jeu
-            }
-        }
-
-        return $this;
-    }
 
     // ** Méthodes de gestion des collections (Post) **
 

@@ -29,6 +29,7 @@ class ProfilController extends AbstractController
         public function index(
 
             TypeRepository $typeRepository,
+            GamesListRepository $repository,
 
         ): Response {
 
@@ -36,18 +37,28 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
 
         // Récupère la liste des favoris pour cet utilisateur
-        $types = $typeRepository->findAll();
 
-        // Récupère la liste des jeux favoris pour cet utilisateur
-        // $gamesList = $typeRepository->findBy([], ['id' => 'ASC']);
+            $favoris = $repository->findOneBy(['user' => $user, 'name' => 'Favoris' ]);
+            $alreadyPlayed = $repository->findOneBy(['user' => $user, 'name' => 'Already played' ]);
+            $myDesires = $repository->findOneBy(['user' => $user, 'name' => 'My desires']);
+            $goTest = $repository->findOneBy(['user' => $user, 'name' => 'Go test' ]);
+
+
+
+        $game = $repository->findAll();
             
             return $this->render('pages/profil/index.html.twig', [
                 'user' => $user,
-                'types' => $types,
+                'favoris' => $favoris,
+                'alreadyPlayed' => $alreadyPlayed,
+                'myDesires' => $myDesires,
+                'goTest' => $goTest,
+
             ]);
         }
         
-
+/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
         
         #[Route('/profil/editProfil', name: 'edit_profile')]
         public function editProfile(Request $request, EntityManagerInterface $entityManager): Response {
@@ -98,6 +109,9 @@ class ProfilController extends AbstractController
         ]);
     }
 
+/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
+
     private UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -147,11 +161,13 @@ class ProfilController extends AbstractController
         return $this->redirectToRoute('register');
     }
     
-   
+/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
+
     #[Route('/game/list/{Id}', name: 'displayGamesByList')]
     public function displayGamesByList(
 
-        int $id = null,
+        int $id,
         GamesListRepository $repository,
         Request $request,
         EntityManagerInterface $manager,
@@ -163,12 +179,7 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
     
         // Récupérer la liste des jeux de l'utilisateur
-        $favoris        = $repository->findOneBy([ 'user' => $user, 'name' => 'Favoris'        ]);
-        $alreadyPlayed  = $repository->findOneBy([ 'user' => $user, 'name' => 'Already played' ]);
-        $myDesires      = $repository->findOneBy([ 'user' => $user, 'name' => 'My desires'     ]);
-        $goTest         = $repository->findOneBy([ 'user' => $user, 'name' => 'Go test'        ]);
-
-        dd($favoris->getGames());
+        $favoris = $repository->findOneBy(['user' => $user, 'name' => 'Favoris']);
 
         // Vérifier si le jeu existe déjà dans la base de données
         $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
@@ -203,33 +214,10 @@ class ProfilController extends AbstractController
             // Sinon, ajouter le jeu à la liste de favoris
             $favoris->addGame($game);
         }
-
-        // Vérifier si le jeu est déjà dans la liste d'alreadyPlayed
-        if ($alreadyPlayed->getGames()->contains($game)) {
-            $alreadyPlayed->removeGame($game);
-        } else {
-            $alreadyPlayed->addGame($game);
-        }
-
-        // Vérifier si le jeu est déjà dans la liste de myDesires
-        if ($myDesires->getGames()->contains($game)) {
-            $myDesires->removeGame($game);
-        } else {
-            $myDesires->addGame($game);
-        }
-
-        // Vérifier si le jeu est déjà dans la liste de favoris
-        if ($goTest->getGames()->contains($game)) {
-            $goTest->removeGame($game);
-        } else {
-            $goTest->addGame($game);
-        }
     
         // Persister la liste mise à jour
             $manager->persist($favoris);
-            $manager->persist($alreadyPlayed);
-            $manager->persist($myDesires);
-            $manager->persist($goTest);
+
 
             $manager->flush();
         
@@ -238,10 +226,6 @@ class ProfilController extends AbstractController
 
             'id' => $id,
             'favoris' => $favoris,
-            'alreadyPlayed' => $alreadyPlayed,
-            'myDesires' => $myDesires,
-            'goTest' => $goTest,
-        
         ]);
     }
     
