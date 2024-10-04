@@ -40,7 +40,7 @@
                 </div>
 
                 <!-- Topics de l'utilisateur -->
-                <div class="w-full md:w-1/2 mt-6 md:mt-0">
+                <div class="w-1/5 md:w-1/2 mt-6 md:mt-0">
                     <h3 class="text-3xl font-semibold text-[#ECC33E] text-center mb-4">My Topics</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                         {% for topic in user.topics %}
@@ -54,72 +54,20 @@
             </div>
         </section>
 
-        <!-- Section des favoris de l'utilisateur -->
-        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 mt-8 transition-transform duration-300 hover:shadow-xl">
-            <div>
-                <div class="text-center mb-7">
-                    <h2 class="text-4xl font-bold text-[#ECC33E]">My Favorites</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {% for listFavoris in favoritesList.games %}
-                    <div class="flex items-center">
-                        <p class="bg-[#09172b] hover:bg-white p-2 rounded-lg text-center text-white hover:text-[#09172b] mr-3 transition-transform duration-500 hover:scale-105">{{ listFavoris.name }}</p>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
-                    </div>
-                    {% else %}
-                        <p class="text-gray-400">No favorites added yet.</p>
-                    {% endfor %}
-                </div>
-
-                <div class="text-center mt-6">
-                    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">Search Game </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Section des listes de jeux de l'utilisateur -->
+        {% for type in types %}
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 mt-8 text-center transition-transform duration-300 hover:shadow-xl">
-            <h2 class="text-4xl mb-7 font-bold text-[#ECC33E]">My Lists</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                <div class="text-center">
-                    <h2 class="text-3xl font-semibold mb-6 text-white">Already played</h2>
+            <h2 class="text-4xl mb-7 font-bold text-[#ECC33E]">{{ type.name|capitalize }}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="w-3/4 flex flex-col">
-                        {% for alreadyPlayedList in alreadyPlayedList.games %}
-                            <div class="flex justify-stretch">
-                                <p class="bg-[#09172b] hover:bg-white p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ alreadyPlayedList.name }}</p>
-                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your choice?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i> </button>
-                            </div>
-                        {% endfor %}
+                        {{ type.name|capitalize }}
                     </div>
                 </div>
-
-                <div class="text-center">
-                    <h2 class="text-3xl font-semibold mb-6 text-white">My desires</h2>
-                    <div class="w-3/4 flex flex-col">
-                        {% for myDesiresList in myDesiresList.games %}
-                            <div class="flex justify-stretch">
-                                <p class="bg-[#09172b] hover:bg-white  p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ myDesiresList.name }}</p>
-                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <h2 class="text-3xl font-semibold mb-6 text-white">To test</h2>
-                    <div class="w-3/4 flex flex-col">
-                        {% for goTestList in goTestList.games %}
-                            <div class="flex justify-stretch">
-                                <p class="bg-[#09172b] hover:bg-white  p-2 rounded-lg mb-3 text-white hover:text-[#09172b] mr-3">{{ goTestList.name }}</p>
-                                <button class="bg-red-600 hover:bg-red-700 mb-3 text-white font-semibold p-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105" onclick="if(confirm('Are you sure you want to delete your account?')) { window.location.href=''; }"> <i class='fas fa-trash-can'></i>  </button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        {% endfor %}
     </section>
+</div>
+<div class="text-center mt-6">
+    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">Search Game </a>
 </div>
 {% endblock %}

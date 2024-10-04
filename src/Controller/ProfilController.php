@@ -6,6 +6,7 @@ use App\Entity\GamesList;
 use App\Entity\User;
 use App\Repository\GameRepository;
 use App\Repository\GamesListRepository;
+use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ class ProfilController extends AbstractController
         #[Route('/profil', name: 'profil')]
         public function index(
 
-            GamesListRepository $GamesListRepository,
+            TypeRepository $typeRepository,
 
         ): Response {
 
@@ -35,20 +36,15 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
 
         // Récupère la liste des favoris pour cet utilisateur
-        $favoritesList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Favoris']);
-        $alreadyPlayedList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Already played']);
-        $myDesiresList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'My desires']);
-        $goTestList = $GamesListRepository->findOneBy(['user' => $user,'name' => 'Go test']);
+        $types = $typeRepository->findAll();
+
 
         // Récupère la liste des jeux favoris pour cet utilisateur
-        $gamesList = $GamesListRepository->findBy([], ['id' => 'ASC']);
+        // $gamesList = $typeRepository->findBy([], ['id' => 'ASC']);
             
             return $this->render('pages/profil/index.html.twig', [
                 'user' => $user,
-                'favoritesList' => $favoritesList,
-                'alreadyPlayedList' => $alreadyPlayedList,
-                'myDesiresList' => $myDesiresList,
-                'goTestList' => $goTestList,
+                'types' => $types,
             ]);
         }
         
