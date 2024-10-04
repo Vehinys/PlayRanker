@@ -23,10 +23,17 @@ class Type
      */
     #[ORM\ManyToMany(targetEntity: GamesList::class, inversedBy: 'types')]
     private Collection $Types;
+
+    /**
+     * @var Collection<int, GamesList>
+     */
+    #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'type')]
+    private Collection $gamesLists;
     
     public function __construct()
     {
         $this->Types = new ArrayCollection();
+        $this->gamesLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,6 +73,36 @@ class Type
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GamesList>
+     */
+    public function getGamesLists(): Collection
+    {
+        return $this->gamesLists;
+    }
+
+    public function addGamesList(GamesList $gamesList): static
+    {
+        if (!$this->gamesLists->contains($gamesList)) {
+            $this->gamesLists->add($gamesList);
+            $gamesList->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGamesList(GamesList $gamesList): static
+    {
+        if ($this->gamesLists->removeElement($gamesList)) {
+            // set the owning side to null (unless already changed)
+            if ($gamesList->getType() === $this) {
+                $gamesList->setType(null);
+            }
+        }
 
         return $this;
     }

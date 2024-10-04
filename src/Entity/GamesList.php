@@ -16,8 +16,14 @@ class GamesList
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\ManyToOne(inversedBy: 'gamesLists')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'gamesLists')]
+    private ?Game $game = null;
+
+    #[ORM\ManyToOne(inversedBy: 'gamesLists')]
+    private ?Type $type = null;
 
 
     public function __construct()
@@ -29,20 +35,45 @@ class GamesList
         return $this->id;
     }
 
-    public function getName(): ?string
+
+    public function __toString(): string
     {
-        return $this->name;
+        return $this->getType()->getName();
     }
 
-    public function setName(string $name): static
+    public function getUser(): ?User
     {
-        $this->name = $name;
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    public function __toString(): string
+    public function getGame(): ?Game
     {
-        return $this->name;
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): static
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }

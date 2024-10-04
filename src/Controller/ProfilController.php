@@ -38,16 +38,17 @@ class ProfilController extends AbstractController
 
         // Récupère la liste des favoris pour cet utilisateur
 
-            $favoris = $repository->findOneBy(['user' => $user, 'name' => 'Favoris' ]);
-            $alreadyPlayed = $repository->findOneBy(['user' => $user, 'name' => 'Already played' ]);
-            $myDesires = $repository->findOneBy(['user' => $user, 'name' => 'My desires']);
-            $goTest = $repository->findOneBy(['user' => $user, 'name' => 'Go test' ]);
-
+            $favoris = $repository->findBy(['user' => $user, 'type' => 1 ]);
+            $alreadyPlayed = $repository->findOneBy(['user' => $user, 'id' => 2 ]);
+            $myDesires = $repository->findOneBy(['user' => $user, 'id' => 3 ]);
+            $goTest = $repository->findOneBy(['user' => $user, 'id' => 4 ]);
+            // dd($favoris);
 
 
         $game = $repository->findAll();
             
             return $this->render('pages/profil/index.html.twig', [
+
                 'user' => $user,
                 'favoris' => $favoris,
                 'alreadyPlayed' => $alreadyPlayed,

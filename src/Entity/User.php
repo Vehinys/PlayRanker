@@ -52,7 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Topic>
      */
     #[ORM\OneToMany(targetEntity: Topic::class, mappedBy: 'user', orphanRemoval: true, cascade: ["remove"])]
-    private Collection $topics; // Liste des topics associés à l'utilisateur
+    private Collection $topics;
+
+    /**
+     * @var Collection<int, GamesList>
+     */
+    #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'user')]
+    private Collection $gamesLists; // Liste des topics associés à l'utilisateur
 
     // ** Constructeur **
 
@@ -61,6 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles[] = 'ROLE_USER'; // Attribution d'un rôle par défaut
         $this->posts = new ArrayCollection(); // Initialisation de la collection de posts
         $this->topics = new ArrayCollection(); // Initialisation de la collection de topics
+        $this->gamesLists = new ArrayCollection();
     }
 
     // ** Getters **
@@ -212,6 +219,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // Si le topic est retiré de la collection
             if ($topic->getUser() === $this) {
                 $topic->setUser(null); // Supprime l'utilisateur du topic
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GamesList>
+     */
+    public function getGamesLists(): Collection
+    {
+        return $this->gamesLists;
+    }
+
+    public function addGamesList(GamesList $gamesList): static
+    {
+        if (!$this->gamesLists->contains($gamesList)) {
+            $this->gamesLists->add($gamesList);
+            $gamesList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGamesList(GamesList $gamesList): static
+    {
+        if ($this->gamesLists->removeElement($gamesList)) {
+            // set the owning side to null (unless already changed)
+            if ($gamesList->getUser() === $this) {
+                $gamesList->setUser(null);
             }
         }
 
