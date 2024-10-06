@@ -4,47 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Type;
 use App\Form\TypeType;
-use App\Repository\CategoryRepository;
-use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * Contrôleur pour les types
- */
 class TypeController extends AbstractController
 {
-
-    // /**
-    //  * Affiche la liste des types
-    //  **/
-
-    // #[Route('/admin/types', name: 'type_index')]
-    // public function index(
-
-    //     TypeRepository $categorytypeRepository,
-    //     CategoryRepository $categoryRepository
-
-    // ): Response
-    // {
-    //     // Récupère tous les types
-    //     $types = $categorytypeRepository->findBy([], ['name' => 'ASC']);
-
-    //     // Affiche la liste des types
-    //     return $this->render('admin/index.html.twig', [
-
-    //         'types' => $types,
-            
-
-    //     ]);
-    // }
-
-    /**
-    * Crée un nouveau type
-    **/
 
     #[Route('/admin/types/new', name: 'type_new')]
     public function new(
