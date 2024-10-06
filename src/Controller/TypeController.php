@@ -12,14 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TypeController extends AbstractController
 {
+    // ---------------------------------------------------------- //
+    // Méthode pour créer un nouveau type
+    // ---------------------------------------------------------- //
 
     #[Route('/admin/types/new', name: 'type_new')]
-    public function new(
+    public function newType(
 
         EntityManagerInterface $entityManager,
         Request $request
 
     ): Response {
+        
         // Crée un nouveau type
         $type = new Type();
 
@@ -31,7 +35,6 @@ class TypeController extends AbstractController
 
         // Vérifie si le formulaire est soumis et valide
         if ($formType->isSubmitted() && $formType->isValid()) {
-
             // Persiste le nouveau type en base de données
             $entityManager->persist($type);
             $entityManager->flush();
@@ -42,22 +45,22 @@ class TypeController extends AbstractController
 
         // Affiche le formulaire pour le nouveau type
         return $this->render('admin/typeAdd.html.twig', [
-
-            'formType' => $formType->createView()]);
+            'formType' => $formType->createView()
+        ]);
     }
 
-    /**
-    * Met à jour un type existant
-    **/
+    // ---------------------------------------------------------- //
+    // Méthode pour modifier un type
+    // ---------------------------------------------------------- //
 
     #[Route('/admin/types/{id}/edit', name: 'type_edit')]
-    public function edit(
+    public function editType(
 
         Request $request,
         Type $type,
         EntityManagerInterface $entityManager
 
-    ): Response{
+    ): Response {
 
         // Crée un formulaire pour le type existant
         $formType = $this->createForm(TypeType::class, $type);
@@ -76,19 +79,17 @@ class TypeController extends AbstractController
 
         // Affiche le formulaire pour le type existant
         return $this->render('admin/typeEdit.html.twig', [
-            
-            'formType' => $formType->createView(), 
+            'formType' => $formType->createView(),
             'type' => $type
-
         ]);
     }
 
-    /**
-    * Supprime un type existant
-    **/
+    // ---------------------------------------------------------- //
+    // Méthode pour supprimer un type
+    // ---------------------------------------------------------- //
 
     #[Route('/types/{id}', name: 'type_delete')]
-    public function delete(
+    public function deleteType(
 
         Request $request,
         Type $type,
@@ -98,7 +99,6 @@ class TypeController extends AbstractController
 
         // Vérifie si le token CSRF est valide
         if (!$this->isCsrfTokenValid('delete', $request->request->get('_token'))) {
-            
             // Redirige vers la liste des types 
             return $this->redirectToRoute('admin');
         }

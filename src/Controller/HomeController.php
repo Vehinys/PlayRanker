@@ -8,6 +8,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
+    // ---------------------------------------------------------- //
+    // Affiche la page d'accueil
+    // ---------------------------------------------------------- //
+    
     #[Route('/accueil', name: 'home')]
     public function home(): Response
     {
@@ -16,6 +20,10 @@ class HomeController extends AbstractController
         ]);
     }
 
+    // ---------------------------------------------------------- //
+    // Redirige vers la page d'accueil
+    // ---------------------------------------------------------- //
+    
     #[Route('/', name: 'index')]
     public function index(): Response
     {

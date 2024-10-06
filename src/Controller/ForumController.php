@@ -14,130 +14,123 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ForumController extends AbstractController
 {
+    // ----------------------------------------------------------------- //
+    // Affiche la liste des catégories de forum et les derniers topics
+    // ----------------------------------------------------------------- //
     #[Route('/forum', name: 'forum')]
-    public function index (
+    public function index(
 
-        CategoryForumRepository $categoryForumRepository, // Injection du repository pour gérer les catégories de forum
-        TopicRepository $topicRepository, // Injection du repository pour gérer les topics
-        
+        CategoryForumRepository $categoryForumRepository,
+        TopicRepository $topicRepository
+
     ): Response {
-    
-        // Récupération de toutes les catégories de forum, triées par nom de manière croissante (ASC)
-        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
-        $topics = [];
 
-        // Récupération des 6 derniers topics, triés par date de création de manière décroissante (DESC)
+        // Récupération de toutes les catégories de forum
+        $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+
+        // Récupération des 6 derniers topics
         $topics = $topicRepository->findBy([], ['createdAt' => 'DESC'], 6);
-    
-        // Rendu de la vue 'index.html.twig' et passage des données (catégories et topics) à cette vue
+
+        // Rendu de la vue 'index.html.twig'
         return $this->render('pages/forum/index.html.twig', [
-            'categories' => $categories, // Les catégories sont passées à la vue pour affichage
-            'topics' => $topics, // Les topics sont passés à la vue pour affichage
+            'categories' => $categories,
+            'topics' => $topics,
         ]);
     }
-    
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    // ---------------------------------------------------------- //
+    // Affiche les topics d'une catégorie de forum donnée
+    // ---------------------------------------------------------- //
 
-#[Route('/forum/topics/{categoryId}', name: 'topic')]
-public function findTopicByCategoryForum(
+    #[Route('/forum/topics/{categoryId}', name: 'topic')]
+    public function findTopicByCategoryForum(
 
-    string $categoryId,
-    CategoryRepository $categoryForumRepository,
-    TopicRepository $topicRepository,
-    PaginatorInterface $paginatorInterface,
-    Request $request
+        string $categoryId,
+        CategoryRepository $categoryForumRepository,
+        TopicRepository $topicRepository,
+        PaginatorInterface $paginatorInterface,
+        Request $request
 
-): Response {
-    // Récupération de la catégorie de forum
-    $categoryForum = $categoryForumRepository->find($categoryId);
+    ): Response {
 
-    // Vérifiez si la catégorie existe
-    if (!$categoryForum) {
-        throw $this->createNotFoundException('Catégorie de forum non trouvée.');
+        // Récupération de la catégorie de forum
+        $categoryForum = $categoryForumRepository->find($categoryId);
+
+        // Vérification de l'existence de la catégorie
+        if (!$categoryForum) {
+            throw $this->createNotFoundException('Catégorie de forum non trouvée.');
+        }
+
+        // Récupération des topics associés à la catégorie
+        $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
+
+        // Pagination des topics
+        $topics = $paginatorInterface->paginate(
+            $topics,
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        // Initialisation d'un tableau pour stocker les posts
+        $posts = [];
+        foreach ($topics as $topic) {
+            $posts[$topic->getId()] = $topic->getPosts();
+        }
+
+        // Rendu de la vue 'topic.html.twig'
+        return $this->render('pages/forum/topic.html.twig', [
+            'topics' => $topics,
+            'categories' => $categoryForumRepository->findBy([], ['name' => 'ASC']),
+            'category' => $categoryForum,
+            'posts' => $posts,
+        ]);
     }
 
-    // Récupération de toutes les catégories de forum, triées par nom
-    $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
+    // ---------------------------------------------------------- //
+    // Affiche les posts d'un topic donné
+    // ---------------------------------------------------------- //
 
-    // Récupération des topics associés à la catégorie de forum
-    $topics = $topicRepository->findBy(['categoryForum' => $categoryForum], ['createdAt' => 'DESC']);
+    #[Route('/forum/topics/post/{id}', name: 'post')]
+    public function findPostByTopic(
 
-    $topics = $paginatorInterface->paginate(
-        $topics,
-        $request->query->getint('page', 1),
-        12
-    );
+        CategoryRepository $categoryForumRepository,
+        PaginatorInterface $paginatorInterface,
+        Request $request,
+        TopicRepository $topicRepository,
+        PostRepository $postRepository,
+        int $id
 
-    // Initialisation d'un tableau pour stocker les posts
-    $posts = [];
+    ): Response {
 
-    // Récupération des posts de chaque topic
-    foreach ($topics as $topic) {
-        $posts[$topic->getId()] = $topic->getPosts(); // On associe les posts à leur topic respectif
+        // Récupération du topic correspondant à l'ID donné
+        $topic = $topicRepository->findOneBy(['id' => $id]);
+
+        // Vérification de l'existence du topic
+        if (!$topic) {
+            throw $this->createNotFoundException('Le post avec l\'id ' . $id . ' n\'existe pas.');
+        }
+
+        // Récupération de la catégorie du topic
+        $category = $topic->getCategoryForum();
+        
+        // Récupération des posts associés au topic
+        $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC'], 12);
+        $posts = $paginatorInterface->paginate(
+            $posts,
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        // Récupération des topics associés à la catégorie
+        $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);
+
+        // Rendu de la vue 'post.html.twig'
+        return $this->render('pages/forum/post.html.twig', [
+            'posts' => $posts,
+            'categories' => $categoryForumRepository->findBy([], ['name' => 'ASC']),
+            'topic' => $topic,
+            'category' => $category,
+            'topics' => $topics
+        ]);
     }
-
-    // Rendu de la vue 'topic.html.twig'
-    return $this->render('pages/forum/topic.html.twig', [
-        'topics' => $topics,
-        'categories' => $categories,
-        'category' => $categoryForum,
-        'posts' => $posts,
-    ]);
-}
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-#[Route('/forum/topics/post/{id}', name: 'post')]
-public function findPostByTopic(
-
-    CategoryRepository $categoryForumRepository,
-    PaginatorInterface $paginatorInterface,
-    Request $request,
-    TopicRepository $topicRepository,
-    PostRepository $postRepository,
-    int $id
-
-): Response {
-
-    // Récupération du topic correspondant à l'ID donné
-    $topic = $topicRepository->findOneBy(['id' => $id]);
-    
-    // Vérifier si le topic existe
-    if (!$topic) {
-        throw $this->createNotFoundException('Le post avec l\'id ' . $id . ' n\'existe pas.');
-    }
-
-    // Récupérer la catégorie du topic
-    $category = $topic->getCategoryForum();
-    
-    // Récupération de toutes les catégories de forum
-    $categories = $categoryForumRepository->findBy([], ['name' => 'ASC']);
-    
-    // Récupération des posts associés au topic, triés par date de création de manière décroissante (DESC)
-    $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC'],12);
-
-    $posts = $paginatorInterface->paginate(
-        $posts,
-        $request->query->getint('page', 1),
-        5
-    );
-
-    
-    // Récupérer les topics associés à la catégorie
-    $topics = $topicRepository->findBy(['categoryForum' => $category], ['createdAt' => 'DESC']);
-    
-    return $this->render('pages/forum/post.html.twig', [
-        'posts' => $posts,
-        'categories' => $categories,
-        'topic' => $topic,
-        'category' => $category,
-        'topics' => $topics
-    ]);
-}
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-
-
 }

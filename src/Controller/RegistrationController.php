@@ -13,14 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
+    // ---------------------------------------------------------- //
+    // Méthode pour gérer l'inscription des utilisateurs
+    // ---------------------------------------------------------- //
+
     #[Route('/register', name: 'register')]
     public function register(
 
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
-        EntityManagerInterface $entityManager,
+        EntityManagerInterface $entityManager
 
     ): Response {
+        
         // Création d'une nouvelle instance de l'entité User
         $user = new User();
 
