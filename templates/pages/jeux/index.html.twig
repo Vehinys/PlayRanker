@@ -42,6 +42,7 @@
                     </div>
 
                     <div class="p-4 min-h-[154px] flex flex-col justify-between ">
+
                         <div class="flex flex-wrap space-x-2 mb-4">
                             {% set platform_logos = {
                                 'PlayStation 1': 'img/ps1.png',
@@ -89,11 +90,13 @@
                         </div>
 
                         <div class="flex justify-between">
+
                             <!-- Bouton Détail -->
                             <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#09172b] text-white px-4 py-2 rounded-lg hover:bg-[#0C1D36] hover:text-[#ECC33E]">Détail</a>
                         
                             <!-- Dropdown Button -->
                             <div class="relative">
+
                                 <button onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" type="button" class="bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-[#09172b] flex items-center">
                                     Add to your lists
                                     <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -103,16 +106,18 @@
                         
                                 <!-- Dropdown Menu -->
                                 <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mb-2 w-56 bg-white shadow-lg rounded-md z-20">
-                                    <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Favoris </a>
+                                    <a href="{{ path('addFavorite', {'id': game.id}) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Favoris </a>
                                     <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Already played </a>
                                     <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> My desires </a>
                                     <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Go test </a>
                                 </div>
+
                             </div>
+
                         </div> 
-                        
 
                     </div>
+
                 </div>
             {% endfor %}
         </div>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\GamesList;
 use App\Entity\User;
+use App\Repository\GameRepository;
 use App\Repository\GamesListRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -153,18 +154,78 @@ class ProfilController extends AbstractController
     }
 
     // ---------------------------------------------------------- //
-    //  Ajouter les jeux à favoris pour l'user
+    //  Ajouter les jeux à favoris
     // ---------------------------------------------------------- //
 
     #[Route('/jeux/{id}/addFavorite', name: 'addFavorite')]
+
     public function addFavorite(
+        int $id,
+        Request $request,
+        EntityManagerInterface $manager,
+        GamesListRepository $gameListRepository,
+        GameRepository $gameRepository
 
     ): Response {
-    
-        return $this->redirectToRoute('jeux', [
 
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer la liste des jeux de l'utilisateur
+        $favoris = $gameListRepository->findOneBy(['user' => $user]);
+
+        // Vérifier si le jeu existe déjà dans la base de données
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
+
+        // Si le jeu n'existe pas, créer une nouvelle instance de Game
+        if (!$existingGame) {
+
+            $game = new Game();
+            $game->setIdGameApi($id);
+
+            // Récupérer le nom et les données du jeu depuis la requête
+            $gameName = $request->get('gameName');
+            $gameData = $request->get('gameData');
+
+            // Configurer les propriétés du jeu
+            $game->setName($gameName);
+            $game->setData([$gameData]);
+
+            // Persister le nouveau jeu
+            $manager->persist($game);
+
+        } else {
+            
+            // Si le jeu existe déjà, utiliser l'instance existante
+            $game = $existingGame;
+        }
+
+        // Vérifier si le jeu est déjà dans la liste de favoris
+        if ($favoris && $favoris->getGame() === $game) {
+            
+            // Si le jeu est déjà dans la liste, le retirer
+            $favoris->setGame(null);
+
+        } else {
+
+            // Sinon, ajouter le jeu à la liste de favoris
+            if (!$favoris) {
+                $favoris = new GamesList();
+                $favoris->setUser ($user);
+            }
+
+            $favoris->setGame($game);
+        }
+
+        // Persister la liste mise à jour
+        $manager->persist($favoris);
+        $manager->flush();
+
+        // Rendre une vue Twig avec la liste des jeux mis à jour
+        return $this->redirectToRoute('jeux', [
+            'id' => $id,
+            'favoris' => $favoris,
         ]);
     }
-    
 
 }

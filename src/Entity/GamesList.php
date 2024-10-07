@@ -28,13 +28,13 @@ class GamesList
 
     public function __construct()
     {
+        
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function __toString(): string
     {
