@@ -1,84 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Games {% endblock %}
+{% block title %} {{ gameDetail.name }} {% endblock %}
 
 {% block body %}
+<div class="bg-[#09172b] text-white min-h-screen py-10">
+    <section class="container mx-auto px-4">
+        <div class="relative rounded-lg overflow-hidden shadow-xl">
+            <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-96 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center p-8">
+                <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">{{ gameDetail.name }}</h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+                    {% set details = {
+                        'Release Date': gameDetail.released|date("m/d/Y"),
+                        'Publisher(s)': gameDetail.publishers|map(p => p.name)|join(', '),
+                        'Developer(s)': gameDetail.developers|map(d => d.name)|join(', '),
+                        'Genre(s)':     gameDetail.genres|map(g => g.name)|join(', '),
+                        'ESRB Rating':  gameDetail.esrb_rating.name|default('Not Rated'),
+                        'Metacritic':   gameDetail.metacritic ~ ' out of 100'
+                    } %}
 
-<div class="mx-auto  text-center bg-white">
-    <section class="w-4/5 mx-auto">
-        <section class=" mt-10 relative">
-            <img src="{{gameDetail.background_image}}" alt="{{gameDetail.name}}" class="w-full rounded-lg shadow-lg opacity-100">
-            <div class=" m-4 absolute inset-0 bg-black bg-opacity-50 rounded-lg p-4 flex flex-col justify-center">
-                <h1 class="text-6xl mb-20 text-white text-shadow-lg">{{gameDetail.name}}</h1>
+                    {% for label, value in details %}
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">{{ label }}</h3>
+                            <p>{{ value }}</p>
+                        </div>
+                    {% endfor %}
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-white">
+                    {% if gameDetail.metacritic_url %}
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Metacritic Page</h3>
+                            <a href="{{ gameDetail.metacritic_url }}" class="hover:text-[#ECC33E] transition duration-300">View on Metacritic</a>
+                        </div>
+                    {% endif %}
 
-                    <div>    
-                        <p class="font-bold text-yellow-500 text-[30px] "> Date de sortie :</p>
-                        <p class="font-medium text-[20px]"> {{gameDetail.released|date("m/d/Y")}}</p>
-                    </div>
-
-                    <div>    
-                        <p class="font-bold text-yellow-500 text-[30px]"> Éditeur(s):</p>
-                        <p class="font-medium text-[20px]">
-                            {% for editeur in gameDetail.publishers %}
-                                {{ editeur.name|lower|capitalize }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>   
-
-                    <div>
-                        <p class="font-bold text-yellow-500 text-[30px]">Studio(s)</p>
-                        <p class="font-medium text-[20px ">
-                            {% for developer in gameDetail.developers %}
-                                {{ developer.name|lower|capitalize }}<br>
-                            {% endfor %}
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="font-bold text-yellow-500 text-[30px]">Genre(s)</p>
-                        <p class="font-medium text-[20px]">
-                            {% for genre in gameDetail.genres %}
-                                {{ genre.name }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                    
-                    <div>
-                        <p class="font-bold text-yellow-500 text-[30px]">Esrb</p>
-                        <p class="font-medium text-[20px]">{{ gameDetail.esrb_rating.name|default('Not Rated') }}</p>
-                    </div>
-                    
-                    <div>
-                        <p class="font-bold text-yellow-500 text-[30px]">Metacritic</p>
-                        <p class="font-medium text-[20px]">{{ gameDetail.metacritic }} sur 100</p>
-                    </div>
-                    
-                    <div>
-                        {% if gameDetail.metacritic_url %}
-                            <p class="font-bold text-yellow-500 text-[30px]">Plateforme Metacritic</p>
-                            <a class="text-white text-[20px] hover:text-yellow-500" href="{{ gameDetail.metacritic_url }}" >{{ gameDetail.name }}</a>
-                        {% endif %}
-                    </div>
-                    
-                    <div>
-                        {% if gameDetail.website %}
-                            <p class="font-bold text-yellow-500 text-[30px]">Site Web:</p>
-                            <a href="{{ gameDetail.website }}" class="text-white text-[20px] hover:text-yellow-500">{{ gameDetail.name }}</a>
-                        {% endif %}
-                    </div>
-                    
+                    {% if gameDetail.website %}
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Official Website</h3>
+                            <a href="{{ gameDetail.website }}" class="hover:text-[#ECC33E] transition duration-300">Visit Website</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-        </section>
+        </div>
     </section>
 
-    <section class=" bg-black mb-10 w-4/5 mx-auto">
-        <!-- Section des plateformes -->
-        <h3 class=" text-[30px] my-5 font-bold text-yellow-500 text-center">Plateforme(s) : </h3>
-        <div class="grid grid-cols-4 justify-items-center">
-                {% set platform_logos = {
+    <section class="container mx-auto px-4 mt-10">
+        <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+
+            {% set platform_logos = {
                 'PlayStation 1': 'img/ps1.png',
                 'PlayStation 2': 'img/ps2.png',
                 'PlayStation 3': 'img/ps3.png',
@@ -114,52 +86,35 @@
                 } %}
 
             {% for element in gameDetail.platforms %}
-            <div class="flex items-center justify-center">
                 {% set logo_path = platform_logos[element.platform.name] ?? '' %}
                 {% if logo_path %}
-                <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" />
+                    <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
+                        <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
+                    </div>
                 {% endif %}
-            </div>
             {% endfor %}
         </div>
 
-        <!-- Section des tags -->
-        <div class="mt-5">
-            <h3 class="font-bold my-5 text-[30px] text-yellow-500 text-center"> Tag(s) : </h3>
-            <p class="font-medium text-lg text-white grid grid-cols-3">
-                {% for tag in gameDetail.tags %}
-                    <span>{{ tag.name }}</span>
-                {% endfor %}
-            </p>
+        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Tags</h3>
+        <div class="flex flex-wrap gap-2">
+            {% for tag in gameDetail.tags %}
+                <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
+            {% endfor %}
         </div>
 
-        <!-- Section de la description et des vidéos -->
-        <section class="m-10">
-            <!-- Bande d'annonce -->
-            <div>
-                <h3 class="text-[30px] my-5 font-bold text-yellow-500">Bande d'annonce</h3>
-                <div class="flex gap-5 justify-center w-100 h-1/2">
-                    {% set count = 0 %}
-                    {% for trailer in gameAnnonce.results %}
-                        {% if count < 2 %}
-                        <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-[50%] h-[300px]"></iframe>
-                            {% set count = count + 1 %}
-                        {% endif %}
-                    {% endfor %}
+        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Trailers</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for trailer in gameAnnonce.results|slice(0, 2) %}
+                <div class="aspect-w-16 aspect-h-9">
+                    <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-full h-full"></iframe>
                 </div>
-            </div>
-        </section>
-            <!-- Description du jeu -->
-        <section class="mt-5">
-            <div class="bg-gray-800 p-5 rounded-lg">
-                <h3 class="text-[30px] font-bold mb-2 text-yellow-500">Description</h3>
-                <p class="text-white">
-                    {% set cleaned_description = gameDetail.description_raw|replace({'<p>': '', '</p>': ''}) %}
-                    {{ cleaned_description|raw }}
-                </p>
-            </div>
-        </section>
+            {% endfor %}
+        </div>
+
+        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Description</h3>
+        <div class="bg-[#0C1D36] p-6 rounded-lg">
+            <p>{{ gameDetail.description_raw|striptags|raw }}</p>
+        </div>
     </section>
 </div>
-
 {% endblock %}

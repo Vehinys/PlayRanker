@@ -1,59 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Edit my profile {% endblock %}
+{% block title %}Edit my profile{% endblock %}
 
 {% block body %}
+<section class="bg-[#0C1D36] py-10">
+    <div class="container mx-auto px-4">
+        <div class="bg-[#09172b] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden max-w-3xl mx-auto">
+            <div class="p-5">
+                <h1 class="font-bold text-2xl text-[#ECC33E] text-center">Edit my profile</h1>
+            </div>
 
-<div class="container-profil">
-    <div class="profil-container">
-        <div class="profil-section">
-            <div class="profil-card">
-                <div class="profil-title">
-                    <h1>Edit my profile</h1>
-                </div>
-                <div class="profil-card-content">
-                    <div class="profil-user-info">
-                            {% if user %}
-                                {% if user.avatar %}
-                                    <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="profil-image">
-                                {% else %}
-                                    <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="profil-image">
-                                {% endif %}
+            <div class="p-6">
+                <div class="flex flex-col md:flex-row items-center mb-6">
+                    {% if user %}
+                        {% if user.avatar %}
+                            <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                        {% else %}
+                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                        {% endif %}
 
-                        <div class="profil-user-details">
+                        <div class="flex-grow">
+                            {{ form_start(form, {'attr': {'class': 'w-full'}}) }}
+                            
+                            <div class="mb-4">
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.pseudo.vars.id }}">Pseudo:</label>
+                                <p class="text-[#ebf1ff] mb-1">{{ user.pseudo }}</p>
+                                {{ form_widget(form.pseudo, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New nickname' } }) }}
+                            </div>
 
-                            {% if user %}
-                                {{ form_start(form) }}
+                            <div class="mb-4">
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.email.vars.id }}">Email:</label>
+                                <p class="text-[#ebf1ff] mb-1">{{ user.email }}</p>
+                                {{ form_widget(form.email, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New email' } }) }}
+                            </div>
 
-                                <p><b>Pseudo : </b> <span>{{ user.pseudo }}</span> {{ form_widget(form.pseudo, { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New nickname' } }) }}</p>
-                                <p><b>Email :  </b> <span>{{ user.email }}</span>  {{ form_widget(form.email,  { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New email'    } }) }}</p>
-                                <p><b>Avatar : </b>                                {{ form_widget(form.avatar, { 'attr': { 'class': 'input-profil-box', 'placeholder': 'New avatar'   } }) }}</p>
-                            {% else %}
-                                <p>No users found. Please login.</p>
-                            {% endif %}
-                            {% endif %}
+                            <div class="mb-4">
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.avatar.vars.id }}">Avatar:</label>
+                                {{ form_widget(form.avatar, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New avatar' } }) }}
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- Remplacement du lien <a> par un bouton de type submit -->
-                        <button class="increment-button" type="submit">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/>
-                        </button>
+                    {% else %}
+                        <p class="text-[#ebf1ff]">No users found. Please login.</p>
+                    {% endif %}
+                </div>
 
-                        {{ form_end(form) }}
+                <div class="flex justify-end space-x-4">
+                    <button type="submit" class="bg-[#0C1D36] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYxJREFUSEvtlcsrRFEcxz8/I69Ec8ejPELYy8rCKxvZUZL8A2KpyZq1PDY2thayIbKaUgprjbKjLBTFHGXjNfnpul5z3TFn0uyc1en2Pd/POd/ft66Q4yU59ucfkDHh4Ii0tBIKF0AH3h12IDmF3JmMjj7BT4DWlMB9HKTFpz0B047wlA0kABAeBVkLNpFBJLH1R4ATBebSmEQRM58WoFXVkBxDzOKHJuAFkSHQjaxfoJFa0AOgEXQcuV1xPQIAjUVwdwy0+iBxKOtAzh9+wD3zQ6AB9BTyu5Drq2CA+9Vr0dJ7i16AbUhGU1qk4WkIrUKyAPL2gXrPPNSN3Fymj8hmghqeBFkGOQMtBmq8fV7nx81/mYEzDEwAfT7W7pupJDZRpw5kD7TZ07yBehFz4b9f6gzUcdvjtui3NYOYWQ+CG40bYU+QeeoM1BkB1m0SAvoRE0PLmyD0nM7cDzgC2iwBMcT022i/IlLnESiwOQQkEFNho/0OUJsDnxoxVv8SK1FWYJ/4H5AxvZxH9AqVdnAZPB13BQAAAABJRU5ErkJggg=="/>
+                    </button>
+                    {{ form_end(form) }}
 
-                        <button class="increment-button" onclick="window.location.href='{{ path('profil') }}'">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/>
-                        </button>
-
-                    </div>
-
-                    
-                    </div>
+                    <button onclick="window.location.href='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQBJREFUSEtjZKAxYKSx+QwjxIJX+x0kmJn/RgrbHe4nNUgJBhHIcCbmf4cZGBlU/v9nTBO1OzibFEvwWoBsOCMDw70/rKxW4hZ7X1LFAmTDGRgYb/5lZbEn1XCQQ7D6AN1wtj+MNnyOB96Q4nKYWgwLnh+yFWVlYDwGCnOQyykxHMMHYMMZGQ8xMDBoMDAwXmX7w+hArssxfIBqODmBgdAjYnsIHjJwBs0tANmPFkQUhz/WVERtS7AmU2qmJJw5mVp5geiigtzcTFxhx/IPlDdUGRkYkoVtD80jJRETtABk2OtDtpJMjIxhwraHJpJiOM6yiFRD8KknygeUWDj0LQAAMt9qGTdYWIcAAAAASUVORK5CYII="/>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</section>
 {% endblock %}

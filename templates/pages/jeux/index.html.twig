@@ -14,25 +14,9 @@
                 </form>
             </div>
 
-            {# <section class="container-console">
-                <form class="recherche-form-jeux">
-                    {% for category in categories %}
-                        <div class="dropdown">
-                            <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
-                            <div id="dropdown-{{ category.id }}" class="dropdown-content">
-                                {% for sousCategory in category.category %}
-                                    <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </form>
-                <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
-            </section> #}
-
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 {% for game in games.results %}
-                    <div class="bg-[#09172b] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
+                    <div class="bg-[#97b4e0] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
                         <div class="p-5">
                             <h3 class="font-bold text-xl text-[#ECC33E] min-h-[56px] content-center text-center">{{ game.name }}</h3>
                         </div>
@@ -90,7 +74,7 @@
                             </div>
 
                             <div class="flex justify-between">
-                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">Detail</a>
+                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#09172b] hover:text-white transition duration-300">Detail</a>
 
                                 <div class="relative">
                                     <button type="button" onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 flex items-center">

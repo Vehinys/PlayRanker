@@ -95,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const reviewContainer = document.querySelector('.review-container');
     const reviews = document.querySelectorAll('.review-content');
-    const nextButton = document.querySelector('.next');
-    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.suivant');
+    const prevButton = document.querySelector('.precedent');
     let currentIndex = 0;
     const totalReviews = reviews.length;
 
     function updateSlide() {
-        const offset = -currentIndex * 100;
+        const offset = -currentIndex * (100 / totalReviews);
         reviewContainer.style.transform = `translateX(${offset}%)`;
     }
 
@@ -120,20 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function toggleContent(event) {
-    event.preventDefault();
-    const moreContent = document.querySelector('.more-content');
-    const seeMoreLink = document.getElementById('see-more');
 
-    if (moreContent.style.display === "none") {
-        moreContent.style.display = "block";
-        seeMoreLink.textContent = "Voir moins";
-    } else {
-        moreContent.style.display = "none";
-        seeMoreLink.textContent = "Voir plus";
-    }
-}
-
+//-------------------------------------------------------------------------------------//
 
 
 function toggleDropdown(dropdownId) {

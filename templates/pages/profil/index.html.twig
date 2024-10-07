@@ -3,30 +3,23 @@
 {% block title %} My Profile {% endblock %}
 
 {% block body %}
-<div class="min-h-screen  py-8">
-    
+<div class="min-h-screen bg-[#09172b] py-8">
     <div class="container mx-auto p-4">
-
-        <!-- Section du profil utilisateur -->
+        <!-- User Profile Section -->
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
             <div class="flex flex-col py-7 items-center md:flex-row">
-
-                <!-- Profil User -->
+                <!-- User Profile -->
                 <div class="w-full md:w-1/2">
-                        <h2 class="text-4xl text-center font-bold text-[#ECC33E]">My Profile</h2>
-                    <div class="text-center mb-6">
-                    </div>
+                    <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>
                     <div class="flex flex-col items-center">
                         {% if user %}
-                            {% if user.avatar %}
-                                <img src="{{ user.avatar }}" alt="Photo de Profil de {{ user.pseudo }}" class="w-48 h-48 rounded-full border-4 border-white transition-transform duration-500 transform hover:scale-110">
-                            {% else %}
-                                <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de Profil par défaut" class="w-24 h-24 rounded-full border-4 transition-transform duration-500 transform hover:scale-110">
-                            {% endif %}
+                            <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
+                                alt="Profile Picture of {{ user.pseudo }}" 
+                                class="w-48 h-48 rounded-full border-4 border-white transition-transform duration-500 transform hover:scale-110">
                             <div class="mt-4 text-center text-white">
-                                <p><b class="text-[20px] text-[#ECC33E] ">Pseudo :</b> <span class="text-[20px]">{{ user.pseudo }}</span></p>
-                                <p><b class="text-[20px] text-[#ECC33E] ">Email :</b> <span class="text-[20px]">{{ user.email }}</span></p>
-                                <p><b class="text-[20px] text-[#ECC33E] ">Nb of topics created :</b> <span class="text-[20px]">{{ user.topics|length }}</span></p>
+                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold">Pseudo:</span> <span class="text-[20px]">{{ user.pseudo }}</span></p>
+                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold">Email:</span> <span class="text-[20px]">{{ user.email }}</span></p>
+                                <p><span class="text-[20px] text-[#ECC33E] font-bold">Topics created:</span> <span class="text-[20px]">{{ user.topics|length }}</span></p>
                             </div>
                         {% else %}
                             <p class="text-red-500">No users found. Please log in</p>
@@ -34,82 +27,65 @@
                     </div>
 
                     <div class="flex justify-center mt-6 space-x-4">
-                        <!-- Formulaire pour Editer le profil -->
-                        <form action="{{ path('edit_profile') }}" method="get">
-                            <button type="submit" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                                Edit
-                            </button>
-                        </form>
-                    
-                        <!-- Formulaire pour Supprimer le profil -->
+                        <a href="{{ path('edit_profile') }}" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                            Edit
+                        </a>
                         <form action="{{ path('delete_profile') }}" method="post">
                             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                                <i class='fas fa-trash-can'></i> 
+                                <i class='fas fa-trash-can'></i>
                             </button>
                         </form>
                     </div>
                 </div>
 
-                <!-- Topics de l'utilisateur -->
-                <div class="w-1/5 md:w-1/2 mt-6 md:mt-0">
-                    <h3 class="font-semibold text-[#ECC33E] text-center mb-4  lg:text-3xl ">My Topics</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-2">
+                <!-- User Topics -->
+                <div class="w-full md:w-1/2 mt-6 md:mt-0">
+                    <h3 class="font-semibold text-[#ECC33E] text-center mb-4 text-3xl">My Topics</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                         {% for topic in user.topics %}
-                            <a href="" class="bg-[#09172b] p-2 rounded-lg text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
-
+                            <a href="#" class="bg-[#09172b] p-2 rounded-lg text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]">
+                                {{ topic.title }}
+                            </a>
                         {% else %}
-                            <p class="text-gray-400">No topics created yet.</p>
+                            <p class="text-gray-400 col-span-full text-center">No topics created yet.</p>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section des listes de jeux de l'utilisateur -->
-
-
-            <section>
-
-                {% if gamesLists|length == 0 %}
-
-                    <!-- Si l'utilisateur n'a aucun jeu dans ses listes -->
-                    <p class="text-white text-center">No games available in your list.</p>
-            
-                {% else %}
-
-                    {% for type in types %}
-
-                        <div class="bg-[#0C1D36] text-[#ECC33E] my-4 text-center text-3xl shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
-                            
-                            <!-- Nom du type -->
-                            <h2 class="mb-4">{{ type.name }}</h2>
-
-                            
-                            <!-- Filtrer les listes de jeux pour ce type -->
-                            {% set filteredGames = gamesLists|filter(g => g.type.id == type.id) %}
-                            
-                            <!-- Vérifier si des jeux sont associés à ce type -->
-                            {% if filteredGames|length == 0 %}
-                                <p class="text-white">No games available for this type.</p>
-                            {% else %}
-                                <ul>
-                                    {% for gamesList in filteredGames %}
-                                        <!-- Afficher le nom des jeux associés à ce type -->
-                                        <li class="text-white">{{ gamesList.game.name }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                                <div class="text-center">
-                                    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] 
-                                    font-semibold py-1 px-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
-                                </div>
+        <!-- User Game Lists Section -->
+        <section class="mt-8">
+            {% if gamesLists|length == 0 %}
+                <p class="text-white text-center">No games available in your list.</p>
+            {% else %}
+                {% for type in types %}
+                    <div class="bg-[#0C1D36] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
+                        <h2 class="text-3xl text-center mb-4">{{ type.name }}</h2>
+                        {% set filteredGames = gamesLists|filter(g => g.type.id == type.id) %}
+                        {% if filteredGames|length == 0 %}
+                            <p class="text-white text-center">No games available for this type.</p>
+                        {% else %}
+                            <ul class="space-y-2">
+                                {% for gamesList in filteredGames %}
+                                    <li class="text-center">
+                                        <a href="#" class="text-white hover:text-[#ECC33E] transition duration-300 ease-in-out">
+                                            {{ gamesList.game.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="text-center mt-4">
+                            <a href="{{ path('jeux') }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                Search Game
+                            </a>
                         </div>
-                    {% endfor %}
-                {% endif %}
-            
-            </section>
-            
-    </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
 
+    </div>
 </div>
 {% endblock %}
