@@ -3,75 +3,54 @@
 {% block title %}Games{% endblock %}
 
 {% block body %}
+<section class="bg-[#7288e7]">
+    <div class="container mx-auto">
+        <div class="mb-8 flex justify-center pt-10">
+            <form class="w-full max-w-lg flex" action="{{ path('search') }}" id="searchthis" method="post">
+                <input class="border border-gray-300 rounded-l-lg py-2 px-4 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0C1D36]" id="search" name="input" type="text" placeholder="Search for a game" />
+                <button class="bg-[#09172b] text-white px-4 py-2 rounded-r-lg hover:bg-[#ECC33E]">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
 
-    <!
-        * Affiche un formulaire de recherche pour les jeux.
-        * Le formulaire permet aux utilisateurs de saisir une requête de recherche et de la soumettre à la route 'search'.
-        * Le champ de saisie de recherche et le bouton de soumission sont affichés dans une section avec la classe 'section-recherche-jeux'.
-    > 
-
-<div class="container-search-jeux">
-
-    <div class="search-container">
-        <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
-            <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        </form>
-    </div>
-
-    <! 
-        * Affiche un menu déroulant pour sélectionner une catégorie de plateforme de jeu.
-        * Le menu déroulant contient une liste de sous-catégories pour la catégorie de plateforme sélectionnée,
-        * chacune avec un lien pour rechercher des jeux dans cette sous-catégorie.
-        * Le menu déroulant est affiché dans un formulaire de recherche de jeux.
-        * Le formulaire inclut également un lien vers la page d'administration.
-    > 
-{# 
-    <section class="container-console">
-        <form class="recherche-form-jeux">
-            {% for category in categories %}
-                <div class="dropdown">
-                    <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
-                    <div id="dropdown-{{ category.id }}" class="dropdown-content">
-                        {% for sousCategory in category.category %}
-                            <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
-                        {% endfor %}
+        {# <section class="container-console">
+            <form class="recherche-form-jeux">
+                {% for category in categories %}
+                    <div class="dropdown">
+                        <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
+                        <div id="dropdown-{{ category.id }}" class="dropdown-content">
+                            {% for sousCategory in category.category %}
+                                <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </form>
-        <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
-    </section> #}
+                {% endfor %}
+            </form>
+            <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
+        </section> #}
 
-</div>
-
-    <! 
-        * Affiche un conteneur pour une liste de cartes de jeux, chacune représentant un jeu.
-        * Le conteneur inclut une mise en page en grille pour les cartes de jeux, chaque carte affichant le nom du jeu, 
-        * son image et les icônes des plateformes.
-        * Chaque carte de jeu comprend également un bouton "Détail" qui renvoie vers la page de détails du jeu.
-    > 
-<div class="all-container-jeux">
-    <div class="container-jeux">
-        <div class="game-card-container">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {% for game in games.results %}
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <h3>{{ game.name }}</h3>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg text-gray-900 min-h-[56px] content-center ">{{ game.name }}</h3>
                     </div>
-                        <img class="game-card-image" src="{{ game.background_image }}" alt="{{ game.name }}">
-                        <div class="game-card-body">
+
+                    <div class="w-full ">
+                        <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
                     </div>
-                    <div class="platforms">
-                        <div class="platform">
+
+                    <div class="p-4 min-h-[154px] flex flex-col justify-between ">
+                        <div class="flex flex-wrap space-x-2 mb-4">
                             {% set platform_logos = {
                                 'PlayStation 1': 'img/ps1.png',
                                 'PlayStation 2': 'img/ps2.png',
                                 'PlayStation 3': 'img/ps3.png',
                                 'PlayStation 4': 'img/ps4.png',
                                 'PlayStation 5': 'img/ps5.png',
-                                'PS Vita': 'img/ps vita.png',
-                                'PSP': 'img/psp.png',
+                                'PS Vita':       'img/ps-vita.png',
+                                'PSP':           'img/psp.png',
                                 'PC': 'img/pc.png',
                                 'Linux': 'img/linux.png',
                                 'Web': 'img/Web.png',
@@ -98,52 +77,62 @@
                                 'Wii U': 'img/Wii U.png',
                                 'NES': 'img/Wii U.png',
                             } %}
-                    
+
                             {% for platform in game.platforms %}
-                                <div class="platform-item">
+                                <div class="flex items-center">
                                     {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
                                     {% if logo_path %}
-                                        <img style="width: 30px;" src="{{ asset(logo_path) }}" title="{{ platform.platform.name}} " alt="{{ platform.platform.name}} logo" />
+                                        <img class="w-8 h-8" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" />
                                     {% endif %}
                                 </div>
                             {% endfor %}
                         </div>
+
+                        <div class="flex justify-between">
+                            <!-- Bouton Détail -->
+                            <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#09172b] text-white px-4 py-2 rounded-lg hover:bg-[#0C1D36] hover:text-[#ECC33E]">Détail</a>
+                        
+                            <!-- Dropdown Button -->
+                            <div class="relative">
+                                <button onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" type="button" class="bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-[#09172b] flex items-center">
+                                    Add to your lists
+                                    <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                        
+                                <!-- Dropdown Menu -->
+                                <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mb-2 w-56 bg-white shadow-lg rounded-md z-20">
+                                    {% for listType in types %}
+                                        
+                                        <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ listType.name }}</a>
+                                            
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
-                    <div class="button-container">
-                        <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="detail-button">Détail</a> 
-                    </div>
-                    
                 </div>
             {% endfor %}
         </div>
-    </div>
 
-        <!
-            * Affiche un composant de pagination pour la page des jeux.
-            * Le composant de pagination inclut des liens pour naviguer vers les pages précédente et suivante,
-            * ainsi que le numéro de la page actuelle.
-            * Le comportement du composant de pagination dépend de la présence du paramètre 'token'
-            * défini comme 'platform', ce qui indique que la page est filtrée par plateforme.
-        > 
+        <div class=" py-8 flex justify-center">
+            {% if currentPage is defined %}
 
-    <div class="paginationApi">
-        {% if currentPage is defined %}
-            {% if token is defined and token is same as 'platform' %}
-                {% if currentPage > 1 %}
-                    <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
-                    {% endif %}
-                        <span>Page {{ currentPage }}</span>
-                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-                        {% else %}
+                <nav class="inline-flex">
+
                     {% if currentPage > 1 %}
-                        <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}">Page précédente</a>
+                        <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Page précédente</a>
                     {% endif %}
-                        <span>Page {{ currentPage }}</span>
-                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}">Page suivante</a>
-                {% endif %}
-        {% endif %}
-    </div>
-</div>
-{% endblock %}
 
+                    <span class="px-3 py-2 mx-5 bg-gray-200 border border-gray-300 rounded-lg">Page {{ currentPage }}</span>
+
+                    <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Page suivante</a>
+                </nav>
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

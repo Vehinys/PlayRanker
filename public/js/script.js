@@ -135,3 +135,18 @@ function toggleContent(event) {
 }
 
 
+
+function toggleDropdown(dropdownId) {
+    // Close all dropdowns
+    var dropdowns = document.querySelectorAll('[id^="dropdown-menu"]');
+    dropdowns.forEach(function(dropdown) {
+        if (dropdown.id !== dropdownId) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    // Toggle the specific dropdown
+    var dropdown = document.getElementById(dropdownId);
+    dropdown.classList.toggle('hidden');
+}
+

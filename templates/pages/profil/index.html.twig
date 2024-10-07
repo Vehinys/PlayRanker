@@ -5,9 +5,11 @@
 {% block body %}
 <div class="min-h-screen  py-8">
     <div class="container mx-auto p-4">
+
         <!-- Section du profil utilisateur -->
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
             <div class="flex flex-col py-7 items-center md:flex-row">
+
                 <!-- Profil User -->
                 <div class="w-full md:w-1/2">
                         <h2 class="text-4xl text-center font-bold text-[#ECC33E]">My Profile</h2>
@@ -22,8 +24,8 @@
                             {% endif %}
                             <div class="mt-4 text-center text-white">
                                 <p><b class="text-[20px] text-[#ECC33E] ">Pseudo :</b> <span class="text-[20px]">{{ user.pseudo }}</span></p>
-                                <p><b class="text-[20px] text-[#ECC33E]">Email :</b> <span class="text-[20px]">{{ user.email }}</span></p>
-                                <p><b class="text-[20px] text-[#ECC33E]">Nb of topics created :</b> <span class="text-[20px]">{{ user.topics|length }}</span></p>
+                                <p><b class="text-[20px] text-[#ECC33E] ">Email :</b> <span class="text-[20px]">{{ user.email }}</span></p>
+                                <p><b class="text-[20px] text-[#ECC33E] ">Nb of topics created :</b> <span class="text-[20px]">{{ user.topics|length }}</span></p>
                             </div>
                         {% else %}
                             <p class="text-red-500">No users found. Please log in</p>
@@ -50,9 +52,9 @@
                 <!-- Topics de l'utilisateur -->
                 <div class="w-1/5 md:w-1/2 mt-6 md:mt-0">
                     <h3 class="font-semibold text-[#ECC33E] text-center mb-4  lg:text-3xl ">My Topics</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-2">
                         {% for topic in user.topics %}
-                            <a href="" class="bg-[#09172b] p-3 rounded-lg text-center text-white md:text-xl hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
+                            <a href="" class="bg-[#09172b] p-2 rounded-lg text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]"> {{ topic.title }} </a>
 
                         {% else %}
                             <p class="text-gray-400">No topics created yet.</p>
@@ -63,14 +65,31 @@
         </section>
 
         <!-- Section des listes de jeux de l'utilisateur -->
+        <section>
 
-
+            {% for listType in types %}
+            <div class="bg-[#0C1D36] text-[#ECC33E] my-5 text-center text-3xl shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
+                <h2>{{ listType.name }}</h2>
+                
+                {% if listType.gamesLists|length == 0 %}
+                    <p class="text-white" >No games available for this listing.</p>
+                {% else %}
+                    <ul>
+                        {% for gamesList in listType.gamesLists %}
+                            <li class="text-white">{{ gamesList.game.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        </section>
 
 
 
         </section>    
     </div>
-    <div class="text-center mt-6">
+    <div class="text-center">
         <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
     </div>
 

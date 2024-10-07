@@ -31,27 +31,19 @@ class ProfilController extends AbstractController
     #[Route('/profil', name: 'profil')]
     public function index(
 
-        GamesListRepository $repository
+        TypeRepository $typeRepository,
 
     ): Response {
 
         // Récupérer l'utilisateur courant
         $user = $this->getUser();
 
-        // Récupère la liste des favoris pour cet utilisateur
-        $favoris = $repository->findBy(['user' => $user, 'type' => 1]);
-        $alreadyPlayed = $repository->findOneBy(['user' => $user, 'id' => 2]);
-        $myDesires = $repository->findOneBy(['user' => $user, 'id' => 3]);
-        $goTest = $repository->findOneBy(['user' => $user, 'id' => 4]);
-
-        $game = $repository->findAll();
+        // Récupère
+        $types = $typeRepository->findAll();
 
         return $this->render('pages/profil/index.html.twig', [
+            'types' => $types,
             'user' => $user,
-            'favoris' => $favoris,
-            'alreadyPlayed' => $alreadyPlayed,
-            'myDesires' => $myDesires,
-            'goTest' => $goTest,
         ]);
     }
 
@@ -160,7 +152,7 @@ class ProfilController extends AbstractController
     // Affiche les jeux par liste
     // ---------------------------------------------------------- //
     
-    #[Route('/game/list/{id}', name: 'displayGamesByList')]
+    #[Route('/jeux/list/{id}', name: 'displayGamesByList')]
     public function displayGamesByList(
 
         int $id,
@@ -175,13 +167,14 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
 
         // Récupérer la liste des jeux de l'utilisateur
-        $favoris = $repository->findOneBy(['user' => $user, 'name' => 'Favoris']);
+        $favoris = $repository->findOneBy(['user' => $user, 'id' => 1 ]);
 
         // Vérifier si le jeu existe déjà dans la base de données
         $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
 
         // Si le jeu n'existe pas, créer une nouvelle instance de Game
         if (!$existingGame) {
+
             $game = new Game();
             $game->setIdGameApi($id);
 
@@ -195,6 +188,7 @@ class ProfilController extends AbstractController
 
             // Persister le nouveau jeu
             $manager->persist($game);
+            
         } else {
             // Si le jeu existe déjà, utiliser l'instance existante
             $game = $existingGame;
@@ -208,6 +202,8 @@ class ProfilController extends AbstractController
             // Sinon, ajouter le jeu à la liste de favoris
             $favoris->addGame($game);
         }
+
+        dd($favoris);
 
         // Persister la liste mise à jour
         $manager->persist($favoris);

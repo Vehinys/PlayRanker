@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\HttpClient\ApiHttpClient;
+use App\Repository\TypeRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\GameRepository;
+use App\Repository\GamesListRepository;
 use App\Repository\PlatformRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,17 +23,20 @@ class ApiController extends AbstractController
     #[Route('/jeux', name: 'jeux')]
     public function index(
         
-        ApiHttpClient $apiHttpClient, 
         Request $request,
+        ApiHttpClient $apiHttpClient, 
         CategoryRepository $repository,
+        TypeRepository $typeRepository,
 
     ): Response {
 
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
         $categories = $repository->findAll();
+        $types = $typeRepository->findAll();
 
         return $this->render('pages/jeux/index.html.twig', [
+            'types' => $types,
             'games' => $games,
             'currentPage' => $page,
             'categories' => $categories,
@@ -56,17 +64,21 @@ class ApiController extends AbstractController
     #[Route('/jeux/search', name: 'search', methods: ['POST'])]
     public function search(
 
+        Request $request, 
         ApiHttpClient $apiHttpClient,
-        Request $request 
+        TypeRepository $typeRepository,
         
     ): Response {
 
 
         $input = $request->get('input');
         $games = $apiHttpClient->gamesSearch($input);
+        $types = $typeRepository->findAll();
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
+            'types' => $types,
+
         ]);
     }
 
@@ -88,13 +100,20 @@ class ApiController extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/jeux/page/{page}', name: 'jeux_page')]
-    public function nextPage(ApiHttpClient $apiHttpClient, int $page): Response
-    {
+    public function nextPage(
+        
+        int $page,
+        ApiHttpClient $apiHttpClient, 
+        TypeRepository $typeRepository,
+        
+    ): Response {
         $games = $apiHttpClient->nextPage($page);
+        $types = $typeRepository->findAll();
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'types' => $types,
         ]);
     }
 
@@ -120,6 +139,6 @@ class ApiController extends AbstractController
         ]);
     }
     
-    
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 }

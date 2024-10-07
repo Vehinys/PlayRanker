@@ -17,6 +17,7 @@ class ForumController extends AbstractController
     // ----------------------------------------------------------------- //
     // Affiche la liste des catégories de forum et les derniers topics
     // ----------------------------------------------------------------- //
+    
     #[Route('/forum', name: 'forum')]
     public function index(
 

@@ -6,7 +6,8 @@
   --color-dark: #0C1D36;                                       /* bleu pour l'arrière-plan principal                 */
   --color-dark-2: #09172b;                                     /* bleu plus foncé pour la navbar                     */
   --color-light: #ebf1ff;                                      /* Blanc pour le texte sur fond sombre                */
-  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent)                 */
+  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent)                  */
+  --color-bg-blue: #7288e7
 }
 
 /* ----------------------------------------------------------- */
@@ -73,7 +74,7 @@ body {
 }
 
 main {
-  background-color: var(--color-light);                         /* Arrière-plan clair pour le contenu principal        */
+  background-color: var(--color-bg-blue);                         /* Arrière-plan clair pour le contenu principal        */
 }
 
 /* ----------------------------------------------------------- */
@@ -222,7 +223,7 @@ main {
 /* ----------------------------------------------------------- */
 
 .section-top {
-  background-color: var(--color-light);                         /* Couleur de fond pour la section de contact          */
+  background-color: var(--color-bg-blue);                         /* Couleur de fond pour la section de contact          */
   padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section   */
 }
 
@@ -434,7 +435,7 @@ main {
 
 .contact-section {
   padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite                  */
-  background-color: var(--color-light);                         /* Couleur de fond pour la section de contact   */
+  background-color: var(--color-bg-blue);                         /* Couleur de fond pour la section de contact   */
   text-align: center;                                           /* Centre le texte horizontalement              */
   display: flex;                                                /* Utilise Flexbox pour un alignement flexible  */
   justify-content: center;                                      /* Centre le contenu à l'intérieur de la section */
@@ -1087,3 +1088,4 @@ small b {
   color: var(--color-dark);                                     /* Couleur du texte lors du survol                */
   border-radius: 5px;                                           /* Coins arrondis                                */
 }
+
