@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\GamesList;
 use App\Entity\User;
-use App\Repository\GameRepository;
 use App\Repository\GamesListRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -157,17 +156,15 @@ class ProfilController extends AbstractController
     //  Ajouter les jeux à favoris
     // ---------------------------------------------------------- //
 
-    #[Route('/profil/addFavoris/{id}', name: 'addFavoris')]
-    public function addFavoris(
+    #[Route('/jeux/{id}/addFavorite', name: 'addFavorite')]
+    public function addFavorite(
 
-        
     ): Response {
+    
+        return $this->redirectToRoute('jeux', [
 
-
-
-    return $this->render('pages/jeux/index.html.twig', [
-    ]);
-
+        ]);
     }
+    
 
 }
