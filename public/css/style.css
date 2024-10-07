@@ -1,513 +1,401 @@
-/* ----------------------------------------------------------- */
-/* Variables de couleur                                        */
-/* ----------------------------------------------------------- */
-
 :root {
-  --color-dark: #0C1D36;                                       /* bleu pour l'arrière-plan principal                 */
-  --color-dark-2: #09172b;                                     /* bleu plus foncé pour la navbar                     */
-  --color-light: #ebf1ff;                                      /* Blanc pour le texte sur fond sombre                */
-  --color-yellow: #ECC33E;                                     /* Jaune doré pour le texte (accent)                  */
-  --color-bg-blue: #7288e7
+  --color-dark: #0C1D36;
+  --color-dark-2: #09172b;
+  --color-light: #ebf1ff;
+  --color-yellow: #ECC33E;
+  --color-bg-blue : #97b4e0;  
 }
-
-/* ----------------------------------------------------------- */
-/* Styles globaux appliqués à tous les éléments                */
-/* ----------------------------------------------------------- */
 
 * {
-  margin: 0;                                                    /* Réinitialisation des marges                         */
-  padding: 0;                                                   /* Réinitialisation des espacements internes           */
-  font-family: 'Poppins', sans-serif;                           /* Police par défaut (Montserrat)                      */
-  text-decoration: none;                                        /* Suppression des soulignements de lien               */
-  box-sizing: border-box;                                       /* Inclusion des bordures et paddings dans le calcul de la taille */
-  font-family: lato;                                            /* Police par défaut (Lato)                            */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour la nav                                          */
-/* ----------------------------------------------------------- */
-
-.container-header {
-  background-color: var(--color-dark-2);                        /* Couleur d'arrière-plan pour le header               */
-  padding: 20px;                                                /* Espacement interne du header                        */
-  position: fixed;                                              /* Fixe le header en haut de la page                  */
-  top: 0;                                                       /* Positionne le header en haut                        */
-  left: 0;                                                      /* Positionne le header à gauche                       */
-  right: 0;                                                     /* Positionne le header à droite                       */
-  z-index: 1000;                                                /* Assure que le header reste au-dessus des autres éléments */
+.container-body {
+  background: var(--color-bg-blue);
 }
-
-.nav-list {
-  list-style-type: none;                                        /* Supprime les puces de la liste                      */
-  display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                      /* Centre les éléments de la liste                     */
-  margin: 0;                                                    /* Réinitialisation de la marge                        */
-  padding: 0;                                                   /* Réinitialisation du padding                         */
-}
-
-.nav-list li {
-  margin: 0 15px;                                               /* Espacement horizontal entre les éléments de la liste */
-}
-
-.nav-a {
-  color: var(--color-light);                                    /* Couleur du texte (blanc)                            */
-  font-size: 1.2rem;                                            /* Taille de police pour les liens                     */
-  text-decoration: none;                                        /* Supprime le soulignement des liens                  */
-  transition: color 0.3s ease;                                  /* Transition fluide pour le changement de couleur     */
-}
-
-.nav-a:hover {
-  color: var(--color-yellow);                                   /* Change la couleur au survol                         */
-}
-
-.is-current {
-  font-weight: bold;                                            /* Texte en gras pour le lien courant                 */
-  color: var(--color-yellow);                                   /* Couleur du lien actif (jaune doré)                 */
-}
-
-/* ----------------------------------------------------------- */
-/* Styles pour le main et body                                 */
-/* ----------------------------------------------------------- */
-
-main {
-  background-color: var(--color-bg-blue);                         /* Arrière-plan clair pour le contenu principal        */
-}
-
-/* ----------------------------------------------------------- */
-/* Styles pour la section d'en-tête                            */
-/* ----------------------------------------------------------- */
 
 .header-section {
-  background-color: var(--color-dark);                          /* Arrière-plan sombre pour l'en-tête                  */
-  color: var(--color-light);                                    /* Texte clair pour un bon contraste                  */
-  padding: 20px 0 40px 0;                                       /* Espacement interne de l'en-tête                     */
-  text-align: center;                                           /* Centrage du contenu                                 */
-  box-shadow: var(--color-dark) 0px 0px 10px;                   /* Ombre pour l'en-tête                                */
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  padding: 20px 0 40px;
+  text-align: center;
+  box-shadow: var(--color-dark) 0 0 10px;
 }
 
 .header-section h1 {
-  font-size: 4rem;                                              /* Taille très grande pour le titre principal          */
-  margin-bottom: 15px;                                          /* Espacement en bas du titre                          */
-  font-weight: bold;                                            /* Met le titre en gras                                */
-  color: var(--color-yellow);                                   /* Utilisation du jaune doré pour le titre             */
+  font-size: 4rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: var(--color-yellow);
 }
 
 .header-section h3 {
-  width: 55%;                                                   /* Largeur du sous-titre à 55% de son conteneur       */
-  text-align: center;                                           /* Centre le texte                                     */
-  font-size: 1.1rem;                                            /* Taille moyenne pour le sous-titre                   */
-  margin: 5px 0 30px 0;                                         /* Marges pour aérer le sous-titre                     */
-  line-height: 1.5;                                             /* Hauteur de ligne pour meilleure lisibilité          */
-  display: -webkit-inline-box;                                  /* Alignement pour l'affichage en boîte                */
+  width: 55%;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 5px 0 30px;
+  line-height: 1.5;
+  display: -webkit-inline-box;
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour le conteneur de recherche                       */
-/* ----------------------------------------------------------- */
-
 .search-container {
-  display: flex;                                                /* Utilisation de flexbox pour aligner horizontalement */
-  justify-content: center;                                      /* Centrage du formulaire dans la page                 */
-  position: relative;                                           /* Position relative pour gérer l'icône                */
-  width: 100%;                                                  /* Prend toute la largeur du conteneur parent          */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .search-form {
-  display: flex;                                                /* Utilisation de flexbox pour aligner le champ et le bouton */
+  display: flex;
 }
 
 .search-input {
-  padding: 10px 50px;                                           /* Espacement interne avec padding symétrique          */
-  font-size: 16px;                                              /* Taille du texte du champ de recherche                */
-  border: 3px solid var(--color-light);                         /* Bordure claire autour du champ                       */
-  border-radius: 25px;                                          /* Arrondit les coins du champ                          */
-  outline: none;                                                /* Supprime l'outline par défaut                        */
-  box-sizing: border-box;                                       /* Inclut bordures et padding dans les dimensions du champ */
+  padding: 10px 50px;
+  font-size: 16px;
+  border: 3px solid var(--color-light);
+  border-radius: 25px;
+  outline: none;
 }
 
 .search-input:focus {
-  border-color: var(--color-yellow);                            /* Change la couleur de la bordure au focus            */
-  outline: none;                                                /* Supprime le contour par défaut au focus              */
-}
-
-#search-btn {
-  padding: 12px 20px;                                           /* Espacement interne du bouton                          */
-  background-color: var(--color-yellow);                        /* Fond jaune doré pour le bouton                       */
-  color: var(--color-dark);                                     /* Texte noir pour le contraste avec le fond           */
-  border: none;                                                 /* Supprime la bordure par défaut du bouton             */
-  cursor: pointer;                                              /* Change le curseur pour pointer lors du survol       */
-  transition: background-color 0.3s ease;                       /* Transition fluide pour les changements d'état (survol) */
-}
-
-#search-btn:hover {
-  background-color: var(--color-yellow);                        /* Change la couleur du fond au survol                 */
+  border-color: var(--color-yellow);
 }
 
 .search-icon {
-  position: absolute;                                           /* Positionnement absolu pour placer l'icône           */
-  top: 50%;                                                     /* Centrage vertical                                    */
-  transform: translateY(-50%);                                  /* Ajustement du centrage                               */
-  color: var(--color-dark);                                     /* Couleur de l'icône (noir)                           */
-  font-size: 18px;                                              /* Taille de l'icône                                   */
-  margin: 0px 15px;                                             /* Marges autour de l'icône                            */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-dark);
+  font-size: 18px;
+  margin: 0 15px;
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour la section de notation                          */
-/* ----------------------------------------------------------- */
-
-/* Styles pour la section de notation */
 .rate-section {
-  text-align: center;                                           /* Centrage du texte de la section                     */
-  padding: 45px 0 15px 0;                                       /* Espacement interne de la section                     */
-  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments     */
-  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement      */
+  text-align: center;
+  padding: 45px 0 15px;
+  display: flex;
+  justify-content: center;
 }
 
-/* Styles pour le titre de la section */
 .rate-section h2 {
-  font-size: 4rem;                                              /* Très grande taille de police pour le titre          */
-  color: var(--color-dark);                                     /* Texte noir pour le titre                            */
-  font-weight: bold;                                            /* Texte en gras                                       */
-  line-height: 1.4;                                             /* Hauteur de ligne pour améliorer la lisibilité       */
-  padding: 20px 0;                                            /* Espacement interne autour du titre                   */
-  width: 55%;                                                   /* Prend 60% la largeur du conteneur parent            */
-  text-shadow: var(--color-dark) 0px 0px 2px;                   /* Ombre de texte pour un effet visuel                 */
+  font-size: 4rem;
+  color: var(--color-dark);
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 20px 0;
+  width: 55%;
+  text-shadow: var(--color-dark) 0 0 2px;
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour le séparateur avec des lignes de part et d'autre*/
-/* ----------------------------------------------------------- */
-
-/* Styles pour le séparateur */
 .separator {
-  display: flex;                                                /* Utilisation de flexbox pour aligner les éléments     */
-  align-items: center;                                          /* Aligne verticalement le texte et les lignes          */
-  justify-content: center;                                      /* Centre l'ensemble du séparateur horizontalement      */
-  margin: 20px auto;                                            /* Marge pour centrer le séparateur                    */
-  width: 80%;                                                   /* Largeur du séparateur à 80% du conteneur parent     */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  width: 80%;
 }
 
-/* Styles pour les lignes de séparation avant et après le texte */
 .separator::before,
 .separator::after {
-  content: '';                                                  /* Génère un contenu vide pour les lignes               */
-  width: 300px;                                                 /* Taille des lignes avant et après le texte           */
-  border-bottom: 4px solid;                                     /* Ligne solide en bas (séparateur)                    */
+  content: '';
+  width: 300px;
+  border-bottom: 4px solid;
 }
 
-/* Marge à droite de la ligne avant le texte */
 .separator::before {
-  margin-right: 20px;                                           /* Espace de 10px entre la ligne avant et le texte     */
+  margin-right: 20px;
 }
 
-/* Marge à gauche de la ligne après le texte */
 .separator::after {
-  margin-left: 20px;                                            /* Espace de 10px entre la ligne après et le texte     */
+  margin-left: 20px;
 }
 
-/* Styles pour le texte centré entre les lignes */
 .separator span {
-  font-size: 28px;                                              /* Taille de police importante pour le texte           */
-  font-weight: bold;                                            /* Texte en gras                                       */
-  color: var(--color-yellow);                                   /* Couleur du texte (jaune doré)                       */
-  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel                 */
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--color-yellow);
+  text-shadow: var(--color-dark) 0 0 1px;
 }
-
-/* ----------------------------------------------------------- */
-/* Styles pour les cartes                                      */
-/* ----------------------------------------------------------- */
 
 .section-top {
-  background-color: var(--color-bg-blue);                         /* Couleur de fond pour la section de contact          */
-  padding-bottom: 30px;                                         /* Espace intérieur de 30 pixels en bas de la section   */
+  padding-bottom: 30px;
 }
 
 .container-card {
-  display: flex;                                                /* Utilisation de flexbox pour aligner les cartes      */
-  gap: 100px;                                                   /* Espacement entre les cartes                          */
-  flex-wrap: wrap;                                              /* Permet aux cartes de passer à la ligne si nécessaire  */
-  justify-content: center;                                      /* Centre les cartes horizontalement                    */
-  margin: 85px 0;                                               /* Marge en haut et en bas pour aérer la section        */
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 85px 0;
 }
 
 .card {
-  width: 400px;                                                 /* Largeur fixe pour les cartes                        */
-  height: 320px;                                                /* Hauteur fixe pour les cartes                        */
-  box-shadow: 0 3px 4px var(--color-dark);                      /* Ombre pour un effet d'élévation                    */
-  border-radius: 10px;                                          /* Arrondir les coins                                  */
-  overflow: hidden;                                             /* Masque le débordement du contenu                    */
-  transition: transform 0.8s;                                   /* Transition fluide pour les effets (si besoin)      */
+  width: 400px;
+  height: 320px;
+  box-shadow: 0 3px 4px var(--color-dark);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.8s;
 }
 
 .front-face {
-  width: 100%;                                                  /* Prend toute la largeur de la carte                  */
-  height: 100%;                                                 /* Prend toute la hauteur de la carte                  */
-  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu      */
-  flex-direction: column;                                       /* Aligne le contenu verticalement                      */
-  justify-content: center;                                      /* Centre le contenu verticalement                      */
-  padding: 20px;                                                /* Espacement interne pour le contenu                  */
-  text-align: center;                                           /* Centre le texte dans la carte                       */
-  background-color: var(--color-dark);                          /* Fond sombre pour les cartes                          */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--color-dark);
 }
 
-/* Styles pour le numéro de notation */
 .number {
-  font-size: 35px;                                              /* Taille de police pour le numéro                     */
-  color: var(--color-yellow);                                   /* Couleur du numéro (jaune doré)                     */
-  font-weight: bold;                                            /* Met le numéro en gras                               */
-  margin-bottom: 10px;                                          /* Marge en bas pour espacement                        */
+  font-size: 35px;
+  color: var(--color-yellow);
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-/* Styles pour le titre de la carte */
 .title {
-  font-size: 30px;                                              /* Taille de police pour le titre                      */
-  color: var(--color-light);                                    /* Couleur du titre (noir)                             */
-  margin: 10px 0;                                               /* Marge pour espacement                                */
+  font-size: 30px;
+  color: var(--color-light);
+  margin: 10px 0;
 }
 
-/* Styles pour la description de la carte */
 .description {
-  font-size: 15px;                                              /* Taille de police pour la description                */
-  color: var(--color-light);                                    /* Couleur de la description (gris foncé)             */
-  margin: 10px 0;                                               /* Marge pour espacement                                */
+  font-size: 15px;
+  color: var(--color-light);
+  margin: 10px 0;
 }
 
-/* Styles pour les étoiles (notation) */
 .stars {
-  font-size: 18px;                                              /* Taille de police pour les étoiles                   */
-  color: var(--color-yellow);                                   /* Couleur des étoiles (jaune doré)                   */
-  margin: 10px 0;                                               /* Marge pour espacement                                */
+  font-size: 18px;
+  color: var(--color-yellow);
+  margin: 10px 0;
 }
 
-/* Style général pour la carte */
 .card:hover {
-  transform: scale(1.3);                                        /* Effet d'agrandissement au survol (optionnel)       */
+  transform: scale(1.3);
 }
 
 .bouton-card {
-  display: inline-block;                                        /* Affiche le bouton en tant qu'élément en ligne     */
-  background-color: var(--color-yellow);                        /* Couleur de fond (jaune doré)                       */
-  color: var(--color-dark);                                     /* Couleur du texte (noir)                            */
-  border-radius: 20px;                                          /* Coins arrondis                                      */
-  text-align: center;                                           /* Centre le texte dans le bouton                      */
-  text-decoration: none;                                        /* Supprime le soulignement des liens                  */
-  font-weight: bold;                                            /* Met le texte en gras                                */
-  font-size: 1rem;                                              /* Taille de police                                    */
-  transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition fluide pour le fond et la transformation  */
-  width: 35%;                                                   /* Prend toute la largeur de la carte                  */
-  padding: 10px;                                                /* Espacement interne pour le bouton                   */
-  margin-top: 10px ;                                            /* Marge pour espacement                                */
+  display: inline-block;
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 35%;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .bouton-card:hover {
-  background-color: var(--color-yellow);                        /* Change la couleur de fond au survol (orange)       */
-  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel                 */
-  transform: scale(1.03);                                       /* Effet d'agrandissement au survol                    */
-  color: var(--color-light);                                    /* Change la couleur du texte au survol (blanc)       */
+  background-color: var(--color-yellow);
+  text-shadow: var(--color-dark) 0 0 1px;
+  transform: scale(1.03);
+  color: var(--color-light);
 }
 
 .bouton-card a {
-  color: inherit;                                               /* Hérite de la couleur du bouton                      */
-  text-decoration: none;                                        /* Supprime le soulignement du lien                    */
-  display: block;                                               /* Permet au lien de remplir tout le bouton            */
-  width: 100%;                                                  /* Prend toute la largeur du bouton                    */
-  height: 100%;                                                 /* Prend toute la hauteur du bouton                    */
-  line-height: normal;                                          /* Hauteur de ligne normale                            */
+  color: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: normal;
 }
 
-/* ----------------------------------------------------------- */
-/* Styles pour le conteneur des critiques                      */
-/* ----------------------------------------------------------- */
-
-.review-section {                                               /* Section des critiques                     */
-  position: relative;                                           /* Position relative pour le slider          */
-  overflow: hidden;                                             /* Masquer le contenu débordant              */
-  width: 100%;                                                  /* Largeur de 100%                           */
-  max-width: 1500px;                                            /* Largeur maximale                          */
-  margin: 0 auto;                                               /* Centrer horizontalement                   */
+.review-section {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-.review-container {                                             /* Conteneur des avis                       */
-  display: flex;                                                /* Flexbox pour l'agencement horizontal     */
-  transition: transform 0.5s ease-in-out;                       /* Animation de transition fluide            */
-  width: 100%;                                                  /* Largeur de 100%                          */
+.review-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
-.review-content {                                               /* Contenu des avis                        */
-  min-width: 90%;                                               /* Largeur minimale de 90%                  */
-  box-sizing: border-box;                                       /* Inclure les bordures et padding          */
-  padding: 20px;                                                /* Padding de 20px                          */
-  background-color: var(--color-dark);                          /* Couleur d'arrière-plan                   */
-  border-radius: 20px;                                          /* Coins arrondis                           */
-  box-shadow: 0 4px 8px var(--color-dark);                      /* Effet d'ombre                          */
-  color: var(--color-light);                                    /* Couleur du texte                         */
-  display: flex;                                                /* Disposition en flex                      */
-  align-items: center;                                          /* Centrer verticalement les éléments       */
-  margin: 70px;                                                 /* Marge extérieure                         */
+.review-content {
+  min-width: 90%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: var(--color-dark);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px var(--color-dark);
+  color: var(--color-light);
+  display: flex;
+  align-items: center;
+  margin: 70px;
 }
 
-.review-text h2 {                                               /* Titre des avis                          */
-  font-size: 2em;                                               /* Taille de la police                     */
-  margin-bottom: 15px;                                          /* Marge inférieure                        */
-  color: var(--color-yellow);                                   /* Couleur du texte                        */
+.review-text h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: var(--color-yellow);
 }
 
-.review-image {                                                 /* Image des avis                          */
-  width: 30%;                                                   /* Largeur de 30%                         */
-  height: auto;                                                 /* Hauteur automatique                     */
-  border-radius: 20px;                                          /* Coins arrondis                          */
+.review-image {
+  width: 30%;
+  height: auto;
+  border-radius: 20px;
 }
 
-.review-text {                                                  /* Texte des avis                          */
-  margin-left: 20px;                                            /* Marge gauche                            */
-  width: 70%;                                                   /* Largeur de 70%                         */
+.review-text {
+  margin-left: 20px;
+  width: 70%;
 }
 
-.review-text p {                                                /* Paragraphe des avis                     */
-  font-size: 1.2em;                                             /* Taille de la police                     */
-  line-height: 1.5;                                             /* Hauteur de ligne                        */
+.review-text p {
+  font-size: 1.2em;
+  line-height: 1.5;
 }
 
-.bouton-review a {                                              /* Bouton pour les avis                    */
-  text-decoration: none;                                        /* Pas de soulignement                     */
-  background-color: var(--color-yellow);                        /* Couleur de fond                         */
-  color: var(--color-dark);                                     /* Couleur du texte                        */
-  padding: 10px 15px;                                           /* Padding du bouton                       */
-  border-radius: 4px;                                           /* Coins arrondis                          */
-  font-size: 0.9em;                                             /* Taille de la police                     */
-  transition: background-color 0.3s ease;                       /* Transition fluide                       */
+.bouton-review a {
+  text-decoration: none;
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
 }
 
-.bouton-review a:hover {                                        /* Bouton en survol                        */
-  background-color: var(--color-yellow);                        /* Couleur de fond au survol               */
+.bouton-review a:hover {
+  background-color: var(--color-yellow);
 }
 
-.review-container-text {                                        /* Conteneur du texte des avis             */
-  display: flex;                                                /* Disposition en flex                     */
-  justify-content: space-between;                               /* Espace entre les éléments               */
-  align-items: center;                                          /* Aligner verticalement au centre         */
-  width: 100%;                                                  /* Largeur de 100%                        */
-  margin-top: 40px;                                             /* Marge supérieure                        */
-  font-size: 20px;                                              /* Taille de la police                    */
+.review-container-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  font-size: 20px;
 }
 
-.review-container-text p a {                                    /* Lien dans le texte des avis             */
-  color: var(--color-yellow);                                   /* Couleur du lien                        */
-  font-weight: 600;                                             /* Poids de la police                     */
-  font-size: 1em;                                               /* Taille de la police                    */
+.review-container-text p a {
+  color: var(--color-yellow);
+  font-weight: 600;
+  font-size: 1em;
 }
 
-.precedent, .suivant {                                                  /* Boutons de navigation                   */
-  position: absolute;                                           /* Position absolue                        */
-  top: 50%;                                                     /* Position verticale centrée              */
-  transform: translateY(-50%);                                  /* Ajustement de la position               */
-  background-color: var(--color-dark);                          /* Couleur de fond                        */
-  color: white;                                               /* Couleur du texte                       */
-  border: none;                                                 /* Pas de bordure                         */
-  padding: 10px;                                                /* Padding des boutons                     */
-  cursor: pointer;                                              /* Curseur en forme de main               */
-  z-index: 10;                                                  /* Couche au-dessus                       */
-  font-size: 1.2em;                                             /* Taille de la police                    */
-  border-radius: 5px;                                           /* Coins arrondis                         */
+.precedent, .suivant {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-dark);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1.2em;
+  border-radius: 5px;
 }
 
-.precedent {                                                         /* Bouton précédent                        */
-  left: 10px;                                                   /* Position à gauche                      */
+.precedent {
+  left: 10px;
 }
 
-.suivant {                                                         /* Bouton suivant                         */
-  right: 10px;                                                  /* Position à droite                      */
+.suivant {
+  right: 10px;
 }
 
-.precedent:hover, .suivant:hover {                                      /* Boutons en survol                       */
-  background-color: var(--color-yellow);                        /* Couleur de fond au survol              */
-  color: var(--color-dark);                                     /* Couleur du texte au survol             */
+.precedent:hover, .suivant:hover {
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
 }
-
-/* ----------------------------------------------------------- */
-/* Styles pour la section de contact                           */
-/* ----------------------------------------------------------- */
 
 .contact-section {
-  padding: 40px 20px 70px 20px;                                 /* Espacement à gauche/droite                  */
-  background-color: var(--color-bg-blue);                         /* Couleur de fond pour la section de contact   */
-  text-align: center;                                           /* Centre le texte horizontalement              */
-  display: flex;                                                /* Utilise Flexbox pour un alignement flexible  */
-  justify-content: center;                                      /* Centre le contenu à l'intérieur de la section */
+  padding: 40px 20px 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .contact-container {
-  background-color: var(--color-dark);                          /* Couleur de fond pour le conteneur de contact  */
-  width: 60%;                                                   /* Largeur de 60% du conteneur parent           */
-  margin: 30px auto;                                            /* Marge : 30px en haut/bas, auto à gauche/droite */
-  padding: 50px;                                                /* Espacement interne de 50px                   */
-  border-radius: 20px;                                          /* Coins arrondis                              */
+  background-color: var(--color-dark);
+  width: 60%;
+  margin: 30px auto;
+  padding: 50px;
+  border-radius: 20px;
 }
 
 .contact-section h2 {
-  font-size: 2.5rem;                                            /* Taille de police pour le titre               */
-  color: var(--color-dark);                                     /* Couleur du titre (noir)                      */
-  margin-bottom: 20px;                                          /* Marge en bas pour espacer du contenu suivant  */
-  text-shadow: var(--color-dark) 0px 0px 2px;                   /* Ombre de texte pour un effet visuel          */
+  font-size: 2.5rem;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+  text-shadow: var(--color-dark) 0 0 2px;
 }
 
 .contact-form {
-  display: flex;                                                /* Utilisation de Flexbox pour aligner les éléments */
-  flex-direction: column;                                       /* Aligne les champs verticalement               */
-  width: 100%;                                                  /* Prend toute la largeur du conteneur          */
-  max-width: 1000px;                                            /* Largeur maximale pour le formulaire           */
-  margin: 0 auto;                                               /* Centre le formulaire                          */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 15px;                                          /* Marge en bas pour espacement entre les champs   */
-  text-align: left;                                             /* Aligne le texte à gauche                       */
+  margin-bottom: 15px;
+  text-align: left;
 }
 
 .form-group label {
-  font-size: 1rem;                                              /* Taille de police pour les labels               */
-  color: var(--color-light);                                    /* Couleur du texte des labels                    */
-  font-weight: 700;                                             /* Gras pour les labels                           */
-  padding-bottom: 5px;                                          /* Espacement en bas                              */
-  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel            */
+  font-size: 1rem;
+  color: var(--color-light);
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-shadow: var(--color-dark) 0 0 1px;
 }
 
 .form-input,
 .form-textarea {
-  width: 100%;                                                  /* Prend toute la largeur du conteneur            */
-  padding: 10px;                                                /* Espacement interne                             */
-  font-size: 16px;                                              /* Taille de texte pour les champs                */
-  border: 2px solid var(--color-light);                         /* Bordure autour des champs                      */
-  border-radius: 10px;                                          /* Coins arrondis                                */
-  outline: none;                                                /* Supprime l'outline par défaut                  */
-  box-sizing: border-box;                                       /* Inclut les bordures et le padding dans les dimensions */
-  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour donner de la profondeur             */
-  margin-top: 5px;                                              /* Marge en haut                                  */
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--color-light);
+  border-radius: 10px;
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: #0C1D36 0 0 5px;
+  margin-top: 5px;
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--color-yellow);                            /* Change la couleur de la bordure au focus      */
+  border-color: var(--color-yellow);
 }
 
 .contact-btn {
-  padding: 12px 20px;                                           /* Espacement interne du bouton                   */
-  background-color: var(--color-yellow);                        /* Couleur de fond pour le bouton                 */
-  color: var(--color-dark);                                     /* Couleur du texte pour le bouton                */
-  border: none;                                                 /* Supprime la bordure par défaut                 */
-  border-radius: 10px;                                          /* Coins arrondis pour le bouton                 */
-  cursor: pointer;                                              /* Change le curseur au survol                   */
-  transition: background-color 0.3s ease;                       /* Transition fluide pour le changement de couleur */
-  box-shadow: #0C1D36 0px 0px 5px;                            /* Ombre pour le bouton                           */
-  font-size: 17px;                                              /* Taille de police pour le bouton                */
-  font-weight: 700;                                             /* Gras pour le texte du bouton                   */
+  padding: 12px 20px;
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: #0C1D36 0 0 5px;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .contact-btn:hover {
-  background-color: var(--color-yellow);                        /* Change la couleur au survol                    */
-  text-shadow: var(--color-dark) 0px 0px 1px;                   /* Ombre de texte pour un effet visuel            */
+  background-color: var(--color-yellow);
+  text-shadow: var(--color-dark) 0 0 1px;
 }
+
+
 
 
 /* ----------------------------------------------------------- */

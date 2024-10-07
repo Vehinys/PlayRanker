@@ -6,7 +6,13 @@
           <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('home') }}">HOME</a>
         </li>
         <li>
-          <a class="text-[#ECC33E] border-b-2 border-[#ECC33E] text-lg font-semibold" href="{{ path('jeux') }}">GAMES</a>
+          <a 
+            class="text-[#ECC33E] text-lg font-semibold relative group"
+            href="{{ path('jeux') }}"
+          >
+            GAMES
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#ECC33E] transform scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100"></span>
+          </a>
         </li>
         {% if app.user %}
           <li>
