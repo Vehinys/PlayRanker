@@ -31,22 +31,27 @@ class ProfilController extends AbstractController
     #[Route('/profil', name: 'profil')]
     public function index(
 
-        TypeRepository $typeRepository,
+        GamesListRepository $gamesListRepository,
+        TypeRepository $typeRepository
 
     ): Response {
 
-        // Récupérer l'utilisateur courant
+        // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
-        // Récupère
+        // Récupérer toute les listes de type
         $types = $typeRepository->findAll();
-
+    
+        // Récupérer les types de jeux associés à l'utilisateur via GamesList
+        $gamesLists = $gamesListRepository->findBy(['user' => $user]);
+    
         return $this->render('pages/profil/index.html.twig', [
-            'types' => $types,
+            'gamesLists' => $gamesLists,
             'user' => $user,
+            'types' => $types
         ]);
     }
-
+    
     // ---------------------------------------------------------- //
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
@@ -149,70 +154,20 @@ class ProfilController extends AbstractController
     }
 
     // ---------------------------------------------------------- //
-    // Affiche les jeux par liste
+    //  Ajouter les jeux à favoris
     // ---------------------------------------------------------- //
-    
-    #[Route('/jeux/list/{id}', name: 'displayGamesByList')]
-    public function displayGamesByList(
 
-        int $id,
-        GamesListRepository $repository,
-        Request $request,
-        EntityManagerInterface $manager,
-        GameRepository $gameRepository
+    #[Route('/profil/addFavoris/{id}', name: 'addFavoris')]
+    public function addFavoris(
 
+        
     ): Response {
 
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
 
-        // Récupérer la liste des jeux de l'utilisateur
-        $favoris = $repository->findOneBy(['user' => $user, 'id' => 1 ]);
 
-        // Vérifier si le jeu existe déjà dans la base de données
-        $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
+    return $this->render('pages/jeux/index.html.twig', [
+    ]);
 
-        // Si le jeu n'existe pas, créer une nouvelle instance de Game
-        if (!$existingGame) {
-
-            $game = new Game();
-            $game->setIdGameApi($id);
-
-            // Récupérer le nom et les données du jeu depuis la requête
-            $gameName = $request->get('gameName');
-            $gameData = $request->get('gameData');
-
-            // Configurer les propriétés du jeu
-            $game->setName($gameName);
-            $game->setData([$gameData]);
-
-            // Persister le nouveau jeu
-            $manager->persist($game);
-            
-        } else {
-            // Si le jeu existe déjà, utiliser l'instance existante
-            $game = $existingGame;
-        }
-
-        // Vérifier si le jeu est déjà dans la liste de favoris
-        if ($favoris->getGames()->contains($game)) {
-            // Si le jeu est déjà dans la liste, le retirer
-            $favoris->removeGame($game);
-        } else {
-            // Sinon, ajouter le jeu à la liste de favoris
-            $favoris->addGame($game);
-        }
-
-        dd($favoris);
-
-        // Persister la liste mise à jour
-        $manager->persist($favoris);
-        $manager->flush();
-
-        // Rendre une vue Twig avec la liste des jeux mis à jour
-        return $this->redirectToRoute('profil', [
-            'id' => $id,
-            'favoris' => $favoris,
-        ]);
     }
+
 }

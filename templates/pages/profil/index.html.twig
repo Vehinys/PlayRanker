@@ -4,6 +4,7 @@
 
 {% block body %}
 <div class="min-h-screen  py-8">
+    
     <div class="container mx-auto p-4">
 
         <!-- Section du profil utilisateur -->
@@ -65,30 +66,49 @@
         </section>
 
         <!-- Section des listes de jeux de l'utilisateur -->
-        <section>
 
-            {% for listType in types %}
-            <div class="bg-[#0C1D36] text-[#ECC33E] my-5 text-center text-3xl shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
-                <h2>{{ listType.name }}</h2>
-                
-                {% if listType.gamesLists|length == 0 %}
-                    <p class="text-white" >No games available for this listing.</p>
+
+            <section>
+
+                {% if gamesLists|length == 0 %}
+
+                    <!-- Si l'utilisateur n'a aucun jeu dans ses listes -->
+                    <p class="text-white text-center">No games available in your list.</p>
+            
                 {% else %}
-                    <ul>
-                        {% for gamesList in listType.gamesLists %}
-                            <li class="text-white">{{ gamesList.game.name }}</li>
-                        {% endfor %}
-                    </ul>
+
+                    {% for type in types %}
+
+                        <div class="bg-[#0C1D36] text-[#ECC33E] my-4 text-center text-3xl shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
+                            
+                            <!-- Nom du type -->
+                            <h2 class="mb-4">{{ type.name }}</h2>
+                            
+                            <!-- Filtrer les listes de jeux pour ce type -->
+                            {% set filteredGames = gamesLists|filter(g => g.type.id == type.id) %}
+                            
+                            <!-- Vérifier si des jeux sont associés à ce type -->
+                            {% if filteredGames|length == 0 %}
+                                <p class="text-white">No games available for this type.</p>
+                            {% else %}
+                                <ul>
+                                    {% for gamesList in filteredGames %}
+                                        <!-- Afficher le nom des jeux associés à ce type -->
+                                        <li class="text-white">{{ gamesList.game.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 {% endif %}
-            </div>
-        {% endfor %}
+            
+            </section>
+            
+
+
         
-        </section>
-
-
-
-        </section>    
     </div>
+
     <div class="text-center">
         <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
     </div>

@@ -19,7 +19,7 @@ class Game
     private ?string $id_game_api = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $name;
 
     #[ORM\Column]
     private array $data = [];

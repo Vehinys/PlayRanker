@@ -9,29 +9,30 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-// ---------------------------------------------------------- //
-// Méthode pour afficher le formulaire de connexion
-// ---------------------------------------------------------- //
-
-#[Route(path: '/login', name: 'login')]
-public function login(
-
-    AuthenticationUtils $authenticationUtils
-
-): Response {
     
-    // Récupère l'erreur d'authentification s'il y en a une
-    $error = $authenticationUtils->getLastAuthenticationError();
+    // ---------------------------------------------------------- //
+    // Méthode pour afficher le formulaire de connexion
+    // ---------------------------------------------------------- //
 
-    // Récupère le dernier nom d'utilisateur saisi
-    $lastUsername = $authenticationUtils->getLastUsername();
+    #[Route(path: '/login', name: 'login')]
+    public function login(
 
-    // Affiche le formulaire de connexion avec l'erreur et le dernier nom d'utilisateur
-    return $this->render('pages/security/login.html.twig', [
-        'last_username' => $lastUsername,
-        'error' => $error
-    ]);
-}
+        AuthenticationUtils $authenticationUtils
+
+    ): Response {
+        
+        // Récupère l'erreur d'authentification s'il y en a une
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // Récupère le dernier nom d'utilisateur saisi
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        // Affiche le formulaire de connexion avec l'erreur et le dernier nom d'utilisateur
+        return $this->render('pages/security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
+    }
 
     
     // ---------------------------------------------------------- //
