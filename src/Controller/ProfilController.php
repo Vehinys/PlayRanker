@@ -153,7 +153,7 @@ class ProfilController extends AbstractController
     }
 
     // ---------------------------------------------------------- //
-    //  Ajouter les jeux à favoris
+    //  Ajouter les jeux à favoris pour l'user
     // ---------------------------------------------------------- //
 
     #[Route('/jeux/{id}/addFavorite', name: 'addFavorite')]
