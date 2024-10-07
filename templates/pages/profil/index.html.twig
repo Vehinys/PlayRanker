@@ -83,6 +83,7 @@
                             
                             <!-- Nom du type -->
                             <h2 class="mb-4">{{ type.name }}</h2>
+
                             
                             <!-- Filtrer les listes de jeux pour ce type -->
                             {% set filteredGames = gamesLists|filter(g => g.type.id == type.id) %}
@@ -98,19 +99,16 @@
                                     {% endfor %}
                                 </ul>
                             {% endif %}
+                                <div class="text-center">
+                                    <a href="{{ path('jeux') }}" class="bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] 
+                                    font-semibold py-1 px-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
+                                </div>
                         </div>
                     {% endfor %}
                 {% endif %}
             
             </section>
             
-
-
-        
-    </div>
-
-    <div class="text-center">
-        <a href="{{ path('jeux') }}" class="bg-[#ECC33E] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105"> Search Game </a>
     </div>
 
 </div>

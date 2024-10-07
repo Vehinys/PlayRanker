@@ -3,56 +3,51 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-
-<div class="container-login">
-    <div class="form-container">
-
-        <!-- Formulaire de connexion -->
-        <form method="post">
-
+<div class="min-h-screen flex items-center justify-center bg-[#0C1D36]">
+    <div class="bg-[#09172b] p-8 rounded-lg shadow-lg w-full max-w-md">
+        <form method="post" class="space-y-6">
             {% if error and error.messageKey == 'Invalid credentials.' %}
-            <div style="color: #FF6B6B; font-weight: bold; text-align: center; margin-bottom: 20px;">
+            <div class="text-red-500 font-bold text-center mb-4">
                 The login information is incorrect.<br> Please check your email address and password.
             </div>
             {% endif %}
 
-            <!-- Titre de la page -->
-            <h1 class="login-h1">Login</h1>
+            <h1 class="text-3xl font-bold text-center text-[#ECC33E] mb-6">Login</h1>
 
-            <!-- Champs du formulaire -->
-            <section class="section-input">
-                <div class="input-box">
-                    <label class="required" for="inputEmail">Email</label>
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required placeholder="Email">
-                    <i class='bx bx-envelope'></i>
+            <div class="space-y-4">
+                <div class="relative">
+                    <label for="inputEmail" class="block text-[#ebf1ff] mb-2">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" required placeholder="Email" class="w-full p-2 bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded focus:outline-none focus:ring-2 focus:ring-[#ECC33E]">
+                    <i class='bx bx-envelope absolute right-3 top-10 text-[#ECC33E]'></i>
                 </div>
 
-                <div class="input-box">
-                    <label class="required" for="inputPassword">Password</label>
-                    <input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Password">
-                    <i class='bx bx-lock-alt' id="togglePassword"></i>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="relative">
+                    <label for="inputPassword" class="block text-[#ebf1ff] mb-2">Password</label>
+                    <input type="password" name="password" id="inputPassword" required placeholder="Password" class="w-full p-2 bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded focus:outline-none focus:ring-2 focus:ring-[#ECC33E]">
+                    <i class='bx bx-lock-alt absolute right-3 top-10 text-[#ECC33E]' id="togglePassword"></i>
                 </div>
-            </section>
-
-            <!-- Option "Remember me" et lien "Mot de passe oublié" -->
-            <div class="remember">
-                <label><input type="checkbox" name="_remember_me"> Remember me</label>
-                <a href="#">Forgot password?</a>
             </div>
 
-            <!-- Bouton de connexion -->
-            <button type="submit" class="btn-login">Log in</button>
-            <div>
-                <small><b class="required-red">*</b> = Required fields</small>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="flex justify-between items-center text-sm text-[#ebf1ff]">
+                <label class="flex items-center">
+                    <input type="checkbox" name="_remember_me" class="mr-2">
+                    Remember me
+                </label>
+                <a href="#" class="text-[#ECC33E] hover:underline">Forgot password?</a>
             </div>
 
-            <!-- Lien vers la page d'inscription -->
-            <div class="register-login">
-                <p>Don't have an account? <a href="{{ path('register') }}">Register</a></p>
+            <button type="submit" class="w-full bg-[#ECC33E] text-[#0C1D36] py-2 rounded hover:bg-[#ebf1ff] transition duration-300">Log in</button>
+
+            <div class="text-xs text-[#ebf1ff]">
+                <b class="text-red-500">*</b> = Required fields
+            </div>
+
+            <div class="text-center text-[#ebf1ff]">
+                <p>Don't have an account? <a href="{{ path('register') }}" class="text-[#ECC33E] hover:underline">Register</a></p>
             </div>
         </form>
     </div>
 </div>
-
 {% endblock %}

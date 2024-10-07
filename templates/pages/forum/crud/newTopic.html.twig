@@ -1,13 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Créer un nouveau topic {% endblock %}
+{% block title %}PlayRanker Forum - New Topic{% endblock %}
 
 {% block body %}
-<div class="p-12">
-    <h1 class="text-3xl font-bold">Créer un nouveau topic dans {{ categoryForum.name }}</h1>
-    
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    {{ form_end(form) }}
-</div>
+
+    <div class="bg-[#0C1D36] min-h-screen">
+        <div class="container mx-auto p-8">
+            <h1 class="text-5xl font-bold text-center text-white mb-12">Create a New Topic in {{ categoryForum.name }}</h1>
+            
+            <div class="bg-[#09172b] border border-[#ECC33E] rounded-lg p-6 max-w-2xl mx-auto">
+            {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+                <div>
+                {{ form_label(form.title, 'Title', {'label_attr': {'class': 'block text-white text-xl font-semibold mb-2'}}) }}
+                {{ form_widget(form.title, {'attr': {'class': 'w-full p-2 rounded bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]'}}) }}
+                </div>
+                
+                <div>
+                {{ form_label(form.post, 'Content of the first message', {'label_attr': {'class': 'block text-white text-xl font-semibold mb-2'}}) }}
+                {{ form_widget(form.post, {'attr': {'class': 'w-full p-2 rounded bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] focus:outline-none focus:ring-2 focus:ring-[#ECC33E] h-40'}}) }}
+                </div>
+                
+                <div class="flex justify-end">
+                {{ form_widget(form.submit, {'attr': {'class': 'bg-[#ECC33E] text-[#0C1D36] py-2 px-6 rounded hover:bg-[#ebf1ff] transition duration-300'}}) }}
+                </div>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+

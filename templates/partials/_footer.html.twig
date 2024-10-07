@@ -1,40 +1,54 @@
-<footer>
-    <div class="container-footer">
+<footer class="bg-[#09172b] text-[#ebf1ff] py-10">
 
-        <section class="information">
-            <h2>PlayRanker</h2>
-            <p id="information">CodePen is a social development environment. At its heart, it allows you 
-                to write code in the browser, and see the results of it as you build.</p>
-        </section>
-    
-        <section class="liens">
-            <div class="liens-content">
-                <p>INFORMATIONS</p>
-                <a href="">NOUS CONTACTER</a>
-                <a href="">UN AVIS SUR LE SITE ?</a>
-            </div>
-            <div class="liens-content">
-                <p>LIENS IMPORTANTS</p>
-                <a href="{{ path('register') }}">INSCRIPTION</a>
-                <a href="{{ path('login') }}">CONNEXION</a>
-                <a href="">FAQ</a>
-            </div>
-        </section>
-        
-        <section class="reseaux">
+    <div class="container mx-auto px-4">
+        <div class="">
 
-                <div class="reseaux-content">
-                    <a href=""> <img src="img/instagram.png" alt="Logo Instagram" width="30" height="30"></a>
-                    <a href="https://www.facebook.com/groups/538218072111448"> <img class="separation" src="img/facebook.png" alt="Logo Facebook" width="30" height="30"></a>
-                    <a href=""> <img src="img/twitter.png" alt="Logo Twitter" width="30" height="30"></a>
+            <section class="links grid grid-cols-3 items-start justify-items-center">
+
+                <div>
+                    <h3 class="text-lg font-semibold text-[#ECC33E] mb-2">INFORMATION</h3>
+                    <a href="#" class="block hover:text-[#ECC33E] transition duration-300">CONTACT US</a>
+                    <a href="#" class="block hover:text-[#ECC33E] transition duration-300">FEEDBACK</a>
                 </div>
 
-        </section>
+                <div>
+                    <h3 class="text-lg font-semibold text-[#ECC33E] mb-2">IMPORTANT LINKS</h3>
+                    <a href="{{ path('register') }}" class="block hover:text-[#ECC33E] transition duration-300">REGISTER</a>
+                    <a href="{{ path('login') }}" class="block hover:text-[#ECC33E] transition duration-300">LOGIN</a>
+                    <a href="#" class="block hover:text-[#ECC33E] transition duration-300">FAQ</a>
+                </div>
 
+                <div class="">
+
+                    <h3 class="text-lg flex font-semibold text-[#ECC33E] mb-2">FOLLOW US</h3>
+
+                    <div class="flex">
+
+                        <a href="#" class="hover:opacity-75 transition duration-300">
+                            <img src="img/instagram.png" alt="Instagram" class="w-8 h-8">
+                        </a>
+
+                        <a href="https://www.facebook.com/groups/538218072111448" class="hover:opacity-75 transition duration-300">
+                            <img src="img/facebook.png" alt="Facebook" class="w-8 h-8">
+                        </a>
+
+                        <a href="#" class="hover:opacity-75 transition duration-300">
+                            <img src="img/twitter.png" alt="Twitter" class="w-8 h-8">
+                        </a>
+
+                    </div>    
+
+                </div>
+
+            </section>
+        </div>
     </div>
-    
-    <section class="small">
-        <small>©2024 PlayRanker, Inc. All rights reserved </small> 
-        <p><a href="">Politique de confidentialité</a> | <a href="">Paramètres des cookies</a></p>
-    </section>
+
+    <div class="border-t border-[#ECC33E] mt-8 pt-8 text-center text-sm">
+        <p class="mb-2">©2024 PlayRanker, Inc. All rights reserved</p>
+        <p>
+            <a href="#" class="hover:text-[#ECC33E] text-sm transition duration-300">Privacy Policy</a> | 
+            <a href="#" class="hover:text-[#ECC33E] text-sm transition duration-300">Cookie Settings</a>
+        </p>
+    </div>
 </footer>

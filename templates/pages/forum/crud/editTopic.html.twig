@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block title %}PlayRanker Forum - Edit Topic{% endblock %}
 
-<section class="min-h-screen flex items-center justify-center">
-    <div class="max-w-2xl mx-auto p-10 bg-white rounded-lg shadow-lg">
-        <h1 class="text-2xl font-semibold text-gray-800 mb-6">Créer un nouveau post</h1>
-        {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
-            <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
-                {{ form_row(form.title, {'attr': {'id': 'create_post_title', 'class': 'w-full border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+{% block body %}
+<section class="min-h-screen flex items-center justify-center bg-[#0C1D36]">
+    <div class="max-w-2xl w-full mx-auto p-10 bg-[#09172b] border border-[#ECC33E] rounded-lg shadow-lg">
+
+        <h1 class="text-3xl font-semibold text-white mb-4 ">Edit topic</h1>
+
+        {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+
+            <div class="bg-[#0C1D36] text-white px-8 pt-5 pb-8 rounded-md border border-[#ECC33E]">
+                {{ form_row(form.title, {'attr': {'id': 'edit_post_title', 'class': 'w-full bg-[#0C1D36] border border-[#ECC33E] rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]'}}) }}
             </div>
+
             <div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded">
-                    Créer
-                </button>
+                <button type="submit" class="w-full bg-[#ECC33E] hover:bg-[#ebf1ff] text-[#0C1D36] font-bold py-2 rounded transition duration-300"> Update </button>
             </div>
+
         {{ form_end(form) }}
     </div>
 </section>

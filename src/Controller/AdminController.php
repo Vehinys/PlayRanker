@@ -17,210 +17,313 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    // ---------------------------------------------------------- //
+    // Affiche la page d'administration
+    // ---------------------------------------------------------- //
 
-    #[Route('/admin', name: 'admin')]
-    public function index(
+    /**
+     * Displays the admin page with a list of all categories, platforms, and types.
+     *
+     * @param CategoryRepository $categoryRepository The repository for fetching categories.
+     * @param PlatformRepository $PlatformRepository The repository for fetching platforms.
+     * @param TypeRepository $typeRepository The repository for fetching types.
+     *
+     * @return Response The rendered admin page with the fetched data.
+     */
+
+        #[Route('/admin', name: 'admin')]
+        public function index(
+
+            CategoryRepository $categoryRepository, 
+            PlatformRepository $PlatformRepository,
+            TypeRepository $typeRepository
+
+        ): Response {
+
+            // Récupération de toutes les catégories, plateformes et types
+            $categories = $categoryRepository->findAll();
+            $platforms = $PlatformRepository->findAll();
+            $types = $typeRepository->findAll();
         
-        CategoryRepository $categoryRepository, 
-        PlatformRepository $PlatformRepository,
-        TypeRepository $typeRepository
-        
-    ): Response {
+            // Rendu de la vue avec les données récupérées
+            return $this->render('admin/index.html.twig', [
+                'categories' => $categories,
+                'platforms' => $platforms,
+                'types' => $types,
+            ]);
+        }
 
-        $categories = $categoryRepository->findAll();
-        $platforms = $PlatformRepository->findAll();
-        $types = $typeRepository->findAll();
-    
-        return $this->render('admin/index.html.twig', [
-            'categories' => $categories,
-            'platforms' => $platforms,
-            'types' => $types,
-        ]);
-    }
+    // ---------------------------------------------------------- //
+    // Ajoute une nouvelle catégorie
+    // ---------------------------------------------------------- //
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    /**
+     * Adds a new category to the database.
+     *
+     * @param Request $request The current HTTP request.
+     * @param EntityManagerInterface $manager The entity manager for persisting the new category.
+     *
+     * @return Response The response redirecting to the admin page after the new category is created.
+     */
 
+        #[Route('/admin/category/new', name: 'category.add', methods: ['GET', 'POST'])]
+        public function newCategory(
 
-    #[Route('/admin/category/new', name: 'category.add', methods: ['GET', 'POST'])]
-    public function newCategory(
-        
-        Request $request,
-        EntityManagerInterface $manager
-        
-    ): Response {
+            Request $request,
+            EntityManagerInterface $manager
 
-        $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
+        ): Response {
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            // Création d'une nouvelle instance de Category
+            $category = new Category();
+            
+            // Création du formulaire pour la catégorie
+            $form = $this->createForm(CategoryType::class, $category);
+            $form->handleRequest($request);
 
-            $category = $form->getData();
-            $manager->persist($category);
-            $manager->flush();
+            // Traitement du formulaire soumis
+            if ($form->isSubmitted() && $form->isValid()) {
+                $category = $form->getData();
+                $manager->persist($category);
+                $manager->flush();
 
-            return $this->redirectToRoute('admin');
-        }   
+                // Redirection vers la page d'administration
+                return $this->redirectToRoute('admin');
+            }   
 
-        return $this->render('admin/categoryAdd.html.twig', [
-            'form' => $form,
-            'sessionId'=> $category->getId()
-        ]);
-    }
-    
-    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-    #[Route('/admin/category/edit/{categoryId}', name: 'category.edit', methods: ['GET', 'POST'])]
-    public function editCategory(
-        int $categoryId, 
-        CategoryRepository $repository,  
-        Request $request, 
-        EntityManagerInterface $manager
-    ): Response {
-        $category = $repository->find($categoryId);
-    
-        if (!$category) {
-            throw $this->createNotFoundException('Category not found');
+            // Rendu de la vue avec le formulaire
+            return $this->render('admin/categoryAdd.html.twig', [
+                'form' => $form,
+                'sessionId'=> $category->getId()
+            ]);
         }
     
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($category);
-            $manager->flush();
-    
-            $this->addFlash('success', 'The category has been successfully updated');
-            return $this->redirectToRoute('admin');
+    // ---------------------------------------------------------- //
+    // Modifie une catégorie existante
+    // ---------------------------------------------------------- //
+
+    /**
+     * Edits an existing category in the database.
+     *
+     * @param int $categoryId The ID of the category to edit.
+     * @param CategoryRepository $repository The repository for fetching the category.
+     * @param Request $request The current HTTP request.
+     * @param EntityManagerInterface $manager The entity manager for persisting changes.
+     *
+     * @return Response The response redirecting to the admin page after the category is updated.
+     */
+
+        #[Route('/admin/category/edit/{categoryId}', name: 'category.edit', methods: ['GET', 'POST'])]
+        public function editCategory(
+
+            int $categoryId, 
+            CategoryRepository $repository,  
+            Request $request, 
+            EntityManagerInterface $manager
+
+        ): Response {
+
+            // Récupération de la catégorie à modifier
+            $category = $repository->find($categoryId);
+        
+            // Vérification de l'existence de la catégorie
+            if (!$category) {
+                throw $this->createNotFoundException('Catégorie non trouvée');
+            }
+        
+            // Création du formulaire pour la catégorie
+            $form = $this->createForm(CategoryType::class, $category);
+            $form->handleRequest($request);
+        
+            // Traitement du formulaire soumis
+            if ($form->isSubmitted() && $form->isValid()) {
+                $manager->persist($category);
+                $manager->flush();
+        
+                $this->addFlash('success', 'La catégorie a été mise à jour avec succès');
+                return $this->redirectToRoute('admin');
+            }
+        
+            // Rendu de la vue avec le formulaire
+            return $this->render('admin/categoryEdit.html.twig', [
+                'form' => $form->createView(),
+                'categoryId' => $category->getId(),
+            ]);
         }
     
-        return $this->render('admin/categoryEdit.html.twig', [
-            'form' => $form->createView(),
-            'categoryId' => $category->getId(),
-        ]);
-    }
-    
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    // ---------------------------------------------------------- //
+    // Supprime une catégorie
+    // ---------------------------------------------------------- //
 
-    #[Route('/admin/category/delete/{categoryId}', name: 'category.delete', methods: ['POST'])]
-    public function deleteCategory(
+    /**
+     * Deletes a category from the database.
+     *
+     * @param int $categoryId The ID of the category to delete.
+     * @param CategoryRepository $repository The repository for fetching the category.
+     * @param EntityManagerInterface $manager The entity manager for persisting changes.
+     *
+     * @return Response The response redirecting to the admin page after the category is deleted.
+     */
 
-        int $categoryId,
-        CategoryRepository $repository,
-        EntityManagerInterface $manager,
+        #[Route('/admin/category/delete/{categoryId}', name: 'category.delete', methods: ['POST'])]
+        public function deleteCategory(
 
-    ): Response {
-        $category = $repository->find($categoryId);
+            int $categoryId,
+            CategoryRepository $repository,
+            EntityManagerInterface $manager
 
-        // Supprimer la catégorie
-        $manager->remove($category);
-        $manager->flush();
+        ): Response {
 
-        $this->addFlash('success', 'The category has been successfully deleted');
+            // Récupération de la catégorie à supprimer
+            $category = $repository->find($categoryId);
 
-        return $this->redirectToRoute('admin');
-    }
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-    #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
-    public function addPlatform(
-        
-        Request $request,
-        EntityManagerInterface $manager
-        
-    ): Response {
-
-        $Platform = new Platform();
-        $form = $this->createForm(PlatformType::class, $Platform);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $Platform = $form->getData();
-            $manager->persist($Platform);
+            // Suppression de la catégorie
+            $manager->remove($category);
             $manager->flush();
 
+            // Message flash de confirmation
+            $this->addFlash('success', 'La catégorie a été supprimée avec succès');
+
+            // Redirection vers la page d'administration
             return $this->redirectToRoute('admin');
-        }   
+        }
 
-        return $this->render('admin/platformadd.html.twig', [
-            'form' => $form,
-            'sessionId'=> $Platform->getId()
-        ]);
-    }
+    // ---------------------------------------------------------- //
+    // Ajoute une nouvelle plateforme
+    // ---------------------------------------------------------- //
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    /**
+     * Adds a new platform to the database.
+     *
+     * @param Request $request The current HTTP request.
+     * @param EntityManagerInterface $manager The entity manager for persisting changes.
+     *
+     * @return Response The response redirecting to the admin page after the platform is added.
+     */
+
+        #[Route('/admin/platform/new', name: 'platform.add', methods: ['GET', 'POST'])]
+        public function addPlatform(
+
+            Request $request,
+            EntityManagerInterface $manager
+
+        ): Response {
+
+            // Création d'une nouvelle instance de Platform
+            $Platform = new Platform();
+            
+            // Création du formulaire pour la plateforme
+            $form = $this->createForm(PlatformType::class, $Platform);
+            $form->handleRequest($request);
+
+            // Traitement du formulaire soumis
+            if ($form->isSubmitted() && $form->isValid()) {
+                $Platform = $form->getData();
+                $manager->persist($Platform);
+                $manager->flush();
+
+                // Redirection vers la page d'administration
+                return $this->redirectToRoute('admin');
+            }   
+
+            // Rendu de la vue avec le formulaire
+            return $this->render('admin/platformadd.html.twig', [
+                'form' => $form,
+                'sessionId'=> $Platform->getId()
+            ]);
+        }
+
+    // ---------------------------------------------------------- //
+    // Modifie une plateforme existante
+    // ---------------------------------------------------------- //
     
-#[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
-public function editPlatform(
-    int $platformId, 
-    PlatformRepository $repository,  
-    Request $request, 
-    EntityManagerInterface $manager
-): Response {
+    /**
+     * Edits an existing platform in the database.
+     *
+     * @param int $platformId The ID of the platform to edit.
+     * @param PlatformRepository $repository The repository for managing platforms.
+     * @param Request $request The current HTTP request.
+     * @param EntityManagerInterface $manager The entity manager for persisting changes.
+     *
+     * @return Response The response redirecting to the admin page after the platform is updated.
+     */
 
-    // Recherche de la plateforme par son ID
-    $platform = $repository->find($platformId);
+        #[Route('/admin/platform/edit/{platformId}', name: 'platform.edit', methods: ['GET', 'POST'])]
+        public function editPlatform(
 
-    // Si la plateforme n'est pas trouvée, on lance une exception
-    if (!$platform) {
-        throw $this->createNotFoundException('Platform not found');
-    }
+            int $platformId, 
+            PlatformRepository $repository,  
+            Request $request, 
+            EntityManagerInterface $manager
 
-    // Création du formulaire en utilisant PlatformType
-    $form = $this->createForm(PlatformType::class, $platform);
-    $form->handleRequest($request);
+        ): Response {
 
-    // Si le formulaire est soumis et valide
-    if ($form->isSubmitted() && $form->isValid()) {
-        $platform = $form->getData();
-        $manager->persist($platform);
-        $manager->flush();
+            // Recherche de la plateforme par son ID
+            $platform = $repository->find($platformId);
 
-        // Message flash pour indiquer que la plateforme a été mise à jour
-        $this->addFlash('success', 'The platform has been successfully updated');
-        
-        // Redirection vers l'édition de la plateforme avec l'ID mis à jour
-        return $this->redirectToRoute('admin');
-    }
+            // Vérification de l'existence de la plateforme
+            if (!$platform) {
+                throw $this->createNotFoundException('Plateforme non trouvée');
+            }
 
-    return $this->render('admin/platformEdit.html.twig', [
-        'form' => $form->createView(),
-        'platformId' => $platform->getId(),
-    ]);
-}
-    
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+            // Création du formulaire pour la plateforme
+            $form = $this->createForm(PlatformType::class, $platform);
+            $form->handleRequest($request);
 
-    #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
-    public function deletePlatform(
+            // Traitement du formulaire soumis
+            if ($form->isSubmitted() && $form->isValid()) {
+                $platform = $form->getData();
+                $manager->persist($platform);
+                $manager->flush();
 
-        int $platformId, 
-        PlatformRepository $repository, 
-        EntityManagerInterface $manager, 
+                // Message flash de confirmation
+                $this->addFlash('success', 'La plateforme a été mise à jour avec succès');
+                
+                // Redirection vers la page d'administration
+                return $this->redirectToRoute('admin');
+            }
 
-    ): Response {
-        $platform = $repository->find($platformId);
-    
-        // Supprimer la catégorie
-        $manager->remove($platform);
-        $manager->flush();
-    
-        $this->addFlash('success', 'The platform has been successfully deleted');
-        
-        return $this->redirectToRoute('admin');
-    }
+            // Rendu de la vue avec le formulaire
+            return $this->render('admin/platformEdit.html.twig', [
+                'form' => $form->createView(),
+                'platformId' => $platform->getId(),
+            ]);
+        }
 
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-    
+    // ---------------------------------------------------------- //
+    // Supprime une plateforme
+    // ---------------------------------------------------------- //
+
+    /**
+     * Deletes a platform from the database.
+     *
+     * @param int $platformId The ID of the platform to delete.
+     * @param PlatformRepository $repository The repository for managing platforms.
+     * @param EntityManagerInterface $manager The entity manager for persisting changes.
+     *
+     * @return Response The response redirecting to the admin page.
+     */
+
+        #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
+        public function deletePlatform(
+
+            int $platformId,
+            PlatformRepository $repository,
+            EntityManagerInterface $manager
+
+        ): Response {
+
+            // Récupération de la plateforme à supprimer
+            $platform = $repository->find($platformId);
+
+            // Suppression de la plateforme
+            $manager->remove($platform);
+            $manager->flush();
+
+            // Message flash de confirmation
+            $this->addFlash('success', 'La plateforme a été supprimée avec succès');
+
+            // Redirection vers la page d'administration
+            return $this->redirectToRoute('admin');
+        }
 }

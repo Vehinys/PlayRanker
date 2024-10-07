@@ -24,104 +24,125 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfilController extends AbstractController
 {
+    // Déclaration de la propriété pour le hachage de mot de passe
+    private UserPasswordHasherInterface $passwordHasher;
+
+    // Constructeur de la classe
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     // ---------------------------------------------------------- //
     // Affiche le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    #[Route('/profil', name: 'profil')]
-    public function index(
+    /**
+     * Displays the user's profile page.
+     *
+     * This action retrieves the currently authenticated user, all game list types, and the game lists associated with the user.
+     * It then renders the 'pages/profil/index.html.twig' template with the retrieved data.
+     *
+     * @param GamesListRepository $gamesListRepository The repository for managing game lists.
+     * @param TypeRepository $typeRepository The repository for managing game list types.
+     *
+     * @return Response The rendered profile page.
+     */
 
-        GamesListRepository $gamesListRepository,
-        TypeRepository $typeRepository
+        #[Route('/profil', name: 'profil')]
+        public function index(
+            
+            GamesListRepository $gamesListRepository, 
+            TypeRepository $typeRepository
+            
+        ): Response {
 
-    ): Response {
+            // Récupération de l'utilisateur connecté
+            $user = $this->getUser();
 
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
-
-        // Récupérer toute les listes de type
-        $types = $typeRepository->findAll();
-    
-        // Récupérer les types de jeux associés à l'utilisateur via GamesList
-        $gamesLists = $gamesListRepository->findBy(['user' => $user]);
-    
-        return $this->render('pages/profil/index.html.twig', [
-            'gamesLists' => $gamesLists,
-            'user' => $user,
-            'types' => $types
-        ]);
-    }
+            // Récupération de tous les types de listes
+            $types = $typeRepository->findAll();
+        
+            // Récupération des listes de jeux associées à l'utilisateur
+            $gamesLists = $gamesListRepository->findBy(['user' => $user]);
+        
+            // Rendu de la vue avec les données récupérées
+            return $this->render('pages/profil/index.html.twig', [
+                'gamesLists' => $gamesLists,
+                'user' => $user,
+                'types' => $types
+            ]);
+        }
     
     // ---------------------------------------------------------- //
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    #[Route('/profil/editProfil', name: 'edit_profile')]
-    public function editProfile(
-        
-        Request $request, 
-        EntityManagerInterface $entityManager
-        
+    /**
+     * Displays the user's profile edit page.
+     *
+     * This action creates a form for editing the user's profile information, including their pseudo, email, and avatar. The form is pre-populated with the user's current information. When the form is submitted and valid, the changes are saved to the database and the user is redirected to the profile page.
+     *
+     * @param Request $request The current HTTP request.
+     * @param EntityManagerInterface $entityManager The entity manager for saving changes to the user.
+     *
+     * @return Response The rendered profile edit page.
+     */
+
+        #[Route('/profil/editProfil', name: 'edit_profile')]
+        public function editProfile(
+            
+            Request $request, 
+            EntityManagerInterface $entityManager
+            
         ): Response {
 
-        $user = $this->getUser();
+            // Récupération de l'utilisateur connecté
+            $user = $this->getUser();
 
-        $form = $this->createFormBuilder($user)
-            ->add('pseudo', TextType::class, [
-                'label' => 'Nouveau Pseudo',
-                'attr' => [
-                    'placeholder' => 'Entrez votre nouveau pseudo',
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
-                    new Length(['min' => 2, 'max' => 100]),
-                ],
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email',
-                'attr' => [
-                    'placeholder' => 'Email',
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                ],
-            ])
-            ->add('avatar', UrlType::class, [
-                'label' => 'Avatar',
-                'attr' => [
-                    'placeholder' => 'Url de l\'avatar',
-                ],
-            ])
-            ->getForm();
+            // Création du formulaire d'édition du profil
+            $form = $this->createFormBuilder($user)
+                ->add('pseudo', TextType::class, [
+                    'label' => 'Nouveau Pseudo',
+                    'attr' => ['placeholder' => 'Entrez votre nouveau pseudo'],
+                    'constraints' => [
+                        new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
+                        new Length(['min' => 2, 'max' => 100]),
+                    ],
+                ])
+                ->add('email', EmailType::class, [
+                    'label' => 'Email',
+                    'attr' => ['placeholder' => 'Email'],
+                    'constraints' => [
+                        new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
+                    ],
+                ])
+                ->add('avatar', UrlType::class, [
+                    'label' => 'Avatar',
+                    'attr' => ['placeholder' => 'Url de l\'avatar'],
+                ])
+                ->getForm();
 
-        $form->handleRequest($request);
+            // Gestion de la soumission du formulaire
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            return $this->redirectToRoute('profil');
+            if ($form->isSubmitted() && $form->isValid()) {
+                // Sauvegarde des modifications
+                $entityManager->flush();
+                return $this->redirectToRoute('profil');
+            }
+
+            // Rendu de la vue avec le formulaire
+            return $this->render('pages/profil/editProfil.html.twig', [
+                'form' => $form->createView(),
+                'user' => $user
+            ]);
         }
-
-        return $this->render('pages/profil/editProfil.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
-        ]);
-    }
 
     // ---------------------------------------------------------- //
     // Supprime le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    private UserPasswordHasherInterface $passwordHasher;
-
-    public function __construct(
-        
-        UserPasswordHasherInterface $passwordHasher
-        
-        ) {
-
-        $this->passwordHasher = $passwordHasher;
-    }
-
     #[Route('/profil/delete', name: 'delete_profile')]
     public function deleteProfile(
 
@@ -131,101 +152,263 @@ class ProfilController extends AbstractController
 
     ): Response {
 
-        // Récupérer l'utilisateur courant
+        // Récupération de l'utilisateur courant
         $user = $this->getUser();
 
-        // Vérifier que l'utilisateur est bien authentifié et est une instance de User
+        // Vérification de la validité de l'utilisateur
         if (!$user instanceof User) {
-            throw new \Exception('The user is invalid');
+            throw new \Exception('L\'utilisateur est invalide');
         }
 
-        // Anonymiser l'utilisateur
+        // Anonymisation de l'utilisateur
         $user->anonymize($this->passwordHasher);
 
-        // Enregistrer les changements (anonymisation)
+        // Sauvegarde des modifications
         $entityManager->flush();
 
-        // Déconnecter l'utilisateur
+        // Déconnexion de l'utilisateur
         $tokenStorage->setToken(null);
         $session->invalidate();
 
-        // Rediriger vers la page d'inscription
+        // Redirection vers la page d'inscription
         return $this->redirectToRoute('register');
     }
 
     // ---------------------------------------------------------- //
-    //  Ajouter les jeux à favoris
+    // Ajoute un jeu aux favoris
     // ---------------------------------------------------------- //
 
     #[Route('/jeux/{id}/addFavorite', name: 'addFavorite')]
-
     public function addFavorite(
+
         int $id,
         Request $request,
         EntityManagerInterface $manager,
         GamesListRepository $gameListRepository,
-        GameRepository $gameRepository
+        GameRepository $gameRepository,
+        TypeRepository $typeRepository
 
     ): Response {
-
-        // Récupérer l'utilisateur connecté
+        // Récupération de l'utilisateur et du type "Favoris"
         $user = $this->getUser();
+        $favoriteType = $typeRepository->findOneBy(['name' => 'Favoris']);
 
-        // Récupérer la liste des jeux de l'utilisateur
-        $favoris = $gameListRepository->findOneBy(['user' => $user]);
-
-        // Vérifier si le jeu existe déjà dans la base de données
+        // Vérification de l'existence du jeu
         $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
 
-        // Si le jeu n'existe pas, créer une nouvelle instance de Game
         if (!$existingGame) {
-
+            // Création d'un nouveau jeu s'il n'existe pas
             $game = new Game();
             $game->setIdGameApi($id);
-
-            // Récupérer le nom et les données du jeu depuis la requête
-            $gameName = $request->get('gameName');
-            $gameData = $request->get('gameData');
-
-            // Configurer les propriétés du jeu
-            $game->setName($gameName);
-            $game->setData([$gameData]);
-
-            // Persister le nouveau jeu
+            $game->setName($request->query->get('gameName'));
+            $game->setData([$request->query->get('gameData')]);
             $manager->persist($game);
-
         } else {
-            
-            // Si le jeu existe déjà, utiliser l'instance existante
             $game = $existingGame;
         }
 
-        // Vérifier si le jeu est déjà dans la liste de favoris
-        if ($favoris && $favoris->getGame() === $game) {
-            
-            // Si le jeu est déjà dans la liste, le retirer
-            $favoris->setGame(null);
+        // Vérification si le jeu est déjà en favori
+        $existingFavorite = $gameListRepository->findOneBy([
+            'user' => $user,
+            'game' => $game,
+            'type' => $favoriteType
+        ]);
 
+        if ($existingFavorite) {
+            // Suppression du favori s'il existe déjà
+            $manager->remove($existingFavorite);
         } else {
-
-            // Sinon, ajouter le jeu à la liste de favoris
-            if (!$favoris) {
-                $favoris = new GamesList();
-                $favoris->setUser ($user);
-            }
-
-            $favoris->setGame($game);
+            // Ajout du jeu aux favoris
+            $newFavorite = new GamesList();
+            $newFavorite->setUser($user);
+            $newFavorite->setGame($game);
+            $newFavorite->setType($favoriteType);
+            $manager->persist($newFavorite);
         }
 
-        // Persister la liste mise à jour
-        $manager->persist($favoris);
+        // Sauvegarde des modifications
         $manager->flush();
 
-        // Rendre une vue Twig avec la liste des jeux mis à jour
-        return $this->redirectToRoute('jeux', [
-            'id' => $id,
-            'favoris' => $favoris,
-        ]);
+        // Redirection vers la page des jeux
+        return $this->redirectToRoute('jeux', ['page' => 1]); 
     }
 
+    // ---------------------------------------------------------- //
+    // Ajoute un jeu à la liste "Déjà joué"
+    // ---------------------------------------------------------- //
+
+    #[Route('/jeux/{id}/addAlreadyPlayed', name: 'addAlreadyPlayed')]
+    public function addAlreadyPlayed(
+
+        int $id,
+        Request $request,
+        EntityManagerInterface $manager,
+        GamesListRepository $gameListRepository,
+        GameRepository $gameRepository,
+        TypeRepository $typeRepository
+
+    ): Response {
+        // Récupération de l'utilisateur et du type "Already played"
+        $user = $this->getUser();
+        $alreadyPlayedType = $typeRepository->findOneBy(['name' => 'Already played']);
+
+        // Vérification de l'existence du jeu
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
+
+        if (!$existingGame) {
+            // Création d'un nouveau jeu s'il n'existe pas
+            $game = new Game();
+            $game->setIdGameApi($id);
+            $game->setName($request->query->get('gameName'));
+            $game->setData([$request->query->get('gameData')]);
+            $manager->persist($game);
+        } else {
+            $game = $existingGame;
+        }
+
+        // Vérification si le jeu est déjà dans la liste "Déjà joué"
+        $existingAlreadyPlayed = $gameListRepository->findOneBy([
+            'user' => $user,
+            'game' => $game,
+            'type' => $alreadyPlayedType
+        ]);
+
+        if ($existingAlreadyPlayed) {
+            // Suppression de l'entrée si elle existe déjà
+            $manager->remove($existingAlreadyPlayed);
+        } else {
+            // Ajout du jeu à la liste "Déjà joué"
+            $newAlreadyPlayed = new GamesList();
+            $newAlreadyPlayed->setUser($user);
+            $newAlreadyPlayed->setGame($game);
+            $newAlreadyPlayed->setType($alreadyPlayedType);
+            $manager->persist($newAlreadyPlayed);
+        }
+
+        // Sauvegarde des modifications
+        $manager->flush();
+
+        // Redirection vers la page des jeux
+        return $this->redirectToRoute('jeux', ['page' => 1]);
+    }
+
+    // ---------------------------------------------------------- //
+    // Ajoute un jeu à la liste "Mes envies"
+    // ---------------------------------------------------------- //
+
+    #[Route('/jeux/{id}/addMyDesires', name: 'addMyDesires')]
+    public function addMyDesires(
+
+        int $id,
+        Request $request,
+        EntityManagerInterface $manager,
+        GamesListRepository $gameListRepository,
+        GameRepository $gameRepository,
+        TypeRepository $typeRepository
+
+    ): Response {
+
+        // Récupération de l'utilisateur et du type "My desires"
+        $user = $this->getUser();
+        $myDesiresType = $typeRepository->findOneBy(['name' => 'My desires']);
+
+        // Vérification de l'existence du jeu
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
+
+        if (!$existingGame) {
+            // Création d'un nouveau jeu s'il n'existe pas
+            $game = new Game();
+            $game->setIdGameApi($id);
+            $game->setName($request->query->get('gameName'));
+            $game->setData([$request->query->get('gameData')]);
+            $manager->persist($game);
+        } else {
+            $game = $existingGame;
+        }
+
+        // Vérification si le jeu est déjà dans la liste "Mes envies"
+        $existingMyDesire = $gameListRepository->findOneBy([
+            'user' => $user,
+            'game' => $game,
+            'type' => $myDesiresType
+        ]);
+
+        if ($existingMyDesire) {
+            // Suppression de l'entrée si elle existe déjà
+            $manager->remove($existingMyDesire);
+        } else {
+            // Ajout du jeu à la liste "Mes envies"
+            $newMyDesire = new GamesList();
+            $newMyDesire->setUser($user);
+            $newMyDesire->setGame($game);
+            $newMyDesire->setType($myDesiresType);
+            $manager->persist($newMyDesire);
+        }
+
+        // Sauvegarde des modifications
+        $manager->flush();
+
+        // Redirection vers la page des jeux
+        return $this->redirectToRoute('jeux', ['page' => 1]);
+    }
+
+    // ---------------------------------------------------------- //
+    // Ajoute un jeu à la liste "À tester"
+    // ---------------------------------------------------------- //
+
+    #[Route('/jeux/{id}/addGoTest', name: 'addGoTest')]
+    public function addGoTest(
+
+        int $id,
+        Request $request,
+        EntityManagerInterface $manager,
+        GamesListRepository $gameListRepository,
+        GameRepository $gameRepository,
+        TypeRepository $typeRepository
+
+    ): Response {
+        // Récupération de l'utilisateur et du type "Go test"
+        $user = $this->getUser();
+        $goTestType = $typeRepository->findOneBy(['name' => 'Go test']);
+
+        // Vérification de l'existence du jeu
+        $existingGame = $gameRepository->findOneBy(['id_game_api' => $id]);
+
+        if (!$existingGame) {
+            // Création d'un nouveau jeu s'il n'existe pas
+            $game = new Game();
+            $game->setIdGameApi($id);
+            $game->setName($request->query->get('gameName'));
+            $game->setData([$request->query->get('gameData')]);
+            $manager->persist($game);
+        } else {
+            $game = $existingGame;
+        }
+
+        // Vérification si le jeu est déjà dans la liste "À tester"
+        $existingGoTest = $gameListRepository->findOneBy([
+            'user' => $user,
+            'game' => $game,
+            'type' => $goTestType
+        ]);
+
+        if ($existingGoTest) {
+            // Suppression de l'entrée si elle existe déjà
+            $manager->remove($existingGoTest);
+        } else {
+            // Ajout du jeu à la liste "À tester"
+            $newGoTest = new GamesList();
+            $newGoTest->setUser($user);
+            $newGoTest->setGame($game);
+            $newGoTest->setType($goTestType);
+            $manager->persist($newGoTest);
+        }
+
+        // Sauvegarde des modifications
+        $manager->flush();
+
+        // Redirection vers la page des jeux
+        return $this->redirectToRoute('jeux', ['page' => 1]);
+    }
 }
+

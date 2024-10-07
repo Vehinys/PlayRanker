@@ -1,143 +1,131 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Games{% endblock %}
+{% block title %}PlayRanker - Games{% endblock %}
 
 {% block body %}
-<section class="bg-[#7288e7]">
-    <div class="container mx-auto">
-        <div class="mb-8 flex justify-center pt-10">
-            <form class="w-full max-w-lg flex" action="{{ path('search') }}" id="searchthis" method="post">
-                <input class="border border-gray-300 rounded-l-lg py-2 px-4 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0C1D36]" id="search" name="input" type="text" placeholder="Search for a game" />
-                <button class="bg-[#09172b] text-white px-4 py-2 rounded-r-lg hover:bg-[#ECC33E]">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
+    <section class="bg-[#0C1D36] min-h-screen py-10">
+        <div class="container mx-auto px-4">
+            <div class="mb-8 flex justify-center">
+                <form class="w-full max-w-lg flex" action="{{ path('search') }}" id="searchthis" method="post">
+                    <input class="border border-[#ECC33E] rounded-l-lg py-2 px-4 w-full bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]" id="search" name="input" type="text" placeholder="Search for a game" />
+                    <button class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-r-lg hover:bg-[#ebf1ff] transition duration-300">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
 
-        {# <section class="container-console">
-            <form class="recherche-form-jeux">
-                {% for category in categories %}
-                    <div class="dropdown">
-                        <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
-                        <div id="dropdown-{{ category.id }}" class="dropdown-content">
-                            {% for sousCategory in category.category %}
-                                <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
-                            {% endfor %}
+            {# <section class="container-console">
+                <form class="recherche-form-jeux">
+                    {% for category in categories %}
+                        <div class="dropdown">
+                            <button class="dropbtn" data-dropdown="dropdown-{{ category.id }}">{{ category.name }}</button>
+                            <div id="dropdown-{{ category.id }}" class="dropdown-content">
+                                {% for sousCategory in category.category %}
+                                    <a href="{{ path('searchBySousCategory', {'id': sousCategory.id}) }}">{{ sousCategory.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </form>
+                <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
+            </section> #}
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                {% for game in games.results %}
+                    <div class="bg-[#09172b] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl text-[#ECC33E] min-h-[56px] content-center text-center">{{ game.name }}</h3>
+                        </div>
+
+                        <div class="w-full">
+                            <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        </div>
+
+                        <div class="p-4 min-h-[154px] flex flex-col justify-between ">
+
+                            <div class="flex flex-wrap space-x-2 mb-4">
+                                {% set platform_logos = {
+                                    'PlayStation 1': 'img/ps1.png',
+                                    'PlayStation 2': 'img/ps2.png',
+                                    'PlayStation 3': 'img/ps3.png',
+                                    'PlayStation 4': 'img/ps4.png',
+                                    'PlayStation 5': 'img/ps5.png',
+                                    'PS Vita':       'img/ps-vita.png',
+                                    'PSP':           'img/psp.png',
+                                    'PC': 'img/pc.png',
+                                    'Linux': 'img/linux.png',
+                                    'Web': 'img/Web.png',
+                                    'macOS': 'img/macOS.png',
+                                    'iOS': 'img/ios.png',
+                                    'Android': 'img/Android.png',
+                                    'Xbox Series S/X': 'img/Xbox Series SX.png',
+                                    'Xbox 360': 'img/Xbox 360.png',
+                                    'Xbox One': 'img/Xbox One.png',
+                                    'Xbox': 'img/xbox.png',
+                                    'Nintendo Switch': 'img/Nintendo Switch.png',
+                                    'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                                    'Wii U': 'img/Wii U.png',
+                                    'Wii': 'img/Wii.png',
+                                    'GameCube': 'img/gameCube.png',
+                                    
+                                    'Nintendo DSi ': 'img/Wii U.png',
+                                    'Nintendo DS ': 'img/Wii U.png',
+                                    'Game Boy Advance': 'img/Wii U.png',
+                                    'Game Boy Color': 'img/Wii U.png',
+                                    'Game Boy': 'img/Wii U.png',
+                                    'Nintendo 64': 'img/Wii U.png',
+                                    'SNES': 'img/Wii U.png',
+                                    'Wii U': 'img/Wii U.png',
+                                    'NES': 'img/Wii U.png',
+                                } %}
+
+                                {% for platform in game.platforms %}
+                                    <div class="flex items-center">
+                                        {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
+                                        {% if logo_path %}
+                                            <img class="w-8 h-8" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" />
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="flex justify-between">
+                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">Detail</a>
+
+                                <div class="relative">
+                                    <button type="button" onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 flex items-center">
+                                        Add to your lists
+                                        <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+
+                                    <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mb-2 w-56 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-20">
+                                        <a href="{{ path('addFavorite', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Favorites</a>
+                                        <a href="{{ path('addAlreadyPlayed', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Already played</a>
+                                        <a href="{{ path('addMyDesires', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My desires</a>
+                                        <a href="{{ path('addGoTest', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Go test</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
-            </form>
-            <a href="{{ path('admin') }}"> <img src="img/apps-add.png" alt=""></a>
-        </section> #}
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {% for game in games.results %}
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="p-5">
-                        <h3 class="font-bold text-xl text-gray-900 min-h-[56px] content-center text-center">{{ game.name }}</h3>
-                    </div>
+            <div class="py-8 flex justify-center">
+                {% if currentPage is defined %}
+                    <nav class="inline-flex">
+                        {% if currentPage > 1 %}
+                            <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
+                        {% endif %}
 
-                    <div class="w-full ">
-                        <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
-                    </div>
+                        <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentPage }}</span>
 
-                    <div class="p-4 min-h-[154px] flex flex-col justify-between ">
-
-                        <div class="flex flex-wrap space-x-2 mb-4">
-                            {% set platform_logos = {
-                                'PlayStation 1': 'img/ps1.png',
-                                'PlayStation 2': 'img/ps2.png',
-                                'PlayStation 3': 'img/ps3.png',
-                                'PlayStation 4': 'img/ps4.png',
-                                'PlayStation 5': 'img/ps5.png',
-                                'PS Vita':       'img/ps-vita.png',
-                                'PSP':           'img/psp.png',
-                                'PC': 'img/pc.png',
-                                'Linux': 'img/linux.png',
-                                'Web': 'img/Web.png',
-                                'macOS': 'img/macOS.png',
-                                'iOS': 'img/ios.png',
-                                'Android': 'img/Android.png',
-                                'Xbox Series S/X': 'img/Xbox Series SX.png',
-                                'Xbox 360': 'img/Xbox 360.png',
-                                'Xbox One': 'img/Xbox One.png',
-                                'Xbox': 'img/xbox.png',
-                                'Nintendo Switch': 'img/Nintendo Switch.png',
-                                'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                                'Wii U': 'img/Wii U.png',
-                                'Wii': 'img/Wii.png',
-                                'GameCube': 'img/gameCube.png',
-                                
-                                'Nintendo DSi ': 'img/Wii U.png',
-                                'Nintendo DS ': 'img/Wii U.png',
-                                'Game Boy Advance': 'img/Wii U.png',
-                                'Game Boy Color': 'img/Wii U.png',
-                                'Game Boy': 'img/Wii U.png',
-                                'Nintendo 64': 'img/Wii U.png',
-                                'SNES': 'img/Wii U.png',
-                                'Wii U': 'img/Wii U.png',
-                                'NES': 'img/Wii U.png',
-                            } %}
-
-                            {% for platform in game.platforms %}
-                                <div class="flex items-center">
-                                    {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
-                                    {% if logo_path %}
-                                        <img class="w-8 h-8" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" />
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="flex justify-between">
-
-                            <!-- Bouton Détail -->
-                            <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#09172b] text-white px-4 py-2 rounded-lg hover:bg-[#0C1D36] hover:text-[#ECC33E]">Détail</a>
-                        
-                            <!-- Dropdown Button -->
-                            <div class="relative">
-
-                                <button onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" type="button" class="bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-[#09172b] flex items-center">
-                                    Add to your lists
-                                    <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                        
-                                <!-- Dropdown Menu -->
-                                <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mb-2 w-56 bg-white shadow-lg rounded-md z-20">
-                                    <a href="{{ path('addFavorite', {'id': game.id}) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Favoris </a>
-                                    <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Already played </a>
-                                    <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> My desires </a>
-                                    <a href=" " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Go test </a>
-                                </div>
-
-                            </div>
-
-                        </div> 
-
-                    </div>
-
-                </div>
-            {% endfor %}
+                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
+                    </nav>
+                {% endif %}
+            </div>
         </div>
-
-        <div class=" py-8 flex justify-center">
-            {% if currentPage is defined %}
-
-                <nav class="inline-flex">
-
-                    {% if currentPage > 1 %}
-                        <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Page précédente</a>
-                    {% endif %}
-
-                    <span class="px-3 py-2 mx-5 bg-gray-200 border border-gray-300 rounded-lg">Page {{ currentPage }}</span>
-
-                    <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Page suivante</a>
-                </nav>
-
-            {% endif %}
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

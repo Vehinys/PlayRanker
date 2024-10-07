@@ -3,66 +3,58 @@
 {% block title %}Registration{% endblock %}
 
 {% block body %}
-
-<div class="background-inscription">
-  <div class="form-wrapper">
-    <h1 class="register-heading">Registration</h1>
-    
-    <!-- Display global form errors -->
+<div class="min-h-screen flex items-center justify-center bg-[#0C1D36] py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-[#09172b] p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center text-[#ECC33E]">Registration</h1>
+   
     {{ form_errors(registrationForm) }}
-    
-    <!-- Start of the form -->
-    {{ form_start(registrationForm) }}
-
-      <!-- Pseudo field with errors -->
-      <div class="input-field">
-        {{ form_label(registrationForm.pseudo, 'Username') }}
-        {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'input-field-text', 'placeholder': 'Enter your username' } }) }}
-        {{ form_errors(registrationForm.pseudo) }}
-      </div>
-
-      <!-- Email field with errors -->
-      <div class="input-field">
-        {{ form_label(registrationForm.email, 'Email') }}
-        {{ form_widget(registrationForm.email, { 'attr': { 'class': 'input-field-text', 'placeholder': 'Enter your email' } }) }}
-        {{ form_errors(registrationForm.email) }}
-      </div>
-
-      <!-- Password field with errors -->
-      <div class="input-field">
-        {{ form_label(registrationForm.plainPassword.first, 'Password') }}
-        <div class="password-container">
-          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'input-field-password', 'id': 'inputPassword', 'placeholder': 'Password' } }) }}
+   
+    {{ form_start(registrationForm, {'attr': {'class': 'mt-8 space-y-6'}}) }}
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div class="mb-4">
+          {{ form_label(registrationForm.pseudo, 'Username', {'label_attr': {'class': 'sr-only'}}) }}
+          {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-t-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your username' } }) }}
+          {{ form_errors(registrationForm.pseudo) }}
         </div>
-        {{ form_errors(registrationForm.plainPassword.first) }}
-      </div>
 
-      <!-- Confirm password field with errors -->
-      <div class="input-field">
-        {{ form_label(registrationForm.plainPassword.second, 'Confirm your password') }}
-        <div class="password-container">
-          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'input-field-password required', 'id': 'inputConfirmPassword', 'placeholder': 'Confirm password' } }) }}
+        <div class="mb-4">
+          {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'sr-only'}}) }}
+          {{ form_widget(registrationForm.email, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your email' } }) }}
+          {{ form_errors(registrationForm.email) }}
         </div>
-        {{ form_errors(registrationForm.plainPassword.second) }}
+
+        <div class="mb-4">
+          {{ form_label(registrationForm.plainPassword.first, 'Password', {'label_attr': {'class': 'sr-only'}}) }}
+          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputPassword', 'placeholder': 'Password' } }) }}
+          {{ form_errors(registrationForm.plainPassword.first) }}
+        </div>
+
+        <div class="mb-4">
+          {{ form_label(registrationForm.plainPassword.second, 'Confirm your password', {'label_attr': {'class': 'sr-only'}}) }}
+          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-b-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputConfirmPassword', 'placeholder': 'Confirm password' } }) }}
+          {{ form_errors(registrationForm.plainPassword.second) }}
+        </div>
       </div>
 
-      <!-- Terms of service acceptance field with errors -->
-      <div class="terms-acceptance">
-        <label>
-          {{ form_widget(registrationForm.agreeTerms) }}
-          <a class="terms-link" href="#">I agree to the terms of service</a>
+      <div class="flex items-center">
+        {{ form_widget(registrationForm.agreeTerms, { 'attr': { 'class': 'h-4 w-4 text-[#ECC33E] focus:ring-[#ECC33E] border-[#ECC33E] rounded' } }) }}
+        <label for="{{ registrationForm.agreeTerms.vars.id }}" class="ml-2 block text-sm text-[#ebf1ff]">
+          <a href="#" class="text-[#ECC33E] hover:underline">I agree to the terms of service</a>
         </label>
-        {{ form_errors(registrationForm.agreeTerms) }}
       </div>
+      {{ form_errors(registrationForm.agreeTerms) }}
 
-      <!-- Submit button -->
-      <button type="submit" class="btn-submit">Register</button>
       <div>
-        <small><b class="required-red">*</b> = Required fields</small>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-[#0C1D36] bg-[#ECC33E] hover:bg-[#ebf1ff] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ECC33E]">
+          Register
+        </button>
+      </div>
+      <div class="text-xs text-[#ebf1ff]">
+        <b class="text-red-500">*</b> = Required fields
+        <p>Do you have an account? <a href="{{ path('login') }}" class="text-[#ECC33E] hover:underline">Login</a></p>
       </div>
 
     {{ form_end(registrationForm) }}
   </div>
 </div>
-
 {% endblock %}

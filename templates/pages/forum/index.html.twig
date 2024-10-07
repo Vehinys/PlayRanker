@@ -1,84 +1,62 @@
-{# Étend le template de base pour hériter de sa structure #}
-{% extends 'base.html.twig' %}  
+{# Extends the base template #}
+{% extends 'base.html.twig' %}
 
-{# Définit le titre de la page #}
-{% block title %}INDEX FORUM{% endblock %}  
+{# Sets the page title #}
+{% block title %}PlayRanker Forum{% endblock %}
 
-{# Début du bloc de contenu principal #}
-{% block body %}  
-
-<div class='flex p-8'>  
-    <section class="flex">
-        <div class="">
-            <h2 class="text-4xl text-[#ebf1ff] pb-4">Category</h2>
-
-            {# Boucle à travers chaque catégorie #}
+    {# Main content block #}
+    {% block body %}
+    <div class='bg-[#0C1D36] min-h-screen'>
+    <div class='container mx-auto p-8'>
+        {# Page title #}
+        <h1 class='text-6xl font-bold text-center text-white mb-12'>PlayRanker Forum</h1>
+    
+        <div class='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
+        {# Categories section #}
+        <section class="w-full md:w-1/4">
+            <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6">
+            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-4">Categories</h2>
+            {# Loop through categories #}
             {% for category in categories %}
-                <div class='text-xl text-[#ECC33E] hover:text-[#ebf1ff]'>
-                    
-                    {# Lien vers le topic correspondant avec l'identifiant de la catégorie #}
-                    <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}">
-
-                        {# Affiche le nom des catégories #}
-                        {{ category.name|upper }} 
-                    </a>
+                <div class='mb-2'>
+                <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}" class="text-lg text-[#ebf1ff] hover:text-[#ECC33E] hover:text-xl transition duration-300">
+                    {{ category.name|upper }}
+                </a>
                 </div>
             {% endfor %}
-        </div>    
-    </section>
+            </div>
+        </section>
 
-    <!-- Séparateur entre les sections -->
-    <section class="ml-7"> 
-        <div class="border-l-2 border-[#ebf1ff] h-full flex"></div>  
-    </section>
-
-    {# Section pour afficher les derniers sujets, ajuste ici #}
-    <section class="flex-grow ml-4">  
-        <div>
-            <h2 class="text-4xl text-[#ebf1ff] pl-2 pb-4">Latest Topics</h2>  
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-                {# Boucle à travers chaque sujet #}
+        {# Latest Topics section #}
+        <section class="w-full md:w-3/4">
+            <div>
+            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Latest Topics</h2>
+            {# Grid with two columns for latest topics #}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {# Loop through topics #}
                 {% for topic in topics %}
-                <div class="bg-[#dbe1f0] flex flex-col justify-between rounded-lg m-2 p-8 dark:bg-slate-800">
-                    <div class="flex items-center mb-4">
-
-                        {# Affiche le nom de la catégorie du sujet #}
-                        <h3 class="font-black text-3xl mr-1">{{ topic.categoryForum.name }} :</h3>  
-
-                        {# Affiche le titre du sujet #}
-                        <h2 class="font-bold self-end text-2xl">{{ topic.title }}</h2>  
+                <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
+                    <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-xl text-[#ECC33E]">{{ topic.categoryForum.name }}: {{ topic.title }}</h3>
                     </div>
-
-                    {# Vérifie s'il y a des posts dans le sujet #}
-                    {% if topic.posts is not empty %}  
-
-                        {# Récupère le premier post du sujet #}
-                        {% set firstPost = topic.posts|first %} 
-
-                        {# Affiche le contenu du premier post #}
-                        <h4 class="text-[30px] font-bold text-justify mb-3">{{ firstPost.content }}</h4>
-                        <div class="flex justify-between items-center"> 
-
-                            {# Affiche le pseudo de l'utilisateur et la date de création du post #}
-                            <p class="text-[12px]">{{ firstPost.user.pseudo }} &nbsp; {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>  
-
-                            {# Lien vers le post avec des styles pour le bouton #}
-                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-2 rounded hover:bg-[#0C1D36] hover:text-[#ebf1ff]">View Post</a>
-                        </div>
-
-                    {# Si aucun post n'est disponible #}
-                    {% else %}  
-                        <p>No posts available for this topic.</p> 
-
+                    {# Check if topic has posts #}
+                    {% if topic.posts is not empty %}
+                    {% set firstPost = topic.posts|first %}
+                    <p class="text-[#ebf1ff] mb-4">{{ firstPost.content|slice(0, 150) }}...</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm text-[#ebf1ff]">{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>
+                        <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#09172b] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">View Post</a>
+                    </div>
+                    {% else %}
+                    <p class="text-[#ebf1ff]">No posts available for this topic.</p>
                     {% endif %}
                 </div>
-
                 {% endfor %}
-            </div>  
+            </div>
+            </div>
+        </section>
         </div>
-    </section>
-</div>
+    </div>
+    </div>
 
-{# Fin du bloc de contenu principal #}
-{% endblock %}  
+{% endblock %}
