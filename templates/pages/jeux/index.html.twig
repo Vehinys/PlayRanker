@@ -3,11 +3,11 @@
 {% block title %}PlayRanker - Games{% endblock %}
 
 {% block body %}
-    <section class="bg-[#0C1D36] min-h-screen py-10">
+    <section class="bg-[#ebf1ff] min-h-screen py-10">
         <div class="container mx-auto px-4">
             <div class="mb-8 flex justify-center">
                 <form class="w-full max-w-lg flex" action="{{ path('search') }}" id="searchthis" method="post">
-                    <input class="border border-[#ECC33E] rounded-l-lg py-2 px-4 w-full bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]" id="search" name="input" type="text" placeholder="Search for a game" />
+                    <input class="border border-[#ECC33E] rounded-l-lg py-2 px-4 w-full bg-[#ebf1ff] text-[#ebf1ff] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]" id="search" name="input" type="text" placeholder="Search for a game" />
                     <button class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-r-lg hover:bg-[#ebf1ff] transition duration-300">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -16,7 +16,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 {% for game in games.results %}
-                    <div class="bg-[#97b4e0] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
+                    <div class="bg-[#0C1D36] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
                         <div class="p-5">
                             <h3 class="font-bold text-xl text-[#ECC33E] min-h-[56px] content-center text-center">{{ game.name }}</h3>
                         </div>

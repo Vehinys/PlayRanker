@@ -3,7 +3,7 @@
 {% block title %} My Profile {% endblock %}
 
 {% block body %}
-<div class="min-h-screen bg-[#09172b] py-8">
+<div class="min-h-screen bg-[#ebf1ff] py-8">
     <div class="container mx-auto p-4">
         <!-- User Profile Section -->
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="flex justify-center mt-6 space-x-4">
-                        <a href="{{ path('edit_profile') }}" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                        <a href="{{ path('edit_profile') }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                             Edit
                         </a>
                         <form action="{{ path('delete_profile') }}" method="post">
@@ -62,20 +62,43 @@
                 {% for type in types %}
                     <div class="bg-[#0C1D36] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
                         <h2 class="text-3xl text-center mb-4">{{ type.name }}</h2>
+
                         {% set filteredGames = gamesLists|filter(g => g.type.id == type.id) %}
+
                         {% if filteredGames|length == 0 %}
+
                             <p class="text-white text-center">No games available for this type.</p>
+
                         {% else %}
+
                             <ul class="space-y-2">
+
                                 {% for gamesList in filteredGames %}
+
+                                {% if gamesList.game is not null %}
+
                                     <li class="text-center">
+
                                         <a href="#" class="text-white hover:text-[#ECC33E] transition duration-300 ease-in-out">
+
                                             {{ gamesList.game.name }}
+
                                         </a>
+
                                     </li>
-                                {% endfor %}
+
+                                {% else %}
+
+                                    <li class="text-center text-gray-400">Game not available</li>
+
+                                {% endif %}
+
+                            {% endfor %}
+
                             </ul>
+
                         {% endif %}
+                        
                         <div class="text-center mt-4">
                             <a href="{{ path('jeux') }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                 Search Game

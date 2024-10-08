@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\GamesListRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GamesListRepository::class)]

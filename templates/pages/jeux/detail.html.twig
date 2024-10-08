@@ -3,10 +3,10 @@
 {% block title %} {{ gameDetail.name }} {% endblock %}
 
 {% block body %}
-<div class="bg-[#09172b] text-white min-h-screen py-10">
+<div class="bg-[#ebf1ff] text-white min-h-screen py-10">
     <section class="container mx-auto px-4">
         <div class="relative rounded-lg overflow-hidden shadow-xl">
-            <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-96 object-cover">
+            <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-[500px] object-cover">
             <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center p-8">
                 <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">{{ gameDetail.name }}</h1>
                 
@@ -103,10 +103,10 @@
         </div>
 
         <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Trailers</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2">
             {% for trailer in gameAnnonce.results|slice(0, 2) %}
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-full h-full"></iframe>
+                <div class="">
+                    <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-2/5 h-full"></iframe>
                 </div>
             {% endfor %}
         </div>

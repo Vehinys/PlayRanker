@@ -3,9 +3,9 @@
 {% block title %}PlayRanker Forum - Posts{% endblock %}
 
 {% block body %}
-    <div class='bg-[#0C1D36] min-h-screen'>
+    <div class='bg-[#ebf1ff] min-h-screen'>
     <div class='container mx-auto p-8'>
-        <h1 class='text-6xl font-bold text-center text-white mb-12'>PlayRanker Forum</h1>
+        <h1 class='text-6xl font-bold text-center text-[#0C1D36] mb-12'>PlayRanker Forum</h1>
         
         <div class='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
         <section class="w-full md:w-1/4">
@@ -23,7 +23,7 @@
 
         <section class="w-full md:w-3/4">
             <div class="mb-7 flex justify-between items-center">
-            <h2 class="text-3xl font-semibold text-white"> Titre : {{ topic.title }}</h2>
+            <h2 class="text-3xl font-semibold text-[#0C1D36]"> Titre : {{ topic.title }}</h2>
             <a href="{{ path('new_post', { topicId: topic.id, categoryId: category.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">
                 NEW POST
             </a>
