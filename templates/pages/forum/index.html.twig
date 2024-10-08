@@ -35,7 +35,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {# Loop through topics #}
                 {% for topic in topics %}
-                <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
+                <div class="bg-[#0C1D36] border flex flex-col justify-between border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
                     <div class="flex items-center justify-between mb-4">
                     <h3 class="font-bold text-xl text-[#ECC33E]">{{ topic.categoryForum.name }}: {{ topic.title }}</h3>
                     </div>
