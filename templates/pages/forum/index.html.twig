@@ -2,61 +2,62 @@
 {% extends 'base.html.twig' %}
 
 {# Sets the page title #}
-{% block title %}PlayRanker Forum{% endblock %}
+{% block title %} PlayRanker Forum {% endblock %}
 
     {# Main content block #}
-    {% block body %}
-    <div class='bg-[#ebf1ff] min-h-screen'>
-    <div class='container mx-auto p-8'>
-        {# Page title #}
-        <h1 class='text-6xl font-bold text-center text-[#0C1D36] mb-12'>PlayRanker Forum</h1>
-    
-        <div class='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
-        {# Categories section #}
-        <section class="w-full md:w-1/4">
-            <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6">
-            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-4">Categories</h2>
-            {# Loop through categories #}
-            {% for category in categories %}
-                <div class='mb-2'>
-                <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}" class="text-lg font-bold text-[#ebf1ff] hover:text-[#ECC33E] hover:text-xl transition duration-300">
-                    {{ category.name|upper }}
-                </a>
-                </div>
-            {% endfor %}
-            </div>
-        </section>
+{% block body %}
 
-        {# Latest Topics section #}
-        <section class="w-full md:w-3/4">
-            <div>
-            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Latest Topics</h2>
-            {# Grid with two columns for latest topics #}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {# Loop through topics #}
-                {% for topic in topics %}
-                <div class="bg-[#0C1D36] border flex flex-col justify-between border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
-                    <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-bold text-xl text-[#ECC33E]">{{ topic.categoryForum.name }}: {{ topic.title }}</h3>
+    <div class='bg-[#ebf1ff] min-h-screen'>
+        <div class='container mx-auto p-8'>
+            {# Page title #}
+            <h1 class='text-6xl font-bold text-center text-[#0C1D36] mb-12'>PlayRanker Forum</h1>
+        
+            <div class='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
+            {# Categories section #}
+                <section class="w-full md:w-1/4">
+                    <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6">
+                    <h2 class="text-3xl font-semibold text-[#ECC33E] mb-4">Categories</h2>
+                    {# Loop through categories #}
+                    {% for category in categories %}
+                        <div class='mb-2'>
+                        <a href="{{ path('topic', { categoryId: category.id, id: category.id }) }}" class="text-lg font-bold text-[#ebf1ff] hover:text-[#ECC33E] hover:text-xl transition duration-300">
+                            {{ category.name|upper }}
+                        </a>
+                        </div>
+                    {% endfor %}
                     </div>
-                    {# Check if topic has posts #}
-                    {% if topic.posts is not empty %}
-                    {% set firstPost = topic.posts|first %}
-                    <p class="text-[#ebf1ff] font-semibold mb-4">{{ firstPost.content|slice(0, 150) }}...</p>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm text-[#ebf1ff]">{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>
-                        <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#09172b] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">View Post</a>
+                </section>
+
+                {# Latest Topics section #}
+                <section class="w-full md:w-3/4">
+                    <div>
+                    <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Latest Topics</h2>
+                    {# Grid with two columns for latest topics #}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {# Loop through topics #}
+                            {% for topic in topics %}
+                            <div class="bg-[#0C1D36] border flex flex-col justify-between border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="font-bold text-xl text-[#ECC33E]">{{ topic.categoryForum.name }}: {{ topic.title }}</h3>
+                                </div>
+                                {# Check if topic has posts #}
+                                {% if topic.posts is not empty %}
+                                {% set firstPost = topic.posts|first %}
+                                    <p class="text-[#ebf1ff] font-semibold mb-4">{{ firstPost.content|slice(0, 150) }}...</p>
+                                        <div class="flex justify-between items-center">
+                                            <p class="text-sm text-[#ebf1ff]">{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>
+                                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#09172b] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">View Post</a>
+                                        </div>
+                                {% else %}
+                                    <p class="text-[#ebf1ff]">No posts available for this topic.</p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    {% else %}
-                    <p class="text-[#ebf1ff]">No posts available for this topic.</p>
-                    {% endif %}
-                </div>
-                {% endfor %}
+                </section>
             </div>
-            </div>
-        </section>
         </div>
-    </div>
     </div>
 
 {% endblock %}

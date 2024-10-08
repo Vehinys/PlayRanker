@@ -58,7 +58,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, GamesList>
      */
     #[ORM\OneToMany(targetEntity: GamesList::class, mappedBy: 'user')]
-    private Collection $gamesLists; // Liste des topics associés à l'utilisateur
+    private Collection $gamesLists;
+
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $comments;
 
     // ** Constructeur **
 
@@ -68,6 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->posts = new ArrayCollection(); // Initialisation de la collection de posts
         $this->topics = new ArrayCollection(); // Initialisation de la collection de topics
         $this->gamesLists = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     // ** Getters **
@@ -254,4 +261,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

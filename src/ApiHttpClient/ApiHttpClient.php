@@ -151,17 +151,18 @@ class ApiHttpClient extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
-     * Récupère la page suivante de données de jeux depuis l'API RAWG, filtrée par le nom de sous-catégorie fourni.
+     * Récupère la page suivante de données de jeux depuis l'API RAWG, filtrée par le nom de la plateforme.
      *
-     * @param string  Le nom de la sous-catégorie pour filtrer les jeux.
+     * @param string $platformName Le nom de la plateforme pour filtrer les jeux.
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
-
+    
         public function findByPlatform($platformName)
         {
-            $response = $this->httpClient->request('GET', $this->url.$this->key.'&genres='.$platformName);
+            $response = $this->httpClient->request('GET', $this->url.$this->key.'&platforms='.$platformName);
             return $response->toArray();
         }
+
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 

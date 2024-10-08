@@ -3,118 +3,124 @@
 {% block title %} {{ gameDetail.name }} {% endblock %}
 
 {% block body %}
-<div class="bg-[#ebf1ff] text-white min-h-screen py-10">
-    <section class="container mx-auto px-4">
-        <div class="relative rounded-lg overflow-hidden shadow-xl">
-            <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-[500px] object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center p-8">
-                <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">{{ gameDetail.name }}</h1>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
-                    {% set details = {
-                        'Release Date': gameDetail.released|date("m/d/Y"),
-                        'Publisher(s)': gameDetail.publishers|map(p => p.name)|join(', '),
-                        'Developer(s)': gameDetail.developers|map(d => d.name)|join(', '),
-                        'Genre(s)':     gameDetail.genres|map(g => g.name)|join(', '),
-                        'ESRB Rating':  gameDetail.esrb_rating.name|default('Not Rated'),
-                        'Metacritic':   gameDetail.metacritic ~ ' out of 100'
-                    } %}
 
-                    {% for label, value in details %}
-                        <div class="text-center">
-                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">{{ label }}</h3>
-                            <p>{{ value }}</p>
-                        </div>
-                    {% endfor %}
+<div>
 
-                    {% if gameDetail.metacritic_url %}
-                        <div class="text-center">
-                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Metacritic Page</h3>
-                            <a href="{{ gameDetail.metacritic_url }}" class="hover:text-[#ECC33E] transition duration-300">View on Metacritic</a>
-                        </div>
-                    {% endif %}
-
-                    {% if gameDetail.website %}
-                        <div class="text-center">
-                            <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Official Website</h3>
-                            <a href="{{ gameDetail.website }}" class="hover:text-[#ECC33E] transition duration-300">Visit Website</a>
-                        </div>
-                    {% endif %}
+    <section class="bg-[#ebf1ff] text-white min-h-screen py-10">
+        <section class="container mx-auto px-4">
+            <div class="relative rounded-lg overflow-hidden shadow-xl">
+                <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-[500px] object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center p-8">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">{{ gameDetail.name }}</h1>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+                        {% set details = {
+                            'Release Date': gameDetail.released|date("m/d/Y"),
+                            'Publisher(s)': gameDetail.publishers|map(p => p.name)|join(', '),
+                            'Developer(s)': gameDetail.developers|map(d => d.name)|join(', '),
+                            'Genre(s)':     gameDetail.genres|map(g => g.name)|join(', '),
+                            'ESRB Rating':  gameDetail.esrb_rating.name|default('Not Rated'),
+                            'Metacritic':   gameDetail.metacritic ~ ' out of 100'
+                        } %}
+    
+                        {% for label, value in details %}
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">{{ label }}</h3>
+                                <p>{{ value }}</p>
+                            </div>
+                        {% endfor %}
+    
+                        {% if gameDetail.metacritic_url %}
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Metacritic Page</h3>
+                                <a href="{{ gameDetail.metacritic_url }}" class="hover:text-[#ECC33E] transition duration-300">View on Metacritic</a>
+                            </div>
+                        {% endif %}
+    
+                        {% if gameDetail.website %}
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Official Website</h3>
+                                <a href="{{ gameDetail.website }}" class="hover:text-[#ECC33E] transition duration-300">Visit Website</a>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+    
+        <section class="container mx-auto px-4 mt-10">
+            <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
+    
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    
+                {% set platform_logos = {
+                    'PlayStation 1': 'img/ps1.png',
+                    'PlayStation 2': 'img/ps2.png',
+                    'PlayStation 3': 'img/ps3.png',
+                    'PlayStation 4': 'img/ps4.png',
+                    'PlayStation 5': 'img/ps5.png',
+                    'PS Vita':       'img/ps-vita.png',
+                    'PSP':           'img/psp.png',
+                    'PC': 'img/pc.png',
+                    'Linux': 'img/linux.png',
+                    'Web': 'img/Web.png',
+                    'macOS': 'img/macOS.png',
+                    'iOS': 'img/ios.png',
+                    'Android': 'img/Android.png',
+                    'Xbox Series S/X': 'img/Xbox Series SX.png',
+                    'Xbox 360': 'img/Xbox 360.png',
+                    'Xbox One': 'img/Xbox One.png',
+                    'Xbox': 'img/xbox.png',
+                    'Nintendo Switch': 'img/Nintendo Switch.png',
+                    'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                    'Wii U': 'img/Wii U.png',
+                    'Wii': 'img/Wii.png',
+                    'GameCube': 'img/gameCube.png',
+                    
+                    'Nintendo DSi ': 'img/Wii U.png',
+                    'Nintendo DS ': 'img/Wii U.png',
+                    'Game Boy Advance': 'img/Wii U.png',
+                    'Game Boy Color': 'img/Wii U.png',
+                    'Game Boy': 'img/Wii U.png',
+                    'Nintendo 64': 'img/Wii U.png',
+                    'SNES': 'img/Wii U.png',
+                    'Wii U': 'img/Wii U.png',
+                    'NES': 'img/Wii U.png',
+                    } %}
+    
+                {% for element in gameDetail.platforms %}
+                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
+                    {% if logo_path %}
+                        <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
+                            <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    
+            <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Tags</h3>
+            <div class="flex flex-wrap gap-2">
+                {% for tag in gameDetail.tags %}
+                    <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+    
+            <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Description</h3>
+            <div class="bg-[#0C1D36] p-6 rounded-lg">
+                <p>{{ gameDetail.description_raw|striptags|raw }}</p>
+            </div>
+        </section>
+    </section>
+        
+    <section>
+        {# {% for comment in comments %}
+        <div class="bg-[#0C1D36] border flex flex-col justify-between border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-xl text-[#ECC33E]">{{ comment.content }}</h3>
+            </div>
+        </div>        
+        {% endfor %} #}
     </section>
 
-    <section class="container mx-auto px-4 mt-10">
-        <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-
-            {% set platform_logos = {
-                'PlayStation 1': 'img/ps1.png',
-                'PlayStation 2': 'img/ps2.png',
-                'PlayStation 3': 'img/ps3.png',
-                'PlayStation 4': 'img/ps4.png',
-                'PlayStation 5': 'img/ps5.png',
-                'PS Vita':       'img/ps-vita.png',
-                'PSP':           'img/psp.png',
-                'PC': 'img/pc.png',
-                'Linux': 'img/linux.png',
-                'Web': 'img/Web.png',
-                'macOS': 'img/macOS.png',
-                'iOS': 'img/ios.png',
-                'Android': 'img/Android.png',
-                'Xbox Series S/X': 'img/Xbox Series SX.png',
-                'Xbox 360': 'img/Xbox 360.png',
-                'Xbox One': 'img/Xbox One.png',
-                'Xbox': 'img/xbox.png',
-                'Nintendo Switch': 'img/Nintendo Switch.png',
-                'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                'Wii U': 'img/Wii U.png',
-                'Wii': 'img/Wii.png',
-                'GameCube': 'img/gameCube.png',
-                
-                'Nintendo DSi ': 'img/Wii U.png',
-                'Nintendo DS ': 'img/Wii U.png',
-                'Game Boy Advance': 'img/Wii U.png',
-                'Game Boy Color': 'img/Wii U.png',
-                'Game Boy': 'img/Wii U.png',
-                'Nintendo 64': 'img/Wii U.png',
-                'SNES': 'img/Wii U.png',
-                'Wii U': 'img/Wii U.png',
-                'NES': 'img/Wii U.png',
-                } %}
-
-            {% for element in gameDetail.platforms %}
-                {% set logo_path = platform_logos[element.platform.name] ?? '' %}
-                {% if logo_path %}
-                    <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
-                        <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Tags</h3>
-        <div class="flex flex-wrap gap-2">
-            {% for tag in gameDetail.tags %}
-                <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
-            {% endfor %}
-        </div>
-
-        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Trailers</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2">
-            {% for trailer in gameAnnonce.results|slice(0, 2) %}
-                <div class="">
-                    <iframe src="{{ trailer.data.max }}" title="Video trailer" class="w-2/5 h-full"></iframe>
-                </div>
-            {% endfor %}
-        </div>
-
-        <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Description</h3>
-        <div class="bg-[#0C1D36] p-6 rounded-lg">
-            <p>{{ gameDetail.description_raw|striptags|raw }}</p>
-        </div>
-    </section>
 </div>
 {% endblock %}

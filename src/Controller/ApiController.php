@@ -63,6 +63,7 @@ class ApiController extends AbstractController
         Request $request, 
         ApiHttpClient $apiHttpClient,
         TypeRepository $typeRepository,
+        CategoryRepository $repository,
         
     ): Response {
 
@@ -70,10 +71,12 @@ class ApiController extends AbstractController
         $input = $request->get('input');
         $games = $apiHttpClient->gamesSearch($input);
         $types = $typeRepository->findAll();
+        $categories = $repository->findAll();
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'types' => $types,
+            'categories' => $categories,
 
         ]);
     }
@@ -116,22 +119,29 @@ class ApiController extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
     #[Route('/search/platform/{id}', name: 'searchByPlatform')]
-    public function searchByPlatform(
-        
+    public function findByPlatform(
+
+        int $id,
         ApiHttpClient $apiHttpClient, 
         PlatformRepository $platformRepository, 
-        CategoryRepository $categoryRepository, 
-        int $id
+        CategoryRepository $categoryRepository
         
     ): Response {
-
-        $platform = $platformRepository->find($id);
-        $games = $platform ? $apiHttpClient->findByPlatform($platform->getName()) : [];
-        $categories = $categoryRepository->findAll();
     
+        $platform = $platformRepository->find($id);
+        
+        // Vérifie si la plateforme existe, sinon renvoie un tableau vide
+        $games = $platform ? $apiHttpClient->findByPlatform($platform->getName()) : [];
+
+    
+        $categories = $categoryRepository->findAll();
+        $platforms = $platformRepository->findAll();
+        
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
-            'categories' => $categories
+            'categories' => $categories,
+            'platforms' => $platforms,
+            'platform' => $platform,
         ]);
     }
     

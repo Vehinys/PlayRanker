@@ -43,7 +43,7 @@
                     <h3 class="font-semibold text-[#ECC33E] text-center mb-4 text-3xl">My Topics</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                         {% for topic in user.topics %}
-                            <a href="#" class="bg-[#09172b] p-2 rounded-lg text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]">
+                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-2 rounded-lg content-center text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]">
                                 {{ topic.title }}
                             </a>
                         {% else %}
@@ -71,7 +71,7 @@
 
                         {% else %}
 
-                            <ul class="space-y-2">
+                            <ul class="space-y-2 grid md:grid-cols-2 lg:grid-cols-3">
 
                                 {% for gamesList in filteredGames %}
 
@@ -98,7 +98,7 @@
                             </ul>
 
                         {% endif %}
-                        
+
                         <div class="text-center mt-4">
                             <a href="{{ path('jeux') }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                 Search Game
