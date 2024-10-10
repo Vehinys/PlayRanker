@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\TypeRepository;
+use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\GameRepository;
 use App\Repository\PlatformRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,17 +88,31 @@ class ApiController extends AbstractController
 
 
     #[Route('/jeux/{id}', name: 'detail_jeu')]
-    public function detailJeu(ApiHttpClient $apiHttpClient, string $id): Response
-    {
+    public function detailJeu(
+        string $id,
+        ApiHttpClient $apiHttpClient,
+        CommentRepository $commentRepository,
+        GameRepository $gameRepository
+    ): Response {
+        // Récupérer les détails du jeu depuis l'API
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
-
+    
+        // Récupérer l'entité Game correspondante dans la base de données en fonction de id_game_api
+        $game = $gameRepository->findOneBy(['id_game_api' => $id]);
+    
+        // Récupérer les commentaires liés à ce jeu
+        $comments = $commentRepository->findBy(['game' => $game]);
+    
         return $this->render('pages/jeux/detail.html.twig', [
             'gameDetail' => $gameDetail,
-            'gameAnnonce' => $gameAnnonce
+            'gameAnnonce' => $gameAnnonce,
+            'gameId' => $id,
+            'comments' => $comments
         ]);
     }
-
+    
+    
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/jeux/page/{page}', name: 'jeux_page')]

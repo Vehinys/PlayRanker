@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Comment{% endblock %}
+
+{% block body %}
+    <h1>Edit Comment</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Update') }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('comment_index', {'gameId': comment.game.id}) }}">back to list</a>
+
+{% endblock %}

@@ -3,10 +3,8 @@
 {% block title %} {{ gameDetail.name }} {% endblock %}
 
 {% block body %}
-
 <div>
-
-    <section class="bg-[#ebf1ff] text-white min-h-screen py-10">
+    <section class="bg-[#ebf1ff] text-white min-h-screen py-10 flex-1">
         <section class="container mx-auto px-4">
             <div class="relative rounded-lg overflow-hidden shadow-xl">
                 <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-[500px] object-cover">
@@ -22,21 +20,21 @@
                             'ESRB Rating':  gameDetail.esrb_rating.name|default('Not Rated'),
                             'Metacritic':   gameDetail.metacritic ~ ' out of 100'
                         } %}
-    
+
                         {% for label, value in details %}
                             <div class="text-center">
                                 <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">{{ label }}</h3>
                                 <p>{{ value }}</p>
                             </div>
                         {% endfor %}
-    
+
                         {% if gameDetail.metacritic_url %}
                             <div class="text-center">
                                 <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Metacritic Page</h3>
                                 <a href="{{ gameDetail.metacritic_url }}" class="hover:text-[#ECC33E] transition duration-300">View on Metacritic</a>
                             </div>
                         {% endif %}
-    
+
                         {% if gameDetail.website %}
                             <div class="text-center">
                                 <h3 class="text-xl font-semibold text-[#ECC33E] mb-2">Official Website</h3>
@@ -50,9 +48,9 @@
     
         <section class="container mx-auto px-4 mt-10">
             <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
-    
+
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-    
+
                 {% set platform_logos = {
                     'PlayStation 1': 'img/ps1.png',
                     'PlayStation 2': 'img/ps2.png',
@@ -86,8 +84,8 @@
                     'SNES': 'img/Wii U.png',
                     'Wii U': 'img/Wii U.png',
                     'NES': 'img/Wii U.png',
-                    } %}
-    
+                } %}
+
                 {% for element in gameDetail.platforms %}
                     {% set logo_path = platform_logos[element.platform.name] ?? '' %}
                     {% if logo_path %}
@@ -97,29 +95,44 @@
                     {% endif %}
                 {% endfor %}
             </div>
-    
+
             <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Tags</h3>
             <div class="flex flex-wrap gap-2">
                 {% for tag in gameDetail.tags %}
                     <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
                 {% endfor %}
             </div>
-    
+
             <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Description</h3>
             <div class="bg-[#0C1D36] p-6 rounded-lg">
                 <p>{{ gameDetail.description_raw|striptags|raw }}</p>
             </div>
         </section>
     </section>
-        
-    <section>
-        {# {% for comment in comments %}
-        <div class="bg-[#0C1D36] border flex flex-col justify-between border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-bold text-xl text-[#ECC33E]">{{ comment.content }}</h3>
+
+    <section class="bg-[#ebf1ff] text-white mx-auto py-10 w-2/4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-4xl font-bold mb-8 text-center text-[#ECC33E]">Comments for {{ gameDetail.name }}</h1>
+
+            <div class="flex justify-center mb-8">
+                <a href="{{ path('comment_new', {'gameId': gameId}) }}" class="text-[#ECC33E] hover:text-white transition duration-300">New</a>
             </div>
-        </div>        
-        {% endfor %} #}
+
+            <div class="space-y-6">
+                {% for comment in comments %}
+                    <div class="bg-[#0C1D36] rounded-lg overflow-hidden shadow-xl">
+                        <div class="p-6">
+                            <p class="text-white mb-4">{{ comment.content }}</p>
+                            <div class="flex space-x-4">
+                                <a href="{{ path('comment_edit', {'id': comment.id, 'gameId': comment.game.id}) }}" class="text-[#ECC33E] hover:text-white transition duration-300">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-[#0C1D36] italic text-center">No comments found</p>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 
 </div>
