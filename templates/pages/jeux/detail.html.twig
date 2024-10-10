@@ -110,30 +110,26 @@
         </section>
     </section>
 
-    <section class="bg-[#ebf1ff] text-white mx-auto py-10 w-2/4">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-4xl font-bold mb-8 text-center text-[#ECC33E]">Comments for {{ gameDetail.name }}</h1>
+    <section class=" w-2/3 mx-auto"  >
 
-            <div class="flex justify-center mb-8">
-                <a href="{{ path('comment_new', {'gameId': gameId}) }}" class="text-[#ECC33E] hover:text-white transition duration-300">New</a>
-            </div>
+    <h1 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Commentaires</h1>
 
-            <div class="space-y-6">
-                {% for comment in comments %}
-                    <div class="bg-[#0C1D36] rounded-lg overflow-hidden shadow-xl">
-                        <div class="p-6">
-                            <p class="text-white mb-4">{{ comment.content }}</p>
-                            <div class="flex space-x-4">
-                                <a href="{{ path('comment_edit', {'id': comment.id, 'gameId': comment.game.id}) }}" class="text-[#ECC33E] hover:text-white transition duration-300">Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <p class="text-[#0C1D36] italic text-center">No comments found</p>
-                {% endfor %}
+    {% for comment in comments %}
+        <div class="comment bg-[#0C1D36] p-6 rounded-lg mb-4">
+            <p class="text-white">{{ comment.content }}</p>
+            <div class="mt-4 flex space-x-2">
+                <p class="text-white">{{ comment.user.pseudo }}</p>
+                <p class="text-gray-400">{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="text-blue-500 hover:underline">edit</a>
+
+                <form method="post" action="{{ path('comment_delete', {'id': comment.id}) }}" style="display:inline-block;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                    <button class="text-red-500 hover:underline">delete</button>
+                </form>
             </div>
         </div>
-    </section>
+    {% endfor %}
+    <section>
 
 </div>
 {% endblock %}

@@ -16,16 +16,19 @@
 
 
             <section class="flex justify-center mb-10 gap-5">
-
-                <div> 
+                <div>
                     <div class="relative">
-
-                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 flex items-center cursor-pointer" onclick="toggleCategoriesDropdown()"> Platforms </h2>
+                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 flex items-center cursor-pointer" onclick="toggleCategoriesDropdown()">
+                            Platforms
+                        </h2>
+                        
                         <div id="categories-dropdown" class="hidden bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md">
                             {% for category in categories %}
                                 <div class="relative">
-                                    <button type="button" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" class="block w-full text-left bg-[#09172b] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300">{{ category.name }}</button>
-    
+                                    <button type="button" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" class="block w-full text-left bg-[#09172b] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300">
+                                        {{ category.name }}
+                                    </button>
+
                                     <!-- Dropdown pour afficher les plateformes de la catégorie -->
                                     <div id="dropdown-menu-{{ category.id }}" class="hidden mt-2 bg-[#09172b] pl-10 shadow-lg rounded-md">
                                         {% for platform in category.platforms %}
@@ -39,23 +42,36 @@
                         </div>
                     </div>
                 </div>
-                
-                <script>
-                    function toggleDropdown(dropdownId) {
-                        // Ferme tous les dropdowns avant d'ouvrir le bon
-                        document.querySelectorAll('.dropdown-content').forEach(function(dropdown) {
+            </section>
+
+            <script>
+                function toggleDropdown(dropdownId) {
+                    // Ferme tous les dropdowns avant d'ouvrir le bon
+                    document.querySelectorAll('.dropdown-content').forEach(function(dropdown) {
+                        dropdown.classList.add('hidden');
+                    });
+
+                    // Affiche ou cache le dropdown de la catégorie sélectionnée
+                    const dropdown = document.getElementById(dropdownId);
+                    dropdown.classList.toggle('hidden');
+                }
+
+                function toggleCategoriesDropdown() {
+                    const dropdown = document.getElementById('categories-dropdown');
+                    dropdown.classList.toggle('hidden');
+                }
+
+                // Fermer le dropdown si l'utilisateur clique en dehors
+                window.onclick = function(event) {
+                    if (!event.target.matches('.flex h2')) {
+                        const dropdowns = document.querySelectorAll('.hidden');
+                        dropdowns.forEach(function(dropdown) {
                             dropdown.classList.add('hidden');
                         });
-                        
-                        // Affiche ou cache le dropdown de la catégorie sélectionnée
-                        const dropdown = document.getElementById(dropdownId);
-                        dropdown.classList.toggle('hidden');
                     }
-                </script>
-            </section>
-            
-            
-            
+                }
+            </script>
+
 
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 {% for game in games.results %}

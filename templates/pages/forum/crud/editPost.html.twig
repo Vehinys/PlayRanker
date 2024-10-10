@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PlayRanker Forum - Edit Post{% endblock %}
+{% block title %}PlayRanker Forum - Edit Comment{% endblock %}
 
 {% block body %}
 <div class="bg-[#ebf1ff] min-h-screen flex items-center justify-center">
     <div class="bg-[#09172b] border border-[#ECC33E] rounded-lg p-8 max-w-2xl w-full">
-        <h1 class="text-3xl font-bold text-[#ECC33E] mb-6 text-center">Edit Post</h1>
+        <h1 class="text-3xl font-bold text-[#ECC33E] mb-6 text-center">Edit Comment</h1>
         
         {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
         
         <div class="space-y-4">
-            {{ form_widget(form, {'attr': {'class': 'w-full p-3 rounded bg-[#0C1D36] text-[#09172b] border border-[#ECC33E] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]'}}) }}
+            {{ form_widget(form, {'attr': {'class': 'w-full p-3 rounded bg-[#0C1D36] text-white border border-[#ECC33E] focus:outline-none focus:ring-2 focus:ring-[#ECC33E]'}}) }}
         </div>
         
         <button type="submit" class="w-full bg-[#ECC33E] text-[#0C1D36] font-bold py-3 rounded hover:bg-[#ebf1ff] transition duration-300">
-            Update
+            Save changes
         </button>
         
         {{ form_end(form) }}

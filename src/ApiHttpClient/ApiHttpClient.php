@@ -142,28 +142,30 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-        public function searchByConsole($id)
-        {
-            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&platforms='.$id.'');
-            return $response->toArray();
+    
+        public function searchByConsole(string $id): array {
+            // Ajoutez des logs pour vérifier les paramètres
+            error_log("Recherche de jeux pour la console ID: " . $id);
+        
+            // Effectuez la requête à l'API avec l'URL complète
+            $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?platforms=' . $id . '&key=c2caa004df8a4f65b23177fa9ca935f9');
+        
+            // Vérifiez les résultats de l'API
+            $data = $response->toArray();
+            error_log("Résultats de l'API: " . json_encode($data));
+        
+            return $data;
         }
+        
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    /**
-     * Récupère la page suivante de données de jeux depuis l'API RAWG, filtrée par le nom de la plateforme.
-     *
-     * @param string $platformName Le nom de la plateforme pour filtrer les jeux.
-     * @return array Les données de réponse de l'API RAWG sous forme de tableau.
-     */
-    
-        public function findByPlatform($platformName)
+        public function gamesByCategory($categoryId)
         {
-            $response = $this->httpClient->request('GET', $this->url.$this->key.'&platforms='.$platformName);
+            $response = $this->httpClient->request('GET', $this->url . $this->key . '&genres=' . $categoryId);
             return $response->toArray();
         }
-
-
+    
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 }

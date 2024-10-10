@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use DateTimeImmutable;
 use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,14 +15,10 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'label' => 'Comment',
+                'label' => 'Commentaire',
             ])
-
-            ->add('created_at', DateTimeType::class, [
-                'widget' => 'single_text',
-                'input' => 'datetime_immutable',
-                'data' => new DateTimeImmutable(),
-            ]);
+            
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

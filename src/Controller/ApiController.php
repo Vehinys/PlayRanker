@@ -21,40 +21,24 @@ class ApiController extends AbstractController
 
     #[Route('/jeux', name: 'jeux')]
     public function index(
-        
+
         Request $request,
         ApiHttpClient $apiHttpClient, 
-        CategoryRepository $repository,
+        CategoryRepository $categoryRepository,
         TypeRepository $typeRepository,
 
     ): Response {
 
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
-        $categories = $repository->findAll();
+        $categories = $categoryRepository->findAll();
         $types = $typeRepository->findAll();
-
+    
         return $this->render('pages/jeux/index.html.twig', [
             'types' => $types,
             'games' => $games,
             'currentPage' => $page,
             'categories' => $categories,
-        ]);
-    }
-
-    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-    #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
-    public function searchByConsole(ApiHttpClient $apiHttpClient, string $id): Response
-    {   
-        $token = 'platform';
-
-        $searchByConsole = $apiHttpClient->searchByConsole($id);
-        $games = $searchByConsole;
-
-        return $this->render('pages/jeux/index.html.twig', [
-            'games' => $games,
-            'token' => $token
         ]);
     }
 
@@ -89,11 +73,14 @@ class ApiController extends AbstractController
 
     #[Route('/jeux/{id}', name: 'detail_jeu')]
     public function detailJeu(
+
         string $id,
         ApiHttpClient $apiHttpClient,
         CommentRepository $commentRepository,
         GameRepository $gameRepository
+
     ): Response {
+
         // Récupérer les détails du jeu depuis l'API
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
@@ -135,33 +122,25 @@ class ApiController extends AbstractController
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
     
-    #[Route('/search/platform/{id}', name: 'searchByPlatform')]
-    public function findByPlatform(
-
-        int $id,
-        ApiHttpClient $apiHttpClient, 
-        PlatformRepository $platformRepository, 
+    #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
+    public function searchByConsole(
+        string $id,
+        ApiHttpClient $apiHttpClient,
         CategoryRepository $categoryRepository
-        
-    ): Response {
-    
-        $platform = $platformRepository->find($id);
-        
-        // Vérifie si la plateforme existe, sinon renvoie un tableau vide
-        $games = $platform ? $apiHttpClient->findByPlatform($platform->getName()) : [];
-
-    
+    ): Response {  
+        $token = 'platform';
+        $searchByConsole = $apiHttpClient->searchByConsole($id);
+        $games = $searchByConsole;
         $categories = $categoryRepository->findAll();
-        $platforms = $platformRepository->findAll();
-        
+    
+        if (empty($games['results'])) {
+            $this->addFlash('notice', 'No games found for this platform.');
+        }
+    
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
-            'categories' => $categories,
-            'platforms' => $platforms,
-            'platform' => $platform,
+            'token' => $token,
+            'categories' => $categories
         ]);
     }
-    
-    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
 }
