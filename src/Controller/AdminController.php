@@ -13,7 +13,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
@@ -33,7 +32,6 @@ class AdminController extends AbstractController
      */
 
         #[Route('/admin', name: 'admin')]
-        #[IsGranted('ROLE_ADMIN')]
         public function index(
 
             CategoryRepository $categoryRepository, 
@@ -46,13 +44,17 @@ class AdminController extends AbstractController
             $categories = $categoryRepository->findAll();
             $platforms = $PlatformRepository->findAll();
             $types = $typeRepository->findAll();
-        
-            // Rendu de la vue avec les données récupérées
-            return $this->render('admin/index.html.twig', [
-                'categories' => $categories,
-                'platforms' => $platforms,
-                'types' => $types,
-            ]);
+
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->render('admin/index.html.twig', [
+                    'categories' => $categories,
+                    'platforms' => $platforms,
+                    'types' => $types,
+                ]);
+            }
+            
+            return $this->redirectToRoute('home');
+           
         }
 
     // ---------------------------------------------------------- //
