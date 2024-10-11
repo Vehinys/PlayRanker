@@ -114,6 +114,8 @@
 
     <h1 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Commentaires</h1>
 
+    {# <a href="{{ path('comment_new', {'id': games.id}) }}" class="bg-[#0C1D36] mr-3 hover:bg-[#09172b] text-white text-2xl font-bold py-1 px-2 rounded">Add a comment</a> #}
+
     {% for comment in comments %}
         <div class="comment bg-[#0C1D36] p-6 rounded-lg mb-4">
             <p class="text-white">{{ comment.content }}</p>

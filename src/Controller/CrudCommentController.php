@@ -4,26 +4,44 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Form\CommentType;
+use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CrudCommentController extends AbstractController
 {
-    #[Route('/new', name: 'comment_new', methods: ['GET', 'POST'])]
+    #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
-        
+
+        int $id, 
         Request $request, 
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager, 
+        GameRepository $gameRepository
         
     ): Response {
-
+    
+        // Récupérer le jeu à partir de son ID
+        $games = $gameRepository->find($id);
+        if (!$games) {
+            throw $this->createNotFoundException('Game not found');
+        }
+    
+        $user = $this->getUser();
+    
+        if (!$user) {
+            return $this->redirectToRoute('login');
+        }
+    
+        // Créer un nouveau commentaire
         $comments = new Comment();
         $form = $this->createForm(CommentType::class, $comments);
         $form->handleRequest($request);
-
+        $comments->setUser($user);
+        $comments->setGame($games); // Associer le commentaire au jeu
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $comments->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($comments);
@@ -31,12 +49,13 @@ class CrudCommentController extends AbstractController
         
             return $this->redirectToRoute('jeux');
         }
-
+    
         return $this->render('pages/jeux/crudComment/newComment.html.twig', [
             'comments' => $comments,
             'form' => $form->createView(),
         ]);
     }
+    
 
     // ----------------------------------------------------------------------------------- //
 
