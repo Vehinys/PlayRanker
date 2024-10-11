@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Game;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\TypeRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\GameRepository;
-use App\Repository\PlatformRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

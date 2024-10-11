@@ -19,24 +19,26 @@ class CrudCommentController extends AbstractController
         EntityManagerInterface $entityManager
         
     ): Response {
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
+
+        $comments = new Comment();
+        $form = $this->createForm(CommentType::class, $comments);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setCreatedAt(new \DateTimeImmutable());
-            $entityManager->persist($comment);
+            $comments->setCreatedAt(new \DateTimeImmutable());
+            $entityManager->persist($comments);
             $entityManager->flush();
         
-            // Assuming $comment has a relationship to a Game entity
             return $this->redirectToRoute('jeux');
         }
 
         return $this->render('pages/jeux/crudComment/newComment.html.twig', [
-            'comment' => $comment,
+            'comments' => $comments,
             'form' => $form->createView(),
         ]);
     }
+
+    // ----------------------------------------------------------------------------------- //
 
     #[Route('/{id}/edit', name: 'comment_edit', methods: ['GET', 'POST'])]
     public function edit(
@@ -53,7 +55,6 @@ class CrudCommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
         
-            // Redirect to the detail of the associated game
             return $this->redirectToRoute('jeux');
         }
 
@@ -63,14 +64,21 @@ class CrudCommentController extends AbstractController
         ]);
     }
 
+    // ----------------------------------------------------------------------------------- //
+
     #[Route('/{id}', name: 'comment_delete', methods: ['POST'])]
-    public function delete(Request $request, Comment $comment, EntityManagerInterface $entityManager): Response
-    {
+    public function delete(
+        
+    Request $request, 
+    Comment $comment, 
+    EntityManagerInterface $entityManager
+    
+    ): Response {
+
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
             $entityManager->remove($comment);
             $entityManager->flush();
         
-            // Redirect to the detail of the associated game
             return $this->redirectToRoute('jeux');
         }
     }
