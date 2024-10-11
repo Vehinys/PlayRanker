@@ -75,7 +75,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 {% for game in games.results %}
-                    <div class="bg-[#0C1D36] border border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
+                    <div class="bg-[#0C1D36] border hover:scale-105 border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
                         <div class="p-5">
                             <h3 class="font-bold text-xl text-[#ECC33E] min-h-[56px] content-center text-center">{{ game.name }}</h3>
                         </div>
@@ -132,8 +132,11 @@
                                 {% endfor %}
                             </div>
 
-                            <div class="flex justify-between">
-                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#09172b] hover:text-white transition duration-300">Detail</a>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] px-8 py-2 rounded-lg hover:bg-[#09172b] hover:text-white transition duration-300">Detail</a>
+
+
+                                {% if app.user %}
 
                                 <div class="relative">
                                     <button type="button" onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 flex items-center">Add to your lists
@@ -142,13 +145,15 @@
                                         </svg>
                                     </button>
 
-                                    <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mb-2 w-56 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-20">
+                                    <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mr-2 mb-2 w-56 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-20">
                                         <a href="{{ path('addFavorite', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Favorites</a>
                                         <a href="{{ path('addAlreadyPlayed', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Already played</a>
                                         <a href="{{ path('addMyDesires', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My desires</a>
                                         <a href="{{ path('addGoTest', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Go test</a>
                                     </div>
                                 </div>
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>

@@ -211,6 +211,8 @@
   line-height: normal;
 }
 
+/*                       Review                       */
+
 .review-section {
   position: relative;
   overflow: hidden;
@@ -222,7 +224,7 @@
 .review-container {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 300%;
+  width: 500%;
 }
 
 .review-content {
@@ -236,6 +238,7 @@
   display: flex;
   align-items: center;
   margin: 70px;
+  justify-content: center;
 }
 
 .review-text h2 {
@@ -253,12 +256,11 @@
 .review-text {
   margin: 10px;
   width: 70%;
-  ;
 }
 
 .review-text p {
-  font-size: 1em;
-  line-height: 1.5;
+  font-size: 1.5em;
+  line-height: 1.3em;
   margin-bottom: 10px;
   text-align: justify;
 }
@@ -282,14 +284,19 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 15px 0;
-  font-size: 20px;
+  margin: 25px 0 15px 0;
+  font-size: 10px;
+}
+
+.review-container-text a {
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .review-container-text p a {
   color: var(--color-yellow);
   font-weight: 600;
-  font-size: 1em;
+  font-size: 20px;
 }
 
 .precedent, .suivant {
@@ -318,6 +325,8 @@
   background-color: var(--color-yellow);
   color: var(--color-dark);
 }
+
+/*                       Review                       */
 
 .contact-section {
   padding: 40px 20px 70px;

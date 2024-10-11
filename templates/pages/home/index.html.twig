@@ -102,47 +102,27 @@
 
     <section class="review-section">
       <div class="review-container">
-
-        <div class="review-content">
-          <img src="https://i.ytimg.com/vi/ANu6ZedIfA4/maxresdefault.jpg" alt="Review Image" class="review-image">
-          <div class="review-text">
-            <h2>Call of Duty: Vanguard</h2>
-            <p>"Call of Duty: Vanguard" brings fast-paced action and stunning visuals, though the campaign lacks emotional depth. The multiplayer shines with diverse modes and the new "Champion Hill" feature, offering a fresh twist to the gameplay. A solid but not groundbreaking entry in the series.</p>
-            <div class="review-container-text">
-              <div class="bouton-review"><a href="#">Read more</a></div>
-              <p>De<a href="#">Dylan</a> Le 20/09/2023</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-content">
-          <img src="https://i.ytimg.com/vi/ANu6ZedIfA4/maxresdefault.jpg" alt="Review Image" class="review-image">
-          <div class="review-text">
-            <h2>Call of Duty: Vanguard</h2>
-            <p>"Call of Duty: Vanguard" brings fast-paced action and stunning visuals, though the campaign lacks emotional depth. The multiplayer shines with diverse modes and the new "Champion Hill" feature, offering a fresh twist to the gameplay. A solid but not groundbreaking entry in the series.</p>
-            <div class="review-container-text">
-              <div class="bouton-review"><a href="#">Read more</a></div>
-              <p>De<a href="#">Dylan</a> Le 20/09/2023</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-content">
-          <img src="https://i.ytimg.com/vi/ANu6ZedIfA4/maxresdefault.jpg" alt="Review Image" class="review-image">
-          <div class="review-text">
-            <h2>Call of Duty: Vanguard</h2>
-            <p>"Call of Duty: Vanguard" brings fast-paced action and stunning visuals, though the campaign lacks emotional depth. The multiplayer shines with diverse modes and the new "Champion Hill" feature, offering a fresh twist to the gameplay. A solid but not groundbreaking entry in the series.</p>
-            <div class="review-container-text">
-              <div class="bouton-review"><a href="#">Read more</a></div>
-              <p>De<a href="#">Dylan</a> Le 20/09/2023</p>
-            </div>
-          </div>
-        </div>
+          {% for comment in comments %}
+              <div class="review-content">
+                  <div class="review-text">
+                      <h2>{{ comment.game.name }}</h2>
+                      <p>{{ comment.content }}</p>
+                      <div class="review-container-text">
+                          <div class="bouton-review">
+                              <a href="{{ path('detail_jeu', { id: comment.game.idGameApi }) }}">Read more</a>
+                          </div>
+                          <p>De <a href="#">{{ comment.user.pseudo }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
+                      </div>
+                  </div>
+              </div>
+          {% else %}
+              <p>Aucun commentaire récent.</p>
+          {% endfor %}
       </div>
-
       <button class="precedent">←</button>
       <button class="suivant">→</button>
-    </section>
+  </section>
+    
 
     <!-- ------------------------------------------------------ -->
     <!-- ------------------- Séparateur ----------------------- -->

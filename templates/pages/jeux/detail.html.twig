@@ -122,12 +122,17 @@
             <div class="mt-4 flex space-x-2">
                 <p class="text-white">{{ comment.user.pseudo }}</p>
                 <p class="text-gray-400">{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+
+                {% if app.user and (app.user.id == comment.user.id or is_granted('ROLE_ADMIN')) %}
+
                 <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="text-blue-500 hover:underline">edit</a>
 
                 <form method="post" action="{{ path('comment_delete', {'id': comment.id}) }}" style="display:inline-block;">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
                     <button class="text-red-500 hover:underline">delete</button>
                 </form>
+                {% endif %}
+
             </div>
         </div>
     {% endfor %}

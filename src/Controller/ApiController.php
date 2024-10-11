@@ -106,15 +106,19 @@ class ApiController extends AbstractController
         int $page,
         ApiHttpClient $apiHttpClient, 
         TypeRepository $typeRepository,
+        CategoryRepository $categoryRepository
         
     ): Response {
+
         $games = $apiHttpClient->nextPage($page);
         $types = $typeRepository->findAll();
+        $categories = $categoryRepository->findAll();
 
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'currentPage' => $page,
             'types' => $types,
+            'categories' => $categories
         ]);
     }
 
@@ -122,10 +126,13 @@ class ApiController extends AbstractController
     
     #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
     public function searchByConsole(
+
         string $id,
         ApiHttpClient $apiHttpClient,
         CategoryRepository $categoryRepository
+
     ): Response {  
+
         $token = 'platform';
         $searchByConsole = $apiHttpClient->searchByConsole($id);
         $games = $searchByConsole;

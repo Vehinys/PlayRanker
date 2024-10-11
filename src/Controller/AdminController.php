@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Form\CategoryType;
 use App\Entity\Platform;
+use App\Form\CategoryType;
 use App\Form\PlatformType;
+use App\Repository\TypeRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\PlatformRepository;
-use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
@@ -32,6 +33,7 @@ class AdminController extends AbstractController
      */
 
         #[Route('/admin', name: 'admin')]
+        #[IsGranted('ROLE_ADMIN')]
         public function index(
 
             CategoryRepository $categoryRepository, 
