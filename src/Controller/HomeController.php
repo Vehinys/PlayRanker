@@ -2,37 +2,46 @@
 
 namespace App\Controller;
 
-use App\Repository\CommentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Repository\CommentRepository; // Ajoutez cette ligne
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    // ---------------------------------------------------------- //
-    // Affiche la page d'accueil
-    // ---------------------------------------------------------- //
-    
     #[Route('/accueil', name: 'home')]
     public function home(
 
-        CommentRepository $commentRepository
+        Request $request, 
+        EntityManagerInterface $entityManager,
+        CommentRepository $commentRepository 
 
     ): Response {
 
-        $comments = $commentRepository->findBy([], ['createdAt' => 'DESC'], 5);
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
 
-
+        // Récupérer les commentaires
+        $comments = $commentRepository->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($contact);
+            $entityManager->flush();
+    
+            $this->addFlash('success', 'Votre message a été envoyé avec succès !');
+            return $this->redirectToRoute('home');
+        }
+    
         return $this->render('pages/home/index.html.twig', [
-            'comments' => $comments,
-
+            'form' => $form->createView(),
+            'comments' => $comments 
         ]);
     }
 
-    // ---------------------------------------------------------- //
-    // Redirige vers la page d'accueil
-    // ---------------------------------------------------------- //
-    
     #[Route('/', name: 'index')]
     public function index(): Response
     {

@@ -39,10 +39,17 @@
                         <p class="text-sm text-[#ebf1ff]">By {{ topic.user.pseudo }} - {{ topic.createdAt | date('d/m/Y H:i') }}</p>
                         
                         {% if app.user and (app.user.id == topic.user.id or is_granted('ROLE_ADMIN')) %}
+
+                            <!-- Formulaire pour verrouiller le sujet -->
+                            <form action="{{ path('lock_topic') }}" method="post">
+                                <input type="hidden" name="topic_id" value="{{ topic.id }}">
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                    Lock
+                                </button>
+                            </form>
+
                             <div class="flex space-x-2">
-                            <a href="{{ path('topic_edit', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] px-3 py-1 rounded hover:bg-[#ebf1ff] transition duration-300">
-                                Edit
-                            </a>
+                            <a href="{{ path('topic_edit', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] px-3 py-1 rounded hover:bg-[#ebf1ff] transition duration-300"> Edit </a>
                             <form action="{{ path('topic_delete', { id: topic.id }) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this topic?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ topic.id) }}">
                                 <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-300">

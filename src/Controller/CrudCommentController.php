@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,17 +16,16 @@ class CrudCommentController extends AbstractController
 {
     #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
-
         int $id, 
         Request $request, 
         EntityManagerInterface $entityManager, 
-        GameRepository $gameRepository
-        
+        GameRepository $gameRepository,
+        CommentRepository $commentRepository
     ): Response {
-    
         // Récupérer le jeu à partir de son ID
-        $games = $gameRepository->find($id);
-        if (!$games) {
+        $game = $gameRepository->find($id); // Corrigé pour éviter le conflit de variable
+    
+        if (!$game) {
             throw $this->createNotFoundException('Game not found');
         }
     
@@ -35,26 +35,33 @@ class CrudCommentController extends AbstractController
             return $this->redirectToRoute('login');
         }
     
+        // Récupérer les commentaires associés au jeu
+        $comments = $commentRepository->findBy(['game' => $game]);
+    
         // Créer un nouveau commentaire
-        $comments = new Comment();
-        $form = $this->createForm(CommentType::class, $comments);
+        $comment = new Comment(); // Renommé en $comment pour éviter les conflits
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        $comments->setUser($user);
-        $comments->setGame($games); // Associer le commentaire au jeu
+    
+        // Associer le commentaire au jeu et à l'utilisateur
+        $comment->setUser($user);
+        $comment->setGame($game);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $comments->setCreatedAt(new \DateTimeImmutable());
-            $entityManager->persist($comments);
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $entityManager->persist($comment);
             $entityManager->flush();
-        
+    
             return $this->redirectToRoute('jeux');
         }
     
         return $this->render('pages/jeux/crudComment/newComment.html.twig', [
-            'comments' => $comments,
-            'form' => $form->createView(),
+            'comments' => $comments,  // Commentaires existants
+            'gameDetail' => $game,    // Détail du jeu
+            'form' => $form->createView()
         ]);
     }
+    
     
 
     // ----------------------------------------------------------------------------------- //

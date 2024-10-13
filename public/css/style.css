@@ -326,88 +326,61 @@
   color: var(--color-dark);
 }
 
-/*                       Review                       */
+/*                       contact                       */
 
+.form-section,
 .contact-section {
-  padding: 40px 20px 70px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
 }
 
+.form-container,
 .contact-container {
-  background-color: var(--color-dark);
-  width: 60%;
-  margin: 30px auto;
-  padding: 50px;
-  border-radius: 20px;
-}
-
-.contact-section h2 {
-  font-size: 2.5rem;
-  color: var(--color-dark);
-  margin-bottom: 20px;
-  text-shadow: var(--color-dark) 0 0 2px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 600px; /* Largeur maximale */
+    margin: auto; /* Centrer le conteneur */
 }
 
 .form-group {
-  margin-bottom: 15px;
-  text-align: left;
+    margin-bottom: 15px; /* Espacement entre les groupes */
 }
 
-.form-group label {
-  font-size: 1rem;
-  color: var(--color-light);
-  font-weight: 700;
-  padding-bottom: 5px;
-  text-shadow: var(--color-dark) 0 0 1px;
+.form-label {
+    display: block; /* Étiquettes en bloc pour un bon espacement */
+    margin-bottom: 5px; /* Espacement en bas des étiquettes */
+    font-weight: bold; /* Gras pour les étiquettes */
 }
 
 .form-input,
 .form-textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid var(--color-light);
-  border-radius: 10px;
-  outline: none;
-  box-sizing: border-box;
-  box-shadow: #0C1D36 0 0 5px;
-  margin-top: 5px;
+    width: 100%; /* Largeur complète */
+    padding: 10px; /* Espacement interne */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 4px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--color-yellow);
+    border-color: #ECC33E; /* Bordure colorée au focus */
+    outline: none; /* Enlever l'outline par défaut */
 }
 
 .contact-btn {
-  padding: 12px 20px;
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: #0C1D36 0 0 5px;
-  font-size: 17px;
-  font-weight: 700;
+    background-color: #ECC33E; /* Couleur du bouton */
+    color: #0C1D36; /* Couleur du texte */
+    padding: 10px 15px; /* Espacement interne */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
+    cursor: pointer; /* Curseur pointer sur hover */
 }
 
 .contact-btn:hover {
-  background-color: var(--color-yellow);
-  text-shadow: var(--color-dark) 0 0 1px;
+    background-color: #0C1D36; /* Changer de couleur au survol */
+    color: white; /* Changer la couleur du texte au survol */
 }
-
-
 
 
 /* ----------------------------------------------------------- */

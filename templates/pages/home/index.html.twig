@@ -133,25 +133,13 @@
 
     <!-- ------------------------------------------------------ -->
     <!-- --------------------- contact ------------------------ -->
-
+    
     <section class="contact-section">
-      <div class="contact-container">
-        <form class="contact-form" action="#" method="post">
-          <div class="form-group">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message:</label>
-            <textarea id="message" class="form-textarea" rows="5" placeholder="Type your message here..." required></textarea>
-          </div>
-          <button type="submit" class="contact-btn">Send Message</button>
-        </form>
-      <div>
+        <div class="contact-container">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
     </section>
 
 </main
