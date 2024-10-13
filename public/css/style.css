@@ -87,9 +87,45 @@
   font-weight: bold;
   line-height: 1.4;
   padding: 20px 0;
-  width: 55%;
+  width: 100%;
   text-shadow: var(--color-dark) 0 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.word-animation {
+  height: 1.2em;
+  overflow: hidden;
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.word-animation span {
+  color: var(--color-dark);
+  display: block;
+  animation: rotateSpin 9s infinite;
+}
+
+.word-animation .red {
+  color: var(--color-yellow);
+}
+
+@keyframes rotateSpin {
+  0%, 30% {
+    transform: translateY(0);
+  }
+  33%, 63% {
+    transform: translateY(-100%);
+  }
+  66%, 96% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 .separator {
   display: flex;
