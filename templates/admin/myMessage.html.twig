@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+<div class="flex h-screen bg-[#97b4e0]">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0C1D36] text-white flex flex-col">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold">PlayRanker Admin</h1>
+        </div>
+        <nav class="mt-6 flex-1">
+            <a href="{{ path('admin') }}" class="block py-2 px-4 hover:bg-blue-700">My lists</a>
+            <a href="{{ path('type_new') }}" class="block py-2 px-4 hover:bg-blue-700">Add Type</a>
+            <a href="{{ path('category.add') }}" class="block py-2 px-4 hover:bg-blue-700">Add Category</a>
+            <a href="{{ path('platform.add') }}" class="block py-2 px-4 hover:bg-blue-700">Add Platform</a>
+            <a href="{{ path('contact_admin') }}" class="block py-2 px-4 hover:bg-blue-700">My message</a>
+        </nav>
+    </div>
+
+    <!-- Contact Content -->
+    <div class="flex-1 overflow-x-hidden overflow-y-auto">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Contact Dashboard</h2>
+        
+            <div class="bg-[#0C1D36] rounded-lg shadow-md overflow-hidden">
+                <div class="px-6 py-4 bg-[#0C1D36] text-white">
+                    <h3 class="text-lg font-semibold">Contact Messages</h3>
+                </div>
+                <div class="p-6">
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4" id="dropdown-contacts">
+                        Show Contacts <i class="fas fa-caret-down ml-2"></i>
+                    </button>
+                    <div class="hidden" id="dropdown-contacts-menu">
+                        {% for contact in contacts %}
+                            <div class="flex flex-col py-2 border-b border-gray-700">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">{{ contact.pseudo }} ({{ contact.email }})</span>
+                                    <span class="text-gray-400 text-sm">{{ contact.createdAt|date("Y-m-d H:i:s") }}</span>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="text-[#ECC33E] font-bold">{{ contact.subject }}</p>
+                                    <p class="text-white">{{ contact.message }}</p>
+                                </div>
+                                <div class="flex justify-end space-x-2 mt-2">
+                                    <form action="{{ path('contact_delete', {'id': contact.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                                        <button type="submit" class="text-red-500 hover:text-red-600"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dropdowns = [
+            { buttonId: "dropdown-contacts", menuId: "dropdown-contacts-menu" }
+        ];
+
+        dropdowns.forEach(dropdown => {
+            const dropdownButton = document.getElementById(dropdown.buttonId);
+            const dropdownMenu = document.getElementById(dropdown.menuId);
+
+            dropdownButton.addEventListener("click", function() {
+                dropdowns.forEach(d => {
+                    const menu = document.getElementById(d.menuId);
+                    if (menu !== dropdownMenu) {
+                        menu.classList.add("hidden");
+                    }
+                });
+                dropdownMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!event.target.closest(`#${dropdown.menuId}`) && !event.target.closest(`#${dropdown.buttonId}`)) {
+                    dropdownMenu.classList.add("hidden");
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

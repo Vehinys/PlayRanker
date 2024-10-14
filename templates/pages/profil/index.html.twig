@@ -3,7 +3,7 @@
 {% block title %} My Profile {% endblock %}
 
 {% block body %}
-<div class="min-h-screen bg-[#ebf1ff] py-8">
+<div class="min-h-screen bg-[#97b4e0] py-8">
     <div class="container mx-auto p-4">
         <!-- Section Profil Utilisateur -->
         <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
@@ -80,19 +80,20 @@
                             <p class="text-white text-center">No games available for this type.</p>
                         {% else %}
                             <ul class="space-y-2 grid md:grid-cols-2 lg:grid-cols-3">
-                                {% for gamesList in filteredGames %}
-                                    {% if gamesList.game is not null %}
-                                        <!-- Lien vers chaque jeu disponible dans la liste -->
-                                        <li class="text-center">
-                                            <a href="#" class="text-white hover:text-[#ECC33E] transition duration-300 ease-in-out">
-                                                {{ gamesList.game.name }}
-                                            </a>
-                                        </li>
-                                    {% else %}
-                                        <!-- Message si le jeu n'est pas disponible -->
-                                        <li class="text-center text-gray-400">Game not available</li>
-                                    {% endif %}
-                                {% endfor %}
+                        {% for gamesList in filteredGames %}
+                            {% if gamesList.game is not null %}
+                                <!-- Lien vers chaque jeu disponible dans la liste -->
+                                <li class="text-center">
+                                
+                                    <a href="{{ path('detail_jeu', {'id': gamesList.game.idGameApi}) }}" class="text-white hover:text-[#ECC33E] transition duration-300 ease-in-out">
+                                        {{ gamesList.game.name }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <!-- Message si le jeu n'est pas disponible -->
+                                <li class="text-center text-gray-400">Game not available</li>
+                            {% endif %}
+                        {% endfor %}
                             </ul>
                         {% endif %}
 

@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Category;
 use App\Entity\Platform;
 use App\Form\CategoryType;
 use App\Form\PlatformType;
 use App\Repository\TypeRepository;
+use App\Repository\ContactRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\PlatformRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -330,4 +332,44 @@ class AdminController extends AbstractController
             // Redirection vers la page d'administration
             return $this->redirectToRoute('admin');
         }
+
+    // ---------------------------------------------------------- //
+    // Afficher les mails de la liste
+    // ---------------------------------------------------------- //
+
+
+    #[Route('/admin/admin_contact', name: 'contact_admin', methods: ['GET', 'POST'])]
+    public function AfficherContact(
+        
+        ContactRepository $contactRepository
+        
+    ): Response {
+        // Récupération la liste des mails
+        $contacts = $contactRepository->findAll();
+
+        // Rendu de la vue avec le formulaire
+        return $this->render('admin/myMessage.html.twig', [
+            'contacts' => $contacts,
+        ]);
+    }
+
+    #[Route('/admin/contact/{id}', name: 'contact_delete', methods: ['POST'])]
+    public function deleteContact(
+        
+        Request $request, 
+        Contact $contact, 
+        EntityManagerInterface $entityManager
+        
+    ): Response {
+        
+    if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
+        $entityManager->remove($contact);
+        $entityManager->flush();
+        
+        $this->addFlash('success', 'Contact deleted successfully.');
+    }
+
+    return $this->redirectToRoute('contact_admin', [], Response::HTTP_SEE_OTHER);
+}
+
 }
