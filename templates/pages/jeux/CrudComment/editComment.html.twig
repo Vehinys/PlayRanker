@@ -4,14 +4,14 @@
 
 {% block body %}
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Comment</h1>
+        <h1 class="text-3xl font-bold text-[#0C1D36] mb-6">Edit Comment</h1>
         
-        {{ form_start(form, {'attr': {'class': 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'}}) }}
-            <div class="mb-4">
-                {{ form_widget(form, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+        {{ form_start(form, {'attr': {'class': 'bg-[#09172b] shadow-lg rounded-lg px-10 pt-8 pb-10 mb-6 border border-[#ECC33E]'}}) }}
+            <div class="mb-6">
+                {{ form_widget(form, {'attr': {'class': 'w-full bg-[#0C1D36] text-white border border-[#ECC33E] rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#ECC33E] focus:border-transparent'}}) }}
             </div>
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button type="submit" class="bg-[#ECC33E] hover:bg-[#ebf1ff] text-[#0C1D36] font-semibold py-3 px-6 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]">
                     Save changes
                 </button>
             </div>

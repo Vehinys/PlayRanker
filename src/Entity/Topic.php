@@ -15,9 +15,6 @@ class Topic
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isLocked = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -46,18 +43,6 @@ class Topic
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function isLocked(): ?bool
-    {
-        return $this->isLocked;
-    }
-
-    public function setLocked(?bool $isLocked): static
-    {
-        $this->isLocked = $isLocked;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

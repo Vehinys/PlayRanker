@@ -135,43 +135,4 @@ class ForumController extends AbstractController
             'topics' => $topics
         ]);
     }
-
-    #[Route('/forum/topics/lock_topic', name: 'lock_topic', methods: ['POST'])]
-    public function lockTopic(
-        
-        Request $request, 
-        EntityManagerInterface $entityManager
-        
-    ): Response {
-        
-        // Récupérer l'ID du sujet depuis la requête
-        $topicId = $request->request->get('topic_id');
-
-        if (!$topicId) {
-            throw $this->createNotFoundException('ID du sujet non fourni.');
-        }
-
-        // Trouver le sujet dans la base de données
-        $topic = $entityManager->getRepository(Topic::class)->find($topicId);
-
-        if (!$topic) {
-            throw $this->createNotFoundException('Sujet non trouvé.');
-        }
-
-        // Vérifier que la catégorie du sujet existe
-        $categoryForum = $topic->getCategoryForum();
-        if (!$categoryForum) {
-            throw $this->createNotFoundException('Catégorie de forum non trouvée.');
-        }
-
-        // Mettre à jour le statut du sujet pour le marquer comme verrouillé
-        $topic->setLocked(true);
-
-        // Sauvegarder les modifications dans la base de données
-        $entityManager->persist($topic);
-        $entityManager->flush();
-
-        // Rediriger l'utilisateur vers la page du profil
-        return $this->redirectToRoute('profile');
-    }
 }
