@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.category : ~6 rows (environ)
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `game_id` int NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   PRIMARY KEY (`id`),
   KEY `IDX_9474526CA76ED395` (`user_id`),
@@ -78,13 +78,13 @@ INSERT INTO `comment` (`id`, `user_id`, `game_id`, `content`, `created_at`) VALU
 -- Listage de la structure de table playranker. contact
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `message` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pseudo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.contact : ~5 rows (environ)
 INSERT INTO `contact` (`id`, `pseudo`, `email`, `subject`, `message`, `created_at`) VALUES
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `games_list` (
   CONSTRAINT `FK_5BB034C1A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_5BB034C1C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`),
   CONSTRAINT `FK_5BB034C1E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.games_list : ~9 rows (environ)
 INSERT INTO `games_list` (`id`, `user_id`, `game_id`, `type_id`) VALUES
@@ -138,7 +138,8 @@ INSERT INTO `games_list` (`id`, `user_id`, `game_id`, `type_id`) VALUES
 	(17, 15, 41, 1),
 	(18, 15, 40, 1),
 	(19, 15, 41, 3),
-	(20, 15, 47, 4);
+	(20, 15, 47, 4),
+	(23, 21, 40, 1);
 
 -- Listage de la structure de table playranker. game_platform
 CREATE TABLE IF NOT EXISTS `game_platform` (
@@ -178,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `platform` (
   PRIMARY KEY (`id`),
   KEY `IDX_3952D0CB12469DE2` (`category_id`),
   CONSTRAINT `FK_3952D0CB12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.platform : ~30 rows (environ)
 INSERT INTO `platform` (`id`, `category_id`, `name`) VALUES
@@ -228,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   CONSTRAINT `FK_5A8A6C8DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.post : ~29 rows (environ)
+-- Listage des données de la table playranker.post : ~31 rows (environ)
 INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
 	(103, 76, 15, 'What are your favorite mobile games this year? I’m really enjoying Marvel Snap for its fast strategy and Honkai: Star Rail for its immersive world. What are you playing these days?ouez à quoi en ce moment ?', '2024-10-08 07:10:47', NULL),
 	(104, 77, 15, 'The latest Clash Royale update changed a lot of deck dynamics. Do you have any tips on new strategies to adopt?', '2024-10-08 07:11:08', NULL),
@@ -238,8 +239,8 @@ INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`, `updat
 	(108, 81, 15, 'In Starfield, I spend more time exploring planets than following the main quests. What\'s your approach to the game?', '2024-10-08 07:13:46', NULL),
 	(109, 82, 15, 'I just finished God of War: Ragnarök, and the story was incredible. What did you think of Kratos and Atreus\' relationship?', '2024-10-08 07:14:03', NULL),
 	(110, 83, 15, 'I just finished Marvel\'s Spider-Man 2 on PS5, and the combat is smoother than ever! The graphics are mind-blowing. How did you find the game?', '2024-10-08 07:14:16', NULL),
-	(111, 84, 15, 'I\'m torn between Super Metroid and The Legend of Zelda: A Link to the Past. What do you think is the best retro game on Super Nintendo?', '2024-10-08 07:14:33', NULL),
-	(112, 85, 15, 'If you were introducing someone to retro games, what would be your top 5 must-play titles? For me, it would include Sonic the Hedgehog, Street Fighter II, and Super Mario Bros..', '2024-10-08 07:14:46', NULL),
+	(111, 84, 21, 'I\'m torn between Super Metroid and The Legend of Zelda: A Link to the Past. What do you think is the best retro game on Super Nintendo?', '2024-10-08 07:14:33', NULL),
+	(112, 85, 21, 'If you were introducing someone to retro games, what would be your top 5 must-play titles? For me, it would include Sonic the Hedgehog, Street Fighter II, and Super Mario Bros..', '2024-10-08 07:14:46', NULL),
 	(113, 86, 15, 'Both are amazing, but which one do you prefer? Starfield for its space exploration or Forza Horizon 5 for its graphics and racing freedom?', '2024-10-08 07:15:17', NULL),
 	(114, 87, 15, 'I think Halo Infinite\'s campaign is very well done, but the multiplayer is just as fun. Do you spend more time in solo or multiplayer?', '2024-10-08 07:15:27', NULL),
 	(115, 77, 19, 'Definitely! I\'ve been experimenting with Miner Poison decks, and they’ve been working wonders with the new balance changes. Also, don’t sleep on the Mega Minion—it’s a great value card right now.', '2024-10-08 07:19:30', NULL),
@@ -277,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   CONSTRAINT `FK_9D40DE1BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.topic : ~14 rows (environ)
+-- Listage des données de la table playranker.topic : ~16 rows (environ)
 INSERT INTO `topic` (`id`, `category_forum_id`, `user_id`, `is_locked`, `created_at`, `title`) VALUES
 	(76, 5, 15, NULL, '2024-10-08 07:10:46', 'Best Mobile Games of 2024'),
 	(77, 5, 15, NULL, '2024-10-08 07:11:08', 'Clash Royale: New Strategies After the Latest Update?'),
@@ -287,8 +288,8 @@ INSERT INTO `topic` (`id`, `category_forum_id`, `user_id`, `is_locked`, `created
 	(81, 4, 15, NULL, '2024-10-08 07:13:46', 'Starfield: Exploration or Quests?'),
 	(82, 1, 15, NULL, '2024-10-08 07:14:03', 'God of War: Ragnarök - Thoughts on the Story?'),
 	(83, 1, 15, NULL, '2024-10-08 07:14:16', 'Marvel’s Spider-Man 2: First Impressions?'),
-	(84, 6, 15, NULL, '2024-10-08 07:14:33', 'Best Super Nintendo Game?'),
-	(85, 6, 15, NULL, '2024-10-08 07:14:46', 'Top 5 Must-Play Retro Games'),
+	(84, 6, 21, NULL, '2024-10-08 07:14:33', 'Best Super Nintendo Game?'),
+	(85, 6, 21, NULL, '2024-10-08 07:14:46', 'Top 5 Must-Play Retro Games'),
 	(86, 2, 15, NULL, '2024-10-08 07:15:17', 'Starfield or Forza Horizon 5?'),
 	(87, 2, 15, NULL, '2024-10-08 07:15:27', 'Halo Infinite: Multiplayer or Campaign?'),
 	(88, 1, 22, NULL, '2024-10-08 07:25:18', 'The Last of Us Part II: Controversial or Masterpiece?'),
@@ -299,11 +300,11 @@ INSERT INTO `topic` (`id`, `category_forum_id`, `user_id`, `is_locked`, `created
 -- Listage de la structure de table playranker. type
 CREATE TABLE IF NOT EXISTS `type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.type : ~4 rows (environ)
+-- Listage des données de la table playranker.type : ~0 rows (environ)
 INSERT INTO `type` (`id`, `name`) VALUES
 	(1, 'Favoris'),
 	(2, 'Already played'),
@@ -335,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.user : ~6 rows (environ)
+-- Listage des données de la table playranker.user : ~0 rows (environ)
 INSERT INTO `user` (`id`, `email`, `pseudo`, `password`, `avatar`, `roles`) VALUES
 	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]'),
 	(18, 'emaildelete-66ff9db5e22fc@example.com', 'UserDelete', '$2y$13$OjWFEw7jxaW1wi416tk.guyz3Lou5pF3BL9l5SvZxIysQKFubFcl6', NULL, '["ROLE_USERDELETE"]'),
@@ -351,7 +352,7 @@ USE `playranker_test`;
 
 -- Listage de la structure de table playranker_test. doctrine_migration_versions
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `version` varchar(191) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int DEFAULT NULL,
   PRIMARY KEY (`version`)
