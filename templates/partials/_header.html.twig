@@ -21,7 +21,10 @@
           <li>
             <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil') }}">PROFILE</a>
           </li>
-        {% endif %}
+              {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
+                <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold">ADMIN</a>
+              {% endif %}
+          {% endif %}
       </ul>
       <ul class="flex space-x-6">
         {% if app.user %}

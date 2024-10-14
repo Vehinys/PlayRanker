@@ -377,9 +377,9 @@
 
   .form-container,
   .contact-container {
-    max-width: 1000px; /* Largeur maximale */
+    max-width: 1250px; /* Largeur maximale */
     margin: auto; /* Centrer le conteneur */
-    padding: 20px;
+    padding: 50px;
     background-color: var(--color-dark);
     border-radius: 20px;
     box-shadow: 0 4px 8px var(--color-dark);
@@ -426,8 +426,7 @@
   }
 
   .contact-btn:hover {
-      background-color: #0C1D36; /* Changer de couleur au survol */
-      color: white; /* Changer la couleur du texte au survol */
+      background-color: #ecb911; /* Changer de couleur au survol */
   }
 
 /* ----------------------------------------------------------- */
@@ -436,32 +435,41 @@
 
 /* Styles pour le bouton "Retour en haut" */
 .back-to-top {
-  position: fixed;                                              /* Position fixe dans la fenêtre                  */
-  bottom: 20px;                                                 /* Positionné à 20px du bas                       */
-  right: 20px;                                                  /* Positionné à 20px de la droite                 */
-  background-color: var(--color-dark);                          /* Fond sombre pour le bouton                     */
-  color: var(--color-yellow);                                   /* Couleur du texte pour le bouton                */
-  width: 50px;                                                  /* Largeur de 50px pour le bouton                 */
-  height: 50px;                                                 /* Hauteur de 50px pour le bouton                 */
-  border-radius: 50%;                                           /* Arrondi complet pour le bouton                 */
-  display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
-  justify-content: center;                                      /* Centre le contenu horizontalement              */
-  font-size: 24px;                                              /* Taille de police par défaut                    */
-  text-decoration: none;                                        /* Supprime le soulignement                       */
-  opacity: 0;                                                   /* Rend le bouton invisible par défaut            */
-  transition: opacity 0.3s, background-color 0.3s;              /* Transition fluide pour l'opacité et la couleur */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                   /* Ombre pour donner de la profondeur             */
-  z-index: 1000;                                                /* Positionnement au-dessus des autres éléments   */
-  font-size: 50px;                                              /* Taille de police agrandie pour le bouton       */
-  align-items: center;                                          /* Centre le contenu verticalement                */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--color-dark);
+  color: var(--color-yellow);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  font-size: 24px;
+  border: 2px solid var(--color-yellow);
 }
 
 .back-to-top:hover {
-  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol             */
-  color: var(--color-dark);                                    /* Change la couleur du texte au survol            */
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 .back-to-top.show {
-  opacity: 1;                                                   /* Rend le bouton visible quand actif             */
+  opacity: 1;
+  transform: translateY(0);
 }
+
+.back-to-top::before {
+  content: "↑";
+  font-weight: bold;
+}
+
 

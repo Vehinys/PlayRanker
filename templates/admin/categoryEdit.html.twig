@@ -1,26 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Admin- Edit a category {% endblock %}
+{% block title %}Admin Dashboard - Edit Items{% endblock %}
 
 {% block body %}
-
-    <div class="container mx-auto p-2 pt-4">
-        <h1 class="text-3xl p-7 text-center font-bold">Edit a category</h1>
-
-        <div class="bg-white shadow-md rounded p-2">
-            <h2 class="text-xl font-bold mb-1">Category modification form</h2>
-
-            {{ form_start(form) }}
-                <div class="mb-4">
-                    {{ form_row(form.name) }}
-                </div>
-
-                <div class="flex">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Save Changes</button>
-                </div>
-
-            {{ form_end (form) }}
+<div class="flex h-screen bg-[#97b4e0]">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0C1D36] text-white flex flex-col">
+        <div class="p-6">
+            <h1 class="text-2xl text-[#ECC33E] font-bold">PlayRanker Admin</h1>
         </div>
+        <nav class="mt-6 flex-1">
+            <a href="{{ path('admin') }}" class="block py-2 px-4 hover:bg-blue-700">My lists</a>
+            <a href="{{ path('type_new') }}" class="block py-2 px-4 hover:bg-blue-700">Add Type</a>
+            <a href="{{ path('category.add') }}" class="block py-2 px-4 hover:bg-blue-700">Add Category</a>
+            <a href="{{ path('platform.add') }}" class="block py-2 px-4 hover:bg-blue-700">Add Platform</a>
+            <a href="{{ path('contact_admin') }}" class="block py-2 px-4 hover:bg-blue-700">My message</a>
+        </nav>
     </div>
 
+    <!-- Main Content -->
+    <div class="flex-1 overflow-x-hidden overflow-y-auto">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-3xl font-semibold text-[#ECC33E] text-[#ECC33E]mb-6">Edit a category</h2>
+        
+            <div class="bg-[#0C1D36] shadow-md rounded p-6">
+                <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Category modification form</h3>
+
+                {{ form_start(form) }}
+                    <div class="mb-4">
+                        {{ form_widget(form) }}
+                    </div>
+                    <div class="flex">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Save Changes</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
