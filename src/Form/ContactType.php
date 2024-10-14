@@ -52,8 +52,7 @@ class ContactType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Send'
-            ])
-            ->getForm();
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

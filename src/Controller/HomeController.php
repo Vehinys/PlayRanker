@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\CommentRepository; // Ajoutez cette ligne
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,29 +17,54 @@ class HomeController extends AbstractController
     public function home(
 
         Request $request, 
-        EntityManagerInterface $entityManager,
-        CommentRepository $commentRepository 
+        EntityManagerInterface $entityManager
 
     ): Response {
-
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
+    
+        $form = $this->createForm(ContactType::class); // Associe l'objet Contact au formulaire
         $form->handleRequest($request);
 
-        // Récupérer les commentaires
-        $comments = $commentRepository->findAll();
+        // dd($_POST);
+    
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     // Les données du formulaire sont déjà associées à l'objet $contact
+        //     $entityManager->persist($contact);
+        //     $entityManager->flush();
+    
+        //     $this->addFlash('success', 'Votre message a été envoyé avec succès !');
+        //     return $this->redirectToRoute('home');
+        // }
+    
+        return $this->render('pages/home/index.html.twig', [
+            'contactForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/accueil/contact', name: 'contact')]
+    public function contact(
+
+        Request $request, 
+        EntityManagerInterface $entityManager
+
+    ): Response {
+    
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact); // Associe l'objet Contact au formulaire
+        $form->handleRequest($request);
+
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
+           
+
             $entityManager->persist($contact);
             $entityManager->flush();
     
             $this->addFlash('success', 'Votre message a été envoyé avec succès !');
             return $this->redirectToRoute('home');
         }
-    
-        return $this->render('pages/home/index.html.twig', [
-            'form' => $form->createView(),
-            'comments' => $comments 
-        ]);
+        $this->addFlash('error', 'Sorry, a problem occured !');
+        return $this->redirectToRoute('home');
     }
 
     #[Route('/', name: 'index')]

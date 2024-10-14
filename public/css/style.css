@@ -260,7 +260,7 @@
 .review-container {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 500%;
+  width: 700%;
 }
 
 .review-content {

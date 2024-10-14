@@ -108,7 +108,7 @@
     <!-- ------------------------------------------------------ -->
     <!-- ------------------- Séparateur ----------------------- -->
 
-    <section class="review-section">
+    {# <section class="review-section">
       <div class="review-container">
           {% for comment in comments %}
               <div class="review-content">
@@ -129,7 +129,7 @@
       </div>
       <button class="precedent">←</button>
       <button class="suivant">→</button>
-  </section>
+    </section> #}
     
 
     <!-- ------------------------------------------------------ -->
@@ -144,9 +144,16 @@
     
     <section class="contact-section">
         <div class="contact-container">
-            {{ form_start(form) }}
-                {{ form_widget(form) }}
-            {{ form_end(form) }}
+          <form action="{{path ('contact')}}">
+            {{ form_start(contactForm) }}
+                {{ form_row(contactForm.pseudo) }}
+                {{ form_row(contactForm.email) }}
+                {{ form_row(contactForm.subject) }}
+                {{ form_row(contactForm.message) }}
+                {{ form_row(contactForm.submit) }}
+            {{ form_end(contactForm) }}
+        </form>
+
         </div>
     </section>
 

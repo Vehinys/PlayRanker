@@ -24,7 +24,7 @@ class Contact
 
     #[ORM\Column(length: 150, nullable: true)]
     #[Assert\NotBlank]
-    private ?string $Subject = null;
+    private ?string $subject = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
@@ -70,12 +70,12 @@ class Contact
 
     public function getSubject(): ?string
     {
-        return $this->Subject;
+        return $this->subject;
     }
 
     public function setSubject(?string $Subject): static
     {
-        $this->Subject = $Subject;
+        $this->subject = $Subject;
 
         return $this;
     }
