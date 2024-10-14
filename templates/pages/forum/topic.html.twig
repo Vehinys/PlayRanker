@@ -26,13 +26,13 @@
                 <div class="mb-7 flex justify-between items-center">
                 <h2 class="text-3xl font-semibold text-[#0C1D36] ">Topics in {{ category.name|upper }}</h2>
                 <a href="{{ path('topic_new', { categoryId: category.id }) }}" class="bg-[#ECC33E] text-[#0C1D36] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">
-                    Create a new topic
+                    Add a topic
                 </a>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {% for topic in topics %}
-                    <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
+                    <div class="bg-[#0C1D36] border border-[#ECC33E] flex flex-col justify-between rounded-lg p-6 transition duration-300 hover:shadow-xl">
                     <a href="{{ path('post', {id: topic.id}) }}" class="block">
                         <h3 class="font-bold text-xl text-[#ECC33E] mb-4">{{ topic.title }}</h3>
                         <div class="flex items-center justify-between">
