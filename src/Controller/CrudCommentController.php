@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Repository\CommentRepository;
+use App\HttpClient\ApiHttpClient;
 use App\Repository\GameRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,52 +18,72 @@ class CrudCommentController extends AbstractController
 {
     #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
-        int $id, 
-        Request $request, 
-        EntityManagerInterface $entityManager, 
-        GameRepository $gameRepository,
-        CommentRepository $commentRepository
+        
+        int $id, // ID provenant de l'API RAWG
+        Request $request,
+        EntityManagerInterface $entityManager,
+        ApiHttpClient $apiHttpClient,
+        CommentRepository $commentRepository,
+        GameRepository $gameRepository
+
     ): Response {
-        // Récupérer le jeu à partir de son ID
-        $game = $gameRepository->find($id); // Corrigé pour éviter le conflit de variable
+        // Récupérer les détails du jeu à partir de l'API RAWG
+        $gameData = $apiHttpClient->gameDetail($id);
     
-        if (!$game) {
-            throw $this->createNotFoundException('Game not found');
+        if (!$gameData) {
+            throw $this->createNotFoundException('Game not found in the API');
         }
     
-        $user = $this->getUser();
+        // Vérifier si le jeu existe déjà dans la base de données
+        $game = $gameRepository->findOneBy(['id_game_api' => $id]);
     
+        // Si le jeu n'existe pas dans la base de données, l'ajouter
+        if (!$game) {
+            $game = new Game();
+            $game->setIdGameApi($id);
+            $game->setName($gameData['name']);
+            $game->setData($gameData); 
+    
+            $entityManager->persist($game);
+            $entityManager->flush();
+        }
+    
+        // Vérifier si l'utilisateur est connecté
+        $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('login');
         }
     
-        // Récupérer les commentaires associés au jeu
+        // Récupérer les commentaires associés au jeu dans la base de données
         $comments = $commentRepository->findBy(['game' => $game]);
     
         // Créer un nouveau commentaire
-        $comment = new Comment(); // Renommé en $comment pour éviter les conflits
+        $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
     
-        // Associer le commentaire au jeu et à l'utilisateur
-        $comment->setUser($user);
-        $comment->setGame($game);
-    
         if ($form->isSubmitted() && $form->isValid()) {
+            // Associer le commentaire au jeu et à l'utilisateur
+            $comment->setUser($user);
+            $comment->setGame($game);
             $comment->setCreatedAt(new \DateTimeImmutable());
+    
+            // Persister le commentaire dans la base de données
             $entityManager->persist($comment);
             $entityManager->flush();
     
-            return $this->redirectToRoute('jeux');
+            // Rediriger vers la page du jeu en passant l'ID du jeu
+            return $this->redirectToRoute('detail_jeu', [
+                'id' => $id
+            ]);
         }
     
         return $this->render('pages/jeux/crudComment/newComment.html.twig', [
             'comments' => $comments,  // Commentaires existants
-            'gameDetail' => $game,    // Détail du jeu
+            'gameDetail' => $gameData,  // Détails du jeu provenant de l'API
             'form' => $form->createView()
         ]);
     }
-    
     
 
     // ----------------------------------------------------------------------------------- //
@@ -81,7 +103,6 @@ class CrudCommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
         
-            return $this->redirectToRoute('jeux');
         }
 
         return $this->render('pages/jeux/crudComment/editComment.html.twig', [

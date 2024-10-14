@@ -15,11 +15,11 @@ class Game
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $id_game_api = null;
+    #[ORM\Column(type: 'integer', unique: true)]
+    private ?int $id_game_api = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name;
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $name = null;
 
     #[ORM\Column]
     private array $data = [];
