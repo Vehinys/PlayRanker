@@ -37,10 +37,10 @@
     <section class="rate-section">
       <h2> Discover your favorite games,
         <div class="word-animation">
-          <span class='red'> unlimited </span>
-          <span class='red'> Fast </span>
-          <span class='red'> free! </span>
-          <span class='red'> unlimited </span>    
+          <span class='red'> Unlimited, </span>
+          <span class='red'> Fast, </span>
+          <span class='red'> Free ! </span>
+          <span class='red'> Unlimited </span>    
         </div>
       </h2>
     </section>
@@ -108,7 +108,7 @@
     <!-- ------------------------------------------------------ -->
     <!-- ------------------- Séparateur ----------------------- -->
 
-    {# <section class="review-section">
+    <section class="review-section">
       <div class="review-container">
           {% for comment in comments %}
               <div class="review-content">
@@ -129,7 +129,7 @@
       </div>
       <button class="precedent">←</button>
       <button class="suivant">→</button>
-    </section> #}
+    </section>
     
 
     <!-- ------------------------------------------------------ -->
@@ -143,19 +143,33 @@
     <!-- --------------------- contact ------------------------ -->
     
     <section class="contact-section">
-        <div class="contact-container">
-          <form action="{{path ('contact')}}">
-            {{ form_start(contactForm) }}
-                {{ form_row(contactForm.pseudo) }}
-                {{ form_row(contactForm.email) }}
-                {{ form_row(contactForm.subject) }}
-                {{ form_row(contactForm.message) }}
-                {{ form_row(contactForm.submit) }}
-            {{ form_end(contactForm) }}
-        </form>
-
-        </div>
-    </section>
+      <div class="contact-container">
+          <form action="{{ path('contact') }}" method="post">
+              {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
+  
+              <div class="form-group">
+                  {{ form_row(contactForm.pseudo, {'attr': {'class': 'form-input', 'placeholder': 'Your pseudo'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(contactForm.email,  {'attr': {'class': 'form-input', 'placeholder': 'Your email'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(contactForm.subject, {'attr': {'class': 'form-input', 'placeholder': 'Subject'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(contactForm.message, {'attr': {'class': 'form-textarea', 'placeholder': 'Your message'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(contactForm.submit,  {'attr': {'class': 'contact-btn'}}) }}
+              </div>
+  
+              {{ form_end(contactForm) }}
+          </form>
+      </div>
+  </section>
+  
+  
+  
 
 </main
 

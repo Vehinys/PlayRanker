@@ -21,7 +21,7 @@
 .header-section {
   background-color: var(--color-dark);
   color: var(--color-light);
-  padding: 20px 0 40px;
+  padding: 50px 0 80px 0;
   text-align: center;
   box-shadow: var(--color-dark) 0 0 10px;
 }
@@ -86,7 +86,7 @@
   color: var(--color-dark);
   font-weight: bold;
   line-height: 1.4;
-  padding: 20px 0;
+  padding: 80px 0;
   width: 100%;
   text-shadow: var(--color-dark) 0 0 2px;
   display: flex;
@@ -108,7 +108,9 @@
 }
 
 .word-animation .red {
+  font-size: 60px;
   color: var(--color-yellow);
+  display: flex;
 }
 
 @keyframes rotateSpin {
@@ -166,7 +168,7 @@
   gap: 100px;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 85px 0;
+  margin: 110px 0 170px 0;
 }
 
 .card {
@@ -255,6 +257,7 @@
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+  padding: 80px 0;
 }
 
 .review-container {
@@ -364,60 +367,68 @@
 
 /*                       contact                       */
 
-.form-section,
-.contact-section {
-    padding: 20px;
-    background-color: #f9f9f9; /* Couleur de fond */
+  .form-section,
+  .contact-section {
+    padding: 100px 0 130px 0;
+    background-color: var(--color-blue); /* Couleur de fond */
     border-radius: 8px; /* Coins arrondis */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
-}
+  }
 
-.form-container,
-.contact-container {
-    max-width: 600px; /* Largeur maximale */
+  .form-container,
+  .contact-container {
+    max-width: 1000px; /* Largeur maximale */
     margin: auto; /* Centrer le conteneur */
-}
+    padding: 20px;
+    background-color: var(--color-dark);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px var(--color-dark);
+  }
 
-.form-group {
+  .form-group {
     margin-bottom: 15px; /* Espacement entre les groupes */
-}
+  }
 
-.form-label {
+  .form-label {
     display: block; /* Étiquettes en bloc pour un bon espacement */
     margin-bottom: 5px; /* Espacement en bas des étiquettes */
     font-weight: bold; /* Gras pour les étiquettes */
-}
+  }
 
-.form-input,
-.form-textarea {
+  .form-group label {
+    color: var(--color-light);
+  }
+
+  .form-input,
+  .form-textarea {
     width: 100%; /* Largeur complète */
     padding: 10px; /* Espacement interne */
     border: 1px solid #ccc; /* Bordure */
     border-radius: 4px; /* Coins arrondis */
     font-size: 16px; /* Taille de police */
-}
+  }
 
-.form-input:focus,
-.form-textarea:focus {
+  .form-input:focus,
+  .form-textarea:focus {
     border-color: #ECC33E; /* Bordure colorée au focus */
     outline: none; /* Enlever l'outline par défaut */
-}
+  }
 
-.contact-btn {
-    background-color: #ECC33E; /* Couleur du bouton */
-    color: #0C1D36; /* Couleur du texte */
-    padding: 10px 15px; /* Espacement interne */
-    border: none; /* Pas de bordure */
-    border-radius: 4px; /* Coins arrondis */
-    font-size: 16px; /* Taille de police */
-    cursor: pointer; /* Curseur pointer sur hover */
-}
+  .contact-btn {
+    width: 100%;
+    background-color: #ECC33E;
+    color: #0C1D36;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-.contact-btn:hover {
-    background-color: #0C1D36; /* Changer de couleur au survol */
-    color: white; /* Changer la couleur du texte au survol */
-}
-
+  .contact-btn:hover {
+      background-color: #0C1D36; /* Changer de couleur au survol */
+      color: white; /* Changer la couleur du texte au survol */
+  }
 
 /* ----------------------------------------------------------- */
 /* Styles RETOUR EN HAUT                                       */
@@ -426,16 +437,16 @@
 /* Styles pour le bouton "Retour en haut" */
 .back-to-top {
   position: fixed;                                              /* Position fixe dans la fenêtre                  */
-  bottom: 20px;                                                 /* Positionné à 20px du bas                      */
-  right: 20px;                                                  /* Positionné à 20px de la droite                */
-  background-color: var(--color-dark);                          /* Fond sombre pour le bouton                    */
-  color: var(--color-yellow);                                   /* Couleur du texte pour le bouton               */
-  width: 50px;                                                  /* Largeur de 50px pour le bouton                */
-  height: 50px;                                                 /* Hauteur de 50px pour le bouton                */
-  border-radius: 50%;                                           /* Arrondi complet pour le bouton                */
+  bottom: 20px;                                                 /* Positionné à 20px du bas                       */
+  right: 20px;                                                  /* Positionné à 20px de la droite                 */
+  background-color: var(--color-dark);                          /* Fond sombre pour le bouton                     */
+  color: var(--color-yellow);                                   /* Couleur du texte pour le bouton                */
+  width: 50px;                                                  /* Largeur de 50px pour le bouton                 */
+  height: 50px;                                                 /* Hauteur de 50px pour le bouton                 */
+  border-radius: 50%;                                           /* Arrondi complet pour le bouton                 */
   display: flex;                                                /* Utilisation de flexbox pour centrer le contenu */
   justify-content: center;                                      /* Centre le contenu horizontalement              */
-  font-size: 24px;                                              /* Taille de police par défaut                   */
+  font-size: 24px;                                              /* Taille de police par défaut                    */
   text-decoration: none;                                        /* Supprime le soulignement                       */
   opacity: 0;                                                   /* Rend le bouton invisible par défaut            */
   transition: opacity 0.3s, background-color 0.3s;              /* Transition fluide pour l'opacité et la couleur */
@@ -446,8 +457,8 @@
 }
 
 .back-to-top:hover {
-  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol           */
-  color: var(--color-dark);                                    /* Change la couleur du texte au survol          */
+  background-color: var(--color-yellow);                       /* Change la couleur de fond au survol             */
+  color: var(--color-dark);                                    /* Change la couleur du texte au survol            */
 }
 
 .back-to-top.show {

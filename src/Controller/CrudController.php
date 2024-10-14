@@ -152,6 +152,7 @@ class CrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $post->setCreatedAt(new \DateTimeImmutable());
             $post->setTopic($topic);
             $post->setUser($this->getUser());
@@ -186,10 +187,13 @@ class CrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $manager->flush();
             return $this->redirectToRoute('topic', [
+
                 'categoryId' => $post->getTopic()->getCategoryForum()->getId(),
                 'id' => $post->getTopic()->getId(),
+
             ]);
         }
 

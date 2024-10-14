@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,26 +17,18 @@ class HomeController extends AbstractController
     public function home(
 
         Request $request, 
-        EntityManagerInterface $entityManager
+        CommentRepository $commentRepository
 
     ): Response {
     
-        $form = $this->createForm(ContactType::class); // Associe l'objet Contact au formulaire
+        $form = $this->createForm(ContactType::class); 
         $form->handleRequest($request);
 
-        // dd($_POST);
-    
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     // Les données du formulaire sont déjà associées à l'objet $contact
-        //     $entityManager->persist($contact);
-        //     $entityManager->flush();
-    
-        //     $this->addFlash('success', 'Votre message a été envoyé avec succès !');
-        //     return $this->redirectToRoute('home');
-        // }
+        $comments = $commentRepository->findAll();
     
         return $this->render('pages/home/index.html.twig', [
             'contactForm' => $form->createView(),
+            'comments' => $comments,
         ]);
     }
 
@@ -47,25 +39,25 @@ class HomeController extends AbstractController
         EntityManagerInterface $entityManager
 
     ): Response {
-    
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact); // Associe l'objet Contact au formulaire
-        $form->handleRequest($request);
-
         
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            
-           
-
             $entityManager->persist($contact);
             $entityManager->flush();
     
-            $this->addFlash('success', 'Votre message a été envoyé avec succès !');
+            $this->addFlash('success', 'Your message has been sent successfully!');
             return $this->redirectToRoute('home');
         }
-        $this->addFlash('error', 'Sorry, a problem occured !');
+    
+        // Si le formulaire n'est pas soumis ou n'est pas valide, on redirige vers la page d'accueil
+        $this->addFlash('error', 'Sorry, a problem occurred!');
         return $this->redirectToRoute('home');
     }
+    
+
 
     #[Route('/', name: 'index')]
     public function index(): Response

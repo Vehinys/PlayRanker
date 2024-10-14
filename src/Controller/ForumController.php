@@ -119,9 +119,8 @@ class ForumController extends AbstractController
         // Récupération des posts associés au topic
         $posts = $postRepository->findBy(['topic' => $topic], ['createdAt' => 'DESC'], 12);
         $posts = $paginatorInterface->paginate(
-            $posts,
-            $request->query->getInt('page', 1),
-            5
+        $posts,
+        $request->query->getInt('page', 1),
         );
 
         // Récupération des topics associés à la catégorie
