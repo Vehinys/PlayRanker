@@ -6,6 +6,7 @@ use App\Repository\RatingCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RatingCategoryRepository::class)]
 class RatingCategory
@@ -16,6 +17,7 @@ class RatingCategory
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
     private ?string $name = null;
 
     /**

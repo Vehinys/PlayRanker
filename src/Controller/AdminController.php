@@ -7,11 +7,14 @@ use App\Entity\Category;
 use App\Entity\Platform;
 use App\Form\CategoryType;
 use App\Form\PlatformType;
+use App\Entity\RatingCategory;
+use App\Form\RatingCategoryType;
 use App\Repository\TypeRepository;
 use App\Repository\ContactRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\PlatformRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\RatingCategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -38,7 +41,8 @@ class AdminController extends AbstractController
 
             CategoryRepository $categoryRepository, 
             PlatformRepository $PlatformRepository,
-            TypeRepository $typeRepository
+            TypeRepository $typeRepository,
+            RatingCategoryRepository $ratingCategoryRepository
 
         ): Response {
 
@@ -46,12 +50,14 @@ class AdminController extends AbstractController
             $categories = $categoryRepository->findAll();
             $platforms = $PlatformRepository->findAll();
             $types = $typeRepository->findAll();
+            $ratingCategories = $ratingCategoryRepository-> findAll();
 
             if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->render('admin/index.html.twig', [
                     'categories' => $categories,
                     'platforms' => $platforms,
                     'types' => $types,
+                    'ratingCategories' => $ratingCategories
                 ]);
             }
             
@@ -353,6 +359,10 @@ class AdminController extends AbstractController
         ]);
     }
 
+    // ---------------------------------------------------------- //
+    // SUPPRIMER CONTACT
+    // ---------------------------------------------------------- //
+
     #[Route('/admin/contact/{id}', name: 'contact_delete', methods: ['POST'])]
     public function deleteContact(
         
@@ -370,6 +380,72 @@ class AdminController extends AbstractController
     }
 
     return $this->redirectToRoute('contact_admin', [], Response::HTTP_SEE_OTHER);
-}
+
+    }
+
+    // ---------------------------------------------------------- //
+    // AFFICHER RATING CATEGORY
+    // ---------------------------------------------------------- //
+
+    #[Route('/rating-category/new', name: 'ratingcategory_add')]
+    public function addRatingCategory(
+        
+        Request $request, 
+        EntityManagerInterface $entityManager
+        
+    ): Response {
+
+        $ratingCategory = new RatingCategory();
+
+        $form = $this->createForm(RatingCategoryType::class, $ratingCategory);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($ratingCategory);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Rating category created successfully.');
+
+            return $this->redirectToRoute('admin'); 
+        }
+
+        // Render the form in the view
+        return $this->render('admin/ratingCategoryAdd.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    // ---------------------------------------------------------- //
+    // EDITER RATING CATEGORY
+    // ---------------------------------------------------------- //
+
+
+
+
+    // ---------------------------------------------------------- //
+    // SUPPRIMER RATING CATEGORY
+    // ---------------------------------------------------------- //
+
+    #[Route('/admin/ratingCategory/{id}', name: 'ratingCategory_delete', methods: ['POST'])]
+    public function deleteRatingCategory(
+        
+        Request $request, 
+        RatingCategory $ratingCategory, 
+        EntityManagerInterface $entityManager
+        
+    ): Response {
+        
+        if ($this->isCsrfTokenValid('delete'.$ratingCategory->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($ratingCategory);
+            $entityManager->flush();
+            
+            $this->addFlash('success', 'Contact deleted successfully.');
+        }
+
+        return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
+
+    }
 
 }

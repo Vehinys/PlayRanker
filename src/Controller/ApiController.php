@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\RatingCategory;
+use App\Form\RatingCategoryType;
 use App\HttpClient\ApiHttpClient;
+use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\GameRepository;
-use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class ApiController extends AbstractController
 {
@@ -80,6 +82,8 @@ class ApiController extends AbstractController
         ApiHttpClient $apiHttpClient,
         CommentRepository $commentRepository,
         GameRepository $gameRepository,
+        Request $request
+
 
     ): Response {
 
@@ -87,7 +91,6 @@ class ApiController extends AbstractController
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
 
-    
         // Récupérer l'entité Game correspondante dans la base de données en fonction de id_game_api
         $game = $gameRepository->findOneBy(['id_game_api' => $id]);
     

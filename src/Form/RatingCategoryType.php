@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\RatingCategory;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RatingCategoryType extends AbstractType
 {
@@ -16,9 +16,13 @@ class RatingCategoryType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Category Name',
                 'attr' => [
-                    'placeholder' => 'Enter category name',
+                    'maxlength' => 150,
+                    'class' => 'form-control', 
+                    'placeholder' => 'Enter the category name'
                 ],
-            ]);
+                'required' => true,
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
