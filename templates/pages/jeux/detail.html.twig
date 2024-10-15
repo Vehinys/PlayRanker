@@ -47,61 +47,72 @@
         </section>
     
         <section class="container mx-auto px-4 mt-10">
-            <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-
-                {% set platform_logos = {
-                    'PlayStation 1': 'img/ps1.png',
-                    'PlayStation 2': 'img/ps2.png',
-                    'PlayStation 3': 'img/ps3.png',
-                    'PlayStation 4': 'img/ps4.png',
-                    'PlayStation 5': 'img/ps5.png',
-                    'PS Vita':       'img/ps-vita.png',
-                    'PSP':           'img/psp.png',
-                    'PC': 'img/pc.png',
-                    'Linux': 'img/linux.png',
-                    'Web': 'img/Web.png',
-                    'macOS': 'img/macOS.png',
-                    'iOS': 'img/ios.png',
-                    'Android': 'img/Android.png',
-                    'Xbox Series S/X': 'img/Xbox Series SX.png',
-                    'Xbox 360': 'img/Xbox 360.png',
-                    'Xbox One': 'img/Xbox One.png',
-                    'Xbox': 'img/xbox.png',
-                    'Nintendo Switch': 'img/Nintendo Switch.png',
-                    'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                    'Wii U': 'img/Wii U.png',
-                    'Wii': 'img/Wii.png',
-                    'GameCube': 'img/gameCube.png',
-                    
-                    'Nintendo DSi ': 'img/Wii U.png',
-                    'Nintendo DS ': 'img/Wii U.png',
-                    'Game Boy Advance': 'img/Wii U.png',
-                    'Game Boy Color': 'img/Wii U.png',
-                    'Game Boy': 'img/Wii U.png',
-                    'Nintendo 64': 'img/Wii U.png',
-                    'SNES': 'img/Wii U.png',
-                    'Wii U': 'img/Wii U.png',
-                    'NES': 'img/Wii U.png',
-                } %}
-
-                {% for element in gameDetail.platforms %}
-                    {% set logo_path = platform_logos[element.platform.name] ?? '' %}
-                    {% if logo_path %}
-                        <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
-                            <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
-                        </div>
-                    {% endif %}
-                {% endfor %}
+            <div class="flex flex-wrap  justify-center space-x-10 ">
+                <!-- Section 1 : Platforms -->
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Platforms</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {% set platform_logos = {
+                            'PlayStation 1': 'img/ps1.png',
+                            'PlayStation 2': 'img/ps2.png',
+                            'PlayStation 3': 'img/ps3.png',
+                            'PlayStation 4': 'img/ps4.png',
+                            'PlayStation 5': 'img/ps5.png',
+                            'PS Vita':       'img/ps-vita.png',
+                            'PSP':           'img/psp.png',
+                            'PC': 'img/pc.png',
+                            'Linux': 'img/linux.png',
+                            'Web': 'img/Web.png',
+                            'macOS': 'img/macOS.png',
+                            'iOS': 'img/ios.png',
+                            'Android': 'img/Android.png',
+                            'Xbox Series S/X': 'img/Xbox Series SX.png',
+                            'Xbox 360': 'img/Xbox 360.png',
+                            'Xbox One': 'img/Xbox One.png',
+                            'Xbox': 'img/xbox.png',
+                            'Nintendo Switch': 'img/Nintendo Switch.png',
+                            'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                            'Wii U': 'img/Wii U.png',
+                            'Wii': 'img/Wii.png',
+                            'GameCube': 'img/gameCube.png',
+                            'Nintendo DSi ': 'img/Wii U.png',
+                            'Nintendo DS ': 'img/Wii U.png',
+                            'Game Boy Advance': 'img/Wii U.png',
+                            'Game Boy Color': 'img/Wii U.png',
+                            'Game Boy': 'img/Wii U.png',
+                        } %}
+                        
+                        {% for element in gameDetail.platforms %}
+                            {% set logo_path = platform_logos[element.platform.name] ?? '' %}
+                            {% if logo_path %}
+                                <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
+                                    <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            
+                <!-- Section 2 : Tags -->
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Tags</h3>
+                    <div class="flex flex-wrap  justify-between gap-2">
+                        {% for tag in gameDetail.tags %}
+                            <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+                <!-- Section 3 : Rate -->
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold text-[#ECC33E] mb-4">Rate</h3>
+                    <div class="flex items-center justify-center bg-[#0C1D36] p-4 rounded-lg">
+                        <p>RATE</p>
+                    </div>
+                </div>
             </div>
-
-            <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Tags</h3>
-            <div class="flex flex-wrap gap-2">
-                {% for tag in gameDetail.tags %}
-                    <span class="bg-[#0C1D36] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
-                {% endfor %}
-            </div>
+            
 
             <h3 class="text-2xl font-bold text-[#ECC33E] mt-10 mb-4">Description</h3>
             <div class="bg-[#0C1D36] p-6 rounded-lg">
