@@ -42,11 +42,18 @@ class Game
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'game', orphanRemoval: true)]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, Score>
+     */
+    #[ORM\OneToMany(targetEntity: Score::class, mappedBy: 'game')]
+    private Collection $scores;
+
     public function __construct()
     {
         $this->platform = new ArrayCollection();
         $this->gamesLists = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +175,36 @@ class Game
             // set the owning side to null (unless already changed)
             if ($comment->getGame() === $this) {
                 $comment->setGame(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Score>
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): static
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores->add($score);
+            $score->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): static
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getGame() === $this) {
+                $score->setGame(null);
             }
         }
 

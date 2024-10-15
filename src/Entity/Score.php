@@ -16,6 +16,18 @@ class Score
     #[ORM\Column]
     private ?int $note = null;
 
+    #[ORM\ManyToOne(inversedBy: 'scores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?RatingCategory $ratingCategory = null;
+
+    #[ORM\ManyToOne(inversedBy: 'scores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'scores')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Game $game = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +41,42 @@ class Score
     public function setNote(int $note): static
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getRatingCategory(): ?RatingCategory
+    {
+        return $this->ratingCategory;
+    }
+
+    public function setRatingCategory(?RatingCategory $ratingCategory): static
+    {
+        $this->ratingCategory = $ratingCategory;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): static
+    {
+        $this->game = $game;
 
         return $this;
     }

@@ -267,18 +267,39 @@ CREATE TABLE IF NOT EXISTS `rating_category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.rating_category : ~0 rows (environ)
+-- Listage des données de la table playranker.rating_category : ~5 rows (environ)
+INSERT INTO `rating_category` (`id`, `name`) VALUES
+	(1, 'Gameplay'),
+	(2, 'Scenario'),
+	(3, 'Pleasure'),
+	(4, 'Accessibility'),
+	(5, 'Update');
 
 -- Listage de la structure de table playranker. score
 CREATE TABLE IF NOT EXISTS `score` (
   `id` int NOT NULL AUTO_INCREMENT,
   `note` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `rating_category_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `game_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_329937516317EE05` (`rating_category_id`),
+  KEY `IDX_32993751A76ED395` (`user_id`),
+  KEY `IDX_32993751E48FD905` (`game_id`),
+  CONSTRAINT `FK_329937516317EE05` FOREIGN KEY (`rating_category_id`) REFERENCES `rating_category` (`id`),
+  CONSTRAINT `FK_32993751A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_32993751E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.score : ~0 rows (environ)
+-- Listage des données de la table playranker.score : ~5 rows (environ)
+INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) VALUES
+	(1, 1, 1, 15, 39),
+	(2, 2, 2, 15, 39),
+	(3, 3, 3, 15, 39),
+	(4, 4, 4, 15, 39),
+	(5, 5, 5, 15, 39);
 
 -- Listage de la structure de table playranker. topic
 CREATE TABLE IF NOT EXISTS `topic` (
