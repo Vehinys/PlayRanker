@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Game;
-use App\Entity\GamesList;
 use App\Entity\User;
+use App\Entity\GamesList;
+use App\Repository\TypeRepository;
 use App\Repository\GameRepository;
 use App\Repository\GamesListRepository;
-use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

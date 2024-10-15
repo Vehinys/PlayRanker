@@ -7,6 +7,7 @@ use App\Repository\TypeRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\GameRepository;
+use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,18 +26,21 @@ class ApiController extends AbstractController
         CategoryRepository $categoryRepository,
         TypeRepository $typeRepository,
 
+
     ): Response {
 
         $page = $request->query->getInt('page', 1);
         $games = $apiHttpClient->nextPage($page);
         $categories = $categoryRepository->findAll();
         $types = $typeRepository->findAll();
+        
     
         return $this->render('pages/jeux/index.html.twig', [
             'types' => $types,
             'games' => $games,
             'currentPage' => $page,
             'categories' => $categories,
+            
         ]);
     }
 
@@ -75,13 +79,16 @@ class ApiController extends AbstractController
         string $id,
         ApiHttpClient $apiHttpClient,
         CommentRepository $commentRepository,
-        GameRepository $gameRepository
+        GameRepository $gameRepository,
+        ScoreRepository $scoreRepository,
 
     ): Response {
 
         // Récupérer les détails du jeu depuis l'API
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
+
+        $scores = $scoreRepository->findAll();
     
         // Récupérer l'entité Game correspondante dans la base de données en fonction de id_game_api
         $game = $gameRepository->findOneBy(['id_game_api' => $id]);
@@ -93,7 +100,8 @@ class ApiController extends AbstractController
             'gameDetail' => $gameDetail,
             'gameAnnonce' => $gameAnnonce,
             'gameId' => $id,
-            'comments' => $comments
+            'comments' => $comments,
+            'scores' => $scores
         ]);
     }
     

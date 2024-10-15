@@ -17,7 +17,7 @@ class PostType extends AbstractType
             'attr' => [
                 'class' => 'w-full border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-500',
                 'placeholder' => 'Post content',
-                'rows' => 5,  // Nombre de lignes visibles
+                'rows' => 5,
             ],
         ]);
     }

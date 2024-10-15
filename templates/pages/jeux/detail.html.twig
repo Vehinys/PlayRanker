@@ -121,51 +121,50 @@
         </section>
     </section>
 
-    <section class="w-2/3 mx-auto">
-
-        <div class="flex my-5 content-between">
-
-            <h1 class="text-2xl font-bold text-[#ECC33E]">Commentaires</h1>
+    <section class="w-2/3 flex mx-auto">
+        <div>
+            <div class="flex my-5 content-between">
+                <h1 class="text-2xl font-bold text-[#ECC33E]">Commentaires</h1>
+                <a href="{{ path('comment_new', {'id': gameDetail.id}) }}" class="bg-[#0C1D36] p-2 hover:bg-[#09172b] text-white text-2xl font-bold rounded"> Add a review </a>
+            </div>
     
-            <a href="{{ path('comment_new', {'id': gameDetail.id}) }}" class="bg-[#0C1D36] p-2 hover:bg-[#09172b] text-white text-2xl font-bold rounded"> Add a review </a>
-        
-        </div>
-
-        {% for comment in comments %}
-
+            {% for comment in comments %}
             <div class=" bg-[#0C1D36] p-6 rounded-lg mb-4">
-
                 <p class="text-white">{{ comment.content }}</p>
-
                 <div class=" flex justify-between items-end ">
-
                     <div class="mt-4 flex space-x-2">
-    
                         <p class="text-white">{{ comment.user.pseudo }}</p>
-    
                         <p class="text-gray-400">{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-    
                     </div>
-    
                     <div class="flex">
                         {% if app.user and (app.user.id == comment.user.id or is_granted('ROLE_ADMIN')) %}
-    
                             <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="text-blue-500 mr-3 hover:underline">edit</a>
-    
-    
                             <form method="post" action="{{ path('comment_delete', {'id': comment.id}) }}" style="display:inline-block;">
-    
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-    
                                 <button class="text-red-500 hover:underline">delete</button>
                             </form>
                         {% endif %}
                     </div>
-
                 </div>
-
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
+        <div>
+            <h2> Rating </h2>
+
+            {# {% for score in scores %}
+
+                {{score.ratingCategory.name}}
+                {{score.note}}
+                {{score.user.pseudo}}
+            
+            {% endfor %} #}
+            
+            
+            
+        </div>
+
     </section>
 
 
