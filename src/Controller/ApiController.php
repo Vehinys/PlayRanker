@@ -80,7 +80,6 @@ class ApiController extends AbstractController
         ApiHttpClient $apiHttpClient,
         CommentRepository $commentRepository,
         GameRepository $gameRepository,
-        ScoreRepository $scoreRepository,
 
     ): Response {
 
@@ -88,7 +87,6 @@ class ApiController extends AbstractController
         $gameDetail = $apiHttpClient->gameDetail($id);
         $gameAnnonce = $apiHttpClient->gameAnnonce($id);
 
-        $scores = $scoreRepository->findAll();
     
         // Récupérer l'entité Game correspondante dans la base de données en fonction de id_game_api
         $game = $gameRepository->findOneBy(['id_game_api' => $id]);
@@ -101,7 +99,6 @@ class ApiController extends AbstractController
             'gameAnnonce' => $gameAnnonce,
             'gameId' => $id,
             'comments' => $comments,
-            'scores' => $scores
         ]);
     }
     
