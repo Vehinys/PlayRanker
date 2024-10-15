@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `games_list` (
   CONSTRAINT `FK_5BB034C1E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.games_list : ~10 rows (environ)
+-- Listage des données de la table playranker.games_list : ~9 rows (environ)
 INSERT INTO `games_list` (`id`, `user_id`, `game_id`, `type_id`) VALUES
 	(9, 15, 46, 3),
 	(11, 15, 39, 1),
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `rating_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.rating_category : ~5 rows (environ)
+-- Listage des données de la table playranker.rating_category : ~6 rows (environ)
 INSERT INTO `rating_category` (`id`, `name`) VALUES
 	(1, 'Gameplay'),
 	(2, 'Scenario'),
@@ -293,13 +293,14 @@ CREATE TABLE IF NOT EXISTS `score` (
   CONSTRAINT `FK_32993751E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.score : ~5 rows (environ)
+-- Listage des données de la table playranker.score : ~6 rows (environ)
 INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) VALUES
 	(1, 1, 1, 15, 39),
 	(2, 2, 2, 15, 39),
 	(3, 3, 3, 15, 39),
 	(4, 4, 4, 15, 39),
-	(5, 5, 5, 15, 39);
+	(5, 5, 5, 15, 39),
+	(6, 5, 4, 19, 39);
 
 -- Listage de la structure de table playranker. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -395,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table playranker_test.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table playranker_test.doctrine_migration_versions : ~1 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20240907153121', '2024-09-11 07:26:11', 6);
 
