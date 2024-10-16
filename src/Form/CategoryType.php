@@ -29,7 +29,6 @@ class CategoryType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ]);
-        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
