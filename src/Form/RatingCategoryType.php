@@ -14,11 +14,11 @@ class RatingCategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Category Name',
+                'label' => 'Rating Category Name',
                 'attr' => [
                     'maxlength' => 150,
                     'class' => 'form-control', 
-                    'placeholder' => 'Enter the category name'
+                    'placeholder' => 'Enter the Rating category name'
                 ],
                 'required' => true,
             ])

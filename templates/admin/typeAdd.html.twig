@@ -28,21 +28,23 @@
     <div class="flex-1 overflow-x-hidden overflow-y-auto">
         <div class="container mx-auto px-6 py-8">
             <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Create a new Type</h2>
-        
-            <div class="bg-[#0C1D36] shadow-md rounded p-6">
-                <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Type Creation Form</h3>
+            
+            <div class="bg-[#0C1D36] shadow-md rounded-lg p-8">
+                <h3 class="text-xl text-[#ECC33E] font-bold mb-6">Type Creation Form</h3>
 
-                {{ form_start(formType) }}
-                    <div class="mb-4">
-                        {{ form_widget(formType) }}
+                {{ form_start(formType, {'attr': {'class': 'space-y-6'}}) }}
+                    <div class="mb-4 space-y-4">
+                        {{ form_label(formType.name, null, {'label_attr': {'class': 'block text-[#ECC33E] mb-2'}}) }}
+                        {{ form_widget(formType.name, {'attr': {'class': 'w-full p-3 text-gray-800 bg-white text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
                     </div>
 
-                    <div class="flex">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Create</button>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Create</button>
                     </div>
                 {{ form_end(formType) }}
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}

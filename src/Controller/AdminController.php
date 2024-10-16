@@ -316,28 +316,28 @@ class AdminController extends AbstractController
      * @return Response The response redirecting to the admin page.
      */
 
-        #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
-        public function deletePlatform(
+    #[Route('/admin/platform/delete/{platformId}', name: 'platform.delete', methods: ['POST'])]
+    public function deletePlatform(
 
-            int $platformId,
-            PlatformRepository $repository,
-            EntityManagerInterface $manager
+        int $platformId,
+        PlatformRepository $repository,
+        EntityManagerInterface $manager
 
-        ): Response {
+    ): Response {
 
-            // Récupération de la plateforme à supprimer
-            $platform = $repository->find($platformId);
+        // Récupération de la plateforme à supprimer
+        $platform = $repository->find($platformId);
 
-            // Suppression de la plateforme
-            $manager->remove($platform);
-            $manager->flush();
+        // Suppression de la plateforme
+        $manager->remove($platform);
+        $manager->flush();
 
-            // Message flash de confirmation
-            $this->addFlash('success', 'La plateforme a été supprimée avec succès');
+        // Message flash de confirmation
+        $this->addFlash('success', 'La plateforme a été supprimée avec succès');
 
-            // Redirection vers la page d'administration
-            return $this->redirectToRoute('admin');
-        }
+        // Redirection vers la page d'administration
+        return $this->redirectToRoute('admin');
+    }
 
     // ---------------------------------------------------------- //
     // Afficher les mails de la liste
@@ -421,7 +421,47 @@ class AdminController extends AbstractController
     // EDITER RATING CATEGORY
     // ---------------------------------------------------------- //
 
+    #[Route('/admin/ratingCategory/edit/{id}', name: 'ratingCategory_edit', methods: ['GET', 'POST'])]
+    public function editRatingCategory(
 
+        int $id, 
+        RatingCategoryRepository $repository,  
+        Request $request, 
+        EntityManagerInterface $manager
+
+    ): Response {
+
+        // Recherche de la plateforme par son ID
+        $ratingCategory = $repository->find($id);
+
+        // Vérification de l'existence de la plateforme
+        if (!$ratingCategory) {
+            throw $this->createNotFoundException('Plateforme non trouvée');
+        }
+
+        // Création du formulaire pour la plateforme
+        $form = $this->createForm(RatingCategoryType::class, $ratingCategory);
+        $form->handleRequest($request);
+
+        // Traitement du formulaire soumis
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ratingCategory = $form->getData();
+            $manager->persist($ratingCategory);
+            $manager->flush();
+
+            // Message flash de confirmation
+            $this->addFlash('success', 'La ratingCategory a été mise à jour avec succès');
+            
+            // Redirection vers la page d'administration
+            return $this->redirectToRoute('admin');
+        }
+
+        // Rendu de la vue avec le formulaire
+        return $this->render('admin/platformEdit.html.twig', [
+            'form' => $form->createView(),
+            'platformId' => $ratingCategory->getId(),
+        ]);
+    }
 
 
     // ---------------------------------------------------------- //

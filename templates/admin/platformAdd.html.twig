@@ -27,18 +27,18 @@
     <!-- Main Content -->
     <div class="flex-1 overflow-x-hidden overflow-y-auto">
         <div class="container mx-auto px-6 py-8">
-            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Add a Platform</h2>
+            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Create a new Platform</h2>
         
-            <div class="bg-[#0C1D36] shadow-md rounded p-6">
-                <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Platform Add Form</h3>
+            <div class="bg-[#0C1D36] shadow-md rounded-lg p-8">
+                <h3 class="text-xl text-[#ECC33E] font-bold mb-6">Platform Add Form</h3>
 
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
                     <div class="mb-4">
-                        {{ form_widget(form) }}
+                        {{ form_widget(form, {'attr': {'class': 'w-full p-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
                     </div>
 
-                    <div class="flex">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Add</button>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Add</button>
                     </div>
                 {{ form_end(form) }}
             </div>
