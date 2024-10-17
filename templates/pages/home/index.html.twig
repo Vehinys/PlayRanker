@@ -59,7 +59,7 @@
 
       <div class="container-card">
 
-        <div class="card">
+        <div class="card border border-[#ECC33E]">
             <div class="front-face">
                 <div class="content">
                     <h2 class="number">TOP 1</h2>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="card">
-            <div class="front-face">
+            <div class="front-face border border-[#ECC33E]">
                 <div class="content">
                     <h2 class="number">TOP 2</h2>
                     <h2 class="title">Tomb Raider (2013)</h2>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="card">
-            <div class="front-face">
+            <div class="front-face border border-[#ECC33E]">
                 <div class="content">
                     <h2 class="number">TOP 3</h2>
                     <h2 class="title">Minecraft</h2>
@@ -109,10 +109,10 @@
     <!-- ------------------- Séparateur ----------------------- -->
 
     <section class="review-section">
-      <div class="review-container">
+      <div class="review-container ">
           {% for comment in comments %}
-              <div class="review-content">
-                  <div class="review-text">
+              <div class="review-content border border-[#ECC33E]">
+                  <div class="review-text ">
                       <h2>{{ comment.game.name }}</h2>
                       <p>{{ comment.content }}</p>
                       <div class="review-container-text">
@@ -143,7 +143,7 @@
     <!-- --------------------- contact ------------------------ -->
     
     <section class="contact-section">
-      <div class="contact-container">
+      <div class="contact-container border border-[#ECC33E]">
           <form action="{{ path('contact') }}" method="post">
               {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
   

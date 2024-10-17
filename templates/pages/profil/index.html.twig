@@ -16,7 +16,7 @@
                             <!-- Affichage de l'avatar de l'utilisateur -->
                             <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
                                 alt="Profile Picture of {{ user.pseudo }}" 
-                                class="w-48 h-48 rounded-full border-4 border-white transition-transform duration-500 transform hover:scale-110">
+                                class="w-48 h-48 rounded-full border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-110">
                             <div class="mt-4 text-center text-white">
                                 <!-- Affichage du pseudo de l'utilisateur -->
                                 <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold">Pseudo:</span> <span class="text-[20px]">{{ user.pseudo }}</span></p>
@@ -24,6 +24,7 @@
                                 <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold">Email:</span> <span class="text-[20px]">{{ user.email }}</span></p>
                                 <!-- Affichage du nombre de sujets créés par l'utilisateur -->
                                 <p><span class="text-[20px] text-[#ECC33E] font-bold">Topics created:</span> <span class="text-[20px]">{{ user.topics|length }}</span></p>
+                                
                             </div>
                         {% else %}
                             <!-- Message d'erreur si aucun utilisateur n'est trouvé -->
@@ -99,7 +100,7 @@
 
                         <div class="text-center mt-4">
                             <!-- Lien pour rechercher des jeux -->
-                            <a href="{{ path('jeux') }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                            <a href="{{ path('jeux', { 'page': 1 }) }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                 Search Game
                             </a>
                         </div>
