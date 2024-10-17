@@ -24,52 +24,39 @@ class ApiController extends AbstractController
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/jeux/{page}', name: 'jeux', methods:['POST', 'GET'])]
+    #[Route('/jeux/{page<\d+>?1}', name: 'jeux', methods:['POST', 'GET'])]
     public function index(
-    
-        int $page = 1, // Paramètre pour la pagination
-        ApiHttpClient $apiHttpClient,  // Service pour interagir avec l'API des jeux
-        CategoryRepository $categoryRepository, // Repository pour accéder aux catégories
-        TypeRepository $typeRepository, // Repository pour accéder aux types
-        ScoreRepository $scoreRepository,
-        GameRepository $gameRepository,
 
+        int $page, 
+        ApiHttpClient $apiHttpClient,  
+        CategoryRepository $categoryRepository, 
+        TypeRepository $typeRepository, 
+        ScoreRepository $scoreRepository,
+        GameRepository $gameRepository
+        
     ): Response {
     
-        // Si la variable $page est définie, récupérer la page suivante des jeux
-        if (!$page) {
-
-            // Récupération du numéro de page à partir de la requête (par défaut 1 si non défini)
-            // $page = $request->query->getInt('page', 1);
-            $page = 1;
-            
-        }
-
+        // Récupération des jeux pour la page actuelle
         $games = $apiHttpClient->nextPage($page);
+    
+        // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
-        
         foreach ($games['results'] as $game) {
             $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
-            if ($gameEntity) {
-                $averageScores[$game['id']] = $scoreRepository->getAverageScoreForGame($gameEntity);
-            } else {
-                $averageScores[$game['id']] = null;
-            }
+            $averageScores[$game['id']] = $gameEntity ? 
+                $scoreRepository->getAverageScoreForGame($gameEntity) : null;
         }
     
-        // Récupérer toutes les catégories disponibles dans la base de données
+        // Récupérer toutes les catégories et types disponibles
         $categories = $categoryRepository->findAll();
-    
-        // Récupérer tous les types disponibles dans la base de données
         $types = $typeRepository->findAll();
-        
-        // Rendu du template Twig 'index.html.twig' avec les données des jeux, types, catégories, et la page actuelle
+    
+        // Rendu du template avec les jeux, catégories, types et scores
         return $this->render('pages/jeux/index.html.twig', [
-
-            'types'       => $types,     // Les types récupérés pour le filtre ou l'affichage
-            'games'       => $games,     // Les jeux récupérés pour la page actuelle
-            'currentPage' => $page,      // Numéro de la page courante
-            'categories'  => $categories, // Les catégories récupérées pour le filtre ou l'affichage
+            'types'       => $types,
+            'games'       => $games,
+            'currentPage' => $page,
+            'categories'  => $categories,
             'averageScores' => $averageScores,
         ]);
     }
@@ -84,19 +71,34 @@ class ApiController extends AbstractController
         ApiHttpClient $apiHttpClient,
         TypeRepository $typeRepository,
         CategoryRepository $repository,
+        GameRepository $gameRepository,
+        ScoreRepository $scoreRepository
         
     ): Response {
 
-
         $input = $request->get('input');
         $games = $apiHttpClient->gamesSearch($input);
+        // dd($games);
         $types = $typeRepository->findAll();
         $categories = $repository->findAll();
 
+        $averageScores = [];
+        
+        foreach ($games['results'] as $game) {
+            $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
+            if ($gameEntity) {
+                $averageScores[$game['id']] = $scoreRepository->getAverageScoreForGame($gameEntity);
+            } else {
+                $averageScores[$game['id']] = null;
+            }
+        }
+
         return $this->render('pages/jeux/index.html.twig', [
+            'currentPage' => 1,
             'games' => $games,
             'types' => $types,
             'categories' => $categories,
+            'averageScores' => $averageScores,
 
         ]);
     }
@@ -106,6 +108,7 @@ class ApiController extends AbstractController
     // Définit la route pour la page de détail d'un jeu
         #[Route('/jeux/detail/{id}', name: 'detail_jeu')]
         public function detailJeu(
+
             string $id,
             ApiHttpClient $apiHttpClient,
             GameRepository $gameRepository,
@@ -114,7 +117,9 @@ class ApiController extends AbstractController
             EntityManagerInterface $entityManager,
             RatingCategoryRepository $ratingCategoryRepository,
             Request $request
+
         ): Response {
+
             $user = $this->getUser();
             $gameDetail = $apiHttpClient->gameDetail($id);
             $gameAnnonce = $apiHttpClient->gameAnnonce($id);
@@ -224,4 +229,37 @@ class ApiController extends AbstractController
             'averageScores' => $averageScores,
         ]);
     }
+
+    #[Route('/jeux/search/{page}', name: 'jeux_search', methods:['GET'])]
+    public function searchGames(
+    
+        int $page, 
+        Request $request, 
+        ApiHttpClient $apiHttpClient, 
+        CategoryRepository $categoryRepository, 
+        TypeRepository $typeRepository
+    
+    ): Response {
+        // Récupérer le terme de recherche depuis la requête
+        $searchTerm = $request->query->get('search', '');
+    
+        // Appel à la fonction `nextPageSearch` pour obtenir les résultats de recherche
+        $games = $apiHttpClient->nextPageSearch($page, $searchTerm);
+        
+        // Récupérer les catégories et types pour le filtre
+        $categories = $categoryRepository->findAll();
+        $types = $typeRepository->findAll();
+    
+        // Rendu du template avec les données nécessaires
+        return $this->render('pages/jeux/index.html.twig', [
+            'games' => $games,
+            'currentPage' => $page,
+            'categories' => $categories,
+            'types' => $types,
+            'searchTerm' => $searchTerm,
+        ]);
+    }
+
+
+
 }

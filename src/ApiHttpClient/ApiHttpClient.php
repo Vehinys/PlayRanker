@@ -83,6 +83,25 @@ class ApiHttpClient extends AbstractController
             $response = $this->httpClient->request('GET', 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'');
             return $response->toArray();
         }
+
+        /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /**
+     * Récupère la page suivante de données de jeux depuis l'API RAWG.
+     *
+     * @param int $page Le numéro de page à récupérer.
+     * @return array Les données de réponse de l'API RAWG sous forme de tableau.
+     */
+
+    public function nextPageSearch($page, $searchTerm = '')
+    {
+        $url = 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page=' . $page;
+    
+
+        $response = $this->httpClient->request('GET', $url);
+        
+        return $response->toArray();
+    }
     
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
