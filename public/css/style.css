@@ -59,6 +59,7 @@
   border: 3px solid var(--color-light);
   border-radius: 25px;
   outline: none;
+  color: var(--color-dark-2);
 }
 
 .search-input:focus {
@@ -88,7 +89,6 @@
   line-height: 1.4;
   padding: 80px 0;
   width: 100%;
-  text-shadow: var(--color-dark) 0 0 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +109,7 @@
 
 .word-animation .red {
   font-size: 60px;
-  color: var(--color-yellow);
+  color: red;
   display: flex;
 }
 
@@ -142,6 +142,8 @@
   content: '';
   width: 300px;
   border-bottom: 4px solid;
+  color: var(--color-yellow);
+  box-shadow: var(--color-dark) 0 0 2px;
 }
 
 .separator::before {
@@ -153,10 +155,9 @@
 }
 
 .separator span {
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
-  color: var(--color-yellow);
-  text-shadow: var(--color-dark) 0 0 1px;
+  color: var(--color-dark);
 }
 
 .section-top {

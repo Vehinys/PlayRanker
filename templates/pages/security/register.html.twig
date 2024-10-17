@@ -6,32 +6,32 @@
 <div class="min-h-screen flex items-center justify-center bg-[#ebf1ff] py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8 bg-[#09172b] p-8 rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center text-[#ECC33E]">Registration</h1>
-   
+  
     {{ form_errors(registrationForm) }}
-   
+  
     {{ form_start(registrationForm, {'attr': {'class': 'mt-8 space-y-6'}}) }}
       <div class="rounded-md shadow-sm -space-y-px">
         <div class="mb-4">
-          {{ form_label(registrationForm.pseudo, 'Username', {'label_attr': {'class': 'sr-only'}}) }}
-          {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-t-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your username' } }) }}
+          {{ form_label(registrationForm.pseudo, 'Pseudo',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
+          {{ form_widget(registrationForm.pseudo, { 'attr': { 'class': 'appearance-none rounded-none relative mt-1 block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-t-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your username' } }) }}
           {{ form_errors(registrationForm.pseudo) }}
         </div>
 
         <div class="mb-4">
-          {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'sr-only'}}) }}
-          {{ form_widget(registrationForm.email, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your email' } }) }}
+          {{ form_label(registrationForm.email, 'Email',  {'label_attr': {'class': 'text-[#ECC33E] font-bold '}}) }}
+          {{ form_widget(registrationForm.email, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full mb-3 mt-1 px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your email' } }) }}
           {{ form_errors(registrationForm.email) }}
         </div>
 
         <div class="mb-4">
-          {{ form_label(registrationForm.plainPassword.first, 'Password', {'label_attr': {'class': 'sr-only'}}) }}
-          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputPassword', 'placeholder': 'Password' } }) }}
+          {{ form_label(registrationForm.plainPassword.first, 'Password',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
+          {{ form_widget(registrationForm.plainPassword.first, { 'attr': { 'class': 'appearance-none rounded-none relative mb-3 mt-1 block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputPassword', 'placeholder': 'Password' } }) }}
           {{ form_errors(registrationForm.plainPassword.first) }}
         </div>
 
         <div class="mb-4">
-          {{ form_label(registrationForm.plainPassword.second, 'Confirm your password', {'label_attr': {'class': 'sr-only'}}) }}
-          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-b-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputConfirmPassword', 'placeholder': 'Confirm password' } }) }}
+          {{ form_label(registrationForm.plainPassword.second, 'Confirm your password',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
+          {{ form_widget(registrationForm.plainPassword.second, { 'attr': { 'class': 'appearance-none rounded-none relative block mt-1 w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-b-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'id': 'inputConfirmPassword', 'placeholder': 'Confirm password' } }) }}
           {{ form_errors(registrationForm.plainPassword.second) }}
         </div>
       </div>
