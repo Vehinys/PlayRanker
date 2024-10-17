@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Score;
 use App\Form\ScoreType;
 use App\Entity\Game;
-use App\Entity\Post;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
@@ -28,7 +27,7 @@ class ApiController extends AbstractController
     #[Route('/jeux/{page}', name: 'jeux', methods:['POST', 'GET'])]
     public function index(
     
-        Int $page, // Paramètre pour la pagination
+        int $page = 1, // Paramètre pour la pagination
         ApiHttpClient $apiHttpClient,  // Service pour interagir avec l'API des jeux
         CategoryRepository $categoryRepository, // Repository pour accéder aux catégories
         TypeRepository $typeRepository, // Repository pour accéder aux types
@@ -192,7 +191,9 @@ class ApiController extends AbstractController
 
         string $id,
         ApiHttpClient $apiHttpClient,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        GameRepository $gameRepository,
+        ScoreRepository $scoreRepository
 
     ): Response {  
 
@@ -204,11 +205,23 @@ class ApiController extends AbstractController
         if (empty($games['results'])) {
             $this->addFlash('notice', 'No games found for this platform.');
         }
+
+        $averageScores = [];
+        
+        foreach ($games['results'] as $game) {
+            $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
+            if ($gameEntity) {
+                $averageScores[$game['id']] = $scoreRepository->getAverageScoreForGame($gameEntity);
+            } else {
+                $averageScores[$game['id']] = null;
+            }
+        }
     
         return $this->render('pages/jeux/index.html.twig', [
             'games' => $games,
             'token' => $token,
-            'categories' => $categories
+            'categories' => $categories,
+            'averageScores' => $averageScores,
         ]);
     }
 }

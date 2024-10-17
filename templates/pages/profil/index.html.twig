@@ -52,7 +52,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                         {% for topic in user.topics %}
                             <!-- Lien vers chaque sujet créé par l'utilisateur -->
-                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-2 rounded-lg content-center text-center text-[14px] text-white hover:bg-white hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]">
+                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-2 rounded-lg content-center text-center text-[14px] text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200 border border-transparent hover:border-[#09172b]">
                                 {{ topic.title }}
                             </a>
                         {% else %}
