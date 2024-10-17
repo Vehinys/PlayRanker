@@ -3,7 +3,7 @@
 {% block title %}PlayRanker - Games{% endblock %}
 
 {% block body %}
-    <section class="bg-[#ebf1ff] min-h-screen py-10">
+    <section class="bg-[#97b4e0] min-h-screen py-10">
         <div class="container mx-auto px-4">
             <div class="mb-8 flex justify-center">
                 <form class="w-2/5 flex" action="{{ path('search') }}" id="searchthis" method="post">
@@ -43,6 +43,9 @@
                         <div class="w-full">
                             <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
                         </div>
+
+                            <div class="score text-white text-center my-3 text-2xl">{{ averageScores[game.id]|number_format(1) }}</div>
+
 
                         <div class="p-4 min-h-[154px] flex flex-col justify-between ">
 
@@ -113,7 +116,6 @@
                                     </div>
                                 </div>
                                 {% endif %}
-
                             </div>
                         </div>
                     </div>
@@ -124,12 +126,12 @@
                 {% if currentPage is defined %}
                     <nav class="inline-flex">
                         {% if currentPage > 1 %}
-                            <a href="{{ path('jeux_page', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
+                            <a href="{{ path('jeux', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
                         {% endif %}
 
                         <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentPage }}</span>
 
-                        <a href="{{ path('jeux_page', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
+                        <a href="{{ path('jeux', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
                     </nav>
                 {% endif %}
             </div>
