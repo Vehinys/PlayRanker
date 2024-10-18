@@ -43,16 +43,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $avatar = null; 
 
     #[ORM\Column(length: 150, nullable: true)]
-    private ?string $GamerTagPlaystation = null;
+    private ?string $gamerTagPlaystation = null;
 
     #[ORM\Column(length: 150, nullable: true)]
-    private ?string $GamerTagXbox = null;
+    private ?string $gamerTagXbox = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Youtube = null;
+    private ?string $youtube = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Twitch = null;
+    private ?string $twitch = null;
 
     /**
      * @var Collection<int, Post>
@@ -343,48 +343,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getGamerTagPlaystation(): ?string
     {
-        return $this->GamerTagPlaystation;
+        return $this->gamerTagPlaystation;
     }
 
     public function setGamerTagPlaystation(?string $GamerTagPlaystation): static
     {
-        $this->GamerTagPlaystation = $GamerTagPlaystation;
+        $this->gamerTagPlaystation = $GamerTagPlaystation;
 
         return $this;
     }
 
     public function getGamerTagXbox(): ?string
     {
-        return $this->GamerTagXbox;
+        return $this->gamerTagXbox;
     }
 
     public function setGamerTagXbox(?string $GamerTagXbox): static
     {
-        $this->GamerTagXbox = $GamerTagXbox;
+        $this->gamerTagXbox = $GamerTagXbox;
 
         return $this;
     }
 
     public function getYoutube(): ?string
     {
-        return $this->Youtube;
+        return $this->youtube;
     }
 
     public function setYoutube(?string $Youtube): static
     {
-        $this->Youtube = $Youtube;
+        $this->youtube = $Youtube;
 
         return $this;
     }
 
     public function getTwitch(): ?string
     {
-        return $this->Twitch;
+        return $this->twitch;
     }
 
     public function setTwitch(?string $Twitch): static
     {
-        $this->Twitch = $Twitch;
+        $this->twitch = $Twitch;
 
         return $this;
     }

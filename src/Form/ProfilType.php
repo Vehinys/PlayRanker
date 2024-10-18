@@ -19,52 +19,40 @@ class ProfilType extends AbstractType
         $builder
         ->add('email', EmailType::class, [
             'label' => 'Email',
-            'attr' => ['placeholder' => 'Email'],
+            'attr' => ['placeholder' => 'Enter your email'],
             'constraints' => [
-                new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
+                new NotBlank(['message' => 'Please enter an email address.'])
             ],
         ])
-            ->add('pseudo', TextType::class, [
-                'label' => 'new Pseudo',
-                'attr' => ['placeholder' => 'Entrez votre nouveau pseudo'],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
-                    new Length(['min' => 2, 'max' => 100]),
-                ],
-            ])
-            ->add('avatar', UrlType::class, [
-                'label' => 'Avatar',
-                'attr' => ['placeholder' => 'Url de l\'avatar'],
-            ])
-            ->add('GamerTagPlaystation',TextType::class, [
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Email'],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                ],
-            ])
-            ->add('GamerTagXbox',TextType::class, [
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Email'],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                ],
-            ])
-            ->add('Youtube',TextType::class, [
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Email'],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                ],
-            ])
-            ->add('Twitch',TextType::class, [
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Email'],
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                ],
-            ])
-        ;
+        ->add('pseudo', TextType::class, [
+            'label' => 'New Pseudo',
+            'attr' => ['placeholder' => 'Enter your new pseudo'],
+            'constraints' => [
+                new NotBlank(['message' => 'Please enter a pseudo.']),
+                new Length(['min' => 2, 'max' => 100]),
+            ],
+        ])
+        ->add('avatar', UrlType::class, [
+            'label' => 'Avatar',
+            'attr' => ['placeholder' => 'Avatar URL'],
+        ])
+        ->add('GamerTagPlaystation', TextType::class, [
+            'label' => 'PlayStation Gamer Tag',
+            'attr' => ['placeholder' => 'Enter your PlayStation Gamer Tag'],
+        ])
+        ->add('GamerTagXbox', TextType::class, [
+            'label' => 'Xbox Gamer Tag',
+            'attr' => ['placeholder' => 'Enter your Xbox Gamer Tag'],
+        ])
+        ->add('Youtube', TextType::class, [
+            'label' => 'YouTube',
+            'attr' => ['placeholder' => 'Enter your YouTube channel'],
+        ])
+        ->add('Twitch', TextType::class, [
+            'label' => 'Twitch',
+            'attr' => ['placeholder' => 'Enter your Twitch username'],
+        ]);
+    
     }
 
     public function configureOptions(OptionsResolver $resolver): void

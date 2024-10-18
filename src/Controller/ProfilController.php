@@ -85,27 +85,55 @@ class ProfilController extends AbstractController
      * @return Response The rendered profile edit page.
      */
 
-    #[Route('/profile/edit', name: 'edit_profile')]
+    // #[Route('/profil/edit', name: 'edit_profil')]
+    // public function editProfile(
+        
+    //     Request $request, 
+    //     EntityManagerInterface $entityManager,
+        
+    // ): Response {
+
+    //     $user = $this->getUser();
+    //     dd($user);
+    //     $form = $this->createForm(ProfilType::class, $user);
+        
+    //     $form->handleRequest($request);
+    
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->flush();
+    //         return $this->redirectToRoute('profil');
+    //     }
+    
+    //     return $this->render('pages/profil/editProfil.html.twig', [
+    //         'form' => $form->createView(),
+    //         'user' => $user
+    //     ]);
+    // }
+
+        #[Route('/profil/edit/{id}', name: 'edit_profil')]
     public function editProfile(
         
+        int $id,
         Request $request, 
-        EntityManagerInterface $entityManager
-        
+        EntityManagerInterface $entityManager,
+
     ): Response {
 
-        $user = $this->getUser();
+        $user = $this->getUser($id);
         $form = $this->createForm(ProfilType::class, $user);
-        
+
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            return $this->redirectToRoute('profile');
-        }
-    
-        return $this->render('pages/profile/editProfile.html.twig', [
+             $entityManager->flush();
+             return $this->redirectToRoute('profil');
+         }
+
+        return $this->render('pages/profil/editProfil.html.twig', [
+
             'form' => $form->createView(),
             'user' => $user
+            
         ]);
     }
 
@@ -113,7 +141,7 @@ class ProfilController extends AbstractController
     // Supprime le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    #[Route('/profil/delete', name: 'delete_profile')]
+    #[Route('/profil/delete', name: 'delete_profil')]
     public function deleteProfile(
 
         EntityManagerInterface $entityManager,

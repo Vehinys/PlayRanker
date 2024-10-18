@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CrudController extends AbstractController
+class CrudForumController extends AbstractController
 {
     // -------------------------------------------------------------------------
     // Création d'un nouveau topic
