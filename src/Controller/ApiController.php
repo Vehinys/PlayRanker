@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Score;
 use App\Form\ScoreType;
-use App\Entity\Game;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
@@ -16,6 +16,7 @@ use App\Repository\RatingCategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -35,10 +36,14 @@ class ApiController extends AbstractController
         GameRepository $gameRepository
         
     ): Response {
-    
+
+        if (!$page) {
+            $page = 1;
+        }
+
         // Récupération des jeux pour la page actuelle
         $games = $apiHttpClient->nextPage($page);
-    
+        
         // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
         foreach ($games['results'] as $game) {
@@ -60,28 +65,44 @@ class ApiController extends AbstractController
             'averageScores' => $averageScores,
         ]);
     }
-    
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-    #[Route('/jeux/search', name: 'search', methods: ['POST'])]
+    #[Route('/jeux/search/{page<\d+>?1}', name: 'search', methods: ['GET', 'POST'])]
     public function search(
 
+        int $page, 
         Request $request, 
         ApiHttpClient $apiHttpClient,
         TypeRepository $typeRepository,
         CategoryRepository $repository,
         GameRepository $gameRepository,
-        ScoreRepository $scoreRepository
-        
+        ScoreRepository $scoreRepository,
+        SessionInterface $session
+
     ): Response {
 
+        // Vérifier si l'input est présent dans la requête
         $input = $request->get('input');
-        $games = $apiHttpClient->gamesSearch($input);
-        // dd($games);
+        
+        // Si l'input est présent, on le stocke dans la session
+        if ($input) {
+            $session->set('search_input', $input);
+        } else {
+            // Si pas d'input dans la requête, on récupère l'input de la session
+            $input = $session->get('search_input');
+        }
+
+        // Récupération des résultats de recherche
+        $games = $apiHttpClient->nextPageSearch($page, $input);
+
+        if (!$page) {
+            $page = 1;
+        }
+
+        // Récupération des types et catégories
         $types = $typeRepository->findAll();
         $categories = $repository->findAll();
-
         $averageScores = [];
         
         foreach ($games['results'] as $game) {
@@ -94,14 +115,14 @@ class ApiController extends AbstractController
         }
 
         return $this->render('pages/jeux/index.html.twig', [
-            'currentPage' => 1,
+            'currentSearchPage' => $page,
             'games' => $games,
             'types' => $types,
             'categories' => $categories,
             'averageScores' => $averageScores,
-
         ]);
     }
+
 
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -130,7 +151,15 @@ class ApiController extends AbstractController
             // Calculate average score
             $averageScore = $game ? $scoreRepository->getAverageScoreForGame($game) : null;
 
-            $averageScoreUser = $game ? $scoreRepository->getAverageScoreForGameAndUser($game, $user) : null;
+            if ($user) {
+                $averageScoreUser = $game ? $scoreRepository->getAverageScoreForGameAndUser($game, $user) : null;
+
+                } else {
+                
+                $averageScoreUser = null;
+    
+            }
+
 
             $comments = $commentRepository->findBy(['game' => $game]);
 
@@ -229,37 +258,5 @@ class ApiController extends AbstractController
             'averageScores' => $averageScores,
         ]);
     }
-
-    #[Route('/jeux/search/{page}', name: 'jeux_search', methods:['GET'])]
-    public function searchGames(
-    
-        int $page, 
-        Request $request, 
-        ApiHttpClient $apiHttpClient, 
-        CategoryRepository $categoryRepository, 
-        TypeRepository $typeRepository
-    
-    ): Response {
-        // Récupérer le terme de recherche depuis la requête
-        $searchTerm = $request->query->get('search', '');
-    
-        // Appel à la fonction `nextPageSearch` pour obtenir les résultats de recherche
-        $games = $apiHttpClient->nextPageSearch($page, $searchTerm);
-        
-        // Récupérer les catégories et types pour le filtre
-        $categories = $categoryRepository->findAll();
-        $types = $typeRepository->findAll();
-    
-        // Rendu du template avec les données nécessaires
-        return $this->render('pages/jeux/index.html.twig', [
-            'games' => $games,
-            'currentPage' => $page,
-            'categories' => $categories,
-            'types' => $types,
-            'searchTerm' => $searchTerm,
-        ]);
-    }
-
-
 
 }

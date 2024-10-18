@@ -93,10 +93,9 @@ class ApiHttpClient extends AbstractController
      * @return array Les données de réponse de l'API RAWG sous forme de tableau.
      */
 
-    public function nextPageSearch($page, $searchTerm = '')
+    public function nextPageSearch($page, $input)
     {
-        $url = 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page=' . $page;
-    
+        $url = 'https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page='.$page.'&search='.$input;
 
         $response = $this->httpClient->request('GET', $url);
         

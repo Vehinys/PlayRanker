@@ -33,14 +33,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $pseudo = null; // Pseudo de l'utilisateur
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $avatar = null; // URL de l'avatar de l'utilisateur
-
     #[ORM\Column]
     private ?string $password = null; // Mot de passe de l'utilisateur
-
+    
     #[ORM\Column(type: 'json')]
     private array $roles = []; // Rôles de l'utilisateur (ex: ROLE_USER, ROLE_ADMIN)
+    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null; 
+
+    #[ORM\Column(length: 150, nullable: true)]
+    private ?string $GamerTagPlaystation = null;
+
+    #[ORM\Column(length: 150, nullable: true)]
+    private ?string $GamerTagXbox = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Youtube = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Twitch = null;
 
     /**
      * @var Collection<int, Post>
@@ -325,6 +337,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $score->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGamerTagPlaystation(): ?string
+    {
+        return $this->GamerTagPlaystation;
+    }
+
+    public function setGamerTagPlaystation(?string $GamerTagPlaystation): static
+    {
+        $this->GamerTagPlaystation = $GamerTagPlaystation;
+
+        return $this;
+    }
+
+    public function getGamerTagXbox(): ?string
+    {
+        return $this->GamerTagXbox;
+    }
+
+    public function setGamerTagXbox(?string $GamerTagXbox): static
+    {
+        $this->GamerTagXbox = $GamerTagXbox;
+
+        return $this;
+    }
+
+    public function getYoutube(): ?string
+    {
+        return $this->Youtube;
+    }
+
+    public function setYoutube(?string $Youtube): static
+    {
+        $this->Youtube = $Youtube;
+
+        return $this;
+    }
+
+    public function getTwitch(): ?string
+    {
+        return $this->Twitch;
+    }
+
+    public function setTwitch(?string $Twitch): static
+    {
+        $this->Twitch = $Twitch;
 
         return $this;
     }

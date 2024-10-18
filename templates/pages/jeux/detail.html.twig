@@ -87,7 +87,7 @@
                             {% set logo_path = platform_logos[element.platform.name] ?? '' %}
                             {% if logo_path %}
                                 <div class="flex items-center justify-center border border-[#ECC33E] bg-[#0C1D36] p-4 rounded-lg">
-                                    <img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain" />
+                                    <a href="{{ path('searchByPlatform', { id: element.platform.id }) }}"><img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain hover:scale-125" /></a>
                                 </div>
                             {% endif %}
                         {% endfor %}
@@ -137,9 +137,9 @@
                                         <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border border-[#eeca56] rounded-full"></div>
                                         
                                         {% set scoreClass = '' %}
-                                        {% if averageScore >= 7 %}
+                                        {% if averageScore >= 8 %}
                                             {% set scoreClass = 'text-green-800' %}
-                                        {% elseif averageScore >= 4 %}
+                                        {% elseif averageScore >= 5 %}
                                             {% set scoreClass = 'text-orange-600' %}
                                         {% else %}
                                             {% set scoreClass = 'text-red-800' %}
@@ -147,7 +147,7 @@
 
                                         {% if averageScore is defined and averageScore is not null %}
  
-                                        <h4 class="text-2xl font-extrabold z-10 {{ scoreClass }}">{{ averageScoreUser }}</h4>
+                                        <h4 class="text-2xl font-extrabold z-10 {{ scoreClass }}">{{ averageScoreUser|number_format(2)  }}</h4>
                                         <h4 class="text-2xl text-white ml-1 font-extrabold z-10 "> / 10</h4>
                                         
                                         {% else %}
@@ -164,9 +164,9 @@
                                         <div class="circle circle-outer reverse absolute w-full h-full border border-[#ECC33E] rounded-full"></div>
                                         <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border border-[#eeca56] rounded-full"></div>
                                         {% set scoreClass = '' %}
-                                        {% if averageScore >= 7 %}
+                                        {% if averageScore >= 8 %}
                                             {% set scoreClass = 'text-green-800' %}
-                                        {% elseif averageScore >= 4 %}
+                                        {% elseif averageScore >= 5 %}
                                             {% set scoreClass = 'text-orange-600' %}
                                         {% else %}
                                             {% set scoreClass = 'text-red-800' %}
@@ -174,7 +174,7 @@
 
                                         {% if averageScore is defined and averageScore is not null %}
 
-                                        <h4 class="text-2xl font-extrabold z-10 {{ scoreClass }}">{{ averageScore }} </h4> 
+                                        <h4 class="text-2xl font-extrabold z-10 {{ scoreClass }}">{{ averageScore|number_format(2)  }} </h4> 
                                         <h4 class="text-2xl text-white ml-1 font-extrabold z-10 "> / 10</h4>
                                         
                                         {% else %}

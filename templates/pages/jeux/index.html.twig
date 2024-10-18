@@ -33,7 +33,7 @@
                 </div>
             </section>
 
-            <div class="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <section class="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 {% for game in games.results %}
                     <div class="bg-[#0C1D36] border hover:scale-105 border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
                         <div class="p-5">
@@ -44,8 +44,10 @@
                             <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
                         </div>
 
-                            <div class="score text-white text-center my-3 text-2xl">{{ averageScores[game.id]|number_format(1) }}</div>
-
+                        <div class="relative w-40 h-40 bg-[#0C1D36] text-white rounded-lg shadow-lg flex flex-col items-center justify-center p-4">
+                            <h2 class="text-lg font-semibold uppercase tracking-wide">Overall Average Rating</h2>
+                            <div class="score text-[#ECC33E] my-4 text-4xl font-bold">{{ averageScores[game.id]|number_format(2) }}</div>
+                        </div>
 
                         <div class="p-4 min-h-[154px] flex flex-col justify-between ">
 
@@ -85,14 +87,23 @@
                                     'NES': 'img/Wii U.png',
                                 } %}
 
+
                                 {% for platform in game.platforms %}
+
                                     <div class="flex">
+
                                         {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
+                                        
                                         {% if logo_path %}
-                                            <img class="w-8 h-8" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" />
+                                        
+                                            <a href="{{ path('searchByPlatform', { id: platform.platform.id }) }}"> <img class="w-8 h-8 hover:scale-125" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" /></a>
+
                                         {% endif %}
+
                                     </div>
+
                                 {% endfor %}
+
                             </div>
 
                             <div class="flex justify-center gap-5 items-center">
@@ -120,20 +131,45 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
+            </section>
 
             <div class="py-8 flex justify-center">
+
                 {% if currentPage is defined %}
+
                     <nav class="inline-flex">
+
                         {% if currentPage > 1 %}
-                            <a href="{{ path('jeux', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
+
+                            
+                        <a href="{{ path('jeux', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
                         {% endif %}
 
                         <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentPage }}</span>
 
                         <a href="{{ path('jeux', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
+                    
                     </nav>
+
                 {% endif %}
+
+                {% if currentSearchPage is defined %}
+
+                <nav class="inline-flex">
+
+                    {% if currentSearchPage > 1 %}
+
+                        
+                    <a href="{{ path('search', { 'page': currentSearchPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
+                    {% endif %}
+
+                    <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentSearchPage }}</span>
+
+                    <a href="{{ path('search', { 'page': currentSearchPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
+                
+                </nav>
+                
+            {% endif %}
             </div>
             
         </div>

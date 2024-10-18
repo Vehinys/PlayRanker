@@ -23,21 +23,22 @@
                             {{ form_start(form, {'attr': {'class': 'w-full'}}) }}
                             
                             <div class="mb-4">
-                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.pseudo.vars.id }}">Pseudo:</label>
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.pseudo.vars.id }}">Pseudo :</label>
                                 <p class="text-[#ebf1ff] mb-1">{{ user.pseudo }}</p>
                                 {{ form_widget(form.pseudo, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New nickname' } }) }}
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.email.vars.id }}">Email:</label>
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.email.vars.id }}">Email :</label>
                                 <p class="text-[#ebf1ff] mb-1">{{ user.email }}</p>
                                 {{ form_widget(form.email, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New email' } }) }}
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.avatar.vars.id }}">Avatar:</label>
+                                <label class="block text-[#ebf1ff] font-bold mb-2" for="{{ form.avatar.vars.id }}">Avatar :</label>
                                 {{ form_widget(form.avatar, { 'attr': { 'class': 'w-full bg-[#0C1D36] text-[#ebf1ff] border border-[#ECC33E] rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#ECC33E]', 'placeholder': 'New avatar' } }) }}
                             </div>
+                            
                         </div>
                     {% else %}
                         <p class="text-[#ebf1ff]">No users found. Please login.</p>
