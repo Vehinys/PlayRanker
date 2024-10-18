@@ -9,6 +9,7 @@ use App\Entity\GamesList;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
 use App\Repository\GamesListRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,68 +75,40 @@ class ProfilController extends AbstractController
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    /**
-     * Displays the user's profile edit page.
-     *
-     * This action creates a form for editing the user's profile information, including their pseudo, email, and avatar. The form is pre-populated with the user's current information. When the form is submitted and valid, the changes are saved to the database and the user is redirected to the profile page.
-     *
-     * @param Request $request The current HTTP request.
-     * @param EntityManagerInterface $entityManager The entity manager for saving changes to the user.
-     *
-     * @return Response The rendered profile edit page.
-     */
-
-    // #[Route('/profil/edit', name: 'edit_profil')]
-    // public function editProfile(
-        
-    //     Request $request, 
-    //     EntityManagerInterface $entityManager,
-        
-    // ): Response {
-
-    //     $user = $this->getUser();
-    //     dd($user);
-    //     $form = $this->createForm(ProfilType::class, $user);
-        
-    //     $form->handleRequest($request);
-    
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->flush();
-    //         return $this->redirectToRoute('profil');
-    //     }
-    
-    //     return $this->render('pages/profil/editProfil.html.twig', [
-    //         'form' => $form->createView(),
-    //         'user' => $user
-    //     ]);
-    // }
-
-        #[Route('/profil/edit/{id}', name: 'edit_profil')]
+    #[Route('/profil/edit/{id}', name: 'edit_profil')]
     public function editProfile(
-        
-        int $id,
+
+        string $id,
         Request $request, 
         EntityManagerInterface $entityManager,
-
+        UserRepository $userRepository
+        
     ): Response {
-
-        $user = $this->getUser($id);
+        
+        // Récupérer l'utilisateur par ID
+        $user = $userRepository->find($id);
+        
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+        
         $form = $this->createForm(ProfilType::class, $user);
-
+        
         $form->handleRequest($request);
-    
+        
         if ($form->isSubmitted() && $form->isValid()) {
-             $entityManager->flush();
-             return $this->redirectToRoute('profil');
-         }
-
+            $entityManager->flush();
+            $this->addFlash('success', 'Profile uptade.');
+            return $this->redirectToRoute('profil');
+        }
+        
         return $this->render('pages/profil/editProfil.html.twig', [
-
             'form' => $form->createView(),
             'user' => $user
-            
         ]);
     }
+    
+    
 
     // ---------------------------------------------------------- //
     // Supprime le profil de l'utilisateur

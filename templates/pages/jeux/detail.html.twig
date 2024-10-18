@@ -137,15 +137,15 @@
                                         <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border border-[#eeca56] rounded-full"></div>
                                         
                                         {% set scoreClass = '' %}
-                                        {% if averageScore >= 8 %}
+                                        {% if averageScoreUser >= 8 %}
                                             {% set scoreClass = 'text-green-800' %}
-                                        {% elseif averageScore >= 5 %}
+                                        {% elseif averageScoreUser >= 5 %}
                                             {% set scoreClass = 'text-orange-600' %}
                                         {% else %}
                                             {% set scoreClass = 'text-red-800' %}
                                         {% endif %}
 
-                                        {% if averageScore is defined and averageScore is not null %}
+                                        {% if averageScoreUser is defined and averageScoreUser is not null %}
  
                                         <h4 class="text-2xl font-extrabold z-10 {{ scoreClass }}">{{ averageScoreUser|number_format(2)  }}</h4>
                                         <h4 class="text-2xl text-white ml-1 font-extrabold z-10 "> / 10</h4>

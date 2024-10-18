@@ -5,46 +5,48 @@
 {% block body %}
 <div class="min-h-screen bg-[#97b4e0] py-8">
     <div class="container mx-auto p-4 ">
-        <!-- Section Profil Utilisateur -->
-        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">
-            <div class="flex flex-col py-7 items-center md:flex-row">
-                <!-- Profil Utilisateur -->
-                <div class="w-full md:w-1/2">
-                    <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>
-                    <div class="flex flex-col items-center">
-                        {% if user %}
-                            <!-- Affichage de l'avatar de l'utilisateur -->
-                            <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
-                                alt="Profile Picture of {{ user.pseudo }}" 
-                                class="w-48 h-48 rounded-full border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-110">
-                            <div class="mt-4 text-start text-white ">
-
-                                <!-- Affichage du pseudo de l'utilisateur -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Pseudo : </span> <span class="text-[20px]">{{ user.pseudo }}</span></p>
-
-                                <!-- Affichage de l'email de l'utilisateur -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Email : </span> <span class="text-[20px]">{{ user.email }}</span></p>
-
-                                <!-- Affichage du nombre de sujets créés par l'utilisateur -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Topics created : </span> <span class="text-[20px]">{{ user.topics|length }}</span></p>
-
-                                <!-- -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Gamertag Playstation : </span> <span class="text-[20px]"> {{ user.gamerTagPlaystation }}</span></p>
-
-                                <!-- -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Gamertag Xbox : </span> <span class="text-[20px]"> {{ user.gamerTagXbox }}</span></p>
-
-                                <!-- -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Youtube : </span> <span class="text-[20px]"> {{ user.youtube }}</span></p>
-
-                                <!-- -->
-                                <p class="mb-2"><span class="text-[20px] text-[#ECC33E] font-bold"> Twitch : </span> <span class="text-[20px]"> {{ user.twitch }}</span></p>
-
-                        {% else %}
-                            <!-- Message d'erreur si aucun utilisateur n'est trouvé -->
-                            <p class="text-red-500">No users found. Please log in</p>
-                        {% endif %}
-                        
+        
+    <!-- Section Profil Utilisateur -->
+    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">
+        <div class="flex flex-col py-7 justify-center items-center md:flex-row">
+            <!-- Profil Utilisateur -->
+            <div class="w-full md:w-1/2">
+                <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>
+                {% if user %}
+                <div class="flex flex-col gap-10 items-center md:flex-row">
+                    <!-- Affichage de l'avatar de l'utilisateur -->
+                    <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
+                    alt="Profile Picture of {{ user.pseudo }}" class="w-[20rem] h-[20rem] rounded-full border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">
+                    
+                    <div class="text-start text-white">
+                        <!-- Affichage des informations de l'utilisateur -->
+                        <p class="mb-2">
+                            <span class="text-[20px] text-[#ECC33E] font-bold">Pseudo : </span> 
+                            <span class="text-[18px]">{{ user.pseudo }}</span>
+                        </p>
+                        <p class="mb-2">
+                            <span class="text-[20px] text-[#ECC33E] font-bold">Email : </span> 
+                            <span class="text-[18px]">{{ user.email }}</span>
+                        </p>
+                        <p class="mb-2">
+                            <span class="text-[20px] text-[#ECC33E] font-bold">Topics created : </span> 
+                            <span class="text-[18px]">{{ user.topics|length }}</span>
+                        </p>
+                        <p class="mb-2">
+                            <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Playstation : </span> 
+                            <span class="text-[18px]">{{ user.gamerTagPlaystation }}</span>
+                        </p>
+                        <p class="mb-2">
+                            <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Xbox : </span> 
+                            <span class="text-[18px]">{{ user.gamerTagXbox }}</span>
+                        </p>
+                        <p class="mb-2 ">
+                            <a href="{{ user.Youtube }}" target="_blank" class="text-[#ECC33E] text-[20px] hover:underline">YouTube Channel</a>
+                        </p>
+                        <p class="mb-2">
+                            <a href="{{ user.Twitch }}" target="_blank" class="text-[#ECC33E] text-[20px] hover:underline ">Twitch Channel</a>
+                            <span class="text-[18px]"></span>
+                        </p>
                         <div class="flex mt-6 space-x-4">
                             <!-- Lien pour éditer le profil -->
                             <a href="{{ path('edit_profil', { id: user.id }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
@@ -59,29 +61,30 @@
                         </div>
                     </div>
                 </div>
-
-                </div>
-
-                <!-- Sujets de l'utilisateur -->
-                <div class="w-full md:w-1/2 mt-6 md:mt-0 ">
-                    <h3 class="font-semibold text-[#ECC33E] text-center mb-4 text-3xl">My Topics</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 ">
-                        {% for topic in user.topics %}
-                            <!-- Lien vers chaque sujet créé par l'utilisateur -->
-                            <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-2 rounded-lg content-center border-[1px] border-[#ECC33E] text-center text-[14px] text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200">
-                                {{ topic.title }}
-                            </a>
-                        {% else %}
-                            <!-- Message si aucun sujet n'a été créé -->
-                            <p class="text-gray-400 col-span-full text-center">No topics created yet.</p>
-                        {% endfor %}
-                    </div>
+                {% else %}
+                <!-- Message d'erreur si aucun utilisateur n'est trouvé -->
+                <p class="text-red-500 text-center">No users found. Please log in.</p>
+                {% endif %}
                 </div>
             </div>
-            
         </section>
-
-        <!-- Section Listes de Jeux de l'utilisateur -->
+        <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 flex justify-center items-center transition-transform mt-8 duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl ">    
+            <!-- Sujets de l'utilisateur -->
+            <div class="w-full md:w-2/3 lg:w-full py-7 mt-6 md:mt-0 flex flex-col items-center">
+                <h3 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Topics</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-2 justify-items-center w-full">
+                    {% for topic in user.topics %}
+                        <!-- Lien vers chaque sujet créé par l'utilisateur -->
+                        <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-4 rounded-lg content-center border-[2px] border-[#ECC33E] text-center text-[16px] text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200 w-full flex items-center justify-center">
+                            {{ topic.title }}
+                        </a>
+                    {% else %}
+                        <!-- Message si aucun sujet n'a été créé -->
+                        <p class="text-gray-400 col-span-full text-center">No topics created yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
         <section class="mt-8">
             {% if gamesLists|length == 0 %}
                 <!-- Message si aucune liste de jeux n'est disponible -->
@@ -89,10 +92,8 @@
             {% else %}
                 {% for type in types %}
                     <div class="bg-[#0C1D36] border-[3px] border-[#ECC33E] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
-                        <h2 class="text-3xl text-center mb-4">{{ type.name }}</h2>
-
+                        <h2 class="text-3xl text-center font-bold mb-4">{{ type.name }}</h2>
                         {% set filteredGames = gamesLists|filter(g => g.type and g.type.id == type.id) %}
-
                         {% if filteredGames|length == 0 %}
                             <!-- Message si aucun jeu n'est disponible pour ce type -->
                             <p class="text-white text-center">No games available for this type.</p>
@@ -102,8 +103,7 @@
                             {% if gamesList.game is not null %}
                                 <!-- Lien vers chaque jeu disponible dans la liste -->
                                 <li class="text-center">
-                                
-                                    <a href="{{ path('detail_jeu', {'id': gamesList.game.idGameApi}) }}" class="text-white hover:text-[#ECC33E] transition duration-300 ease-in-out">
+                                    <a href="{{ path('detail_jeu', {'id': gamesList.game.idGameApi}) }}" class="text-white hover:text-[#ECC33E] transition  text-lg duration-300 ease-in-out">
                                         {{ gamesList.game.name }}
                                     </a>
                                 </li>
@@ -114,10 +114,9 @@
                         {% endfor %}
                             </ul>
                         {% endif %}
-
                         <div class="text-center mt-4">
                             <!-- Lien pour rechercher des jeux -->
-                            <a href="{{ path('jeux', { 'page': 1 }) }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                            <a href="{{ path('jeux', { 'page': 1 }) }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold border-[2px] border-[#ECC33E] py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                 Search Game
                             </a>
                         </div>
@@ -125,7 +124,6 @@
                 {% endfor %}
             {% endif %}
         </section>
-
     </div>
 </div>
 {% endblock %}

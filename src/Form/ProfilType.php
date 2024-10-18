@@ -17,6 +17,7 @@ class ProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
         ->add('email', EmailType::class, [
             'label' => 'Email',
             'attr' => ['placeholder' => 'Enter your email'],
@@ -24,33 +25,39 @@ class ProfilType extends AbstractType
                 new NotBlank(['message' => 'Please enter an email address.'])
             ],
         ])
+
         ->add('pseudo', TextType::class, [
-            'label' => 'New Pseudo',
+            'label' => 'Pseudo',
             'attr' => ['placeholder' => 'Enter your new pseudo'],
             'constraints' => [
                 new NotBlank(['message' => 'Please enter a pseudo.']),
                 new Length(['min' => 2, 'max' => 100]),
             ],
         ])
+
         ->add('avatar', UrlType::class, [
             'label' => 'Avatar',
             'attr' => ['placeholder' => 'Avatar URL'],
         ])
-        ->add('GamerTagPlaystation', TextType::class, [
+
+        ->add('gamerTagPlaystation', TextType::class, [
             'label' => 'PlayStation Gamer Tag',
-            'attr' => ['placeholder' => 'Enter your PlayStation Gamer Tag'],
+            'attr' => ['placeholder' => 'Your PlayStation Gamer Tag'],
         ])
-        ->add('GamerTagXbox', TextType::class, [
+
+        ->add('gamerTagXbox', TextType::class, [
             'label' => 'Xbox Gamer Tag',
-            'attr' => ['placeholder' => 'Enter your Xbox Gamer Tag'],
+            'attr' => ['placeholder' => 'Your Xbox Gamer Tag'],
         ])
-        ->add('Youtube', TextType::class, [
+
+        ->add('youtube', TextType::class, [
             'label' => 'YouTube',
-            'attr' => ['placeholder' => 'Enter your YouTube channel'],
+            'attr' => ['placeholder' => 'Your lien YouTube'],
         ])
-        ->add('Twitch', TextType::class, [
+
+        ->add('twitch', TextType::class, [
             'label' => 'Twitch',
-            'attr' => ['placeholder' => 'Enter your Twitch username'],
+            'attr' => ['placeholder' => 'Your lien Twitch'],
         ]);
     
     }

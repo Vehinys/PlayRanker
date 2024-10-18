@@ -44,9 +44,15 @@
                             <img class="min-h-80 object-cover" src="{{ game.background_image }}" alt="{{ game.name }}">
                         </div>
 
-                        <div class="relative w-40 h-40 bg-[#0C1D36] text-white rounded-lg shadow-lg flex flex-col items-center justify-center p-4">
+                        <div class="relative w-full bg-[#0C1D36] text-white rounded-lg flex pt-9 flex-col items-center justify-center">
                             <h2 class="text-lg font-semibold uppercase tracking-wide">Overall Average Rating</h2>
-                            <div class="score text-[#ECC33E] my-4 text-4xl font-bold">{{ averageScores[game.id]|number_format(2) }}</div>
+                            <div class="score text-[#ECC33E] my-4 text-4xl font-bold">
+                                {% if averageScores[game.id] is defined and averageScores[game.id] is not null %}
+                                    {{ averageScores[game.id] | number_format(1) }} <span class="text-white text-xl"> out of 10 </span>
+                                {% else %}
+                                    <p class="text-xl">No Rating</p>
+                                {% endif %}
+                            </div>
                         </div>
 
                         <div class="p-4 min-h-[154px] flex flex-col justify-between ">

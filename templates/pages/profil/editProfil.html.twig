@@ -6,56 +6,67 @@
 
 <section class="bg-[#97b4e0] py-10">
     <div class="container mx-auto px-4">
-        <div class="bg-[#09172b] border-[3px] border-[#ECC33E] shadow-md rounded-lg overflow-hidden max-w-3xl mx-auto">
+        <div class="bg-[#09172b] border-2 border-[#ECC33E] shadow-md rounded overflow-hidden max-w-3xl mx-auto">
             <div class="p-5">
                 <h1 class="font-bold text-2xl text-[#ECC33E] text-center">Edit My Profile</h1>
             </div>
 
             <div class="p-6">
-                <div class="flex flex-col md:flex-row items-center mb-6">
+                <div class="flex flex-col md:flex-row items-center justify-center mb-6">
                     {% if user %}
                         {% if user.avatar %}
                             <img src="{{ user.avatar }}" alt="Profile Picture of {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% else %}
-                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Default Profile Picture" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Default Profile Picture" class="w-32 h-32  border-2 border-[#ECC33E] rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% endif %}
                     {% else %}
                         <p class="text-[#ebf1ff]">No users found. Please login.</p>
                     {% endif %}
                 </div>
 
-                <form method="post" action="{{ path('edit_profil', { id: user.id })}}">
-                    <div class="mb-4">
-                        {{ form_row(form.email) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.pseudo) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.avatar) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.GamerTagPlaystation) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.GamerTagXbox) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.Youtube) }}
-                    </div>
-                    <div class="mb-4">
-                        {{ form_row(form.Twitch) }}
-                    </div>
-
-                    <div class="flex justify-end space-x-4">
-                        <button type="submit" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">
-                            Save
-                        </button>
-                        <button onclick="window.location.href ='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
-                            Cancel
-                        </button>
-                    </div>
+                <form method="post" action="{{ path('edit_profil', { id: user.id }) }}">
+                    {{ form_start(form) }}
+                        <div class="mb-4">
+                            {{ form_label(form.email, 'Email :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.pseudo, 'Pseudo :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.pseudo, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.avatar, 'Avatar :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.gamerTagPlaystation, 'PlayStation Gamer Tag :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.gamerTagPlaystation, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.gamerTagXbox, 'Xbox Gamer Tag :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.gamerTagXbox, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.youtube, 'YouTube :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.youtube, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form_label(form.twitch, 'Twitch :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_widget(form.twitch, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                        </div>
+                
+                        <div class="flex justify-end space-x-4">
+                            <button type="submit" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">
+                                Save
+                            </button>
+                            <button type="button" onclick="window.location.href ='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
+                                Cancel
+                            </button>
+                        </div>
+                    {{ form_end(form) }}
                 </form>
+                
+                
             </div>
         </div>
     </div>
