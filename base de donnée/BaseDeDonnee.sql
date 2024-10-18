@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CE48FD905` (`game_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CE48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.comment : ~7 rows (environ)
 INSERT INTO `comment` (`id`, `user_id`, `game_id`, `content`, `created_at`) VALUES
@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   CONSTRAINT `FK_329937516317EE05` FOREIGN KEY (`rating_category_id`) REFERENCES `rating_category` (`id`),
   CONSTRAINT `FK_32993751A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_32993751E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.score : ~48 rows (environ)
 INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) VALUES
@@ -307,11 +307,11 @@ INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) V
 	(36, 5, 5, 21, 40),
 	(37, 5, 6, 21, 40),
 	(38, 8, 1, 15, 39),
-	(39, 9, 2, 15, 39),
+	(39, 8, 2, 15, 39),
 	(40, 8, 3, 15, 39),
-	(41, 10, 4, 15, 39),
+	(41, 8, 4, 15, 39),
 	(42, 7, 5, 15, 39),
-	(43, 8, 6, 15, 39),
+	(43, 9, 6, 15, 39),
 	(44, 1, 1, 15, 40),
 	(45, 1, 2, 15, 40),
 	(46, 1, 3, 15, 40),
@@ -347,7 +347,31 @@ INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) V
 	(76, 6, 3, 15, 52),
 	(77, 7, 4, 15, 52),
 	(78, 8, 5, 15, 52),
-	(79, 8, 6, 15, 52);
+	(79, 8, 6, 15, 52),
+	(80, 1, 1, 15, 48),
+	(81, 1, 2, 15, 48),
+	(82, 1, 3, 15, 48),
+	(83, 1, 4, 15, 48),
+	(84, 1, 5, 15, 48),
+	(85, 1, 6, 15, 48),
+	(86, 2, 1, 15, 50),
+	(87, 2, 2, 15, 50),
+	(88, 2, 3, 15, 50),
+	(89, 2, 4, 15, 50),
+	(90, 2, 5, 15, 50),
+	(91, 1, 6, 15, 50),
+	(92, 3, 1, 15, 46),
+	(93, 3, 2, 15, 46),
+	(94, 3, 3, 15, 46),
+	(95, 3, 4, 15, 46),
+	(96, 3, 5, 15, 46),
+	(97, 3, 6, 15, 46),
+	(98, 3, 1, 15, 51),
+	(99, 3, 2, 15, 51),
+	(100, 3, 3, 15, 51),
+	(101, 3, 4, 15, 51),
+	(102, 3, 5, 15, 51),
+	(103, 8, 6, 15, 51);
 
 -- Listage de la structure de table playranker. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -427,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- Listage des données de la table playranker.user : ~6 rows (environ)
 INSERT INTO `user` (`id`, `email`, `pseudo`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`) VALUES
-	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]', NULL, NULL, NULL, NULL),
+	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]', 'Véhiny\'s', 'Véhiny\'s', 'https://www.youtube.com/@albertlecomte3332', 'https://www.twitch.tv/skyyart'),
 	(18, 'emaildelete-66ff9db5e22fc@example.com', 'UserDelete', '$2y$13$OjWFEw7jxaW1wi416tk.guyz3Lou5pF3BL9l5SvZxIysQKFubFcl6', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL),
 	(19, 'Goeffroy@gmail.com', 'Goeffroy', '$2y$13$7dTtdlFKA3xht39had8ug.q1f6m1ulJnTtoFOp.VgqtYQb/TjdnKa', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),
 	(20, 'pauline@gmail.com', 'Pauline', '$2y$13$N.lo.DrqDMNPAHxlsGGWDudW8iFpAEiMIrItV38zihYTlD2a1.cT6', NULL, '["ROLE_ADMIN"]', NULL, NULL, NULL, NULL),
