@@ -1,72 +1,144 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit My Profile{% endblock %}
+{% block title %}Edit my profile{% endblock %}
 
+{# Début du bloc principal du corps #}
 {% block body %}
 
+{# Début de la section d'édition du profil #}
 <section class="bg-[#97b4e0] py-10">
+
+    {# Conteneur pour centrer le contenu #}
     <div class="container mx-auto px-4">
+
+        {# Carte principale pour le formulaire d'édition du profil #}
         <div class="bg-[#09172b] border-2 border-[#ECC33E] shadow-md rounded overflow-hidden max-w-3xl mx-auto">
+
+            {# Section d'en-tête de la carte #}
             <div class="p-5">
-                <h1 class="font-bold text-2xl text-[#ECC33E] text-center">Edit My Profile</h1>
+
+                {# Titre de la page #}
+                <h1 class="font-bold text-2xl text-[#ECC33E] text-center">Edit my profile</h1>
             </div>
 
+            {# Zone de contenu principal de la carte #}
             <div class="p-6">
+
+                {# Section de la photo de profil #}
                 <div class="flex flex-col md:flex-row items-center justify-center mb-6">
+
+                    {# Vérification de l'existence de l'utilisateur #}
                     {% if user %}
+
+                        {# Vérification si l'utilisateur a un avatar #}
                         {% if user.avatar %}
-                            <img src="{{ user.avatar }}" alt="Profile Picture of {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+
+                            {# Affichage de l'avatar de l'utilisateur #}
+                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% else %}
-                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Default Profile Picture" class="w-32 h-32  border-2 border-[#ECC33E] rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+
+                            {# Affichage de l'avatar par défaut si l'utilisateur n'en a pas #}
+                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de profil par défaut" class="w-32 h-32  border-2 border-[#ECC33E] rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% endif %}
                     {% else %}
-                        <p class="text-[#ebf1ff]">No users found. Please login.</p>
+
+                        {# Affichage d'un message si aucun utilisateur n'est trouvé #}
+                        <p class="text-[#ebf1ff]">No users found. Please log in.</p>
                     {% endif %}
                 </div>
 
+                {# Début du formulaire d'édition du profil #}
                 <form method="post" action="{{ path('edit_profil', { id: user.id }) }}">
+
+                    {# Début du rendu du formulaire #}
                     {{ form_start(form) }}
+
+                        {# Champ Email #}
                         <div class="mb-4">
+
+                            {# Étiquette Email #}
                             {{ form_label(form.email, 'Email :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                        
+                            {# Widget d'entrée Email #}
                             {{ form_widget(form.email, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+
+                        {# Champ Pseudo #}
                         <div class="mb-4">
+                        
+                            {# Étiquette Pseudo #}
                             {{ form_label(form.pseudo, 'Pseudo :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Widget d'entrée Pseudo #}
                             {{ form_widget(form.pseudo, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+
+                        {# Champ Avatar #}
                         <div class="mb-4">
+
+                            {# Étiquette Avatar #}
                             {{ form_label(form.avatar, 'Avatar :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Widget d'entrée Avatar #}
                             {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+
+                        {# Champ Gamer Tag PlayStation #}
                         <div class="mb-4">
-                            {{ form_label(form.gamerTagPlaystation, 'PlayStation Gamer Tag :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+
+                            {# Étiquette Gamer Tag PlayStation #}
+                            {{ form_label(form.gamerTagPlaystation, 'Gamer Tag PlayStation :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                        
+                            {# Widget d'entrée Gamer Tag PlayStation #}
                             {{ form_widget(form.gamerTagPlaystation, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+
+                        {# Champ Gamer Tag Xbox #}
                         <div class="mb-4">
-                            {{ form_label(form.gamerTagXbox, 'Xbox Gamer Tag :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Étiquette Gamer Tag Xbox #}
+                            {{ form_label(form.gamerTagXbox, 'Gamer Tag Xbox :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Widget d'entrée Gamer Tag Xbox #}
                             {{ form_widget(form.gamerTagXbox, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+                        
+                        {# Champ YouTube #}
                         <div class="mb-4">
+                            
+                            {# Étiquette YouTube #}
                             {{ form_label(form.youtube, 'YouTube :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Widget d'entrée YouTube #}
                             {{ form_widget(form.youtube, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
+                        
+                        {# Champ Twitch #}
                         <div class="mb-4">
+                            {# Étiquette Twitch #}
                             {{ form_label(form.twitch, 'Twitch :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            
+                            {# Widget d'entrée Twitch #}
                             {{ form_widget(form.twitch, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
-                
+            
+                        {# Conteneur des boutons du formulaire #}
                         <div class="flex justify-end space-x-4">
+
+                            {# Bouton Enregistrer #}
                             <button type="submit" class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300">
                                 Save
                             </button>
+
+                            {# Bouton Annuler #}
                             <button type="button" onclick="window.location.href ='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
                                 Cancel
                             </button>
                         </div>
+
+                    {# Fin du rendu du formulaire #}
                     {{ form_end(form) }}
                 </form>
-                
-                
             </div>
         </div>
     </div>

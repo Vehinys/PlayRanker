@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,33 +14,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/accueil', name: 'home')]
+    #[Route('/accueil', name: 'home', methods: ['GET', 'POST'])]
     public function home(
 
         Request $request, 
-        CommentRepository $commentRepository
-
+        CommentRepository $commentRepository,
+        ScoreRepository $scoreRepository
+        
     ): Response {
-    
         $form = $this->createForm(ContactType::class); 
         $form->handleRequest($request);
-
+    
         $comments = $commentRepository->findAll();
+    
+        // Récupérer les jeux avec les meilleures notes
+        $topGames = $scoreRepository->findTopGames(3);
     
         return $this->render('pages/home/index.html.twig', [
             'contactForm' => $form->createView(),
             'comments' => $comments,
+            'topGames' => $topGames,
+
         ]);
     }
 
-    #[Route('/accueil/contact', name: 'contact')]
+    #[Route('/accueil/contact', name: 'contact', methods: ['POST'])]
     public function contact(
-
         Request $request, 
         EntityManagerInterface $entityManager
-
     ): Response {
-        
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -56,8 +59,6 @@ class HomeController extends AbstractController
         $this->addFlash('error', 'Sorry, a problem occurred!');
         return $this->redirectToRoute('home');
     }
-    
-
 
     #[Route('/', name: 'index')]
     public function index(): Response

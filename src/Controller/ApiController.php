@@ -46,10 +46,14 @@ class ApiController extends AbstractController
         
         // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
+
         foreach ($games['results'] as $game) {
+
             $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
+
             $averageScores[$game['id']] = $gameEntity ? 
-                $scoreRepository->getAverageScoreForGame($gameEntity) : null;
+
+            $scoreRepository->getAverageScoreForGame($gameEntity) : null;
         }
     
         // Récupérer toutes les catégories et types disponibles
@@ -102,7 +106,9 @@ class ApiController extends AbstractController
 
         // Récupération des types et catégories
         $types = $typeRepository->findAll();
+
         $categories = $repository->findAll();
+        
         $averageScores = [];
         
         foreach ($games['results'] as $game) {

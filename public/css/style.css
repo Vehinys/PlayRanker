@@ -205,18 +205,6 @@
   margin: 10px 0;
 }
 
-.description {
-  font-size: 15px;
-  color: var(--color-light);
-  margin: 10px 0;
-}
-
-.stars {
-  font-size: 18px;
-  color: var(--color-yellow);
-  margin: 10px 0;
-}
-
 .card:hover {
   transform: scale(1.3);
 }

@@ -43,6 +43,18 @@ class ScoreRepository extends ServiceEntityRepository
 
         return round($result, 2);
     }
+    
+    public function findTopGames(int $limit)
+    {
+        return $this->createQueryBuilder('s')  // 's' est l'entité Score
+            ->select('g.id', 'g.name', 'AVG(s.note) as avgNote')  // Sélectionnez les colonnes de 'g' et la moyenne des notes
+            ->join('s.game', 'g')  // Joignez l'entité 'game'
+            ->groupBy('g.id')  // Groupez par l'id du jeu
+            ->orderBy('avgNote', 'DESC')  // Ordonnez par la moyenne des notes
+            ->setMaxResults($limit)  // Limitez le nombre de résultats
+            ->getQuery()
+            ->getResult();
+    }
 
     //    /**
     //     * @return Score[] Returns an array of Score objects

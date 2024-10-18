@@ -54,48 +54,26 @@
         </div>
       </section>
 
-      <!-- ------------------------------------------------------ -->   
-      <!-- ------------- Top 3 des meilleurs notes -------------- -->
+    <!-- ------------------------------------------------------ -->   
+    <!-- ------------- Top 3 des meilleurs notes -------------- -->
 
-      <div class="container-card">
-
-        <div class="card border-[3px] border-[#ECC33E]">
-            <div class="front-face">
-                <div class="content">
-                    <h2 class="number">TOP 1</h2>
-                    <h2 class="title">Call of Duty : Vanguard</h2>
-                    <span class="stars">⭐⭐⭐</span>
-                    <p class="description">PS5, PS4, XBOX</p>
-                    <div class="bouton-card"> <a href="#">Read more</a> </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card border-[3px] border-[#ECC33E]">
-            <div class="front-face ">
-                <div class="content">
-                    <h2 class="number">TOP 2</h2>
-                    <h2 class="title">Tomb Raider (2013)</h2>
-                    <span class="stars">⭐⭐</span>
-                    <p class="description">PS5, PS4, XBOX</p>
-                    <div class="bouton-card"> <a href="#">Read more</a> </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card border-[3px] border-[#ECC33E]">
-            <div class="front-face ">
-                <div class="content">
-                    <h2 class="number">TOP 3</h2>
-                    <h2 class="title">Minecraft</h2>
-                    <span class="stars">⭐</span>
-                    <p class="description">PS5, PS4, XBOX</p>
-                    <div class="bouton-card"> <a href="#">Read more</a> </div>
-                </div>
-            </div>
-        </div>
+    <section class="section-top">
+      <div class="container-card ">
+          {% for topGame in topGames %}
+              <div class="card ">
+                  <div class="front-face">
+                      <div class="content">
+                          <h2 class="number">TOP {{ loop.index }}</h2>
+                          <h2 class="title">{{ topGame.name }}</h2>
+                          
+                          <div class="bouton-card">
+                              <a href="{{ path('detail_jeu', {'id': topGame.id}) }}"> Read more </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
       </div>
-
     </section>
 
     <!-- ------------------------------------------------------ -->
