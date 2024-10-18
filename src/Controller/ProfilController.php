@@ -4,23 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\User;
+use App\Form\ProfilType;
 use App\Entity\GamesList;
-use App\Repository\TypeRepository;
 use App\Repository\GameRepository;
+use App\Repository\TypeRepository;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ProfilController extends AbstractController
 {
@@ -89,55 +85,29 @@ class ProfilController extends AbstractController
      * @return Response The rendered profile edit page.
      */
 
-        #[Route('/profil/editProfil', name: 'edit_profile')]
-        public function editProfile(
-            
-            Request $request, 
-            EntityManagerInterface $entityManager
-            
-        ): Response {
+    #[Route('/profile/edit', name: 'edit_profile')]
+    public function editProfile(
+        
+        Request $request, 
+        EntityManagerInterface $entityManager
+        
+    ): Response {
 
-            // Récupération de l'utilisateur connecté
-            $user = $this->getUser();
-
-            // Création du formulaire d'édition du profil
-            $form = $this->createFormBuilder($user)
-                ->add('pseudo', TextType::class, [
-                    'label' => 'Nouveau Pseudo',
-                    'attr' => ['placeholder' => 'Entrez votre nouveau pseudo'],
-                    'constraints' => [
-                        new NotBlank(['message' => 'Veuillez entrer un pseudo.']),
-                        new Length(['min' => 2, 'max' => 100]),
-                    ],
-                ])
-                ->add('email', EmailType::class, [
-                    'label' => 'Email',
-                    'attr' => ['placeholder' => 'Email'],
-                    'constraints' => [
-                        new NotBlank(['message' => 'Veuillez entrer une adresse email.'])
-                    ],
-                ])
-                ->add('avatar', UrlType::class, [
-                    'label' => 'Avatar',
-                    'attr' => ['placeholder' => 'Url de l\'avatar'],
-                ])
-                ->getForm();
-
-            // Gestion de la soumission du formulaire
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                // Sauvegarde des modifications
-                $entityManager->flush();
-                return $this->redirectToRoute('profil');
-            }
-
-            // Rendu de la vue avec le formulaire
-            return $this->render('pages/profil/editProfil.html.twig', [
-                'form' => $form->createView(),
-                'user' => $user
-            ]);
+        $user = $this->getUser();
+        $form = $this->createForm(ProfilType::class, $user);
+        
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('profile');
         }
+    
+        return $this->render('pages/profile/editProfile.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
+    }
 
     // ---------------------------------------------------------- //
     // Supprime le profil de l'utilisateur
