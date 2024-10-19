@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,55 +18,46 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo', TextType::class, [
-                'label' => 'Your pseudo:',
-                'attr' => [
-                    'class' => 'form-input', 
-                    'placeholder' => 'Enter your pseudo'
-                ],
-            ])
-            ->add('email', EmailType::class, [
-                'attr' => [
-                    'placeholder' => 'Enter your email'
-                ],
-                'label' => 'Email',
-                'constraints' => [
-                    new Assert\Email(),
-                    new Assert\NotBlank(),
-                ]
-            ])
-            ->add('subject', TextType::class, [
-                'label' => 'Subject',
-                'constraints' => [
-                    new Assert\NotBlank(),
-                ]
-            ])
-            ->add('message', TextareaType::class, [
-                'label' => 'Your Message:',
-                'constraints' => [
-                    new Assert\NotBlank(),
-                ],
-                'attr' => [
-                    'placeholder' => 'Type your message here...',
-                    'rows' => 5,
-                ],
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Send'
-            ])
-
-            ->add('captcha', Recaptcha3Type::class, [
-                'constraints' => new Recaptcha3(),
-                'action_name' => 'contact',
-            ])
-            ;
+        ->add('email', EmailType::class, [
+            'attr' => [
+                'placeholder' => 'Enter your email'
+            ],
+            'label' => 'Email',
+            'constraints' => [
+                new Assert\Email(),
+                new Assert\NotBlank(),
+            ]
+        ])
+        ->add('subject', TextType::class, [
+            'label' => 'Subject',
+            'constraints' => [
+                new Assert\NotBlank(),
+            ]
+        ])
+        ->add('content', TextareaType::class, [
+            'label' => 'Your Message:',
+            'constraints' => [
+                new Assert\NotBlank(),
+            ],
+            'attr' => [
+                'placeholder' => 'Type your message here...',
+                'rows' => 5,
+            ],
+        ])
+        ->add('submit', SubmitType::class, [
+            'label' => 'Send'
+        ])
+        ->add('captcha', Recaptcha3Type::class, [
+            'constraints' => new Recaptcha3(),
+            'action_name' => 'contact',
+        ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Contact::class,
+            // Configure your form options here
         ]);
     }
 }
-

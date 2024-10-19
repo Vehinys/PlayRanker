@@ -112,7 +112,10 @@ class CrudCommentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-        
+
+            return $this->redirectToRoute('detail_jeu', [
+                'id' => $comment->getGame()->getIdGameApi()
+            ]);
         }
 
         return $this->render('pages/jeux/crudComment/editComment.html.twig', [
@@ -126,11 +129,11 @@ class CrudCommentController extends AbstractController
     #[Route('/{id}', name: 'comment_delete', methods: ['POST'])]
     public function delete(
     
-    int $id,
-    Request $request, 
-    Comment $comment, 
-    CommentRepository $commentRepository,
-    EntityManagerInterface $entityManager
+        int $id,
+        Request $request, 
+        Comment $comment, 
+        CommentRepository $commentRepository,
+        EntityManagerInterface $entityManager
     
     ): Response {
 
@@ -140,7 +143,9 @@ class CrudCommentController extends AbstractController
             $entityManager->remove($comment);
             $entityManager->flush();
         
-            return $this->redirectToRoute('jeux');
+            return $this->redirectToRoute('detail_jeu', [
+                'id' => $comment->getGame()->getIdGameApi()
+            ]);
         }
     }
 }    

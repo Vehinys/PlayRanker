@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,27 +38,54 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/accueil/contact', name: 'contact', methods: ['POST'])]
+
+
+    #[Route('/accueil/contact', name: 'contact')]
     public function contact(
+
         Request $request, 
-        EntityManagerInterface $entityManager
+        MailerInterface $mailer,
+        CommentRepository $commentRepository,
+        ScoreRepository $scoreRepository
+        
     ): Response {
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
-        $form->handleRequest($request);
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($contact);
-            $entityManager->flush();
-    
-            $this->addFlash('success', 'Your message has been sent successfully!');
+
+        $comments = $commentRepository->findAll();
+        $topGames = $scoreRepository->findTopGames(3);
+
+        $contactForm = $this->createForm(ContactType::class);
+        $contactForm->handleRequest($request);
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $data = $contactForm->getData();
+
+            $adress = $data['email'];
+            $subject = $data['subject'];
+            $content = $data['content'];
+
+            $email = new Email();
+            $email->from($adress)
+                ->to('albert.lecomte1989@gmail.com')
+                ->subject( $subject)
+                ->text($content);
+
+            $mailer->send($email);
+
+
             return $this->redirectToRoute('home');
+
         }
-    
-        // Si le formulaire n'est pas soumis ou n'est pas valide, on redirige vers la page d'accueil
-        $this->addFlash('error', 'Sorry, a problem occurred!');
-        return $this->redirectToRoute('home');
+
+        return $this->render('pages/home/index.html.twig', [
+            'contactForm' => $contactForm->createView(),
+            'comments' => $comments,
+            'topGames' => $topGames,
+        ]);
     }
+
+
+
+
 
     #[Route('/', name: 'index')]
     public function index(): Response
