@@ -166,7 +166,6 @@ class ApiController extends AbstractController
     
             }
 
-
             $comments = $commentRepository->findBy(['game' => $game]);
 
             $scoreForm = $this->createForm(ScoreType::class, null, [

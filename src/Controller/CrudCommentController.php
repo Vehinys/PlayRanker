@@ -27,6 +27,7 @@ class CrudCommentController extends AbstractController
         GameRepository $gameRepository
 
     ): Response {
+        
         // Récupérer les détails du jeu à partir de l'API RAWG
         $gameData = $apiHttpClient->gameDetail($id);
     
@@ -63,6 +64,7 @@ class CrudCommentController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+
             // Associer le commentaire au jeu et à l'utilisateur
             $comment->setUser($user);
             $comment->setGame($game);
@@ -90,12 +92,20 @@ class CrudCommentController extends AbstractController
 
     #[Route('/{id}/edit', name: 'comment_edit', methods: ['GET', 'POST'])]
     public function edit(
-        
+
+        int $id,
         Request $request, 
+        CommentRepository $commentRepository,
         Comment $comment, 
         EntityManagerInterface $entityManager
         
     ): Response {
+
+        $comment = $commentRepository->find($id);
+    
+        if (!$comment) {
+            throw $this->createNotFoundException('Comment not found');
+        }
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -115,12 +125,16 @@ class CrudCommentController extends AbstractController
 
     #[Route('/{id}', name: 'comment_delete', methods: ['POST'])]
     public function delete(
-        
+    
+    int $id,
     Request $request, 
     Comment $comment, 
+    CommentRepository $commentRepository,
     EntityManagerInterface $entityManager
     
     ): Response {
+
+        $comment = $commentRepository->find($id);
 
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
             $entityManager->remove($comment);
