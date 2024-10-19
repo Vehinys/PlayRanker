@@ -38,8 +38,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/accueil/contact', name: 'contact')]
     public function contact(
 
@@ -63,17 +61,15 @@ class HomeController extends AbstractController
             $subject = $data['subject'];
             $content = $data['content'];
 
-            $email = new Email();
-            $email->from($adress)
-                ->to('albert.lecomte1989@gmail.com')
-                ->subject( $subject)
-                ->text($content);
+            $email = (new Email());
+            $email  ->from($adress)
+                    ->to('albert.lecomte1989@gmail.com')
+                    ->subject($subject)
+                    ->text($content);
 
             $mailer->send($email);
 
-
             return $this->redirectToRoute('home');
-
         }
 
         return $this->render('pages/home/index.html.twig', [
@@ -82,10 +78,6 @@ class HomeController extends AbstractController
             'topGames' => $topGames,
         ]);
     }
-
-
-
-
 
     #[Route('/', name: 'index')]
     public function index(): Response
