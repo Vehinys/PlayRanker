@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IDX_9474526CE48FD905` (`game_id`),
   CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_9474526CE48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.comment : ~7 rows (environ)
 INSERT INTO `comment` (`id`, `user_id`, `game_id`, `content`, `created_at`) VALUES
@@ -74,25 +74,6 @@ INSERT INTO `comment` (`id`, `user_id`, `game_id`, `content`, `created_at`) VALU
 	(5, 15, 47, 'A highly tactical shooter that demands skill, precision, and teamwork, making it a cornerstone of competitive gaming for years.', '2024-10-11 15:08:36'),
 	(6, 22, 48, 'An exhilarating co-op experience that lets you plan and execute daring heists with friends, filled with tension and teamwork.', '2024-10-11 15:08:50'),
 	(7, 19, 49, '"A hauntingly beautiful platformer with a dark, minimalist atmosphere, Limbo draws you in with its eerie design and thoughtful puzzles.', '2024-10-11 15:34:56');
-
--- Listage de la structure de table playranker. contact
-CREATE TABLE IF NOT EXISTS `contact` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Listage des données de la table playranker.contact : ~5 rows (environ)
-INSERT INTO `contact` (`id`, `pseudo`, `email`, `subject`, `message`, `created_at`) VALUES
-	(2, 'GamerDude123', 'gamerdude123@example.com', 'Feedback on Game Features', 'Hi, I just wanted to share my thoughts on the recent updates to the game. The new features are amazing, but I think there could be more customization options for characters. Keep up the great work!', '2024-10-14 12:51:09'),
-	(3, 'SarahPlays', 'sarahplays@example.com', 'Inquiry About Game Releases', 'Hello, I\'m really excited about the upcoming game releases. Could you please provide more details on when the next game is set to launch? Thank you!', '2024-10-14 12:51:39'),
-	(4, 'RPGFan99', 'rpgfan99@example.com', 'Bug Report', 'Hi there, I encountered a bug while playing the latest version of the game. The game crashes when I try to enter the dungeon. I hope this can be fixed soon. Thanks!', '2024-10-14 12:52:10'),
-	(5, 'ActionHero', 'actionhero@example.com', 'Collaboration Proposal', 'Dear Team, I am interested in discussing potential collaboration opportunities. I run a gaming blog and would love to feature your games. Let me know if you’d be open to this!', '2024-10-14 12:52:38'),
-	(6, 'CasualGamer', 'casualgamer@example.com', 'Suggestion for New Game Mode', 'Hi, I’ve been enjoying your games and had an idea for a new game mode that could enhance the multiplayer experience. I’d love to discuss it further if you’re interested. Thanks!', '2024-10-14 12:53:01');
 
 -- Listage de la structure de table playranker. game
 CREATE TABLE IF NOT EXISTS `game` (
@@ -171,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
   KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
   KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
   KEY `IDX_75EA56E016BA31DB` (`delivered_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.messenger_messages : ~0 rows (environ)
 
@@ -230,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `IDX_5A8A6C8DA76ED395` (`user_id`),
   CONSTRAINT `FK_5A8A6C8D1F55203D` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`),
   CONSTRAINT `FK_5A8A6C8DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.post : ~31 rows (environ)
 INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`) VALUES
@@ -264,7 +245,8 @@ INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`) VALUES
 	(130, 89, 21, 'Definitely worth playing now! The latest updates have made a huge difference, especially with stability and performance. The story was always strong, but now it’s backed up by smoother gameplay. I’d say give it a shot if you were waiting for the game to be fixed!', '2024-10-08 07:26:50'),
 	(131, 90, 20, 'I’ve been a huge fan of Horizon Zero Dawn, but I’m wondering if Forbidden West really improves on the original. Is it worth picking up if you loved the first game?', '2024-10-08 07:29:31'),
 	(132, 90, 19, 'I think it’s a solid improvement. The combat feels more refined, and the world is even more stunning. The story is great too, but it can feel overwhelming with so many side quests. If you loved Zero Dawn, I think you’ll enjoy this one.', '2024-10-08 07:32:17'),
-	(133, 91, 19, 'With the release of Counter-Strike 2, there’s been a lot of excitement. I’ve been playing CS\r\nfor years—should I switch to the new one, or is it more of the same?', '2024-10-08 07:32:42');
+	(133, 91, 19, 'With the release of Counter-Strike 2, there’s been a lot of excitement. I’ve been playing CS\r\nfor years—should I switch to the new one, or is it more of the same?', '2024-10-08 07:32:42'),
+	(138, 91, 15, 'test', '2024-10-19 23:14:43');
 
 -- Listage de la structure de table playranker. rating_category
 CREATE TABLE IF NOT EXISTS `rating_category` (
@@ -298,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `score` (
   CONSTRAINT `FK_32993751E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.score : ~48 rows (environ)
+-- Listage des données de la table playranker.score : ~72 rows (environ)
 INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) VALUES
 	(32, 5, 1, 21, 40),
 	(33, 5, 2, 21, 40),
@@ -306,18 +288,18 @@ INSERT INTO `score` (`id`, `note`, `rating_category_id`, `user_id`, `game_id`) V
 	(35, 5, 4, 21, 40),
 	(36, 5, 5, 21, 40),
 	(37, 5, 6, 21, 40),
-	(38, 8, 1, 15, 39),
-	(39, 8, 2, 15, 39),
-	(40, 8, 3, 15, 39),
-	(41, 8, 4, 15, 39),
-	(42, 7, 5, 15, 39),
-	(43, 9, 6, 15, 39),
-	(44, 1, 1, 15, 40),
-	(45, 1, 2, 15, 40),
-	(46, 1, 3, 15, 40),
-	(47, 1, 4, 15, 40),
-	(48, 1, 5, 15, 40),
-	(49, 1, 6, 15, 40),
+	(38, 10, 1, 15, 39),
+	(39, 10, 2, 15, 39),
+	(40, 10, 3, 15, 39),
+	(41, 10, 4, 15, 39),
+	(42, 10, 5, 15, 39),
+	(43, 10, 6, 15, 39),
+	(44, 10, 1, 15, 40),
+	(45, 10, 2, 15, 40),
+	(46, 10, 3, 15, 40),
+	(47, 10, 4, 15, 40),
+	(48, 10, 5, 15, 40),
+	(49, 10, 6, 15, 40),
 	(50, 10, 1, 15, 49),
 	(51, 10, 2, 15, 49),
 	(52, 1, 3, 15, 49),
@@ -385,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `IDX_9D40DE1BA76ED395` (`user_id`),
   CONSTRAINT `FK_9D40DE1B9EB63EAB` FOREIGN KEY (`category_forum_id`) REFERENCES `category_forum` (`id`),
   CONSTRAINT `FK_9D40DE1BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.topic : ~16 rows (environ)
 INSERT INTO `topic` (`id`, `category_forum_id`, `user_id`, `title`, `created_at`) VALUES
@@ -415,7 +397,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 
 -- Listage des données de la table playranker.type : ~4 rows (environ)
 INSERT INTO `type` (`id`, `name`) VALUES
-	(1, 'Favoris'),
+	(1, 'My favoris'),
 	(2, 'Already played'),
 	(3, 'My desires'),
 	(4, 'Go test');
@@ -441,13 +423,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `roles` json NOT NULL,
-  `gamer_tag_playstation` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gamer_tag_xbox` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gamer_tag_playstation` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gamer_tag_xbox` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.user : ~6 rows (environ)
 INSERT INTO `user` (`id`, `email`, `pseudo`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`) VALUES
@@ -456,7 +438,8 @@ INSERT INTO `user` (`id`, `email`, `pseudo`, `password`, `avatar`, `roles`, `gam
 	(19, 'Goeffroy@gmail.com', 'Goeffroy', '$2y$13$7dTtdlFKA3xht39had8ug.q1f6m1ulJnTtoFOp.VgqtYQb/TjdnKa', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),
 	(20, 'pauline@gmail.com', 'Pauline', '$2y$13$N.lo.DrqDMNPAHxlsGGWDudW8iFpAEiMIrItV38zihYTlD2a1.cT6', NULL, '["ROLE_ADMIN"]', NULL, NULL, NULL, NULL),
 	(21, 'kenza@gmail.com', 'Kenza', '$2y$13$FL8y3A4paQzjPlJ5D.8w8.iOQkoA3XEu/BzjhO5zb69AyRioBp4HS', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),
-	(22, 'emaildelete-6704decc42c05@example.com', 'UserDelete', '$2y$13$oOonQA2cVrHEJlS46PbYL.XdKJnKwabl6jQ1ZXV8RgQAAS6EGqL9K', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL);
+	(22, 'emaildelete-6704decc42c05@example.com', 'UserDelete', '$2y$13$oOonQA2cVrHEJlS46PbYL.XdKJnKwabl6jQ1ZXV8RgQAAS6EGqL9K', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL),
+	(23, 'test3@test.com', 'test3', '$2y$13$.rQ0LO245ILAwwWfvo9QEO6waLUJr9TnMyRpE0dZmxlGhDr9g2w6K', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL);
 
 
 -- Listage de la structure de la base pour playranker_test
