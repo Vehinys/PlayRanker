@@ -55,21 +55,25 @@ class ProfilType extends AbstractType
         ->add('gamerTagPlaystation', TextType::class, [
             'label' => 'PlayStation Gamer Tag',
             'attr' => ['placeholder' => 'Your PlayStation Gamer Tag'],
+            'required' => false,
         ])
 
         ->add('gamerTagXbox', TextType::class, [
             'label' => 'Xbox Gamer Tag',
             'attr' => ['placeholder' => 'Your Xbox Gamer Tag'],
+            'required' => false,
         ])
 
         ->add('youtube', TextType::class, [
             'label' => 'YouTube',
             'attr' => ['placeholder' => 'Your lien YouTube'],
+            'required' => false,
         ])
 
         ->add('twitch', TextType::class, [
             'label' => 'Twitch',
             'attr' => ['placeholder' => 'Your lien Twitch'],
+            'required' => false,
         ]);
     
     }
