@@ -93,10 +93,10 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/{pseudo}', name: 'lienProfile')]
+    #[Route('/profil/{username}', name: 'lienProfile')]
     public function lienProfile(
 
-        string $pseudo,
+        string $username,
         UserRepository $userRepository,
         TypeRepository $typeRepository
 
@@ -105,19 +105,19 @@ class HomeController extends AbstractController
         // Récupérer l'utilisateur connecté
         $currentUser = $this->getUser();
     
-        // Rechercher l'utilisateur avec le pseudo donné
-        $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+        // Rechercher l'utilisateur avec le username donné
+        $user = $userRepository->findOneBy(['username' => $username]);
     
         // Vérifie si le profil existe
         if (!$user) {
             throw $this->createNotFoundException('Profil non trouvé');
         }
     
-        // Vérifie si le pseudo est "UserDelete"
-        if ($pseudo === 'UserDelete') {
+        // Vérifie si le username est "UserDelete"
+        if ($username === 'UserDelete') {
 
             // Rediriger vers le profil de l'utilisateur connecté
-            return $this->redirectToRoute('lienProfile', ['pseudo' => $currentUser->getPseudo()]);
+            return $this->redirectToRoute('lienProfile', ['username' => $currentUser->getUsername()]);
 
         }
     

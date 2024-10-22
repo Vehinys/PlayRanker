@@ -19,7 +19,7 @@
             <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('forum') }}">FORUM</a>
           </li>
           <li>
-            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil', {'pseudo': app.user.pseudo}) }}">PROFILE</a>
+            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil', {'username': app.user.username}) }}">PROFILE</a>
           </li>
               {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
                 <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold">ADMIN</a>

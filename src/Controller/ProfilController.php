@@ -51,10 +51,10 @@ class ProfilController extends AbstractController
      * @return Response The rendered profile page.
      */
 
-     #[Route('/profil/{pseudo}', name: 'profil', methods: ["GET", "POST"])]
+     #[Route('/profil/{username}', name: 'profil', methods: ["GET", "POST"])]
      public function index(
 
-         string $pseudo,
+         string $username,
          TypeRepository $typeRepository,
          UserRepository $userRepository
 
@@ -63,8 +63,8 @@ class ProfilController extends AbstractController
          // Récupération de l'utilisateur connecté
          $currentUser = $this->getUser();
      
-         // Récupération de l'utilisateur cible à partir du pseudo
-         $targetUser = $userRepository->findOneBy(['pseudo' => $pseudo]);
+         // Récupération de l'utilisateur cible à partir du username
+         $targetUser = $userRepository->findOneBy(['username' => $username]);
      
          // Vérifiez si l'utilisateur cible existe
          if (!$targetUser) {
@@ -91,10 +91,10 @@ class ProfilController extends AbstractController
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
 
-    #[Route('/profil/edit/{pseudo}', name: 'edit_profil' )]
+    #[Route('/profil/edit/{username}', name: 'edit_profil' )]
     public function editProfile(
 
-        string $pseudo,
+        string $username,
         Request $request, 
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
@@ -104,8 +104,8 @@ class ProfilController extends AbstractController
         // Récupération du répertoire pour les avatars
         $avatarDirectory = $this->getParameter('kernel.project_dir').'/public/uploads/avatars';
 
-        // Récupérer l'utilisateur par pseudo
-        $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+        // Récupérer l'utilisateur par username
+        $user = $userRepository->findOneBy(['username' => $username]);
         
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
@@ -131,14 +131,14 @@ class ProfilController extends AbstractController
                 } catch (FileException $e) {
 
                     $this->addFlash('error', 'Erreur lors du téléchargement de l\'avatar.');
-                    return $this->redirectToRoute('edit_profil', ['pseudo' => $pseudo]);
+                    return $this->redirectToRoute('edit_profil', ['username' => $username]);
 
                 }
             }
 
             $entityManager->flush();
             $this->addFlash('success', 'Profil mis à jour avec succès.');
-            return $this->redirectToRoute('profil', ['pseudo' => $this->getUser()->getPseudo()]);
+            return $this->redirectToRoute('profil', ['username' => $this->getUser()->getUsername()]);
         }
         
         return $this->render('pages/profil/editProfil.html.twig', [
