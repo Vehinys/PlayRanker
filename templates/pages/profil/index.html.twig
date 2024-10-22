@@ -8,14 +8,14 @@
 <div class="min-h-screen bg-[#97b4e0] py-8">  
 
     {# Conteneur centré avec des marges internes #}
-    <div class="container mx-auto p-4 ">  
+    <div class="container p-4 mx-auto ">  
         
     <!-- Section Profil Utilisateur -->
     {# Section avec un fond sombre, des ombres et des bordures dorées #}
     <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
 
         {# Conteneur flexible pour centrer le contenu #}
-        <div class="flex flex-col py-7 justify-center items-center md:flex-row">  
+        <div class="flex flex-col items-center justify-center py-7 md:flex-row">  
 
             <!-- Profil Utilisateur -->
             {# Divise l'espace en deux colonnes sur les écrans moyens et plus #}
@@ -28,7 +28,7 @@
                 {% if user %}  
 
                 {# Conteneur flexible pour l'avatar et les informations utilisateur #}
-                <div class="flex flex-col gap-10 items-center md:flex-row">  
+                <div class="flex flex-col items-center gap-10 md:flex-row">  
 
                     <!-- Affichage de l'avatar de l'utilisateur -->
                     {# Image de l'avatar de l'utilisateur avec une bordure dorée #}
@@ -36,7 +36,7 @@
                     alt="Profile Picture of {{ user.pseudo }}" class="w-[20rem] h-[20rem] rounded border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">  
                     
                     {# Conteneur pour les informations utilisateur #}
-                    <div class="text-start text-white">  
+                    <div class="text-white text-start">  
                     
                         <!-- Affichage des informations de l'utilisateur -->
                         {# Affiche le pseudo de l'utilisateur #}
@@ -45,10 +45,14 @@
                             <span class="text-[18px]">{{ user.pseudo }}</span>  
                         </p>
 
-                        {# Affiche l'email de l'utilisateur #}
+                        {# Affiche l'email de l'utilisateur seulement si l'utilisateur connecté est le même #}
                         <p class="mb-2">
                             <span class="text-[20px] text-[#ECC33E] font-bold">Email : </span> 
-                            <span class="text-[18px]">{{ user.email }}</span>  
+                            {% if user.id == currentUser.id %}
+                                <span class="text-[18px]">{{ user.email }}</span>  
+                            {% else %}
+                                <span class="text-[18px]">Caché</span>
+                            {% endif %}
                         </p>
 
                         {# Affiche le nombre de sujets créés par l'utilisateur #}
@@ -85,14 +89,14 @@
 
                             <!-- Lien pour éditer le profil -->
                             {# Bouton pour éditer le profil #}
-                            <a href="{{ path('edit_profil', { id: user.id }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                            <a href="{{ path('edit_profil', { pseudo: user.pseudo }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                 Edit  
                             </a>
 
                             <!-- Formulaire pour supprimer le profil -->
                             {# Bouton pour supprimer le profil #}
                             <form action="{{ path('delete_profil') }}" method="post">
-                                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                <button type="submit" class="px-4 py-2 font-semibold text-white transition duration-300 transform bg-red-600 rounded-lg shadow-lg hover:bg-red-700 hover:scale-105">
                                     <i class='fas fa-trash-can'></i>  
                                 </button>
                             </form>
@@ -105,7 +109,7 @@
 
                 <!-- Message d'erreur si aucun utilisateur n'est trouvé -->
                 {# Message d'erreur #}
-                <p class="text-red-500 text-center">No users found. Please log in.</p>  
+                <p class="text-center text-red-500">No users found. Please log in.</p>  
                 {% endif %}
             </div>
         </div>
@@ -116,13 +120,13 @@
     <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 flex justify-center items-center transition-transform mt-8 duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl ">    
         
         <!-- Sujets de l'utilisateur -->
-        <div class="w-full md:w-2/3 lg:w-full py-7 mt-6 md:mt-0 flex flex-col items-center">  
+        <div class="flex flex-col items-center w-full mt-6 md:w-2/3 lg:w-full py-7 md:mt-0">  
             
             {# Titre de la section des sujets #}
             <h3 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Topics</h3>  
             
             {# Grille pour afficher les sujets #}
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-2 justify-items-center w-full">  
+            <div class="grid w-full grid-cols-1 gap-6 p-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">  
                 
                 {# Boucle pour chaque sujet de l'utilisateur #}
                 {% for topic in user.topics %}  
@@ -138,7 +142,7 @@
 
                     <!-- Message si aucun sujet n'a été créé -->
                     {# Message d'absence de sujets #}
-                    <p class="text-gray-400 col-span-full text-center">No topics created yet.</p>  
+                    <p class="text-center text-gray-400 col-span-full">No topics created yet.</p>  
                 {% endfor %}
             </div>
         </div>
@@ -153,7 +157,7 @@
 
             <!-- Message si aucune liste de jeux n'est disponible -->
             {# Message d'absence de jeux #}
-            <p class="text-white text-center">No games available in your list.</p>  
+            <p class="text-center text-white">No games available in your list.</p>  
 
         {# Si des listes de jeux sont disponibles #}
         {% else %}  
@@ -163,7 +167,7 @@
                 <div class="bg-[#0C1D36] border-[3px] border-[#ECC33E] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
                     
                     {# Titre du type de jeu #}
-                    <h2 class="text-3xl text-center font-bold mb-4">{{ type.name }}</h2>  
+                    <h2 class="mb-4 text-3xl font-bold text-center">{{ type.name }}</h2>  
 
                     {# Filtre les jeux par type #}
                     {% set filteredGames = gamesLists|filter(g => g.type and g.type.id == type.id) %}  
@@ -173,13 +177,13 @@
 
                         <!-- Message si aucun jeu n'est disponible pour ce type -->
                         {# Message d'absence de jeux pour ce type #}
-                        <p class="text-white text-center">No games available for this type.</p> 
+                        <p class="text-center text-white">No games available for this type.</p> 
                         
                     {# Si des jeux sont disponibles pour ce type #}
                     {% else %}  
 
                         {# Liste des jeux #}
-                        <ul class="space-y-2 grid md:grid-cols-2 lg:grid-cols-3"> 
+                        <ul class="grid space-y-2 md:grid-cols-2 lg:grid-cols-3"> 
                         
                         {# Boucle pour chaque jeu filtré #}
                         {% for gamesList in filteredGames %}
@@ -207,7 +211,7 @@
                     {% endif %}
 
                     {# Conteneur pour le lien de recherche de jeux #}
-                    <div class="text-center mt-4">  
+                    <div class="mt-4 text-center">  
                     
                         <!-- Lien pour rechercher des jeux -->
                         {# Bouton pour rechercher des jeux #}

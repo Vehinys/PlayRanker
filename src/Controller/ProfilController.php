@@ -46,43 +46,50 @@ class ProfilController extends AbstractController
      * @return Response The rendered profile page.
      */
 
-        #[Route('/profil', name: 'profil')]
-        public function index(
-            
-            GamesListRepository $gamesListRepository, 
-            TypeRepository $typeRepository,
-            UserRepository $userRepository
-            
-        ): Response {
+     #[Route('/profil/{pseudo}', name: 'profil', methods: ["GET", "POST"])]
+     public function index(
 
-            // Récupération de l'utilisateur connecté
-            $users = $this->getUser();
+         string $pseudo,
+         TypeRepository $typeRepository,
+         UserRepository $userRepository
 
-            // Récupération de tous les types de listes
-            $types = $typeRepository->findAll();
+     ): Response {
+     
+         // Récupération de l'utilisateur connecté
+         $currentUser = $this->getUser();
+     
+         // Récupération de l'utilisateur cible à partir du pseudo
+         $targetUser = $userRepository->findOneBy(['pseudo' => $pseudo]);
+     
+         // Vérifiez si l'utilisateur cible existe
+         if (!$targetUser) {
+             throw $this->createNotFoundException('Utilisateur non trouvé');
+         }
+     
+         // Récupération de tous les types de listes
+         $types = $typeRepository->findAll();
 
-            $user = $userRepository->findAll();
-        
-            // Récupération des listes de jeux associées à l'utilisateur
-            $gamesLists = $gamesListRepository->findBy(['user' => $user]);
-        
-            // Rendu de la vue avec les données récupérées
-            return $this->render('pages/profil/index.html.twig', [
-                'gamesLists' => $gamesLists,
-                'users' => $users,
-                'types' => $types,
-                'user' => $user,
-            ]);
-        }
+         // Récupération des listes de jeux associées à l'utilisateur cible
+         $gamesLists = $targetUser->getGamesLists(); 
+     
+         // Rendu de la vue avec les données récupérées
+         return $this->render('pages/profil/index.html.twig', [
+             'gamesLists' => $gamesLists,
+             'user' => $targetUser,
+             'types' => $types,
+             'currentUser' => $currentUser,
+         ]);
+     }
+     
     
     // ---------------------------------------------------------- //
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
     
-    #[Route('/profil/edit/{id}', name: 'edit_profil')]
+    #[Route('/profil/edit/{pseudo}', name: 'edit_profil')]
     public function editProfile(
 
-        string $id,
+        String $pseudo,
         Request $request, 
         EntityManagerInterface $entityManager,
         UserRepository $userRepository
@@ -90,7 +97,7 @@ class ProfilController extends AbstractController
     ): Response {
         
         // Récupérer l'utilisateur par ID
-        $user = $userRepository->find($id);
+        $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
         
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
@@ -103,7 +110,7 @@ class ProfilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             $this->addFlash('success', 'Profile uptade.');
-            return $this->redirectToRoute('profil');
+            return $this->redirectToRoute('profil', ['pseudo' => $this->getUser()->getPseudo()]);
         }
         
         return $this->render('pages/profil/editProfil.html.twig', [

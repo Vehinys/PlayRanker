@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use Symfony\Component\Mime\Email;
+use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
@@ -87,34 +88,47 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'index')]
-    public function index(): Response
-    {
-        return $this->redirectToRoute('home');
-    }
-
-    #[Route('/accueil/profil/{pseudo}', name: 'lienProfile')]
+    #[Route('/profil/{pseudo}', name: 'lienProfile')]
     public function lienProfile(
 
         string $pseudo,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        TypeRepository $typeRepository
 
     ): Response {
+        
         // Récupérer l'utilisateur connecté
-        $users = $this->getUser();
-
+        $currentUser = $this->getUser();
+    
         // Rechercher l'utilisateur avec le pseudo donné
-        $profile = $userRepository->findOneBy(['pseudo' => $pseudo]);
-
+        $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+    
         // Vérifie si le profil existe
-        if (!$profile) {
+        if (!$user) {
             throw $this->createNotFoundException('Profil non trouvé');
         }
-
+    
+        // Vérifie si le pseudo est "UserDelete"
+        if ($pseudo === 'UserDelete') {
+            // Rediriger vers le profil de l'utilisateur connecté
+            return $this->redirectToRoute('lienProfile', ['pseudo' => $currentUser->getPseudo()]);
+        }
+    
+        // Récupération des listes de jeux associées à l'utilisateur cible
+        $gamesLists = $user->getGamesLists();
+    
+        // Récupération de tous les types de listes
+        $types = $typeRepository->findAll();
+        
         // Rendre la vue avec les informations du profil
         return $this->render('pages/profil/index.html.twig', [
-            'profile' => $profile, // Passe le profil à la vue Twig
-            'users' => $users,       // Passe l'utilisateur connecté à la vue Twig
+            'user' => $user,            // Passe l'utilisateur au template comme "user"
+            'currentUser' => $currentUser, // Passe l'utilisateur connecté à la vue Twig
+            'gamesLists' => $gamesLists,
+            'types' => $types,
         ]);
     }
+    
+    
+    
 }

@@ -9,7 +9,7 @@
 <section class="bg-[#97b4e0] py-10">
 
     {# Conteneur pour centrer le contenu #}
-    <div class="container mx-auto px-4">
+    <div class="container px-4 mx-auto">
 
         {# Carte principale pour le formulaire d'édition du profil #}
         <div class="bg-[#09172b] border-2 border-[#ECC33E] shadow-md rounded overflow-hidden max-w-3xl mx-auto">
@@ -25,7 +25,7 @@
             <div class="p-6">
 
                 {# Section de la photo de profil #}
-                <div class="flex flex-col md:flex-row items-center justify-center mb-6">
+                <div class="flex flex-col items-center justify-center mb-6 md:flex-row">
 
                     {# Vérification de l'existence de l'utilisateur #}
                     {% if user %}
@@ -34,7 +34,7 @@
                         {% if user.avatar %}
 
                             {# Affichage de l'avatar de l'utilisateur #}
-                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.pseudo }}" class="object-cover w-32 h-32 mb-4 rounded-full md:mb-0 md:mr-6">
                         {% else %}
 
                             {# Affichage de l'avatar par défaut si l'utilisateur n'en a pas #}
@@ -48,7 +48,7 @@
                 </div>
 
                 {# Début du formulaire d'édition du profil #}
-                <form method="post" action="{{ path('edit_profil', { id: user.id }) }}">
+                <form method="post" action="{{ path('edit_profil', { pseudo: user.pseudo }) }}">
 
                     {# Début du rendu du formulaire #}
                     {{ form_start(form) }}
@@ -131,7 +131,7 @@
                             </button>
 
                             {# Bouton Annuler #}
-                            <button type="button" onclick="window.location.href ='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
+                            <button type="button" onclick="window.location.href ='{{ path('profil', {'pseudo': app.user.pseudo}) }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
                                 Cancel
                             </button>
                         </div>

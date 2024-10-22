@@ -1,6 +1,6 @@
 <header class="bg-[#09172b] shadow-lg">
-  <div class="container mx-auto px-4">
-    <nav class="flex justify-between items-center py-5">
+  <div class="container px-4 mx-auto">
+    <nav class="flex items-center justify-between py-5">
       <ul class="flex space-x-6">
         <li>
           <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('home') }}">HOME</a>
@@ -19,7 +19,7 @@
             <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('forum') }}">FORUM</a>
           </li>
           <li>
-            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil') }}">PROFILE</a>
+            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil', {'pseudo': app.user.pseudo}) }}">PROFILE</a>
           </li>
               {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
                 <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold">ADMIN</a>
