@@ -16,6 +16,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+
+    #[Route('/', name: 'index')]
+    public function index(): Response
+    {
+        return $this->redirectToRoute('home');
+    }
+
     #[Route('/accueil', name: 'home', methods: ['GET', 'POST'])]
     public function home(
 
@@ -31,7 +38,7 @@ class HomeController extends AbstractController
     
         $comments = $commentRepository->findAll();
 
-         // Récupérer tous les utilisateurs
+        // Récupérer tous les utilisateurs
         $users = $userRepository->findAll();
     
         // Récupérer les jeux avec les meilleures notes
@@ -42,8 +49,6 @@ class HomeController extends AbstractController
             'comments' => $comments,
             'topGames' => $topGames,
             'users' => $users,
-
-
         ]);
     }
 
@@ -110,8 +115,10 @@ class HomeController extends AbstractController
     
         // Vérifie si le pseudo est "UserDelete"
         if ($pseudo === 'UserDelete') {
+
             // Rediriger vers le profil de l'utilisateur connecté
             return $this->redirectToRoute('lienProfile', ['pseudo' => $currentUser->getPseudo()]);
+
         }
     
         // Récupération des listes de jeux associées à l'utilisateur cible
@@ -128,7 +135,5 @@ class HomeController extends AbstractController
             'types' => $types,
         ]);
     }
-    
-    
     
 }
