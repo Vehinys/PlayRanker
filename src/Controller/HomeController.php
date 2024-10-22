@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use Symfony\Component\Mime\Email;
+use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +20,18 @@ class HomeController extends AbstractController
 
         Request $request, 
         CommentRepository $commentRepository,
-        ScoreRepository $scoreRepository
+        ScoreRepository $scoreRepository,
+        UserRepository $userRepository
         
     ): Response {
+
         $form = $this->createForm(ContactType::class); 
         $form->handleRequest($request);
     
         $comments = $commentRepository->findAll();
+
+         // Récupérer tous les utilisateurs
+        $users = $userRepository->findAll();
     
         // Récupérer les jeux avec les meilleures notes
         $topGames = $scoreRepository->findTopGames(3);
@@ -34,6 +40,8 @@ class HomeController extends AbstractController
             'contactForm' => $form->createView(),
             'comments' => $comments,
             'topGames' => $topGames,
+            'users' => $users,
+
 
         ]);
     }
@@ -83,5 +91,30 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->redirectToRoute('home');
+    }
+
+    #[Route('/accueil/profil/{pseudo}', name: 'lienProfile')]
+    public function lienProfile(
+
+        string $pseudo,
+        UserRepository $userRepository
+
+    ): Response {
+        // Récupérer l'utilisateur connecté
+        $users = $this->getUser();
+
+        // Rechercher l'utilisateur avec le pseudo donné
+        $profile = $userRepository->findOneBy(['pseudo' => $pseudo]);
+
+        // Vérifie si le profil existe
+        if (!$profile) {
+            throw $this->createNotFoundException('Profil non trouvé');
+        }
+
+        // Rendre la vue avec les informations du profil
+        return $this->render('pages/profil/index.html.twig', [
+            'profile' => $profile, // Passe le profil à la vue Twig
+            'users' => $users,       // Passe l'utilisateur connecté à la vue Twig
+        ]);
     }
 }

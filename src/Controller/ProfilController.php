@@ -50,15 +50,18 @@ class ProfilController extends AbstractController
         public function index(
             
             GamesListRepository $gamesListRepository, 
-            TypeRepository $typeRepository
+            TypeRepository $typeRepository,
+            UserRepository $userRepository
             
         ): Response {
 
             // Récupération de l'utilisateur connecté
-            $user = $this->getUser();
+            $users = $this->getUser();
 
             // Récupération de tous les types de listes
             $types = $typeRepository->findAll();
+
+            $user = $userRepository->findAll();
         
             // Récupération des listes de jeux associées à l'utilisateur
             $gamesLists = $gamesListRepository->findBy(['user' => $user]);
@@ -66,8 +69,9 @@ class ProfilController extends AbstractController
             // Rendu de la vue avec les données récupérées
             return $this->render('pages/profil/index.html.twig', [
                 'gamesLists' => $gamesLists,
+                'users' => $users,
+                'types' => $types,
                 'user' => $user,
-                'types' => $types
             ]);
         }
     
