@@ -32,7 +32,7 @@
 
                     <!-- Affichage de l'avatar de l'utilisateur -->
                     {# Image de l'avatar de l'utilisateur avec une bordure dorée #}
-                    <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
+                    <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" 
                     alt="Profile Picture of {{ user.pseudo }}" class="w-[20rem] h-[20rem] rounded border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">  
                     
                     {# Conteneur pour les informations utilisateur #}

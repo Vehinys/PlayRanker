@@ -48,7 +48,7 @@
                 </div>
 
                 {# Début du formulaire d'édition du profil #}
-                <form method="post" action="{{ path('edit_profil', { pseudo: user.pseudo }) }}">
+                <form action="{{ path('edit_profil', { pseudo: user.pseudo }) }}" method="post" enctype="multipart/form-data">
 
                     {# Début du rendu du formulaire #}
                     {{ form_start(form) }}
@@ -75,12 +75,12 @@
 
                         {# Champ Avatar #}
                         <div class="mb-4">
-
-                            {# Étiquette Avatar #}
+                        
+                        {# Étiquette Avatar #}
                             {{ form_label(form.avatar, 'Avatar :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
                             
                             {# Widget d'entrée Avatar #}
-                            {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                            {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-full max-w-xs text-gray-700'}}) }}
                         </div>
 
                         {# Champ Gamer Tag PlayStation #}

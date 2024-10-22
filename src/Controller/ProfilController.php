@@ -8,14 +8,19 @@ use App\Form\ProfilType;
 use App\Entity\GamesList;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
-use App\Repository\GamesListRepository;
 use App\Repository\UserRepository;
+use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -85,18 +90,21 @@ class ProfilController extends AbstractController
     // ---------------------------------------------------------- //
     // Modifie le profil de l'utilisateur
     // ---------------------------------------------------------- //
-    
-    #[Route('/profil/edit/{pseudo}', name: 'edit_profil')]
+
+    #[Route('/profil/edit/{pseudo}', name: 'edit_profil' )]
     public function editProfile(
 
-        String $pseudo,
+        string $pseudo,
         Request $request, 
         EntityManagerInterface $entityManager,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        SluggerInterface $slugger
         
     ): Response {
-        
-        // Récupérer l'utilisateur par ID
+        // Récupération du répertoire pour les avatars
+        $avatarDirectory = $this->getParameter('kernel.project_dir').'/public/uploads/avatars';
+
+        // Récupérer l'utilisateur par pseudo
         $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
         
         if (!$user) {
@@ -106,10 +114,30 @@ class ProfilController extends AbstractController
         $form = $this->createForm(ProfilType::class, $user);
         
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $avatarFile = $form->get('avatar')->getData();
+
+            if ($avatarFile) {
+                $originalFilename = pathinfo($avatarFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$avatarFile->guessExtension();
+
+                try {
+
+                    $avatarFile->move($avatarDirectory, $newFilename);
+                    $user->setAvatar($newFilename);
+
+                } catch (FileException $e) {
+
+                    $this->addFlash('error', 'Erreur lors du téléchargement de l\'avatar.');
+                    return $this->redirectToRoute('edit_profil', ['pseudo' => $pseudo]);
+
+                }
+            }
+
             $entityManager->flush();
-            $this->addFlash('success', 'Profile uptade.');
+            $this->addFlash('success', 'Profil mis à jour avec succès.');
             return $this->redirectToRoute('profil', ['pseudo' => $this->getUser()->getPseudo()]);
         }
         
@@ -118,13 +146,12 @@ class ProfilController extends AbstractController
             'user' => $user
         ]);
     }
-    
-    
+
 
     // ---------------------------------------------------------- //
     // Supprime le profil de l'utilisateur
     // ---------------------------------------------------------- //
-    
+
     #[Route('/profil/delete', name: 'delete_profil')]
     public function deleteProfile(
 
@@ -155,6 +182,7 @@ class ProfilController extends AbstractController
         // Redirection vers la page d'inscription
         return $this->redirectToRoute('register');
     }
+
 
     // ---------------------------------------------------------- //
     // Ajoute un jeu aux favoris
