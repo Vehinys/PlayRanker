@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   CONSTRAINT `FK_5A8A6C8DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.post : ~31 rows (environ)
+-- Listage des données de la table playranker.post : ~32 rows (environ)
 INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`) VALUES
 	(103, 76, 15, 'What are your favorite mobile games this year? I’m really enjoying Marvel Snap for its fast strategy and Honkai: Star Rail for its immersive world. What are you playing these days?ouez à quoi en ce moment ?', '2024-10-08 07:10:47'),
 	(104, 77, 15, 'The latest Clash Royale update changed a lot of deck dynamics. Do you have any tips on new strategies to adopt?', '2024-10-08 07:11:08'),
@@ -421,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` json NOT NULL,
   `gamer_tag_playstation` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gamer_tag_xbox` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,

@@ -35,12 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?string $password = null; // Mot de passe de l'utilisateur
+
+    #[ORM\Column(type: 'string')]
+    private ?string $avatar = null; // Mot de passe de l'utilisateur
     
     #[ORM\Column(type: 'json')]
     private array $roles = []; // Rôles de l'utilisateur (ex: ROLE_USER, ROLE_ADMIN)
-    
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $avatar = null; 
 
     #[ORM\Column(length: 150, nullable: true)]
     private ?string $gamerTagPlaystation = null;
@@ -346,9 +346,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->gamerTagPlaystation;
     }
 
-    public function setGamerTagPlaystation(?string $GamerTagPlaystation): static
+    public function setGamerTagPlaystation(?string $gamerTagPlaystation): static
     {
-        $this->gamerTagPlaystation = $GamerTagPlaystation;
+        $this->gamerTagPlaystation = $gamerTagPlaystation;
 
         return $this;
     }
@@ -358,9 +358,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->gamerTagXbox;
     }
 
-    public function setGamerTagXbox(?string $GamerTagXbox): static
+    public function setGamerTagXbox(?string $gamerTagXbox): static
     {
-        $this->gamerTagXbox = $GamerTagXbox;
+        $this->gamerTagXbox = $gamerTagXbox;
 
         return $this;
     }
@@ -370,9 +370,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->youtube;
     }
 
-    public function setYoutube(?string $Youtube): static
+    public function setYoutube(?string $youtube): static
     {
-        $this->youtube = $Youtube;
+        $this->youtube = $youtube;
 
         return $this;
     }
@@ -381,11 +381,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->twitch;
     }
-
-    public function setTwitch(?string $Twitch): static
+    
+    public function setTwitch(?string $twitch): static
     {
-        $this->twitch = $Twitch;
-
+        $this->twitch = $twitch;
+    
         return $this;
     }
 

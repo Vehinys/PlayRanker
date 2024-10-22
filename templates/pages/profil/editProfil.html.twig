@@ -9,7 +9,7 @@
 <section class="bg-[#97b4e0] py-10">
 
     {# Conteneur pour centrer le contenu #}
-    <div class="container mx-auto px-4">
+    <div class="container px-4 mx-auto">
 
         {# Carte principale pour le formulaire d'édition du profil #}
         <div class="bg-[#09172b] border-2 border-[#ECC33E] shadow-md rounded overflow-hidden max-w-3xl mx-auto">
@@ -25,7 +25,7 @@
             <div class="p-6">
 
                 {# Section de la photo de profil #}
-                <div class="flex flex-col md:flex-row items-center justify-center mb-6">
+                <div class="flex flex-col items-center justify-center mb-6 md:flex-row">
 
                     {# Vérification de l'existence de l'utilisateur #}
                     {% if user %}
@@ -48,7 +48,7 @@
                 </div>
 
                 {# Début du formulaire d'édition du profil #}
-                <form method="post" action="{{ path('edit_profil', { id: user.id }) }}">
+                <form action="{{ path('edit_profil', { username: user.username }) }}" method="post" enctype="multipart/form-data">
 
                     {# Début du rendu du formulaire #}
                     {{ form_start(form) }}
@@ -75,12 +75,12 @@
 
                         {# Champ Avatar #}
                         <div class="mb-4">
-
-                            {# Étiquette Avatar #}
+                        
+                        {# Étiquette Avatar #}
                             {{ form_label(form.avatar, 'Avatar :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
                             
                             {# Widget d'entrée Avatar #}
-                            {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                            {{ form_widget(form.avatar, {'attr': {'class': 'border rounded-md py-2 px-4 w-full max-w-xs text-gray-700'}}) }}
                         </div>
 
                         {# Champ Gamer Tag PlayStation #}
@@ -131,7 +131,7 @@
                             </button>
 
                             {# Bouton Annuler #}
-                            <button type="button" onclick="window.location.href ='{{ path('profil') }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
+                            <button type="button" onclick="window.location.href ='{{ path('profil', {'username': app.user.username}) }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
                                 Cancel
                             </button>
                         </div>

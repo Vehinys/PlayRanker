@@ -4,12 +4,10 @@
 
 {% block body %}
 
-<!-- -------------------------------------------------------  -->
 <!-- SECTION PRINCIPALE -->
 
 <main class="container-body">
 
-    <!-- -------------------------------------------------------  -->
     <!-- TITRE PRINCIPAL ET DESCRIPTION -->
 
     <section class="header-section" id="bg-home">
@@ -31,8 +29,7 @@
 
     </section>
 
-    <!-- ------------------------------------------------------ -->
-    <!-- -------------------- Cherchez-les -------------------- -->
+    <!-- Cherchez-les -->
 
     <section class="rate-section">
       <h2> Discover your favorite games,
@@ -45,17 +42,16 @@
       </h2>
     </section>
 
-    <!-- ------------------------------------------------------ -->
-    <!-- ------------------- Séparateur ----------------------- -->
+  
+    <!-- Séparateur -->
 
       <section class="section-top">
         <div class="separator">
           <span>TOP 3 RATED GAMES</span>
         </div>
       </section>
-
-    <!-- ------------------------------------------------------ -->   
-    <!-- ------------- Top 3 des meilleurs notes -------------- -->
+   
+ <!-- Top 3 des meilleurs notes -->
 
     <section class="section-top">
       <div class="container-card ">
@@ -75,15 +71,13 @@
       </div>
     </section>
 
-    <!-- ------------------------------------------------------ -->
-    <!-- ------------------- Séparateur ----------------------- -->
+    <!-- Séparateur -->
     
     <div class="separator">
       <span>LATEST REVIEW</span>
     </div>
 
-    <!-- ------------------------------------------------------ -->
-    <!-- ------------------- Séparateur ----------------------- -->
+    <!-- Séparateur -->
 
     <section class="review-section">
       <div class="review-container ">
@@ -96,7 +90,7 @@
                           <div class="bouton-review">
                               <a href="{{ path('detail_jeu', { id: comment.game.idGameApi }) }}">Read more</a>
                           </div>
-                          <p>De <a href="#">{{ comment.user.username }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
+                            <p>De <a href="{{ path('lienProfile', { username: comment.user.username }) }}">{{ comment.user.username }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
                       </div>
                   </div>
               </div>
@@ -109,20 +103,18 @@
     </section>
     
 
-    <!-- ------------------------------------------------------ -->
-    <!-- ------------------- Séparateur ----------------------- -->
+    <!-- Séparateur -->
     
     <div class="separator">
       <span>CONCTACT US</span>
     </div>
 
-    <!-- ------------------------------------------------------ -->
-    <!-- --------------------- contact ------------------------ -->
+    <!-- contact -->
     
     <section class="contact-section">
       <div class="contact-container border-[3px] border-[#ECC33E] ">
       
-          <form action="{{ path('contact') }}">
+          <form action="{{ path('contact') }}" method="post">
               {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
               <div class="form-group">
                   {{ form_row(contactForm.email,  {'attr': {'class': 'form-input', 'placeholder': 'Your email'}}) }}
