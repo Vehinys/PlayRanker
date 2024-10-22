@@ -24,20 +24,20 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('pseudo', TextType::class, [
-                'label' => 'Pseudo',
+            ->add('username', TextType::class, [
+                'label' => 'username',
                 'attr'  => [
-                    'placeholder' => 'Pseudo',
+                    'placeholder' => 'username',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un pseudo.',
+                        'message' => 'Veuillez entrer un username.',
                     ]),
                     new Length([
                         'min' => 2,
                         'max' => 100,
-                        'minMessage' => 'Le pseudo doit contenir au moins {{ limit }} lettres.',
-                        'maxMessage' => 'Le pseudo ne peut pas dépasser {{ limit }} lettres.',
+                        'minMessage' => 'Le username doit contenir au moins {{ limit }} lettres.',
+                        'maxMessage' => 'Le username ne peut pas dépasser {{ limit }} lettres.',
                     ]),
                 ],
             ])

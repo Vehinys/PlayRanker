@@ -5,6 +5,14 @@
 {% block body %}
 <div class="min-h-screen flex items-center justify-center bg-[#97b4e0]">
     <div class="bg-[#09172b] p-8 rounded-lg shadow-lg w-full max-w-md">
+        <form action="{{path {{'app_discord_connect'}}}}" method="post" class="bg-[#ECC33E] p-6 rounded shadow-md w-full max-w-sm mb-6">
+            <h2 class="text-2xl font-bold mb-4 text-center">Connect with Discord</h2>
+            <input type="hidden" name="token" value="{{ csrf_token('discord-auth') }}">
+            <button class="w-full bg-[#09172b] text-[#ebf1ff] py-2 rounded hover:bg-[#5865f2] transition duration-300">
+                Login
+            </button>
+        </form>
+
         <form method="post" class="space-y-6">
             {% if error and error.messageKey == 'Invalid credentials.' %}
             <div class="text-red-500 font-bold text-center mb-4">

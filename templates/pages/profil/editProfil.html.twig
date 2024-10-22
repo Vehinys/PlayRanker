@@ -34,7 +34,7 @@
                         {% if user.avatar %}
 
                             {# Affichage de l'avatar de l'utilisateur #}
-                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.pseudo }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.username }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% else %}
 
                             {# Affichage de l'avatar par défaut si l'utilisateur n'en a pas #}
@@ -63,14 +63,14 @@
                             {{ form_widget(form.email, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
 
-                        {# Champ Pseudo #}
+                        {# Champ username #}
                         <div class="mb-4">
                         
-                            {# Étiquette Pseudo #}
-                            {{ form_label(form.pseudo, 'Pseudo :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {# Étiquette username #}
+                            {{ form_label(form.username, 'username :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
                             
-                            {# Widget d'entrée Pseudo #}
-                            {{ form_widget(form.pseudo, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
+                            {# Widget d'entrée username #}
+                            {{ form_widget(form.username, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
                         </div>
 
                         {# Champ Avatar #}

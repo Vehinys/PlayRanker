@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `type_games_list` (
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pseudo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `roles` json NOT NULL,
@@ -432,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.user : ~6 rows (environ)
-INSERT INTO `user` (`id`, `email`, `pseudo`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`) VALUES
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`) VALUES
 	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]', 'Véhiny\'s', 'Véhiny\'s', 'https://www.youtube.com/@albertlecomte3332', 'https://www.twitch.tv/skyyart'),
 	(18, 'emaildelete-66ff9db5e22fc@example.com', 'UserDelete', '$2y$13$OjWFEw7jxaW1wi416tk.guyz3Lou5pF3BL9l5SvZxIysQKFubFcl6', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL),
 	(19, 'Goeffroy@gmail.com', 'Goeffroy', '$2y$13$7dTtdlFKA3xht39had8ug.q1f6m1ulJnTtoFOp.VgqtYQb/TjdnKa', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),

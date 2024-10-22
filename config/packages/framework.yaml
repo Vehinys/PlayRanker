@@ -21,6 +21,8 @@ framework:
         scoped_clients:
             apiHttpClient:
                 base_uri: https://api.rawg.io/
+            discord.api.client:
+                base_uri: https://discord.com
 
 when@test:
     framework:

@@ -34,7 +34,7 @@
                         <div class="bg-[#0C1D36] border border-[#ECC33E] rounded-lg p-6 transition duration-300 hover:shadow-xl">
                         <p class="text-[#ebf1ff] text-lg mb-4">{{ post.content }}</p>
                         <div class="flex items-center justify-between">
-                            <p class="text-sm text-[#ebf1ff]">By {{ post.user.pseudo }} - {{ post.createdAt | date('d/m/Y H:i') }}</p>
+                            <p class="text-sm text-[#ebf1ff]">By {{ post.user.username }} - {{ post.createdAt | date('d/m/Y H:i') }}</p>
                             
                             {% if app.user and (app.user.id == post.user.id or is_granted('ROLE_ADMIN')) %}
                             <div class="flex space-x-2">

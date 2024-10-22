@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Service\DiscordApiService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,5 +47,35 @@ class SecurityController extends AbstractController
     {
         // Cette méthode peut rester vide
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    public function __construct(
+
+        private readonly DiscordApiService $discordApiService,
+    ) {
+
+        
+    }
+
+
+    #[Route('/discord/connect', name: 'app_discord_connect')]
+    public function connect(
+
+        Request $request
+
+    ): Response {
+
+        $token = $request->request->get('token' );
+
+        if ($this ->isCsrfTokenValid('discord-auth', $token )) {
+        $request->getSession()->set( 'discord-auth', true );
+        $scope = ['identify', 'email'];
+
+        return $this->redirect($this->discordApiService->getAuthorizationUrl($scope));
+
+        }
+
+    return $this->redirectToRoute('login');
+
     }
 }

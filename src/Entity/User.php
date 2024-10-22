@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'Un compte est déjà associé à cette information.')]
-#[UniqueEntity(fields: ['pseudo'], message: 'Un compte est déjà associé à cette information.')]
+#[UniqueEntity(fields: ['username'], message: 'Un compte est déjà associé à cette information.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     // ** Propriétés de l'entité User **
@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null; // Adresse e-mail de l'utilisateur
 
     #[ORM\Column(length: 100)]
-    private ?string $pseudo = null; // Pseudo de l'utilisateur
+    private ?string $username = null; // username de l'utilisateur
 
     #[ORM\Column]
     private ?string $password = null; // Mot de passe de l'utilisateur
@@ -123,9 +123,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password; // Retourne le mot de passe de l'utilisateur
     }
 
-    public function getPseudo(): ?string
+    public function getUsername(): ?string
     {
-        return $this->pseudo; // Retourne le pseudo de l'utilisateur
+        return $this->username; // Retourne le username de l'utilisateur
     }
 
     public function getAvatar(): ?string
@@ -169,9 +169,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function setPseudo(string $pseudo): static
+    public function setUsername(string $username): static
     {
-        $this->pseudo = $pseudo; // Définit le pseudo de l'utilisateur
+        $this->username = $username; // Définit le username de l'utilisateur
         return $this;
     }
 
@@ -196,7 +196,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     ): void {
         // Remplace les données personnelles par des valeurs anonymisées
         $this->email = 'emaildelete-' . uniqid() . '@example.com'; // E-mail anonyme
-        $this->pseudo = 'UserDelete'; // Pseudo anonyme
+        $this->username = 'UserDelete'; // username anonyme
         $this->avatar = null; // Supprime l'avatar
         $this->password = $passwordHasher->hashPassword($this, 'PasswordDelete'); // Hachage du nouveau mot de passe
         $this->roles = ['ROLE_USERDELETE']; // Restaure le rôle par défaut

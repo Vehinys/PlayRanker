@@ -12,8 +12,6 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     App\HttpClient\ApiHttpClient:
-        autowire: true
-        autoconfigure: true
         public: true
 
     # makes classes in src/ available to be used as services
@@ -24,6 +22,11 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Service\DiscordApiService:
+        arguments:
+            $clientId: '%env(DISCORD_CLIENT_ID)%'
+            $redirectUri: '%env(DISCORD_REDIRECT_URI)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

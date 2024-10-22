@@ -96,7 +96,7 @@
                           <div class="bouton-review">
                               <a href="{{ path('detail_jeu', { id: comment.game.idGameApi }) }}">Read more</a>
                           </div>
-                          <p>De <a href="#">{{ comment.user.pseudo }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
+                          <p>De <a href="#">{{ comment.user.username }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
                       </div>
                   </div>
               </div>

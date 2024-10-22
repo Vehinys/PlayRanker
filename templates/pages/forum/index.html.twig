@@ -45,7 +45,7 @@
                                 {% set firstPost = topic.posts|first %}
                                     <p class="text-[#ebf1ff] font-semibold mb-4">{{ firstPost.content|slice(0, 150) }}...</p>
                                         <div class="flex justify-between items-center">
-                                            <p class="text-sm text-[#ebf1ff]">{{ firstPost.user.pseudo }} - {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>
+                                            <p class="text-sm text-[#ebf1ff]">{{ firstPost.user.username }} - {{ firstPost.createdAt | date('d/m/Y H:i') }}</p>
                                             <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#ECC33E] text-[#09172b] py-2 px-4 rounded hover:bg-[#ebf1ff] transition duration-300">View Post</a>
                                         </div>
                                 {% else %}

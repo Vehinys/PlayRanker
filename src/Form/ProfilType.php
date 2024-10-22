@@ -26,11 +26,11 @@ class ProfilType extends AbstractType
             ],
         ])
 
-        ->add('pseudo', TextType::class, [
-            'label' => 'Pseudo',
-            'attr' => ['placeholder' => 'Enter your new pseudo'],
+        ->add('username', TextType::class, [
+            'label' => 'username',
+            'attr' => ['placeholder' => 'Enter your new username'],
             'constraints' => [
-                new NotBlank(['message' => 'Please enter a pseudo.']),
+                new NotBlank(['message' => 'Please enter a username.']),
                 new Length(['min' => 2, 'max' => 100]),
             ],
         ])
