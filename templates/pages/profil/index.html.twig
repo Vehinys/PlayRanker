@@ -51,7 +51,7 @@
                             {% if user.id == currentUser.id %}
                                 <span class="text-[18px]">{{ user.email }}</span>  
                             {% else %}
-                                <span class="text-[18px]">Caché</span>
+                                
                             {% endif %}
                         </p>
 
@@ -87,6 +87,8 @@
                         {# Conteneur pour les boutons d'édition et de suppression #}
                         <div class="flex mt-6 space-x-4">  
 
+                        {% if app.user and (app.user.id == user.id or is_granted('ROLE_ADMIN')) %}
+
                             <!-- Lien pour éditer le profil -->
                             {# Bouton pour éditer le profil #}
                             <a href="{{ path('edit_profil', { pseudo: user.pseudo }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
@@ -100,6 +102,7 @@
                                     <i class='fas fa-trash-can'></i>  
                                 </button>
                             </form>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
