@@ -87,42 +87,42 @@
 // ----------------------------------------- SLIDE REVIEW ----------------------------------------- //  
 // ------------------------------------------------------------------------------------------------ //
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const reviewContainer = document.querySelector('.review-container');
-    //     const reviews = document.querySelectorAll('.review-content');
-    //     const nextButton = document.querySelector('.suivant');
-    //     const prevButton = document.querySelector('.precedent');
-    //     let currentIndex = 0;
-    //     const totalReviews = reviews.length;
+    document.addEventListener('DOMContentLoaded', () => {
+        const reviewContainer = document.querySelector('.review-container');
+        const reviews = document.querySelectorAll('.review-content');
+        const nextButton = document.querySelector('.suivant');
+        const prevButton = document.querySelector('.precedent');
+        let currentIndex = 0;
+        const totalReviews = reviews.length;
 
 
 
             
-    //     function updateSlide() {
-    //         const offset = -currentIndex * (100 / totalReviews);
-    //         reviewContainer.style.transform = `translateX(${offset}%)`;
-    //     }
+        function updateSlide() {
+            const offset = -currentIndex * (100 / totalReviews);
+            reviewContainer.style.transform = `translateX(${offset}%)`;
+        }
 
 
-    //     if (nextButton) {
-    //         nextButton.addEventListener('click', () => {
-    //             currentIndex = (currentIndex + 1) % totalReviews;
-    //             updateSlide();
-    //         });
-    //     }
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalReviews;
+                updateSlide();
+            });
+        }
 
-    //     if (prevButton) {
-    //         prevButton.addEventListener('click', () => {
-    //             currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
-    //             updateSlide();
-    //         });
-    //     }
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
+                updateSlide();
+            });
+        }
 
-    //     if (reviewContainer) {
-    //         // Initialisation
-    //         updateSlide();
-    //     }
-    // });
+        if (reviewContainer) {
+            // Initialisation
+            updateSlide();
+        }
+    });
 
 
 // ------------------------------------------------------------------------------------------------ //

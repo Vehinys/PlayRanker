@@ -31,7 +31,7 @@
 
     <!-- Cherchez-les -->
 
-    <section class="rate-section">
+    <section class="rate-section flex flex-col">
       <h2> Discover your favorite games,
         <div class="word-animation">
           <span class='red'> Unlimited, </span>
@@ -40,9 +40,10 @@
           <span class='red'> Unlimited </span>    
         </div>
       </h2>
+
     </section>
 
-  
+  <div class="bg-white py-10">
     <!-- Séparateur -->
 
       <section class="section-top">
@@ -71,6 +72,47 @@
       </div>
     </section>
 
+    </div>
+
+  <section class="py-10">
+      <div class="separator">
+          <span>UPCOMING 2025 GAMES</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8 max-w-7xl mx-auto">
+          <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+              <img src="https://cdn1.epicgames.com/spt-assets/ca9ef1bcf2f54043baac351366aec677/black-myth-wukong-jjjfw.png" alt="Black Myth: Wukong" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="p-4">
+                      <h3 class="text-white text-xl font-bold">Black Myth: Wukong</h3>
+                      <p class="text-gray-200">Release: August 20, 2025</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+              <img src="https://www.starwars-universe.com/images/fans/fanarts/27714/affiche_kotor.jpg" alt="Star Wars: Knights of the Old Republic Remake" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="p-4">
+                      <h3 class="text-white text-xl font-bold">Star Wars: KOTOR Remake</h3>
+                      <p class="text-gray-200">Expected: 2025</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+              <img src="https://store-images.s-microsoft.com/image/apps.29572.14301289549560004.21a931ed-1596-4a2b-8642-73be42254d40.7beda2e8-b7df-4758-8e87-9052559824a2" alt="Senua's Saga: Hellblade II" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="p-4">
+                      <h3 class="text-white text-xl font-bold">Senua's Saga: Hellblade II</h3>
+                      <p class="text-gray-200">Expected: 2025</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class=" bg-white py-10">
     <!-- Séparateur -->
     
     <div class="separator">
@@ -79,7 +121,7 @@
 
     <!-- Séparateur -->
 
-    <section class="review-section">
+    <div class="review-section ">
       <div class="review-container ">
           {% for comment in comments %}
               <div class="review-content border-[3px] border-[#ECC33E]">
@@ -100,25 +142,29 @@
       </div>
       <button class="precedent">←</button>
       <button class="suivant">→</button>
-    </section>
-
-    <!-- Séparateur -->
-    
-    <div class="separator">
-      <span>DISCORD COMMUNITY</span>
     </div>
+  </section>
 
-    <!-- Discord -->
+  <div class="py-10">
+      <!-- Séparateur -->
+      
+      <div class="separator">
+        <span>DISCORD COMMUNITY</span>
+      </div>
 
-    <iframe src="https://discord.com/widget?id=936784350660419675&theme=dark"
-        style="display: block; margin: 100px auto; width: 60%;"
-        height="500"
-        allowtransparency="true"
-        frameborder="0"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-    </iframe>
-    
+      <!-- Discord -->
 
+      <iframe src="https://discord.com/widget?id=936784350660419675&theme=dark"
+          style="display: block; margin: 150px auto; width: 60%;"
+          height="500"
+          allowtransparency="true"
+          frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+      
+  </div>
+
+  <section class=" bg-white py-10">
     <!-- Séparateur -->
     
     <div class="separator">
@@ -127,7 +173,8 @@
 
     <!-- contact -->
     
-    <section class="contact-section">
+    <div class="contact-section">
+
       <div class="contact-container border-[3px] border-[#ECC33E] ">
       
           <form action="{{ path('contact') }}" method="post">
@@ -147,8 +194,38 @@
   
               {{ form_end(contactForm) }}
           </form>
-      </div>
+    </div>
 
+  </section>
+
+  <section>
+    <div class="container_logos">
+        <div class="logos">
+            <span class="text">
+                <img class='img-logo' src="https://static.wixstatic.com/media/a3b24b_0a6f7e71a4ce4ce69c50e06d56ef3765~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_d566a396652348b99d02cf2eabfb2a81~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_c58073dfc3e34b338ab8e0fc0ac33ca1~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_d5dbb74529ea48b39c18d514d7d235ce~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_c6e535011c5146179d28d66b560dd1d9~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_4a0b4ebfe3f1420392ba042db325670f~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_10416e506e9845c495f9173396680b13~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_847a3e3f90ce4420a1ed5f59ef2a7c7d~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_1c73ce6a1784425cbf3e28627fc10b25~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_3979b21f636543b1ba018ec468368904~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_20aac76d1b574533b225a8b323aa8286~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_0d00e00e54a043e48d78d02bf7955344~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_2adb8b55789146afa932d5eb4d54f5d0~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_3eb7d3ed62ca4deb9d10655047f6485c~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_5f889d54056c44aaae44a80c9eb70e9b~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_7f4e4c041cab457dad074be59b260fc2~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_27359d6e606442718f034db8fb53d7cb~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_9f3908615eb6449585e2507df629b8ea~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_d2eda575fad04756b6a433420216f0f7~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_ae911dc40381414c989a9e7e3328bd5d~mv2.png" />
+                <img class='img-logo'  src="https://static.wixstatic.com/media/a3b24b_23eaadb96c8941218de1eb823459dc28~mv2.png" />
+            </span>
+        </div>
+    </div>
   </section>
 
 </main
