@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const accessToken = urlSearchParams.get('access_token');
 
     if (accessToken) {
-        // Utilisez des guillemets inversés pour l'interpolation de chaîne
-        window.location.href = `/discord/check?access_token=${accessToken}`;
+        window.location.href = '/discord/check?access_token=${accessToken}';
     }
+
+    // window.location.href = '/';
 });

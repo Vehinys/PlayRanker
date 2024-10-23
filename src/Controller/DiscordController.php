@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Security\DiscordAuthenticator;
 use App\Service\DiscordApiService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,14 @@ class DiscordController extends AbstractController
         private readonly DiscordApiService $discordApiService
     ) {
 
+    }
+
+    #[Route('/discord/auth', name: 'app_discord_auth')]
+    public function auth(
+
+    ): Response {
+
+        return $this->redirectToRoute("home");
     }
     
     // ---------------------------------------------------------- //
@@ -44,7 +53,7 @@ class DiscordController extends AbstractController
 
         if ($this->isCsrfTokenValid('discord-auth', $token)) {
 
-            $request->getSession()->set('discord-auth', true);
+            $request->getSession()->set(DiscordAuthenticator::DISCORD_AUTH_KEY, true);
             $scope = ['identify', 'email'];
 
             return $this->redirect($this->discordApiService->getAuthorizationUrl($scope));
@@ -54,15 +63,6 @@ class DiscordController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error
         ]);
-    }
-
-
-    #[Route('/discord/auth', name: 'app_discord_check')]
-    public function auth(
-
-    ): Response {
-
-        return $this->render('/pages/security/auth.html.twig');
     }
 
 

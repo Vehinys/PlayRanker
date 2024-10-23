@@ -45,6 +45,7 @@
         "symfony/ux-turbo": "^2.19",
         "symfony/validator": "6.4.*",
         "symfony/web-link": "6.4.*",
+        "symfony/webpack-encore-bundle": "^2.2",
         "symfony/yaml": "6.4.*",
         "symfonycasts/reset-password-bundle": "^1.22",
         "symfonycasts/tailwind-bundle": "^0.6.0",

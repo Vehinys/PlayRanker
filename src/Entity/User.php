@@ -117,7 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return (string) $this->email; // Retourne l'identifiant de l'utilisateur pour l'authentification
+        return $this->email . ' (' . $this->username . ')'; // Combine l'email et le nom d'utilisateur dans une chaîne
     }
 
     public function getRoles(): array
