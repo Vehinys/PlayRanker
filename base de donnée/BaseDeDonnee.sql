@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   CONSTRAINT `FK_5A8A6C8DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table playranker.post : ~32 rows (environ)
+-- Listage des données de la table playranker.post : ~31 rows (environ)
 INSERT INTO `post` (`id`, `topic_id`, `user_id`, `content`, `created_at`) VALUES
 	(103, 76, 15, 'What are your favorite mobile games this year? I’m really enjoying Marvel Snap for its fast strategy and Honkai: Star Rail for its immersive world. What are you playing these days?ouez à quoi en ce moment ?', '2024-10-08 07:10:47'),
 	(104, 77, 15, 'The latest Clash Royale update changed a lot of deck dynamics. Do you have any tips on new strategies to adopt?', '2024-10-08 07:11:08'),
@@ -419,27 +419,29 @@ CREATE TABLE IF NOT EXISTS `type_games_list` (
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `roles` json NOT NULL,
   `gamer_tag_playstation` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gamer_tag_xbox` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `youtube` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `twitch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discord_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `access_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table playranker.user : ~6 rows (environ)
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`) VALUES
-	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]', 'Véhiny\'s', 'Véhiny\'s', 'https://www.youtube.com/@albertlecomte3332', 'https://www.twitch.tv/skyyart'),
-	(18, 'emaildelete-66ff9db5e22fc@example.com', 'UserDelete', '$2y$13$OjWFEw7jxaW1wi416tk.guyz3Lou5pF3BL9l5SvZxIysQKFubFcl6', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL),
-	(19, 'Goeffroy@gmail.com', 'Goeffroy', '$2y$13$7dTtdlFKA3xht39had8ug.q1f6m1ulJnTtoFOp.VgqtYQb/TjdnKa', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),
-	(20, 'pauline@gmail.com', 'Pauline', '$2y$13$N.lo.DrqDMNPAHxlsGGWDudW8iFpAEiMIrItV38zihYTlD2a1.cT6', NULL, '["ROLE_ADMIN"]', NULL, NULL, NULL, NULL),
-	(21, 'kenza@gmail.com', 'Kenza', '$2y$13$FL8y3A4paQzjPlJ5D.8w8.iOQkoA3XEu/BzjhO5zb69AyRioBp4HS', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL),
-	(22, 'emaildelete-6704decc42c05@example.com', 'UserDelete', '$2y$13$oOonQA2cVrHEJlS46PbYL.XdKJnKwabl6jQ1ZXV8RgQAAS6EGqL9K', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL),
-	(23, 'test3@test.com', 'test3', '$2y$13$.rQ0LO245ILAwwWfvo9QEO6waLUJr9TnMyRpE0dZmxlGhDr9g2w6K', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `avatar`, `roles`, `gamer_tag_playstation`, `gamer_tag_xbox`, `youtube`, `twitch`, `discord_id`, `access_token`) VALUES
+	(15, 'albert.lecomte1989@gmail.com', 'Véhiny\'s', '$2y$13$2jYZvx7tWxx2M9QAry8raO.2XFI9b59zSU0uRxz55EYaWBbTngWRy', 'https://i0.wp.com/keulmadang.com/wp-content/uploads/2021/05/thumb-1920-1054068.png?fit=1920%2C1080&ssl=1', '["ROLE_ADMIN"]', 'Véhiny\'s', 'Véhiny\'s', 'https://www.youtube.com/@albertlecomte3332', 'https://www.twitch.tv/skyyart', NULL, NULL),
+	(18, 'emaildelete-66ff9db5e22fc@example.com', 'UserDelete', '$2y$13$OjWFEw7jxaW1wi416tk.guyz3Lou5pF3BL9l5SvZxIysQKFubFcl6', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL, NULL, NULL),
+	(19, 'Goeffroy@gmail.com', 'Goeffroy', '$2y$13$7dTtdlFKA3xht39had8ug.q1f6m1ulJnTtoFOp.VgqtYQb/TjdnKa', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL, NULL, NULL),
+	(20, 'pauline@gmail.com', 'Pauline', '$2y$13$N.lo.DrqDMNPAHxlsGGWDudW8iFpAEiMIrItV38zihYTlD2a1.cT6', NULL, '["ROLE_ADMIN"]', NULL, NULL, NULL, NULL, NULL, NULL),
+	(21, 'kenza@gmail.com', 'Kenza', '$2y$13$FL8y3A4paQzjPlJ5D.8w8.iOQkoA3XEu/BzjhO5zb69AyRioBp4HS', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL, NULL, NULL),
+	(22, 'emaildelete-6704decc42c05@example.com', 'UserDelete', '$2y$13$oOonQA2cVrHEJlS46PbYL.XdKJnKwabl6jQ1ZXV8RgQAAS6EGqL9K', NULL, '["ROLE_USERDELETE"]', NULL, NULL, NULL, NULL, NULL, NULL),
+	(23, 'test3@test.com', 'test3', '$2y$13$.rQ0LO245ILAwwWfvo9QEO6waLUJr9TnMyRpE0dZmxlGhDr9g2w6K', NULL, '["ROLE_USER"]', NULL, NULL, NULL, NULL, NULL, NULL);
 
 
 -- Listage de la structure de la base pour playranker_test
