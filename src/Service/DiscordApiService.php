@@ -2,16 +2,18 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\QueryParameterValueResolver;
+use App\Model\DiscordUser;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 
 class DiscordApiService
 {
 
     const AUTHORIZATION_URI = 'https://discord.com/api/oauth2/authorize';
+    const USERS_ME_ENDPOINT = '/api/users/@me';
 
-    const USER_ME_ENDPOINT = '/api/users/@me';
 
     public function __construct(
 
@@ -27,13 +29,27 @@ class DiscordApiService
     public function getAuthorizationUrl(array $scope): string
     {
         $queryParameters = http_build_query([
-            'client_id' => $this->clientId,
-            'redirect_uri' => $this->redirectUri,
+            'client_id'     => $this->clientId,
+            'redirect_uri'  => $this->redirectUri,
             'response_type' => 'token',
-            'scope' => implode(' ', $scope),
-            'prompt' => 'none',
+            'scope'         => implode(' ', $scope),
+            'prompt'        => 'none',
         ]);
 
         return self::AUTHORIZATION_URI . '?' . $queryParameters;
+    }
+
+    public function fetchUser(
+        
+        string $accessToken
+        
+    ) : DiscordUser {
+        $response = $this->discordApiClient->request(Request::METHOD_GET, self::USERS_ME_ENDPOINT, [
+            'auth_bearer' => $accessToken
+        ]);
+
+        $data = $response->getContent();
+
+        return $this->serializer->deserialize($data, DiscordUser::class, 'json');
     }
 }
