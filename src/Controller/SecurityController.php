@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -75,7 +76,26 @@ class SecurityController extends AbstractController
 
         }
 
-    return $this->redirectToRoute('login');
+        return $this->redirectToRoute('login');
 
     }
+
+    #[Route('/discord/check', name: 'app_discord_check')]
+    public function check(
+
+    Request $request
+
+    ): Response {
+
+        $accessToken = $request->get('access_token');
+
+        if (!$accessToken) {
+            return $this->render('/pages/security/check.html.twig');
+            }
+
+        }
+
+    }
+
+
 }

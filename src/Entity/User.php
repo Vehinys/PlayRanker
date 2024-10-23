@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null; // Mot de passe de l'utilisateur
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $avatar = null; // Mot de passe de l'utilisateur
     
     #[ORM\Column(type: 'json')]
@@ -53,6 +53,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $twitch = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $discordId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $accessToken = null;
+
 
     /**
      * @var Collection<int, Post>
@@ -386,6 +393,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->twitch = $twitch;
     
+        return $this;
+    }
+
+    public function getDiscordId(): ?string
+    {
+        return $this->discordId;
+    }
+
+    public function setDiscordId(string $discordId): static
+    {
+        $this->discordId = $discordId;
+
+        return $this;
+    }
+
+    public function getAccessToken(): ?string
+    {
+        return $this->accessToken;
+    }
+
+    public function setAccessToken(?string $accessToken): static
+    {
+        $this->accessToken = $accessToken;
+
         return $this;
     }
 
