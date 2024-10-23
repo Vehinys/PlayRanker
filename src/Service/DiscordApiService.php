@@ -26,7 +26,7 @@ class DiscordApiService
         return self::AUTHORIZATION_BASE_URI . "?" . http_build_query([
                 'client_id' => $this->clientId,
                 'redirect_uri' => $this->redirectUri,
-                'response_type' => 'token',
+                'response_type' => 'code',
                 'scope' => implode(' ', $scope),
             ]);
     }

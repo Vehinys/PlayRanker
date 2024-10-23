@@ -16,15 +16,20 @@
         const resultsDiv = document.getElementById('results'); // Récupère la div pour les résultats
 
         // Ajoute un écouteur d'événement pour le clic sur le bouton de recherche
+        if (searchButton) {
         searchButton.addEventListener('click', performSearch);
+        }
 
         // Ajoute un écouteur d'événement pour la touche "Enter" dans l'input de recherche
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    });
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+                
+            })
+        }}
+    );
 
 // ------------------------------------------------------------------------------------------------ //
 // --------------------------------------- DROPDOWNS GAMES ---------------------------------------- //    
@@ -82,32 +87,42 @@
 // ----------------------------------------- SLIDE REVIEW ----------------------------------------- //  
 // ------------------------------------------------------------------------------------------------ //
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const reviewContainer = document.querySelector('.review-container');
-        const reviews = document.querySelectorAll('.review-content');
-        const nextButton = document.querySelector('.suivant');
-        const prevButton = document.querySelector('.precedent');
-        let currentIndex = 0;
-        const totalReviews = reviews.length;
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const reviewContainer = document.querySelector('.review-container');
+    //     const reviews = document.querySelectorAll('.review-content');
+    //     const nextButton = document.querySelector('.suivant');
+    //     const prevButton = document.querySelector('.precedent');
+    //     let currentIndex = 0;
+    //     const totalReviews = reviews.length;
 
-        function updateSlide() {
-            const offset = -currentIndex * (100 / totalReviews);
-            reviewContainer.style.transform = `translateX(${offset}%)`;
-        }
 
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalReviews;
-            updateSlide();
-        });
 
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
-            updateSlide();
-        });
+            
+    //     function updateSlide() {
+    //         const offset = -currentIndex * (100 / totalReviews);
+    //         reviewContainer.style.transform = `translateX(${offset}%)`;
+    //     }
 
-        // Initialisation
-        updateSlide();
-    });
+
+    //     if (nextButton) {
+    //         nextButton.addEventListener('click', () => {
+    //             currentIndex = (currentIndex + 1) % totalReviews;
+    //             updateSlide();
+    //         });
+    //     }
+
+    //     if (prevButton) {
+    //         prevButton.addEventListener('click', () => {
+    //             currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
+    //             updateSlide();
+    //         });
+    //     }
+
+    //     if (reviewContainer) {
+    //         // Initialisation
+    //         updateSlide();
+    //     }
+    // });
 
 
 // ------------------------------------------------------------------------------------------------ //
@@ -137,13 +152,15 @@
             const dropdownButton = document.getElementById(dropdown.buttonId);
             const dropdownMenu = document.getElementById(dropdown.menuId);
 
-            // Clic sur le bouton pour basculer le menu et fermer les autres
-            dropdownButton.addEventListener("click", function(event) {
-                // Empêche le clic de se propager à l'écouteur de clic global
-                event.stopPropagation();
-                closeAllDropdowns(dropdownMenu);
-                dropdownMenu.classList.toggle("hidden");
-            });
+            if (dropdownButton && dropdownMenu) {
+                dropdownButton.addEventListener("click", function(event) {
+                    // Empêche le clic de se propager à l'écouteur de clic global
+                    event.stopPropagation();
+                    closeAllDropdowns(dropdownMenu);
+                    dropdownMenu.classList.toggle("hidden");
+                });
+            }
+
         });
 
         // Un seul événement pour fermer tous les dropdowns en cas de clic à l'extérieur
@@ -184,5 +201,4 @@
             });
         }
     });
-
 

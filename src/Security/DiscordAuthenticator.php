@@ -26,10 +26,14 @@ class DiscordAuthenticator extends AbstractAuthenticator
     {
     }
 
+
+    
     public function supports(Request $request): ?bool
     {
         return $request->attributes->get('_route') === 'oauth_discord_auth' && $this->isValidRequest($request);
     }
+
+
 
     public function authenticate(Request $request): Passport
     {
@@ -58,10 +62,14 @@ class DiscordAuthenticator extends AbstractAuthenticator
         return new SelfValidatingPassport($userBadge);
     }
 
+
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         return null;
     }
+
+
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
