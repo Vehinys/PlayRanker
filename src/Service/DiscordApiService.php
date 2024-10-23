@@ -18,6 +18,7 @@ class DiscordApiService
         private readonly SerializerInterface $serializer,
         private readonly string $clientId,
         private readonly string $redirectUri,
+        private readonly string $clientSecret,
     ) {
     }
 

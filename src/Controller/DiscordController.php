@@ -16,6 +16,7 @@ class DiscordController extends AbstractController
 {
     public function __construct(
         private readonly DiscordApiService $discordApiService
+        
     )
     {
     }
