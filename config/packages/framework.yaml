@@ -22,7 +22,7 @@ framework:
             apiHttpClient:
                 base_uri: https://api.rawg.io/
             discord.api.client:
-                base_uri: https://discord.com
+                base_uri: https://discord.com/
 
 when@test:
     framework:

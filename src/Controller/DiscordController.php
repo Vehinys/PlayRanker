@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Security\DiscordAuthenticator;
 use App\Service\DiscordApiService;
+use App\Security\DiscordAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -86,10 +86,11 @@ class DiscordController extends AbstractController
         if (!$accessToken) {
             return $this->render('/pages/security/check.html.twig');
         }
+
+        $discordUser = $this->discordApiService->fetchUser($accessToken);
         
         $user = $userRepo->findOneBy(['discordId'=> $discordUser->id]);
 
-        $discordUser = $this->discordApiService->fetchUser($accessToken);
 
 
         if ($user) {

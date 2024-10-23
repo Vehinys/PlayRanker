@@ -19,7 +19,7 @@ class CrudCommentController extends AbstractController
     #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         
-        int $id, // ID provenant de l'API RAWG
+        int $id,
         Request $request,
         EntityManagerInterface $entityManager,
         ApiHttpClient $apiHttpClient,
@@ -92,60 +92,64 @@ class CrudCommentController extends AbstractController
 
     #[Route('/{id}/edit', name: 'comment_edit', methods: ['GET', 'POST'])]
     public function edit(
-
         int $id,
         Request $request, 
         CommentRepository $commentRepository,
-        Comment $comment, 
         EntityManagerInterface $entityManager
-        
     ): Response {
-
+        // Récupération du commentaire par son ID
         $comment = $commentRepository->find($id);
     
+        // Vérification si le commentaire existe
         if (!$comment) {
             throw $this->createNotFoundException('Comment not found');
         }
-
+    
+        // Création et traitement du formulaire
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
             return $this->redirectToRoute('detail_jeu', [
                 'id' => $comment->getGame()->getIdGameApi()
             ]);
         }
-
+    
         return $this->render('pages/jeux/crudComment/editComment.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
         ]);
     }
+    
 
     // ----------------------------------------------------------------------------------- //
 
-    #[Route('/{id}', name: 'comment_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'comment_delete', methods: ['POST'])]
     public function delete(
-    
         int $id,
         Request $request, 
-        Comment $comment, 
         CommentRepository $commentRepository,
         EntityManagerInterface $entityManager
-    
     ): Response {
-
+        // Récupération du commentaire par son ID
         $comment = $commentRepository->find($id);
-
+    
+        if (!$comment) {
+            throw $this->createNotFoundException('Comment not found');
+        }
+    
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
             $entityManager->remove($comment);
             $entityManager->flush();
-        
+            
             return $this->redirectToRoute('detail_jeu', [
                 'id' => $comment->getGame()->getIdGameApi()
             ]);
         }
+    
+        return $this->redirectToRoute('forum'); // Ou un autre traitement
     }
+    
+    
 }    
