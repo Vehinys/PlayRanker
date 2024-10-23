@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class DiscordApiService
 {
-    const AUTHORIZATION_URI = 'https://discord.com/api/oauth2/authorize';
+    const AUTHORIZATION_BASE_URI = 'https://discord.com/api/oauth2/authorize';
     const API_VERSION = '10';
     const USERS_ME_ENDPOINT = 'https://discord.com/api/v' . self::API_VERSION . '/users/@me';
 
@@ -23,15 +23,12 @@ class DiscordApiService
 
     public function getAuthorizationUrl(array $scope): string
     {
-        $queryParameters = http_build_query([
-            'client_id'     => $this->clientId,
-            'redirect_uri'  => $this->redirectUri,
-            'response_type' => 'token',
-            'scope'         => implode(' ', $scope),
-            'prompt'        => 'none',
-        ]);
-
-        return self::AUTHORIZATION_URI . '?' . $queryParameters;
+        return self::AUTHORIZATION_BASE_URI . "?" . http_build_query([
+                'client_id' => $this->clientId,
+                'redirect_uri' => $this->redirectUri,
+                'response_type' => 'token',
+                'scope' => implode(' ', $scope),
+            ]);
     }
 
     public function fetchUser(string $accessToken): DiscordUser
