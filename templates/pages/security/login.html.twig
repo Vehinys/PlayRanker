@@ -14,7 +14,7 @@
         
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             
-                <form action="{{ path('app_discord_connect') }}" method="post" class="bg-[#ECC33E] p-6 rounded shadow-md w-full max-w-sm mb-6">
+                <form action="{{ path('oauth_discord') }}" method="post" class="bg-[#ECC33E] p-6 rounded shadow-md w-full max-w-sm mb-6">
                     <h2 class="mb-4 text-2xl font-bold text-center">Connect with Discord</h2>
                     <input type="hidden" name="token" value="{{ csrf_token('discord-auth') }}">
                     <button class="w-full bg-[#09172b] text-[#ebf1ff] py-2 rounded hover:bg-[#5865f2] transition duration-300">

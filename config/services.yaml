@@ -27,6 +27,8 @@ services:
         arguments:
             $clientId: '%env(DISCORD_CLIENT_ID)%'
             $redirectUri: '%env(DISCORD_REDIRECT_URI)%'
+            $discordApiClient: '@http_client'
+            $serializer: '@serializer'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
