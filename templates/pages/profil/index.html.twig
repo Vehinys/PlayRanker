@@ -12,108 +12,88 @@
         
     <!-- Section Profil Utilisateur -->
     {# Section avec un fond sombre, des ombres et des bordures dorées #}
-    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
-
-        {# Conteneur flexible pour centrer le contenu #}
+    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-8 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
         <div class="flex flex-col items-center justify-center py-7 md:flex-row">  
-
             <!-- Profil Utilisateur -->
-            {# Divise l'espace en deux colonnes sur les écrans moyens et plus #}
             <div class="w-full md:w-1/2">  
-
-                {# Titre de la section #}
                 <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>  
-
-                {# Vérifie si l'utilisateur est défini #}
+    
                 {% if user %}  
+                    <div class="flex flex-col items-center gap-10 md:flex-row">  
+                        <img src="/uploads/avatars/{{ user.avatar }}" 
+                        alt="Profile Picture of {{ user.username }}" class="w-[20rem] h-[20rem] rounded border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">  
+                        
+                        <div class="text-white text-start">  
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">username : </span> 
+                                <span class="text-[18px]">{{ user.username }}</span>  
+                            </p>
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">Email : </span> 
+                                {% if user.id == currentUser.id %}
+                                    <span class="text-[18px]">{{ user.email }}</span>  
+                                {% else %}
+                                    <span class="text-[18px]"> ***@**.**</span>  
+                                {% endif %}
+                            </p>
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">Topics created : </span> 
+                                <span class="text-[18px]">{{ user.topics|length }}</span>  
+                            </p>
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Playstation : </span> 
+                                <span class="text-[18px]">{{ user.gamerTagPlaystation }}</span>  
+                            </p>
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Xbox : </span> 
+                                <span class="text-[18px]">{{ user.gamerTagXbox }}</span>  
+                            </p>
 
-                {# Conteneur flexible pour l'avatar et les informations utilisateur #}
-                <div class="flex flex-col items-center gap-10 md:flex-row">  
+                            <p class="mb-2">
+                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Twitch : </span> 
+                                <span class="text-[18px]">{{ user.Twitch }}</span>  
+                            </p>
 
-                    <!-- Affichage de l'avatar de l'utilisateur -->
-                    {# Image de l'avatar de l'utilisateur avec une bordure dorée #}
-                    <img src="{{ user.avatar ?? 'https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg' }}" 
-                    alt="Profile Picture of {{ user.username }}" class="w-[20rem] h-[20rem] rounded border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">  
-                    
-                    {# Conteneur pour les informations utilisateur #}
-                    <div class="text-white text-start">  
-                    
-                        <!-- Affichage des informations de l'utilisateur -->
-                        {# Affiche le username de l'utilisateur #}
-                        <p class="mb-2">
-                            <span class="text-[20px] text-[#ECC33E] font-bold">username : </span> 
-                            <span class="text-[18px]">{{ user.username }}</span>  
-                        </p>
+                            <p class="mb-2 ">
+                                <a href="{{ user.Youtube }}" target="_blank" class="text-[#ECC33E] font-bold text-[20px] hover:underline">YouTube Channel</a>  
+                            </p>
 
-                        {# Affiche l'email de l'utilisateur seulement si l'utilisateur connecté est le même #}
-                        <p class="mb-2">
-                            <span class="text-[20px] text-[#ECC33E] font-bold">Email : </span> 
-                            {% if user.id == currentUser.id %}
-                                <span class="text-[18px]">{{ user.email }}</span>  
-                            {% else %}
-                                <span class="text-[18px]"> ***@**.**</span>  
-                            {% endif %}
-                        </p>
-
-                        {# Affiche le nombre de sujets créés par l'utilisateur #}
-                        <p class="mb-2">
-                            <span class="text-[20px] text-[#ECC33E] font-bold">Topics created : </span> 
-                            <span class="text-[18px]">{{ user.topics|length }}</span>  
-                        </p>
-
-                        {# Affiche le gamertag Playstation de l'utilisateur #}
-                        <p class="mb-2">
-                            <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Playstation : </span> 
-                            <span class="text-[18px]">{{ user.gamerTagPlaystation }}</span>  
-                        </p>
-
-                        {# Affiche le gamertag Xbox de l'utilisateur #}
-                        <p class="mb-2">
-                            <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Xbox : </span> 
-                            <span class="text-[18px]">{{ user.gamerTagXbox }}</span>  
-                        </p>
-
-                        {# Lien vers la chaîne YouTube de l'utilisateur #}
-                        <p class="mb-2 ">
-                            <a href="{{ user.Youtube }}" target="_blank" class="text-[#ECC33E] font-bold text-[20px] hover:underline">YouTube Channel</a>  
-                        </p>
-
-                        {# Lien vers la chaîne Twitch de l'utilisateur #}
-                        <p class="mb-2">
-                            <a href="{{ user.Twitch }}" target="_blank" class="text-[#ECC33E] font-bold text-[20px] hover:underline ">Twitch Channel</a>  
-                            <span class="text-[18px]"></span>
-                        </p>
-
-                        {# Conteneur pour les boutons d'édition et de suppression #}
-                        <div class="flex mt-6 space-x-4">  
-
-                        {% if app.user and (app.user.username == user.username or is_granted('ROLE_ADMIN')) %}
-                            <!-- Lien pour éditer le profil -->
-                            <a href="{{ path('edit_profil', { username: user.username }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                                Edit  
-                            </a>
-
-                            <!-- Formulaire pour supprimer le profil -->
-                            <form action="{{ path('delete_profil') }}" method="post">
-                                <button type="submit" class="px-4 py-2 font-semibold text-white transition duration-300 transform bg-red-600 rounded-lg shadow-lg hover:bg-red-700 hover:scale-105">
-                                    <i class='fas fa-trash-can'></i>  
-                                </button>
-                            </form>
-                        {% endif %}
+    
+                            <div class="flex mt-6 space-x-4">  
+                                {% if app.user and (app.user.username == user.username or is_granted('ROLE_ADMIN')) %}
+                                    <a href="{{ path('edit_profil', { username: user.username }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                                        Edit  
+                                    </a>
+    
+                                    <form action="{{ path('delete_profil') }}" method="post">
+                                        <button type="submit" class="px-4 py-2 font-semibold text-white transition duration-300 transform bg-red-600 rounded-lg shadow-lg hover:bg-red-700 hover:scale-105">
+                                            <i class='fas fa-trash-can'></i>  
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                {# Si aucun utilisateur n'est trouvé #}
+    
                 {% else %}  
-
-                <!-- Message d'erreur si aucun utilisateur n'est trouvé -->
-                {# Message d'erreur #}
-                <p class="text-center text-red-500">No users found. Please log in.</p>  
+                    <p class="text-center text-red-500">No users found. Please log in.</p>  
                 {% endif %}
+    
+            </div>
+    
+            <!-- Iframe Twitch à droite du profil -->
+            <div class="w-full md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
+                <iframe 
+                    src="https://player.twitch.tv/?channel={{ user.Twitch }}&parent=localhost"
+                    height="400" 
+                    width="600" 
+                    allowfullscreen="true" 
+                    frameborder="0">
+                </iframe>
             </div>
         </div>
     </section>
+    
         
     <!-- Section Sujets de l'utilisateur -->
     {# Conteneur pour les sujets de l'utilisateur #}
@@ -142,7 +122,7 @@
 
                     <!-- Message si aucun sujet n'a été créé -->
                     {# Message d'absence de sujets #}
-                    <p class="text-center text-gray-400 col-span-full">No topics created yet.</p>  
+                    <p class="text-center text-white col-span-full">No topics created yet.</p>  
                 {% endfor %}
             </div>
         </div>
@@ -157,8 +137,9 @@
 
             <!-- Message si aucune liste de jeux n'est disponible -->
             {# Message d'absence de jeux #}
-            <p class="text-center text-white">No games available in your list.</p>  
-
+            <div class="bg-[#0C1D36] border-[3px] border-[#ECC33E] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
+                <p class="text-center text-white">No games available in your list.</p>  
+            </div>
         {# Si des listes de jeux sont disponibles #}
         {% else %}  
         

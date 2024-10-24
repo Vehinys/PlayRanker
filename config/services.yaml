@@ -29,5 +29,11 @@ services:
             $redirectUri: '%env(DISCORD_REDIRECT_URI)%'
             $clientSecret: '%env(DISCORD_CLIENT_SECRET)%'
 
+    App\Controller\DiscordController:
+        arguments:
+            $clientId: '%env(DISCORD_CLIENT_ID)%'
+            $redirectUri: '%env(DISCORD_REDIRECT_URI)%'
+            $clientSecret: '%env(DISCORD_CLIENT_SECRET)%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
