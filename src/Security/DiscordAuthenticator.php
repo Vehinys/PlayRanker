@@ -79,7 +79,7 @@ class DiscordAuthenticator extends AbstractAuthenticator
         $session->remove(self::DISCORD_AUTH_KEY);
         $session->getFlashBag()->add('danger', $exception->getMessage());
 
-        return new RedirectResponse($this->router->generate('app_home'));
+        return new RedirectResponse($this->router->generate('home'));
     }
 
     private function isValidRequest(Request $request): bool
