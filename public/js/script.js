@@ -95,9 +95,6 @@
         let currentIndex = 0;
         const totalReviews = reviews.length;
 
-
-
-            
         function updateSlide() {
             const offset = -currentIndex * (100 / totalReviews);
             reviewContainer.style.transform = `translateX(${offset}%)`;
