@@ -34,7 +34,7 @@
                         {% if user.avatar %}
 
                             {# Affichage de l'avatar de l'utilisateur #}
-                            <img src="{{ user.avatar }}" alt="Photo de profil de {{ user.username }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img <img src="/uploads/avatars/{{ user.avatar }}"  alt="Photo de profil de {{ user.username }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% else %}
 
                             {# Affichage de l'avatar par défaut si l'utilisateur n'en a pas #}
