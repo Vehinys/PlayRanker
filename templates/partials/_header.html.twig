@@ -1,45 +1,98 @@
 <header class="bg-[#09172b] shadow-lg">
   <div class="container px-4 mx-auto">
-    <nav class="flex items-center justify-between py-5">
-      <ul class="flex space-x-6">
-        <li>
-          <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('home') }}">HOME</a>
-        </li>
-        <li>
-          <a 
-            class="text-[#ECC33E] text-lg font-semibold relative group"
-            href="{{ path('jeux', { 'page': 1 }) }}"
-          >
-            GAMES
-            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#ECC33E] transform scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100"></span>
-          </a>
-        </li>
-        {% if app.user %}
+    <nav class="relative">
+      <!-- Mobile menu button -->
+      <div class="lg:hidden absolute right-0 top-5">
+        <button id="mobile-menu-button" class="text-[#ebf1ff] hover:text-[#ECC33E] p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center justify-between py-5">
+        <ul class="flex space-x-6">
           <li>
-            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('forum') }}">FORUM</a>
+            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('home') }}">HOME</a>
           </li>
           <li>
-            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil', {'username': app.user.username}) }}">PROFILE</a>
+            <a class="text-[#ECC33E] text-lg font-semibold relative group" href="{{ path('jeux', { 'page': 1 }) }}">
+              GAMES
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#ECC33E] transform scale-x-0 transition-transform duration-300 origin-center group-hover:scale-x-100"></span>
+            </a>
           </li>
-              {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
-                <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold">ADMIN</a>
-              {% endif %}
+          {% if app.user %}
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('forum') }}">FORUM</a>
+            </li>
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('profil', {'username': app.user.username}) }}">PROFILE</a>
+            </li>
+            {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
+              <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold">ADMIN</a>
+            {% endif %}
           {% endif %}
-      </ul>
-      <ul class="flex space-x-6">
-        {% if app.user %}
+        </ul>
+
+        <ul class="flex space-x-6">
+          {% if app.user %}
+            <li>
+              <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold" href="{{ path('logout') }}">LOGOUT</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('register') }}">REGISTER</a>
+            </li>
+            <li>
+              <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold" href="{{ path('login') }}">LOGIN</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="hidden lg:hidden py-5">
+        <ul class="flex flex-col space-y-4">
           <li>
-            <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold" href="{{ path('logout') }}">LOGOUT</a>
-          </li>
-        {% else %}
-          <li>
-            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold" href="{{ path('register') }}">REGISTER</a>
+            <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold block" href="{{ path('home') }}">HOME</a>
           </li>
           <li>
-            <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold" href="{{ path('login') }}">LOGIN</a>
+            <a class="text-[#ECC33E] text-lg font-semibold block" href="{{ path('jeux', { 'page': 1 }) }}">GAMES</a>
           </li>
-        {% endif %}
-      </ul>
+          {% if app.user %}
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold block" href="{{ path('forum') }}">FORUM</a>
+            </li>
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold block" href="{{ path('profil', {'username': app.user.username}) }}">PROFILE</a>
+            </li>
+            {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
+              <li>
+                <a href="{{ path('admin') }}" class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold block">ADMIN</a>
+              </li>
+            {% endif %}
+          {% endif %}
+          {% if app.user %}
+            <li>
+              <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold inline-block" href="{{ path('logout') }}">LOGOUT</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="text-[#ebf1ff] hover:text-[#ECC33E] transition duration-300 text-lg font-semibold block" href="{{ path('register') }}">REGISTER</a>
+            </li>
+            <li>
+              <a class="bg-[#ECC33E] text-[#09172b] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-lg font-semibold inline-block" href="{{ path('login') }}">LOGIN</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
+
+<script>
+  document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>

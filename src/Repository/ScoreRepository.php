@@ -56,6 +56,19 @@ class ScoreRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // Nouvelle méthode pour récupérer les scores par utilisateurs, jeux et catégories de notation
+    public function findAllScoresGroupedByUserGameAndCategory()
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s', 'u', 'g', 'rc')
+            ->join('s.user', 'u')
+            ->join('s.game', 'g')
+            ->join('s.ratingCategory', 'rc')
+            ->orderBy('u.id, g.id, rc.name')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Score[] Returns an array of Score objects
     //     */

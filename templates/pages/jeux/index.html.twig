@@ -3,27 +3,30 @@
 {% block title %}PlayRanker - Games{% endblock %}
 
 {% block body %}
-    <section class=" bg-[#97b4e0] min-h-screen py-10">
+
+    <section class="bg-[#97b4e0] min-h-screen pt-[80px]">
         <div class="container px-4 mx-auto">
+            <!-- Search Bar -->
             <div class="flex justify-center mb-8">
-                <form class="flex w-2/5" action="{{ path('search') }}" id="searchthis" method="post">
-                    <input class="border border-[#ECC33E] rounded-l-lg py-3 px-6 w-full bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-1 focus:ring-[#ECC33E]" id="search" name="input" type="text" placeholder="Search for a game" />
+                <form class="flex w-full sm:w-3/4 md:w-2/5" action="{{ path('search') }}" id="searchthis" method="post">
+                    <input class="border border-[#ECC33E] rounded-l-lg py-3 px-4 w-full bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-1 focus:ring-[#ECC33E]" id="search" name="input" type="text" placeholder="Search for a game" />
                     <button class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-r-lg hover:bg-[#ebf1ff] transition duration-300">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
             </div>
 
-            <section class="flex justify-center my-11">
-                <div class="flex flex-wrap gap-4 mb-12">
+            <!-- Categories Section -->
+            <section class="flex justify-center my-8">
+                <div class="flex flex-wrap justify-center gap-4 mb-9">
                     {% for category in categories %}
-                        <div class="relative w-[237px] text-center text-xl">
+                        <div class="relative w-[150px] text-center text-base">
                             <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')">
                                 {{ category.name }}
                             </h2>
-                            <div id="dropdown-menu-{{ category.id }}" class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10">
+                            <div id="dropdown-menu-{{ category.id }}" class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full">
                                 {% for platform in category.platforms %}
-                                    <a href="{{ path('searchByPlatform', { id: platform.id }) }}" class="block px-6 py-3 text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300">
+                                    <a href="{{ path('searchByPlatform', { id: platform.id }) }}" class="block px-4 py-2 text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300">
                                         {{ platform.name }}
                                     </a>
                                 {% endfor %}
@@ -33,105 +36,93 @@
                 </div>
             </section>
 
-            <section class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Games Grid -->
+            <section class="grid py-10 gap-10 sm:gap-12 md:gap-16 lg:gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container mx-auto">
+
                 {% for game in games.results %}
-                    <div class="bg-[#0C1D36] border hover:scale-105 border-[#ECC33E] shadow-md rounded-lg overflow-hidden">
-                        <div class="p-5">
-                            <h3 class="font-bold text-xl text-[#ECC33E] min-h-[56px] content-center text-center">{{ game.name }}</h3>
+                    <div class="bg-[#0C1D36] border-2 scale-105 border-[#ECC33E] shadow-md rounded-lg overflow-visible max-w-[300px] w-full mx-auto min-h-[500px] h-full flex flex-col justify-between relative">
+                
+                        <!-- Score circle -->
+                        <div class="absolute left transform -translate-x-1/2 -top-9 bg-[#09172b] border-4 border-[#ECC33E] rounded-full w-20 h-20 flex items-center justify-center transition-transform duration-500 z-50">
+                            {% if averageScores[game.id] is defined and averageScores[game.id] is not null %}
+                                <div class="text-center">
+                                    <span class="text-white font-bold text-[30px]">{{ averageScores[game.id] | number_format(1) }}</span>
+                                </div>
+                            {% else %}
+                                <span class="text-white text-center font-bold text-xs">No Rating</span>
+                            {% endif %}
                         </div>
 
-                        <div class="w-full">
-                            <img class="object-cover min-h-80" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        <div class="text-center py-10">
+                            <h3 class="font-bold text-[18px] text-[#ECC33E]">{{ game.name }}</h3>
                         </div>
 
-                        <div class="relative w-full bg-[#0C1D36] text-white rounded-lg flex pt-9 flex-col items-center justify-center">
-                            <h2 class="text-lg font-semibold tracking-wide uppercase">Overall Average Rating</h2>
-                            <div class="score text-[#ECC33E] my-4 text-4xl font-bold">
-                                {% if averageScores[game.id] is defined and averageScores[game.id] is not null %}
-                                    {{ averageScores[game.id] | number_format(1) }} <span class="text-xl text-white"> out of 10 </span>
-                                {% else %}
-                                    <p class="text-xl">No Rating</p>
-                                {% endif %}
-                            </div>
+                        <div class="w-full h-48">
+                            <img class="object-cover w-full h-full" src="{{ game.background_image }}" alt="{{ game.name }}">
                         </div>
 
-                        <div class="p-4 min-h-[154px] flex flex-col justify-between ">
-
-                            <div class="flex flex-wrap gap-1 mb-4 space-x-2">
-                                {% set platform_logos = {
-                                    'PlayStation 1': 'img/ps1.png',
-                                    'PlayStation 2': 'img/ps2.png',
-                                    'PlayStation 3': 'img/ps3.png',
-                                    'PlayStation 4': 'img/ps4.png',
-                                    'PlayStation 5': 'img/ps5.png',
-                                    'PS Vita':       'img/ps-vita.png',
-                                    'PSP':           'img/psp.png',
-                                    'PC': 'img/pc.png',
-                                    'Linux': 'img/linux.png',
-                                    'Web': 'img/Web.png',
-                                    'macOS': 'img/macOS.png',
-                                    'iOS': 'img/ios.png',
-                                    'Android': 'img/Android.png',
-                                    'Xbox Series S/X': 'img/Xbox Series SX.png',
-                                    'Xbox 360': 'img/Xbox 360.png',
-                                    'Xbox One': 'img/Xbox One.png',
-                                    'Xbox': 'img/xbox.png',
-                                    'Nintendo Switch': 'img/Nintendo Switch.png',
-                                    'Nintendo 3DS': 'img/Nintendo 3DS.png',
-                                    'Wii U': 'img/Wii U.png',
-                                    'Wii': 'img/Wii.png',
-                                    'GameCube': 'img/gameCube.png',
-                                    
-                                    'Nintendo DSi ': 'img/Wii U.png',
-                                    'Nintendo DS ': 'img/Wii U.png',
-                                    'Game Boy Advance': 'img/Wii U.png',
-                                    'Game Boy Color': 'img/Wii U.png',
-                                    'Game Boy': 'img/Wii U.png',
-                                    'Nintendo 64': 'img/Wii U.png',
-                                    'SNES': 'img/Wii U.png',
-                                    'Wii U': 'img/Wii U.png',
-                                    'NES': 'img/Wii U.png',
-                                } %}
-
-
+                        <div class="p-4 flex flex-col justify-around">
+                            <div class="flex flex-wrap justify-evenly min-h-[120px] space-x-3">
                                 {% for platform in game.platforms %}
-
                                     <div class="flex">
-
+                                        {% set platform_logos = {
+                                            'PlayStation 1': 'img/ps1.png',
+                                            'PlayStation 2': 'img/ps2.png',
+                                            'PlayStation 3': 'img/ps3.png',
+                                            'PlayStation 4': 'img/ps4.png',
+                                            'PlayStation 5': 'img/ps5.png',
+                                            'PS Vita': 'img/ps-vita.png',
+                                            'PSP': 'img/psp.png',
+                                            'PC': 'img/pc.png',
+                                            'Linux': 'img/linux.png',
+                                            'Web': 'img/Web.png',
+                                            'macOS': 'img/macOS.png',
+                                            'iOS': 'img/ios.png',
+                                            'Android': 'img/Android.png',
+                                            'Xbox Series S/X': 'img/Xbox Series SX.png',
+                                            'Xbox 360': 'img/Xbox 360.png',
+                                            'Xbox One': 'img/Xbox One.png',
+                                            'Xbox': 'img/xbox.png',
+                                            'Nintendo Switch': 'img/Nintendo Switch.png',
+                                            'Nintendo 3DS': 'img/Nintendo 3DS.png',
+                                            'Wii U': 'img/Wii U.png',
+                                            'Wii': 'img/Wii.png',
+                                            'GameCube': 'img/gameCube.png',
+                                            'Nintendo DSi ': 'img/Wii U.png',
+                                            'Nintendo DS ': 'img/Wii U.png',
+                                            'Game Boy Advance': 'img/Wii U.png',
+                                            'Game Boy Color': 'img/Wii U.png',
+                                            'Game Boy': 'img/Wii U.png',
+                                            'Nintendo 64': 'img/Wii U.png',
+                                            'SNES': 'img/Wii U.png',
+                                            'Wii U': 'img/Wii U.png',
+                                            'NES': 'img/Wii U.png',
+                                        } %}
                                         {% set logo_path = platform_logos[platform.platform.name] ?? '' %}
-                                        
                                         {% if logo_path %}
-                                        
-                                            <a href="{{ path('searchByPlatform', { id: platform.platform.id }) }}"> <img class="w-8 h-8 hover:scale-125" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" /></a>
-
+                                            <a href="{{ path('searchByPlatform', { id: platform.platform.id }) }}">
+                                                <img class="md:w-8 md:h-8 lg:w-10 lg:h-10 hover:scale-125" src="{{ asset(logo_path) }}" title="{{ platform.platform.name }}" alt="{{ platform.platform.name }} logo" />
+                                            </a>
                                         {% endif %}
-
                                     </div>
-
                                 {% endfor %}
-
                             </div>
 
-                            <div class="flex items-center justify-center gap-5">
-                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] text-center w-2/5 px-2 py-2 rounded-lg hover:bg-[#09172b] hover:text-white transition duration-300">Detail</a>
-
+                            <div class="flex items-center justify-center gap-5 mt-4">
+                                <a href="{{ path('detail_jeu', {'id': game.id}) }}" class="bg-[#ECC33E] text-[#0C1D36] text-[12px] text-center w-2/5 px-2 py-2 rounded-lg hover:bg-[#09172b] border-gray-200 border-2 hover:border-[#ECC33E] hover:text-white transition duration-300">Detail</a>
 
                                 {% if app.user %}
-
-                                <div class="relative">
-                                    <button type="button" onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-2 py-2 rounded-lg hover:bg-[#ECC33E] text-[13px] hover:text-[#0C1D36] transition duration-300 flex items-center">Add to your lists
-                                        <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-
-                                    <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mr-2 mb-2 w-56 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-20">
-                                        <a href="{{ path('addFavorite', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My Favorites</a>
-                                        <a href="{{ path('addAlreadyPlayed', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Already played</a>
-                                        <a href="{{ path('addMyDesires', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My desires</a>
-                                        <a href="{{ path('addGoTest', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Go test</a>
+                                    <div class="relative">
+                                        <button type="button" onclick="toggleDropdown('dropdown-menu-{{ game.id }}')" class="bg-[#ECC33E] text-[12px] text-[#0C1D36] border-[#ECC33E] border-gray-200 border-2 px-2 py-2 rounded-lg hover:bg-[#09172b] hover:border-[#ECC33E] hover:text-white transition duration-300 font-medium flex items-center">
+                                            Add to lists
+                                        </button>
+                                        <div id="dropdown-menu-{{ game.id }}" class="hidden absolute right-0 bottom-full mr-2 mb-2 w-56 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-20">
+                                            <a href="{{ path('addFavorite', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My Favorites</a>
+                                            <a href="{{ path('addAlreadyPlayed', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Already played</a>
+                                            <a href="{{ path('addMyDesires', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">My desires</a>
+                                            <a href="{{ path('addGoTest', {'id': game.id, 'gameName': game.name, 'gameData': game|json_encode}) }}" class="block px-4 py-2 text-sm text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36]">Go test</a>
+                                        </div>
                                     </div>
-                                </div>
                                 {% endif %}
                             </div>
                         </div>
@@ -139,45 +130,28 @@
                 {% endfor %}
             </section>
 
+            <!-- Pagination -->
             <div class="flex justify-center py-8">
-
                 {% if currentPage is defined %}
-
-                    <nav class="inline-flex">
-
+                    <nav class="inline-flex flex-wrap justify-center gap-4">
                         {% if currentPage > 1 %}
-
-                            
-                        <a href="{{ path('jeux', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
+                            <a href="{{ path('jeux', { 'page': currentPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-sm sm:text-base">Previous Page</a>
                         {% endif %}
-
-                        <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentPage }}</span>
-
-                        <a href="{{ path('jeux', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
-                    
+                        <span class="px-3 py-2 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg text-sm sm:text-base">Page {{ currentPage }}</span>
+                        <a href="{{ path('jeux', { 'page': currentPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-sm sm:text-base">Next Page</a>
                     </nav>
-
                 {% endif %}
 
                 {% if currentSearchPage is defined %}
-
-                <nav class="inline-flex">
-
-                    {% if currentSearchPage > 1 %}
-
-                        
-                    <a href="{{ path('search', { 'page': currentSearchPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Previous Page</a>
-                    {% endif %}
-
-                    <span class="px-3 py-2 mx-5 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg">Page {{ currentSearchPage }}</span>
-
-                    <a href="{{ path('search', { 'page': currentSearchPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300">Next Page</a>
-                
-                </nav>
-                
-            {% endif %}
+                    <nav class="inline-flex flex-wrap justify-center gap-4">
+                        {% if currentSearchPage > 1 %}
+                            <a href="{{ path('search', { 'page': currentSearchPage - 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-sm sm:text-base">Previous Page</a>
+                        {% endif %}
+                        <span class="px-3 py-2 bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] rounded-lg text-sm sm:text-base">Page {{ currentSearchPage }}</span>
+                        <a href="{{ path('search', { 'page': currentSearchPage + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-sm sm:text-base">Next Page</a>
+                    </nav>
+                {% endif %}
             </div>
-            
         </div>
     </section>
 {% endblock %}

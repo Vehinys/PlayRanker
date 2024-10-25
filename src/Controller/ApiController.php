@@ -264,4 +264,18 @@ class ApiController extends AbstractController
         ]);
     }
 
+    #[Route('/games/scores', name: 'scores')]
+    public function findAllScoresGroupedByUserGameAndCategory(
+
+        ScoreRepository $scoreRepository
+    
+    ): Response {
+        
+        $scores = $scoreRepository->findAllScoresGroupedByUserGameAndCategory();
+
+        return $this->render('scores/index.html.twig', [
+            'scores' => $scores,
+        ]);
+    }
+
 }

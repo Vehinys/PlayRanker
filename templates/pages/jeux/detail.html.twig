@@ -6,7 +6,7 @@
 <div class="bg-[#97b4e0]">
     <section class=" text-white min-h-screen py-10 flex-1">
         <section class="container mx-auto px-4">
-            <div class="relative rounded-lg border border-[#ECC33E] overflow-hidden shadow-xl">
+            <div class="relative rounded-lg border-2 border-[#ECC33E] overflow-hidden shadow-xl">
                 <img src="{{ gameDetail.background_image }}" alt="{{ gameDetail.name }}" class="w-full h-[500px] object-cover">
                     <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center p-8">
                     <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">{{ gameDetail.name }}</h1>
@@ -48,11 +48,11 @@
     
         <section class="container mx-auto px-4 mt-10">
 
-            <div class="flex flex-wrap  justify-center space-x-10 ">
+            <div class="flex flex-wrap justify-center space-x-10 ">
                 <!-- Section 1 : Platforms -->
                 <section class="flex-1">
                     <h3 class="text-2xl font-bold text-[#0C1D36] mb-4">Platforms</h3>
-                    <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {% set platform_logos = {
                             'PlayStation 1': 'img/ps1.png',
                             'PlayStation 2': 'img/ps2.png',
@@ -86,7 +86,7 @@
                         {% for element in gameDetail.platforms %}
                             {% set logo_path = platform_logos[element.platform.name] ?? '' %}
                             {% if logo_path %}
-                                <div class="flex items-center justify-center border border-[#ECC33E] bg-[#0C1D36] p-4 rounded-lg">
+                                <div class="flex items-center justify-center border-2 border-[#ECC33E] bg-[#0C1D36] p-4 rounded-lg">
                                     <a href="{{ path('searchByPlatform', { id: element.platform.id }) }}"><img src="{{ asset(logo_path) }}" title="{{ element.platform.name }}" alt="{{ element.platform.name }} logo" class="h-12 object-contain hover:scale-125" /></a>
                                 </div>
                             {% endif %}
@@ -99,7 +99,7 @@
                     <h3 class="text-2xl font-bold text-[#0C1D36] mb-4">Tags</h3>
                     <div class="flex flex-wrap  justify-between gap-2">
                         {% for tag in gameDetail.tags %}
-                            <span class="bg-[#0C1D36] border border-[#ECC33E] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
+                            <span class="bg-[#0C1D36] border-2 border-[#ECC33E] px-3 py-1 rounded-full text-sm">{{ tag.name }}</span>
                         {% endfor %}
                     </div>
                 </section>
@@ -107,7 +107,7 @@
                 <!-- Section notation -->
                 <section>
                     <h3 class="text-2xl font-bold text-[#0C1D36] mb-3">Rating</h3>
-                    <div class="flex items-center gap-6 justify-center border border-[#ECC33E] bg-[#0C1D36] p-8 rounded-md">
+                    <div class="flex items-center gap-6 justify-center border-2 border-[#ECC33E] bg-[#0C1D36] p-8 rounded-md">
                         {% if app.user %}
                             {{ form_start(scoreForm) }}
                             <div class="grid grid-cols-1 gap-3">
@@ -133,8 +133,8 @@
                                 <div class="text-white text-center mb-2" style="text-align: -webkit-center;">
                                     <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Average User</h3>
                                     <div class="relative w-36 h-36 flex items-center justify-center">
-                                        <div class="circle circle-outer reverse absolute w-full h-full border border-[#ECC33E] rounded-full"></div>
-                                        <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border border-[#eeca56] rounded-full"></div>
+                                        <div class="circle circle-outer reverse absolute w-full h-full border-2 border-[#ECC33E] rounded-full"></div>
+                                        <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border-2 border-[#eeca56] rounded-full"></div>
                                         
                                         {% set scoreClass = '' %}
                                         {% if averageScoreUser >= 8 %}
@@ -161,8 +161,8 @@
                                 <div class=" text-white text-center " style="text-align: -webkit-center;">
                                     <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Average Total</h3>
                                     <div class="relative w-36 h-36 flex items-center justify-center">
-                                        <div class="circle circle-outer reverse absolute w-full h-full border border-[#ECC33E] rounded-full"></div>
-                                        <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border border-[#eeca56] rounded-full"></div>
+                                        <div class="circle circle-outer reverse absolute w-full h-full border-2 border-[#ECC33E] rounded-full"></div>
+                                        <div class="circle circle-inner reverse absolute w-3/4 h-3/4 border-2 border-[#eeca56] rounded-full"></div>
                                         {% set scoreClass = '' %}
                                         {% if averageScore >= 8 %}
                                             {% set scoreClass = 'text-green-800' %}
@@ -194,22 +194,26 @@
             </div>
             
 
-            <h3 class="text-2xl font-bold text-[#0C1D36] mt-10 mb-4">Description</h3>
-            <div class="bg-[#0C1D36] border border-[#ECC33E] p-6 rounded-lg">
-                <p>{{ gameDetail.description_raw|striptags|raw }}</p>
+            <h3 class="text-2xl font-bold text-[#0C1D36] my-5">Description</h3>
+            <div class="bg-[#0C1D36] border-2 border-[#ECC33E] p-10 rounded-lg grid grid-cols-2 gap-4">
+                <p class="text-justify">{{ gameDetail.description_raw|striptags|slice(0, (gameDetail.description_raw|length / 2)) | raw }}</p>
+                <p class="text-justify">{{ gameDetail.description_raw|striptags|slice((gameDetail.description_raw|length / 2)) | raw }}</p>
             </div>
+
+
+            
         </section>
     </section>
 
-    <section class="w-2/3 flex mx-auto">
+    <section class="w-2/3 gap-4 flex mx-auto">
         <div>
-            <div class="flex my-5 content-between">
-                <h1 class="text-2xl font-bold text-[#0C1D36]">Commentaires</h1>
-                <a href="{{ path('comment_new', {'id': gameDetail.id}) }}" class="bg-[#0C1D36] p-2 hover:bg-[#09172b] text-white text-2xl font-bold rounded"> Add a review </a>
+            <div class="flex my-5 justify-between">
+                <h2 class="text-2xl font-bold text-[#0C1D36]">Commentaires</h2>
+                <a href="{{ path('comment_new', {'id': gameDetail.id}) }}" class="bg-[#0C1D36] border-2 border-[#ECC33E] p-2 hover:bg-[#09172b] text-white text-2xl font-bold rounded"> Add a review </a>
             </div>
     
             {% for comment in comments %}
-            <div class=" bg-[#0C1D36] border border-[#ECC33E] p-6 rounded-lg mb-4">
+            <div class=" bg-[#0C1D36] border-2 border-[#ECC33E] p-6 rounded-lg mb-4">
                 <p class="text-white">{{ comment.content }}</p>
                 <div class=" flex justify-between items-end ">
                     <div class="mt-4 flex space-x-2">
@@ -230,13 +234,66 @@
             {% endfor %}
         </div>
 
-        <div>
-            <h2> Rating </h2>
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold text-[#0C1D36] mb-6">Ratings</h2>
 
+        {% set currentUser = '' %}
+        {% set currentGame = '' %}
+        
+        <div class="space-y-8">
+            {% for score in scores|sort((a, b) => a.user.username <=> b.user.username) %}
+                {% if currentUser != score.user.username %}
+                    {% if currentUser != '' %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% set currentUser = score.user.username %}
+                    {% set currentGame = '' %}
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-[#ECC33E] bg-[#09172b] p-4 rounded-t-lg">
+                            {{ score.user.username }}
+                        </h3>
+                        
+                        <div class="overflow-x-auto shadow-lg rounded-b-lg">
+                            <table class="w-full bg-white border border-[#ECC33E]">
+                                <thead>
+                                    <tr class="bg-[#09172b] text-[#ebf1ff]">
+                                        <th class="px-6 py-4 text-left">Category</th>
+                                        <th class="px-6 py-4 text-left">Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                {% endif %}
+
+                {% if currentGame != score.game.name %}
+                    {% set currentGame = score.game.name %}
+                    <tr class="bg-[#09172b] bg-opacity-20">
+                        <td colspan="2" class="px-6 py-3 font-semibold">
+                            {{ score.game.name }}
+                        </td>
+                    </tr>
+                {% endif %}
+
+                <tr class="border-t border-[#ECC33E] hover:bg-gray-50">
+                    <td class="px-6 py-4">{{ score.ratingCategory.name }}</td>
+                    <td class="px-6 py-4 font-semibold text-[#0C1D36]">{{ score.note }}</td>
+                </tr>
+
+                {% if loop.last %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
         </div>
+    </div>
 
     </section>
-
 
 </div>
 {% endblock %}
