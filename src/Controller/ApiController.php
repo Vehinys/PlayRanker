@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Score;
 use App\Form\ScoreType;
+use App\Form\CommentType;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
+use App\Repository\GenreRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
@@ -33,7 +35,8 @@ class ApiController extends AbstractController
         CategoryRepository $categoryRepository, 
         TypeRepository $typeRepository, 
         ScoreRepository $scoreRepository,
-        GameRepository $gameRepository
+        GameRepository $gameRepository,
+        GenreRepository $genreRepository
         
     ): Response {
 
@@ -55,6 +58,9 @@ class ApiController extends AbstractController
 
             $scoreRepository->getAverageScoreForGame($gameEntity) : null;
         }
+
+        // Récupérez les genres
+        $genres = $genreRepository->findAll();
     
         // Récupérer toutes les catégories et types disponibles
         $categories = $categoryRepository->findAll();
@@ -65,6 +71,7 @@ class ApiController extends AbstractController
             'types'       => $types,
             'games'       => $games,
             'currentPage' => $page,
+            'genres' => $genres,
             'categories'  => $categories,
             'averageScores' => $averageScores,
         ]);
@@ -208,6 +215,7 @@ class ApiController extends AbstractController
                 $this->addFlash('success', 'Vos notes ont été enregistrées avec succès.');
                 return $this->redirectToRoute('detail_jeu', ['id' => $id]);
             }
+            $form = $this->createForm(CommentType::class);
 
             return $this->render('pages/jeux/detail.html.twig', [
                 'gameId' => $id,
@@ -219,6 +227,7 @@ class ApiController extends AbstractController
                 'averageScoreUser' => $averageScoreUser,
                 'scoreForm' => $scoreForm->createView(),
                 'ratingCategories' => $ratingCategories,
+                'form' => $form->createView(), 
             ]);
         }
 
@@ -264,6 +273,8 @@ class ApiController extends AbstractController
         ]);
     }
 
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
     #[Route('/games/scores', name: 'scores')]
     public function findAllScoresGroupedByUserGameAndCategory(
 
@@ -278,4 +289,6 @@ class ApiController extends AbstractController
         ]);
     }
 
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+    
 }

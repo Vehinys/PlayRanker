@@ -16,25 +16,55 @@
                 </form>
             </div>
 
-            <!-- Categories Section -->
-            <section class="flex justify-center my-8">
-                <div class="flex flex-wrap justify-center gap-4 mb-9">
-                    {% for category in categories %}
-                        <div class="relative w-[150px] text-center text-base">
-                            <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')">
-                                {{ category.name }}
-                            </h2>
-                            <div id="dropdown-menu-{{ category.id }}" class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full">
-                                {% for platform in category.platforms %}
-                                    <a href="{{ path('searchByPlatform', { id: platform.id }) }}" class="block px-4 py-2 text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300">
-                                        {{ platform.name }}
-                                    </a>
-                                {% endfor %}
-                            </div>
+<section class="container mx-auto px-4 py-8">
+    <div class="flex flex-wrap -mx-4">
+        <!-- Section des catégories -->
+        <section class="w-full md:w-1/2 px-4 flex justify-center my-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-9">
+                {% for category in categories %}
+                    <div class="relative w-[150px] text-center text-base">
+                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-{{ category.id }}">
+                            {{ category.name }}
+                        </h2>
+                        <div id="dropdown-menu-{{ category.id }}" class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full" role="menu" aria-labelledby="dropdown-menu-{{ category.id }}">
+                            {% for platform in category.platforms %}
+                                <a href="{{ path('searchByPlatform', { id: platform.id }) }}" class="block px-4 py-2 text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300" role="menuitem">
+                                    {{ platform.name }}
+                                </a>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
-            </section>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Section des genres -->
+        <section class="w-full md:w-1/2 px-4 flex justify-center my-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-9">
+                {% for genre in genres %}
+                    <div class="relative w-[150px] flex justify-center items-center text-center text-base">
+                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ genre.id }}')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-{{ genre.id }}">
+                            {{ genre.name }}
+                        </h2>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</section>
+
+<script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        const isHidden = dropdown.classList.contains('hidden');
+        document.querySelectorAll('[id^="dropdown-menu-"]').forEach(menu => menu.classList.add('hidden'));
+        if (isHidden) {
+            dropdown.classList.remove('hidden');
+        } else {
+            dropdown.classList.add('hidden');
+        }
+    }
+</script>
 
             <!-- Games Grid -->
             <section class="grid py-10 gap-10 sm:gap-12 md:gap-16 lg:gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container mx-auto">
