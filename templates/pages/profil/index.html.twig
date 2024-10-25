@@ -95,38 +95,33 @@
     </section>
     
         
+    
     <!-- Section Sujets de l'utilisateur -->
-    {# Conteneur pour les sujets de l'utilisateur #}
     <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 flex justify-center items-center transition-transform mt-8 duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl ">    
-        
+
         <!-- Sujets de l'utilisateur -->
         <div class="flex flex-col items-center w-full mt-6 md:w-2/3 lg:w-full py-7 md:mt-0">  
-            
-            {# Titre de la section des sujets #}
+
+            <!-- Titre de la section des sujets -->
             <h3 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Topics</h3>  
-            
-            {# Grille pour afficher les sujets #}
+
+            <!-- Grille pour afficher les sujets -->
             <div class="grid w-full grid-cols-1 gap-6 p-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">  
-                
-                {# Boucle pour chaque sujet de l'utilisateur #}
+
+                <!-- Boucle pour chaque sujet de l'utilisateur -->
                 {% for topic in user.topics %}  
-                    
                     <!-- Lien vers chaque sujet créé par l'utilisateur -->
-                    {# Affiche le titre du sujet #}
                     <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-4 rounded-lg content-center border-[2px] border-[#ECC33E] text-center text-[16px] text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200 w-full flex items-center justify-center">
                         {{ topic.title }}  
                     </a>
-
-                {# Si aucun sujet n'est trouvé #}
                 {% else %}  
-
                     <!-- Message si aucun sujet n'a été créé -->
-                    {# Message d'absence de sujets #}
                     <p class="text-center text-white col-span-full">No topics created yet.</p>  
                 {% endfor %}
             </div>
         </div>
     </section>
+
         
     <!-- Section Listes de jeux -->
     {# Section pour les listes de jeux #}

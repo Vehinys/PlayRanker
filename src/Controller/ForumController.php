@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Topic;
-use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CategoryForumRepository;
@@ -47,11 +45,11 @@ class ForumController extends AbstractController
     #[Route('/forum/topics/{categoryId}', name: 'topic')]
     public function findTopicByCategoryForum(
 
+        Request $request,
         string $categoryId,
-        CategoryRepository $categoryForumRepository,
         TopicRepository $topicRepository,
         PaginatorInterface $paginatorInterface,
-        Request $request
+        CategoryRepository $categoryForumRepository,
 
     ): Response {
 
@@ -81,9 +79,9 @@ class ForumController extends AbstractController
 
         // Rendu de la vue 'topic.html.twig'
         return $this->render('pages/forum/topic.html.twig', [
-            'topics' => $topics,
             'categories' => $categoryForumRepository->findBy([], ['name' => 'ASC']),
             'category' => $categoryForum,
+            'topics' => $topics,
             'posts' => $posts,
         ]);
     }

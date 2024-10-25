@@ -9,15 +9,15 @@ use App\Entity\GamesList;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
+use App\Repository\TopicRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -51,41 +51,44 @@ class ProfilController extends AbstractController
      * @return Response The rendered profile page.
      */
 
-     #[Route('/profil/{username}', name: 'profil', methods: ["GET", "POST"])]
-     public function index(
+    #[Route('/profil/{username}', name: 'profil', methods: ["GET", "POST"])]
+    public function index(
 
-         string $username,
-         TypeRepository $typeRepository,
-         UserRepository $userRepository
+        string $username,
+        Request $request,
+        TypeRepository $typeRepository,
+        UserRepository $userRepository,
+        TopicRepository $topicRepository,
+        PaginatorInterface $paginatorInterface,
+        CategoryRepository $categoryForumRepository,
 
-     ): Response {
-     
-         // Récupération de l'utilisateur connecté
-         $currentUser = $this->getUser();
-     
-         // Récupération de l'utilisateur cible à partir du username
-         $targetUser = $userRepository->findOneBy(['username' => $username]);
-     
-         // Vérifiez si l'utilisateur cible existe
-         if (!$targetUser) {
-             throw $this->createNotFoundException('Utilisateur non trouvé');
-         }
-     
-         // Récupération de tous les types de listes
-         $types = $typeRepository->findAll();
+    ): Response {
+    
+        // Récupération de l'utilisateur connecté
+        $currentUser = $this->getUser();
+    
+        // Récupération de l'utilisateur cible à partir du username
+        $targetUser = $userRepository->findOneBy(['username' => $username]);
+    
+        // Vérifiez si l'utilisateur cible existe
+        if (!$targetUser) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+    
+        // Récupération de tous les types de listes
+        $types = $typeRepository->findAll();
 
-         // Récupération des listes de jeux associées à l'utilisateur cible
-         $gamesLists = $targetUser->getGamesLists(); 
-     
-         // Rendu de la vue avec les données récupérées
-         return $this->render('pages/profil/index.html.twig', [
-             'gamesLists' => $gamesLists,
-             'user' => $targetUser,
-             'types' => $types,
-             'currentUser' => $currentUser,
-         ]);
-     }
-     
+        // Récupération des listes de jeux associées à l'utilisateur cible
+        $gamesLists = $targetUser->getGamesLists(); 
+    
+        // Rendu de la vue avec les données récupérées
+        return $this->render('pages/profil/index.html.twig', [
+            'gamesLists' => $gamesLists,
+            'user' => $targetUser,
+            'types' => $types,
+            'currentUser' => $currentUser,
+        ]);
+    }
     
     // ---------------------------------------------------------- //
     // Modifie le profil de l'utilisateur
