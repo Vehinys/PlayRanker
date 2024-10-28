@@ -6,7 +6,7 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Entity\User # Ton entité User
+                class: App\Entity\User
                 property: email 
     firewalls:
         dev:
@@ -20,8 +20,10 @@ security:
                 - App\Security\DiscordAuthenticator
             logout:
                 path: logout
-                # where to redirect after logout
-                # target: app_any_route
+                target: login
+            login_throttling:
+                max_attempts: 5
+                interval : '10 minutes'
 
             remember_me:
                 secret: '%kernel.secret%'
