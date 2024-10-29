@@ -65,34 +65,35 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'constraints' => [
-                    new NotBlank([ 
-                        'message' => 'Veuillez entrer un mot de passe.',
+                    new NotBlank([
+                        'message' => 'Please enter a password.',
                     ]),
                     new Length([
-                        'min' => 12,    
+                        'min' => 12,
                         'max' => 255,
-                        'minMessage' => 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
-                        'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
+                        'minMessage' => 'The password must be at least {{ limit }} characters long.',
+                        'maxMessage' => 'The password cannot exceed {{ limit }} characters.',
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/',
-                        'message' => 'Le mot de passe doit comporter au moins 12 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
-                    ]), 
+                        'message' => 'The password must be at least 12 characters long and contain at least 
+                        one uppercase letter, one lowercase letter, one number, and one special character.',
+                    ]),
                 ],
                 'mapped' => false,
                 'first_options' => [
-                    'label' => 'Votre mot de passe',
+                    'label' => 'Your password',
                     'attr' => [
-                        'placeholder' => 'Mot de passe',
+                        'placeholder' => 'Password',
                     ],
                 ],
                 'second_options' => [
-                    'label' => 'Confirmez votre mot de passe',
+                    'label' => 'Confirm your password',
                     'attr' => [
-                        'placeholder' => 'Mot de passe',
+                        'placeholder' => 'Password',
                     ],
                 ],
-                'invalid_message' => 'Les mots de passe doivent correspondre.',
+                'invalid_message' => 'The passwords must match.',
             ])
             
             ->add('captcha', Recaptcha3Type::class, [
