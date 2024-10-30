@@ -9,10 +9,10 @@ use App\Form\CommentType;
 use App\HttpClient\ApiHttpClient;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
-use App\Repository\GenreRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\GenreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\RatingCategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,10 +36,11 @@ class ApiController extends AbstractController
         TypeRepository $typeRepository, 
         ScoreRepository $scoreRepository,
         GameRepository $gameRepository,
-        GenreRepository $genreRepository
-        
+        GenreRepository $genreRepository,
+
     ): Response {
 
+        // Récupération des jeux pour la page actuelle
         if (!$page) {
             $page = 1;
         }
@@ -50,20 +51,23 @@ class ApiController extends AbstractController
         // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
 
+        // Calcul des scores moyens pour chaque jeu
         foreach ($games['results'] as $game) {
-
+            // Récupérer l'entité du jeu si elle existe
             $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
-
+            // Calculer le score moyen pour le jeu si l'entité existe
             $averageScores[$game['id']] = $gameEntity ? 
-
+            // Récupérer le score moyen pour le jeu
             $scoreRepository->getAverageScoreForGame($gameEntity) : null;
         }
 
-        // Récupérez les genres
-        $genres = $genreRepository->findAll();
+        // Récupérer toutes les catégories et types disponibles
+        $viewGenres = $genreRepository->findAll();
     
         // Récupérer toutes les catégories et types disponibles
         $categories = $categoryRepository->findAll();
+
+        // Récupérer tous les types disponibles
         $types = $typeRepository->findAll();
     
         // Rendu du template avec les jeux, catégories, types et scores
@@ -71,7 +75,7 @@ class ApiController extends AbstractController
             'types'       => $types,
             'games'       => $games,
             'currentPage' => $page,
-            'genres' => $genres,
+            'viewGenres' => $viewGenres,
             'categories'  => $categories,
             'averageScores' => $averageScores,
         ]);
@@ -114,10 +118,12 @@ class ApiController extends AbstractController
         // Récupération des types et catégories
         $types = $typeRepository->findAll();
 
+        // Récupération des catégories
         $categories = $repository->findAll();
-        
+
+        // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
-        
+
         foreach ($games['results'] as $game) {
             $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
             if ($gameEntity) {
@@ -132,6 +138,78 @@ class ApiController extends AbstractController
             'games' => $games,
             'types' => $types,
             'categories' => $categories,
+            'averageScores' => $averageScores,
+        ]);
+    }
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    #[Route('/jeux/multiFiltre/{page<\d+>?1}', name:'multiFiltre',methods: ['GET', 'POST'])]
+    public function multiSearch(
+
+        int $page,
+        Request $request, 
+        ApiHttpClient $apiHttpClient,
+        GameRepository $gameRepository,
+        ScoreRepository $scoreRepository,
+        genreRepository $genreRepository,
+        categoryRepository $categoryRepository,
+        SessionInterface $session
+
+    ): Response {
+
+        
+        
+        // Récupérer toutes les catégories et types disponibles
+        $categories = $categoryRepository->findAll();
+        
+        // Récupérer tous les genres disponibles
+        $viewGenres = $genreRepository->findAll();
+        
+        // // Vérifier si l'input est présent dans la requête
+        $input = $request->get('input');
+        
+        // Récupération des parametres de recherche
+        $idPlatform = $request->get('platform');
+        $idGenre = $request->get('genre');
+        
+        // // Si l'input est présent, on le stocke dans la session
+        // if ($input) {
+        //     $session->set('search_input', $input);
+        // } else {
+        //     // Si pas d'input dans la requête, on récupère l'input de la session
+        //     $input = $session->get('search_input');
+        // }
+        
+        // Récupération des résultats de recherche
+        $games = $apiHttpClient->multiFiltre($page, $input, $idPlatform, $idGenre, $session );
+        
+        // Si l'input est présent, on le stocke dans la session
+        $query = $session->get('multiFiltre');
+        
+        // Récupération des résultats de recherche
+        $games = $apiHttpClient->nextPageMutliFiltre($page, $query, $session);
+
+        if (!$page) {
+            $page = 1;
+        }
+
+        $averageScores = [];
+        
+        foreach ($games['results'] as $game) {
+            $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
+            if ($gameEntity) {
+                $averageScores[$game['id']] = $scoreRepository->getAverageScoreForGame($gameEntity);
+            } else {
+                $averageScores[$game['id']] = null;
+            }
+        }
+
+        return $this->render('pages/jeux/index.html.twig', [
+            'games' => $games,
+            'viewGenres' => $viewGenres,
+            'nextPageMutliFiltre' => $page,
+            'categories'  => $categories,
             'averageScores' => $averageScores,
         ]);
     }

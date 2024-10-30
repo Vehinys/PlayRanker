@@ -4,6 +4,7 @@ namespace App\HttpClient;
 
 use App\Repository\PlatformRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApiHttpClient extends AbstractController
@@ -185,5 +186,49 @@ class ApiHttpClient extends AbstractController
         }
     
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    public function nextPageMutliFiltre($page, $query, SessionInterface $session)
+    {
+    
+        if($query) {
+            $query = $session->get('multiFiltre');
+        }
+
+        $response = $this->httpClient->request('GET', "https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page=".$page.$query);
+
+    return $response->toArray();
+    
+    }
+        
+    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+    public function multiFiltre($page, $input, $idPlatform, $idGenre, SessionInterface $session, )
+    {
+        $query = "";
+        
+        if ($input) {
+            $query .= "&search=" . $input;
+        }
+
+        if ($idPlatform) {
+            $query .= "&platforms=" . $idPlatform;
+        }
+
+        if ($idGenre) {
+            $query .= "&genres=" . $idGenre;
+        }
+
+        // Si l'input est présent, on le stocke dans la session
+        if ($query) {
+
+        $session->set('multiFiltre', $query);
+    }
+
+        $response = $this->httpClient->request('GET', "https://api.rawg.io/api/games?key=c2caa004df8a4f65b23177fa9ca935f9&page=".$page.$query);
+
+        return $response->toArray();
+    }
+
+
 
 }

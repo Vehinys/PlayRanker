@@ -9,25 +9,50 @@
     <main class="container-body">
 
         <!-- TITRE PRINCIPAL ET DESCRIPTION -->
+        <section class="">
 
-        <section class="header-section" id="bg-home">
-        
-        <h1> Welcome to  <b> PlayRanker </b> </h1>
-        <h3>
-            The first online space dedicated exclusively to game evaluation!  
-            Whether you are a passionate gamer or a curious person looking for new challenges, 
-            we are your ultimate reference. Discover our evaluations, 
-            new tips to master your favorite games, and expert opinions to guide you in your choices.
-        </h3>
+            <section class="header-section space-y-4" id="bg-home">
+            
+            <h1> Welcome to  <b> PlayRanker </b> </h1>
+            <h3>
+                The first online space dedicated exclusively to game evaluation!  
+                Whether you are a passionate gamer or a curious person looking for new challenges, 
+                we are your ultimate reference. Discover our evaluations, 
+                new tips to master your favorite games, and expert opinions to guide you in your choices.
+            </h3>
 
-        <div class="search-container">
-            <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
-            <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </form>
-        </div>
+            <div class="search-container py-4">
+                <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
+                <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </form>
+            </div>
 
+            <section class="container mx-auto px-4">
+                <div class="flex flex-wrap -mx-4">
+                    <!-- Section des catégories -->
+                    <section class="w-full px-4 flex justify-center my-2">
+                        <div class="flex flex-wrap justify-center gap-4">
+                            {% for category in categories %}
+                                <div class="relative w-[150px] text-center text-base">
+                                    <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-{{ category.id }}">
+                                        {{ category.name }}
+                                    </h2>
+                                    <div id="dropdown-menu-{{ category.id }}" class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full" role="menu" aria-labelledby="dropdown-menu-{{ category.id }}">
+                                        {% for platform in category.platforms %}
+                                            <a href="{{ path('searchByPlatform', { id: platform.id }) }}" class="block px-4 py-2 text-[#ebf1ff] hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300" role="menuitem">
+                                                {{ platform.name }}
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+            </section>
         </section>
+
 
         <!-- Cherchez-les -->
 

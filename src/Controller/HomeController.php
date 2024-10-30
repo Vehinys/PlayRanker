@@ -8,6 +8,7 @@ use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,8 @@ class HomeController extends AbstractController
         Request $request, 
         CommentRepository $commentRepository,
         ScoreRepository $scoreRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        CategoryRepository $categoryRepository
         
     ): Response {
 
@@ -38,16 +40,20 @@ class HomeController extends AbstractController
     
         $comments = $commentRepository->findAll();
 
+        
         // Récupérer tous les utilisateurs
         $users = $userRepository->findAll();
-    
+        
         // Récupérer les jeux avec les meilleures notes
         $topGames = $scoreRepository->findTopGames(3);
-    
+        
+        $categories = $categoryRepository->findAll();
+        
         return $this->render('pages/home/index.html.twig', [
             'contactForm' => $form->createView(),
             'comments' => $comments,
             'topGames' => $topGames,
+            'categories'  => $categories,
             'users' => $users,
         ]);
     }
