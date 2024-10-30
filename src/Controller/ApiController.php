@@ -158,8 +158,6 @@ class ApiController extends AbstractController
 
     ): Response {
 
-        
-        
         // Récupérer toutes les catégories et types disponibles
         $categories = $categoryRepository->findAll();
         
@@ -172,14 +170,6 @@ class ApiController extends AbstractController
         // Récupération des parametres de recherche
         $idPlatform = $request->get('platform');
         $idGenre = $request->get('genre');
-        
-        // // Si l'input est présent, on le stocke dans la session
-        // if ($input) {
-        //     $session->set('search_input', $input);
-        // } else {
-        //     // Si pas d'input dans la requête, on récupère l'input de la session
-        //     $input = $session->get('search_input');
-        // }
         
         // Récupération des résultats de recherche
         $games = $apiHttpClient->multiFiltre($page, $input, $idPlatform, $idGenre, $session );
@@ -194,8 +184,10 @@ class ApiController extends AbstractController
             $page = 1;
         }
 
+        // Calcul des scores moyens pour chaque jeu
         $averageScores = [];
         
+        // Parcourir les jeux pour récupérer les scores moyens
         foreach ($games['results'] as $game) {
             $gameEntity = $gameRepository->findOneBy(['id_game_api' => $game['id']]);
             if ($gameEntity) {
