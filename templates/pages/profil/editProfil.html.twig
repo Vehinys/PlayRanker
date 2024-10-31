@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit my profile{% endblock %}
+{% block title %} Edit my Profile {% endblock %}
 
-{# Début du bloc principal du corps #}
 {% block body %}
 
 {# Début de la section d'édition du profil #}
@@ -18,7 +17,7 @@
             <div class="p-5">
 
                 {# Titre de la page #}
-                <h1 class="font-bold text-2xl text-[#ECC33E] text-center">Edit my profile</h1>
+                <h1 class="font-bold text-2xl text-[#ECC33E] text-center"> Edit my profile </h1>
             </div>
 
             {# Zone de contenu principal de la carte #}
@@ -34,11 +33,11 @@
                         {% if user.avatar %}
 
                             {# Affichage de l'avatar de l'utilisateur #}
-                            <img <img src="/uploads/avatars/{{ user.avatar }}"  alt="Photo de profil de {{ user.username }}" class="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img src="/uploads/avatars/{{ user.avatar }}" alt="Photo de profil de {{ user.username }}" class="object-cover w-32 h-32 mb-4 rounded-full md:mb-0 md:mr-6">
                         {% else %}
 
                             {# Affichage de l'avatar par défaut si l'utilisateur n'en a pas #}
-                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de profil par défaut" class="w-32 h-32  border-2 border-[#ECC33E] rounded-full object-cover mb-4 md:mb-0 md:mr-6">
+                            <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3383.jpg" alt="Photo de profil par défaut" class="w-32 h-32 border-2 border-[#ECC33E] rounded-full object-cover mb-4 md:mb-0 md:mr-6">
                         {% endif %}
                     {% else %}
 
@@ -76,7 +75,7 @@
                         {# Champ Avatar #}
                         <div class="mb-4">
                         
-                        {# Étiquette Avatar #}
+                            {# Étiquette Avatar #}
                             {{ form_label(form.avatar, 'Avatar :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
                             
                             {# Widget d'entrée Avatar #}
@@ -87,7 +86,7 @@
                         <div class="mb-4">
 
                             {# Étiquette Gamer Tag PlayStation #}
-                            {{ form_label(form.gamerTagPlaystation, 'Gamer Tag PlayStation :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
+                            {{ form_label(form.gamerTagPlaystation, 'Gamer Tag Xbox :', {'label_attr': {'class': 'text-[#ECC33E] font-semibold mb-2'}}) }}
                         
                             {# Widget d'entrée Gamer Tag PlayStation #}
                             {{ form_widget(form.gamerTagPlaystation, {'attr': {'class': 'border rounded-md py-2 px-4 w-1/2 text-gray-700'}}) }}
@@ -131,7 +130,8 @@
                             </button>
 
                             {# Bouton Annuler #}
-                            <button type="button" onclick="window.location.href ='{{ path('profil', {'username': app.user.username}) }}'" class="bg-[#0C1D36] text-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
+                            <button type="button" onclick="window.location.href ='{{ path('profil', {'username': app.user.username}) }}'" 
+                            class="bg-[#ECC33E] px-4 py-2 rounded-lg hover:bg-[#ebf1ff] hover:text-[#0C1D36] transition duration-300">
                                 Cancel
                             </button>
                         </div>

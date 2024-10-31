@@ -15,6 +15,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\GenreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\RatingCategoryRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -210,101 +211,133 @@ class ApiController extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     // Définit la route pour la page de détail d'un jeu
-        #[Route('/jeux/detail/{id}', name: 'detail_jeu')]
-        public function detailJeu(
+    #[Route('/jeux/detail/{id}', name: 'detail_jeu')]
+    public function detailJeu(
 
-            string $id,
-            ApiHttpClient $apiHttpClient,
-            GameRepository $gameRepository,
-            ScoreRepository $scoreRepository,
-            CommentRepository $commentRepository,
-            EntityManagerInterface $entityManager,
-            RatingCategoryRepository $ratingCategoryRepository,
-            Request $request
+        string $id,
+        ApiHttpClient $apiHttpClient,
+        GameRepository $gameRepository,
+        ScoreRepository $scoreRepository,
+        CommentRepository $commentRepository,
+        EntityManagerInterface $entityManager,
+        PaginatorInterface $paginatorInterface,
+        RatingCategoryRepository $ratingCategoryRepository,
+        Request $request
 
-        ): Response {
+    ): Response {
 
-            $user = $this->getUser();
-            $gameDetail = $apiHttpClient->gameDetail($id);
-            $gameAnnonce = $apiHttpClient->gameAnnonce($id);
-            $game = $gameRepository->findOneBy(['id_game_api' => $id]);
-            $ratingCategories = $ratingCategoryRepository->findAll();
-            $scores = $scoreRepository->findBy(['game' => $game]);
+        // Get the user
+        $user = $this->getUser();
 
-            // Calculate average score
-            $averageScore = $game ? $scoreRepository->getAverageScoreForGame($game) : null;
+        // Get the game detail
+        $gameDetail = $apiHttpClient->gameDetail($id);
 
-            if ($user) {
-                $averageScoreUser = $game ? $scoreRepository->getAverageScoreForGameAndUser($game, $user) : null;
+        // Get the game annonce
+        $gameAnnonce = $apiHttpClient->gameAnnonce($id);
 
-                } else {
-                
-                $averageScoreUser = null;
-    
-            }
+        // Get the game
+        $game = $gameRepository->findOneBy(['id_game_api' => $id]);
 
-            $comments = $commentRepository->findBy(['game' => $game]);
+        // Get the rating categories
+        $ratingCategories = $ratingCategoryRepository->findAll();
 
-            $scoreForm = $this->createForm(ScoreType::class, null, [
-                'rating_category_repository' => $ratingCategoryRepository
-            ]);
+        // Get the scores
+        $scores = $scoreRepository->findBy(['game' => $game]);
 
-            $scoreForm->handleRequest($request);
+        // Get the comments
+        $comments = $commentRepository->findBy(['game' => $game]);
 
-            if ($scoreForm->isSubmitted() && $scoreForm->isValid()) {
-                if (!$game) {
-                    $game = new Game();
-                    $game->setIdGameApi($id);
-                    $game->setName($gameDetail['name']);
-                    $game->setData($gameDetail);
-                    $entityManager->persist($game);
-                    $entityManager->flush();
-                }
-
-                foreach ($ratingCategories as $category) {
-                    $existingScore = $scoreRepository->findOneBy([
-                        'game' => $game,
-                        'user' => $this->getUser(),
-                        'ratingCategory' => $category
-                    ]);
-
-                    if ($existingScore) {
-                        $existingScore->setNote($scoreForm->get('rating' . $category->getId())->getData());
-                        $entityManager->persist($existingScore);
-                    } else {
-                        $score = new Score();
-                        $score->setGame($game);
-                        $score->setUser($this->getUser());
-                        $score->setRatingCategory($category);
-                        $score->setNote($scoreForm->get('rating' . $category->getId())->getData());
-                        $entityManager->persist($score);
-                    }
-                }
-
-                $entityManager->flush();
-                $this->addFlash('success', 'Vos notes ont été enregistrées avec succès.');
-                return $this->redirectToRoute('detail_jeu', ['id' => $id]);
-            }
-            $form = $this->createForm(CommentType::class);
-
-            return $this->render('pages/jeux/detail.html.twig', [
-                'gameId' => $id,
-                'scores' => $scores,
-                'comments' => $comments,
-                'gameDetail' => $gameDetail,
-                'gameAnnonce' => $gameAnnonce,
-                'averageScore' => $averageScore,
-                'averageScoreUser' => $averageScoreUser,
-                'scoreForm' => $scoreForm->createView(),
-                'ratingCategories' => $ratingCategories,
-                'form' => $form->createView(), 
-            ]);
+        // Calculate average score
+        $averageScore = $game ? $scoreRepository->getAverageScoreForGame($game) : null;
+        
+        // Calculate average score for user
+        if ($user) {
+            $averageScoreUser = $game ? $scoreRepository->getAverageScoreForGameAndUser($game, $user) : null;
+            } else {
+            $averageScoreUser = null;
         }
 
+        // Formulaire de note
+        $scoreForm = $this->createForm(ScoreType::class, null, [
+            'rating_category_repository' => $ratingCategoryRepository
+        ]);
 
-    /* ----------------------------------------------------------------------------------------------------------------------------------------- */
-    
-    #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
+        // Formulaire de note
+        $scoreForm->handleRequest($request);
+
+        // Formulaire de commentaire
+        $form = $this->createForm(CommentType::class);
+        
+        // Pagination des commentaires
+        $comments = $paginatorInterface->paginate(
+            $comments,
+            $request->query->getInt('page', 1),
+            3
+        );
+
+        // Pagination des commentaires
+        $scores = $paginatorInterface->paginate(
+            $scores,
+            $request->query->getInt('page', 1),
+            12
+        );
+        
+        // Formulaire de note
+        if ($scoreForm->isSubmitted() && $scoreForm->isValid()) {
+            if (!$game) {
+                $game = new Game();
+                $game->setIdGameApi($id);
+                $game->setName($gameDetail['name']);
+                $game->setData($gameDetail);
+                $entityManager->persist($game);
+                $entityManager->flush();
+            }
+            
+            // Ajout des notes
+            foreach ($ratingCategories as $category) {
+                $existingScore = $scoreRepository->findOneBy([
+                    'game' => $game,
+                    'user' => $this->getUser(),
+                    'ratingCategory' => $category
+                ]);
+                
+                if ($existingScore) {
+                    $existingScore->setNote($scoreForm->get('rating' . $category->getId())->getData());
+                    $entityManager->persist($existingScore);
+                } else {
+                    $score = new Score();
+                    $score->setGame($game);
+                    $score->setUser($this->getUser());
+                    $score->setRatingCategory($category);
+                    $score->setNote($scoreForm->get('rating' . $category->getId())->getData());
+                    $entityManager->persist($score);
+                }
+            }
+            
+            // Flush
+            $entityManager->flush();
+            $this->addFlash('success', 'Vos notes ont été enregistrées avec succès.');
+            return $this->redirectToRoute('detail_jeu', ['id' => $id]);
+        }
+
+        return $this->render('pages/jeux/detail.html.twig', [
+            'gameId' => $id,
+            'scores' => $scores,
+            'comments' => $comments,
+            'gameDetail' => $gameDetail,
+            'gameAnnonce' => $gameAnnonce,
+            'form' => $form->createView(), 
+            'averageScore' => $averageScore,
+            'averageScoreUser' => $averageScoreUser,
+            'scoreForm' => $scoreForm->createView(),
+            'ratingCategories' => $ratingCategories,
+        ]);
+    }
+        
+        
+        /* ----------------------------------------------------------------------------------------------------------------------------------------- */
+        
+        #[Route('/jeux/platforms/{id}', name: 'searchByPlatform')]
     public function searchByConsole(
 
         string $id,
@@ -348,8 +381,7 @@ class ApiController extends AbstractController
     #[Route('/games/scores', name: 'scores')]
     public function findAllScoresGroupedByUserGameAndCategory(
 
-        ScoreRepository $scoreRepository
-    
+        ScoreRepository $scoreRepository,
     ): Response {
         
         $scores = $scoreRepository->findAllScoresGroupedByUserGameAndCategory();

@@ -1,120 +1,116 @@
-{% extends 'base.html.twig' %}  
+{% extends 'base.html.twig' %}
 
-{% block title %} My Profile {% endblock %}  
+{% block title %} My Profile {% endblock %}
 
-{% block body %}  
+{% block body %}
 
-{# Conteneur principal avec une hauteur minimale et un fond bleu #}
+<!-- Conteneur principal avec une couleur de fond et un espacement vertical -->
 <div class="min-h-screen bg-[#97b4e0] py-8">  
+    <!-- Conteneur centré avec des marges internes -->
+    <div class="container p-4 pt-8 mx-auto">  
 
-    {# Conteneur centré avec des marges internes #}
-    <div class="container p-4 mx-auto ">  
-        
+    <!-- ----------------------------------------------------------------------- -->
     <!-- Section Profil Utilisateur -->
-    {# Section avec un fond sombre, des ombres et des bordures dorées #}
-    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-8 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
-        <div class="flex flex-col items-center justify-center py-7 md:flex-row">  
-            <!-- Profil Utilisateur -->
-            <div class="w-full md:w-1/2">  
-                <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>  
+    <!-- ----------------------------------------------------------------------- -->
     
+    <!-- Section pour le profil utilisateur -->
+    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-8 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
+        <!-- Flexbox pour disposer le contenu -->
+        <div class="flex flex-col items-center gap-8 py-7 md:flex-row md:justify-between">  
+
+            <!-- Profil Utilisateur -->
+            <!-- Colonne pour le profil utilisateur -->
+            <div class="w-full md:w-1/2">  
+                <!-- Titre de la section -->
+                <h2 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Profile</h2>  
+
+                <!-- Vérifie si l'utilisateur est défini -->
                 {% if user %}  
-                    <div class="flex flex-col items-center gap-10 md:flex-row">  
-                        <img src="/uploads/avatars/{{ user.avatar }}" 
-                        alt="Profile Picture of {{ user.username }}" class="w-[20rem] h-[20rem] rounded border-4 border-[#ECC33E] transition-transform duration-500 transform hover:scale-105">  
-                        
-                        <div class="text-white text-start">  
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">username : </span> 
-                                <span class="text-[18px]">{{ user.username }}</span>  
-                            </p>
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">Email : </span> 
-                                {% if user.id == currentUser.id %}
-                                    <span class="text-[18px]">{{ user.email }}</span>  
+                    <!-- Conteneur pour les informations utilisateur -->
+                    <div class="flex flex-col items-center gap-6 md:gap-8">  
+                        <!-- Image de l'avatar -->
+                        <img src="/uploads/avatars/{{ user.avatar }}" alt="Profile Picture of {{ user.username }}" 
+                        class="w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] rounded border-4 border-[#ECC33E] 
+                        transition-transform duration-500 transform hover:scale-105 object-cover md:object-fill">  
+                        <!-- Conteneur pour les détails utilisateur -->
+                        <div class="space-y-3 text-white text-start">  
+                            <!-- Affiche le nom d'utilisateur -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">username :</span> {{ user.username }}</p>  
+                            <!-- Affiche l'email si l'utilisateur est le même que l'utilisateur connecté -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">Email :</span>
+                                {% if user.id == currentUser  .id %}  
+                                    <!-- Affiche l'email si c'est le même utilisateur -->
+                                    {{ user.email }}  
                                 {% else %}
-                                    <span class="text-[18px]"> ***@**.**</span>  
+                                    <!-- Masque l'email pour les autres utilisateurs -->
+                                    ***@**.**  
                                 {% endif %}
                             </p>
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">Topics created : </span> 
-                                <span class="text-[18px]">{{ user.topics|length }}</span>  
-                            </p>
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Playstation : </span> 
-                                <span class="text-[18px]">{{ user.gamerTagPlaystation }}</span>  
-                            </p>
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Xbox : </span> 
-                                <span class="text-[18px]">{{ user.gamerTagXbox }}</span>  
-                            </p>
-
-                            <p class="mb-2">
-                                <span class="text-[20px] text-[#ECC33E] font-bold">Gamertag Twitch : </span> 
-                                <span class="text-[18px]">{{ user.Twitch }}</span>  
-                            </p>
-
-                            <p class="mb-2 ">
-                                <a href="{{ user.Youtube }}" target="_blank" class="text-[#ECC33E] font-bold text-[20px] hover:underline">YouTube Channel</a>  
-                            </p>
-
-    
-                            <div class="flex mt-6 space-x-4">  
-                                {% if app.user and (app.user.username == user.username or is_granted('ROLE_ADMIN')) %}
-                                    <a href="{{ path('edit_profil', { username: user.username }) }}" class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                            <!-- Affiche le nombre de sujets créés -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">Topics created :</span> {{ user.topics|length }}</p>  
+                            <!-- Affiche le gamertag Playstation -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">Gamertag Playstation :</span> {{ user.gamerTagPlaystation }}</p>  
+                            <!-- Affiche le gamertag Xbox -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">Gamertag Xbox :</span> {{ user.gamerTagXbox }}</p>  
+                            <!-- Affiche le gamertag Twitch -->
+                            <p><span class="text-lg font-bold text-[#ECC33E]">Gamertag Twitch :</span> {{ user.Twitch }}</p>  
+                            <!-- Lien vers la chaîne YouTube de l'utilisateur -->
+                            <p><a href="{{ user.Youtube }}" target="_blank" class="text-lg text-[#ECC33E] font-bold hover:underline">YouTube Channel</a></p>  
+                            <!-- Conteneur pour les boutons d'édition et de suppression -->
+                            <div class="flex mt-4 space-x-4">  
+                                <!-- Vérifie si l'utilisateur connecté peut modifier ou supprimer -->
+                                {% if app.user and (app.user.username == user.username or is_granted('ROLE_ADMIN')) %}  
+                                    <!-- Bouton pour éditer le profil -->
+                                    <a href="{{ path('edit_profil', { username: user.username }) }}" 
+                                    class="bg-[#ECC33E] hover:bg-orange-400 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                                         Edit  
                                     </a>
-    
-                                    <form action="{{ path('delete_profil') }}" method="post">
-                                        <button type="submit" class="px-4 py-2 font-semibold text-white transition duration-300 transform bg-red-600 rounded-lg shadow-lg hover:bg-red-700 hover:scale-105">
-                                            <i class='fas fa-trash-can'></i>  
+                                    <!-- Formulaire pour supprimer le profil -->
+                                    <form action="{{ path('delete_profil') }}" method="post">  
+                                        <button type="submit" class="px-4 py-2 font-semibold text-white transition duration-300 transform bg-red-600 rounded-lg shadow -lg hover:bg-red-700 hover:scale-105">
+                                            <i class='fas fa-trash-can'></i>  <!-- Icône de suppression -->
                                         </button>
                                     </form>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
-    
-                {% else %}  
+                {% else %}
+                    <!-- Message si aucun utilisateur n'est trouvé -->
                     <p class="text-center text-red-500">No users found. Please log in.</p>  
                 {% endif %}
-    
             </div>
-    
+
             <!-- Iframe Twitch à droite du profil -->
-            <div class="w-full md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
-                <iframe 
-                    src="https://player.twitch.tv/?channel={{ user.Twitch }}&parent=localhost"
-                    height="400" 
-                    width="600" 
-                    allowfullscreen="true" 
-                    frameborder="0">
-                </iframe>
+            <!-- Conteneur pour l'iframe Twitch -->
+            <div class="flex items-center justify-center w-full mt-8 md:w-1/2 md:mt-0">  
+                <!-- Iframe pour la diffusion Twitch -->
+                <iframe src="https://player.twitch.tv/?channel={{ user.Twitch }}&parent=localhost" height="500" width="800" allowfullscreen="true" frameborder="0" class="max-w-full"></iframe>  
             </div>
         </div>
     </section>
-    
-        
-    
+
+    <!-- ----------------------------------------------------------------------- -->
     <!-- Section Sujets de l'utilisateur -->
-    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 flex justify-center items-center transition-transform mt-8 duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl ">    
-
-        <!-- Sujets de l'utilisateur -->
-        <div class="flex flex-col items-center w-full mt-6 md:w-2/3 lg:w-full py-7 md:mt-0">  
-
-            <!-- Titre de la section des sujets -->
+    <!-- ----------------------------------------------------------------------- -->
+    
+    <!-- Section pour les sujets de l'utilisateur -->
+    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-6 flex justify-center items-center transition-transform mt-8 duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
+        <!-- Conteneur pour les sujets -->
+        <div class="flex flex-col items-center w-full md:w-2/3 lg:w-full py-7">  
+            <!-- Titre de la section -->
             <h3 class="text-4xl text-center font-bold text-[#ECC33E] mb-6">My Topics</h3>  
 
-            <!-- Grille pour afficher les sujets -->
-            <div class="grid w-full grid-cols-1 gap-6 p-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">  
-
-                <!-- Boucle pour chaque sujet de l'utilisateur -->
+            <!-- Grille pour les sujets -->
+            <div class="grid w-full grid-cols-1 gap-6 p-2 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">  
+                <!-- Boucle pour les sujets de l'utilisateur -->
                 {% for topic in user.topics %}  
-                    <!-- Lien vers chaque sujet créé par l'utilisateur -->
-                    <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-4 rounded-lg content-center border-[2px] border-[#ECC33E] text-center text-[16px] text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200 w-full flex items-center justify-center">
-                        {{ topic.title }}  
+                    <!-- Lien vers le sujet -->
+                    <a href="{{ path('post', { id: topic.id }) }}" class="bg-[#09172b] p-4 rounded-lg border-[2px] border-[#ECC33E] 
+                    text-center text-white hover:bg-[#ECC33E] hover:text-[#09172b] transition duration-200 w-full flex items-center justify-center">
+                        {{ topic.title }}  <!-- Titre du sujet -->
                     </a>
-                {% else %}  
+                {% else %}
                     <!-- Message si aucun sujet n'a été créé -->
                     <p class="text-center text-white col-span-full">No topics created yet.</p>  
                 {% endfor %}
@@ -122,75 +118,54 @@
         </div>
     </section>
 
-        
+    <!-- ----------------------------------------------------------------------- -->
     <!-- Section Listes de jeux -->
-    {# Section pour les listes de jeux #}
-    <section class="mt-8">
+    <!-- ----------------------------------------------------------------------- -->
     
-        {# Vérifie si aucune liste de jeux n'est disponible #}
+    <!-- Section pour les listes de jeux -->
+    <section class="mt-8">  
+        <!-- Vérifie si la liste de jeux est vide -->
         {% if gamesLists|length == 0 %}  
-
-            <!-- Message si aucune liste de jeux n'est disponible -->
-            {# Message d'absence de jeux #}
+            <!-- Message si aucune liste de jeu n'est disponible -->
             <div class="bg-[#0C1D36] border-[3px] border-[#ECC33E] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
                 <p class="text-center text-white">No games available in your list.</p>  
             </div>
-        {# Si des listes de jeux sont disponibles #}
-        {% else %}  
-        
-            {# Boucle pour chaque type de jeu #}
+        {% else %}
+            <!-- Boucle pour les types de jeux -->
             {% for type in types %}  
+                <!-- Section pour les jeux de chaque type -->
                 <div class="bg-[#0C1D36] border-[3px] border-[#ECC33E] text-[#ECC33E] my-4 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:shadow-xl">
-                    
-                    {# Titre du type de jeu #}
+                    <!-- Titre du type de jeu -->
                     <h2 class="mb-4 text-3xl font-bold text-center">{{ type.name }}</h2>  
 
-                    {# Filtre les jeux par type #}
+                    <!-- Filtre les jeux par type -->
                     {% set filteredGames = gamesLists|filter(g => g.type and g.type.id == type.id) %}  
-
-                    {# Si aucun jeu n'est trouvé pour ce type #}
-                    {% if filteredGames|length == 0 %}  
-
+                    <!-- Vérifie si des jeux sont disponibles pour ce type -->
+                    {% if filteredGames|length == 0 %}
                         <!-- Message si aucun jeu n'est disponible pour ce type -->
-                        {# Message d'absence de jeux pour ce type #}
-                        <p class="text-center text-white">No games available for this type.</p> 
-                        
-                    {# Si des jeux sont disponibles pour ce type #}
-                    {% else %}  
-
-                        {# Liste des jeux #}
-                        <ul class="grid space-y-2 md:grid-cols-2 lg:grid-cols-3"> 
-                        
-                        {# Boucle pour chaque jeu filtré #}
-                        {% for gamesList in filteredGames %}
-                        
-                            {# Si le jeu est disponible #}
-                            {% if gamesList.game is not null %}  
-
-                                <!-- Lien vers chaque jeu disponible dans la liste -->
-                                {# Affiche le nom du jeu #}
-                                <li class="text-center">
-                                    <a href="{{ path('detail_jeu', {'id': gamesList.game.idGameApi}) }}" class="text-white hover:text-[#ECC33E] transition  text-lg duration-300 ease-in-out">
-                                        {{ gamesList.game.name }}  
-                                    </a>
-                                </li>
-
-                            {# Si le jeu n'est pas disponible #}
-                            {% else %}  
-
-                                <!-- Message si le jeu n'est pas disponible -->
-                                {# Message d'absence de jeu #}
-                                <li class="text-center text-gray-400">Game not available</li>  
-                            {% endif %}
-                        {% endfor %}
+                        <p class="text-center text-white">No games available for this type.</p>  
+                    {% else %}
+                        <!-- Liste des jeux -->
+                        <ul class="grid gap-4 space-y-2 md:grid-cols-2 lg:grid-cols-3">  
+                            <!-- Boucle pour les jeux de chaque type -->
+                            {% for gamesList in filteredGames %}
+                                <!-- Vérifie si le jeu est disponible -->
+                                {% if gamesList.game is not null %}
+                                    <!-- Lien vers le jeu -->
+                                    <li class="text-center">
+                                        <a href="{{ path('detail_jeu', {'id': gamesList.game.idGameApi}) }}" class="text-white hover:text-[#ECC33E] text-lg transition duration-300 ease-in-out">
+                                            {{ gamesList.game.name }}  <!-- Nom du jeu -->
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <!-- Message si le jeu n'est pas disponible -->
+                                    <li class="text-center text-gray-400">Game not available</li>  
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     {% endif %}
-
-                    {# Conteneur pour le lien de recherche de jeux #}
-                    <div class="mt-4 text-center">  
-                    
-                        <!-- Lien pour rechercher des jeux -->
-                        {# Bouton pour rechercher des jeux #}
+                    <!-- Bouton pour rechercher des jeux -->
+                    <div class="mt-4 text-center">
                         <a href="{{ path('jeux', { 'page': 1 }) }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold border-[2px] border-[#ECC33E] py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                             Search Game  
                         </a>

@@ -1,549 +1,705 @@
+/* --------------------------------------------------------------------------- */
+/* ---------------------------------- ROOT ----------------------------------- */
+/* --------------------------------------------------------------------------- */
+
 :root {
-  --color-dark: #0C1D36;
-  --color-dark-2: #09172b;
-  --color-light: #ebf1ff;
-  --color-yellow: #ECC33E;
-  --color-bg-blue : #97b4e0;  
+  --color-dark: #0C1D36;                    /* Couleur principale foncée du site */
+  --color-dark-2: #09172b;                  /* Couleur foncée secondaire */
+  --color-light: #ebf1ff;                   /* Couleur claire pour le contraste */
+  --color-yellow: #ECC33E;                  /* Couleur jaune pour les accents */
+  --color-bg-blue: #97b4e0;                 /* Couleur de fond pour le corps */
+  --Vitesse: 30s;                           /* Vitesse d'animation par défaut */
 }
+
+/* --------------------------------------------------------------------------- */
+/* -------------------------------- GENERAL ---------------------------------- */
+/* --------------------------------------------------------------------------- */
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  box-sizing: border-box;
+  margin: 0;                                /* Réinitialiser toutes les marges */
+  padding: 0;                               /* Réinitialiser tous les espacements */
+  font-family: 'Poppins', sans-serif;       /* Police de caractère pour le site */
+  text-decoration: none;                    /* Retirer la décoration de texte */
+  box-sizing: border-box;                   /* Gérer le modèle de boîte */
 }
 
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- HEADER SECTION HOME ------------------------- */
+/* --------------------------------------------------------------------------- */
+
 .container-body {
-  background: var(--color-bg-blue);
+  background: var(--color-bg-blue);         /* Appliquer la couleur de fond */
 }
 
 .header-section {
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  padding: 50px 0 80px 0;
-  text-align: center;
-  box-shadow: var(--color-dark) 0 0 10px;
+  background-color: var(--color-dark);      /* Fond de la section d'en-tête */
+  color: var(--color-light);                /* Texte en couleur claire */
+  padding: 50px 0 80px 0;                   /* Marges internes pour espacement */
+  text-align: center;                       /* Centrer le texte */
+  box-shadow: var(--color-dark) 0 0 10px;   /* Effet d'ombre sur l'en-tête */
 }
 
 .header-section h1 {
-  font-size: 5.5rem;
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: var(--color-yellow);
+  font-size: 5.5rem;                        /* Taille du titre principal */
+  margin-bottom: 15px;                      /* Espace sous le titre */
+  font-weight: bold;                        /* Mettre le texte en gras */
+  color: var(--color-yellow);               /* Couleur jaune pour le titre */
 }
 
 .header-section h3 {
-  width: 55%;
-  text-align: center;
-  font-size: 1.1rem;
-  margin: 5px 0 30px;
-  line-height: 1.5;
-  display: -webkit-inline-box;
+  width: 55%;                               /* Largeur du sous-titre */
+  text-align: center;                       /* Centrer le sous-titre */
+  font-size: 1.1rem;                        /* Taille de police du sous-titre */
+  margin: 5px 0 30px;                       /* Espacement en haut et en bas */
+  line-height: 1.5;                         /* Hauteur de ligne pour lisibilité */
+  display: -webkit-inline-box;              /* Affichage pour support multi-lignes */
 }
 
+/* --------------------------------------------------------------------------- */
+/* ------------------------------ SEARCH SECTION HOME ------------------------ */
+/* --------------------------------------------------------------------------- */
+
 .search-container {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 100%;
+  display: flex;                            /* Disposition en ligne */
+  justify-content: center;                  /* Centrer le formulaire de recherche */
+  position: relative;                       /* Position pour placement de l'icône */
+  width: 100%;                              /* Largeur complète du conteneur */
 }
 
 .search-form {
-  display: flex;
+  display: flex;                            /* Mettre en ligne les éléments */
 }
 
 .search-input {
-  padding: 10px 50px;
-  font-size: 16px;
-  border: 3px solid var(--color-light);
-  border-radius: 25px;
-  outline: none;
-  color: var(--color-dark-2);
+  padding: 10px 50px;                       /* Espacement interne pour confort */
+  font-size: 16px;                          /* Taille de police de l'entrée */
+  border: 3px solid var(--color-light);     /* Bordure claire */
+  border-radius: 25px;                      /* Coins arrondis */
+  outline: none;                            /* Enlever le contour par défaut */
+  color: var(--color-dark-2);               /* Couleur de texte dans l'entrée */
 }
 
 .search-input:focus {
-  border-color: var(--color-yellow);
+  border-color: var(--color-yellow);        /* Changer la couleur de bordure au focus */
 }
 
 .search-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-dark);
-  font-size: 18px;
-  margin: 0 15px;
+  position: absolute;                       /* Position absolue pour placer l'icône */
+  top: 50%;                                 /* Centrer verticalement */
+  transform: translateY(-50%);              /* Ajuster la position au centre */
+  color: var(--color-dark);                 /* Couleur de l'icône */
+  font-size: 18px;                          /* Taille de l'icône */
+  margin: 0 15px;                           /* Espacement autour de l'icône */
 }
 
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- RATE SECTION HOME --------------------------- */
+/* --------------------------------------------------------------------------- */
+
 .rate-section {
-  text-align: center;
-  display: flex;
-  justify-content: center;
+  text-align: center;                       /* Centrer le contenu */
+  display: flex;                            /* Disposer en ligne */
+  justify-content: center;                  /* Centrer les éléments */
 }
 
 .rate-section h2 {
-  font-size: 4rem;
-  color: var(--color-dark);
-  font-weight: bold;
-  line-height: 1.4;
-  padding: 150px 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 4rem;                          /* Taille du texte pour titre */
+  color: var(--color-dark);                 /* Couleur principale du texte */
+  font-weight: bold;                        /* Texte en gras */
+  line-height: 1.4;                         /* Hauteur de ligne */
+  padding: 150px 0;                         /* Espacement vertical important */
+  width: 100%;                              /* Largeur complète */
+  display: flex;                            /* Affichage en flex pour alignement */
+  align-items: center;                      /* Centrer verticalement */
+  justify-content: center;                  /* Centrer horizontalement */
 }
 
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- ANIMATION SECTION --------------------------- */
+/* --------------------------------------------------------------------------- */
+
 .word-animation {
-  height: 1.2em;
-  overflow: hidden;
-  display: inline-block;
-  padding-left: 20px;
+  height: 1.2em;                            /* Hauteur pour l'animation de texte */
+  overflow: hidden;                         /* Cacher les éléments hors limite */
+  display: inline-block;                    /* Affichage en ligne */
+  padding-left: 20px;                       /* Espace à gauche pour ajustement */
 }
 
 .word-animation span {
-  color: var(--color-dark);
-  display: block;
-  animation: rotateSpin 9s infinite;
+  color: var(--color-dark);                 /* Couleur du texte animé */
+  display: block;                           /* Affichage en bloc */
+  animation: rotateSpin 9s infinite;        /* Animation en boucle infinie */
 }
 
 .word-animation .red {
-  font-size: 60px;
-  color: red;
-  display: flex;
+  font-size: 60px;                          /* Taille agrandie pour l'effet */
+  color: red;                             /* Couleur rouge pour mise en avant */
+  display: flex;                            /* Flex pour alignement */
 }
 
 @keyframes rotateSpin {
-  0%, 30% {
-    transform: translateY(0);
+  0%, 30% {                                 /* Début de l'animation */
+    transform: translateY(0);               /* Position initiale */
   }
-  33%, 63% {
-    transform: translateY(-100%);
+  33%, 63% {                                /* Transition intermédiaire */
+    transform: translateY(-100%);           /* Décalage pour l'effet */
   }
-  66%, 96% {
-    transform: translateY(-200%);
+  66%, 96% {                                /* Avant dernière étape */
+    transform: translateY(-200%);           /* Décalage plus important */
   }
-  100% {
-    transform: translateY(0);
+  100% {                                    /* Fin de l'animation */
+    transform: translateY(0);               /* Retour à la position initiale */
   }
 }
 
-
-
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- SEPARATOR SECTION HOME ---------------------- */
+/* --------------------------------------------------------------------------- */
 
 .separator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px auto;
-  width: 80%;
+  display: flex;                            /* Disposer en flex pour alignement */
+  align-items: center;                      /* Centrer verticalement */
+  justify-content: center;                  /* Centrer horizontalement */
+  margin: 20px auto;                        /* Espacement autour du séparateur */
+  width: 80%;                               /* Largeur définie pour le séparateur */
 }
 
 .separator::before,
 .separator::after {
-  content: '';
-  width: 300px;
-  border-bottom: 4px solid;
-  color: var(--color-yellow);
-  box-shadow: var(--color-dark) 0 0 2px;
+  content: '';                              /* Ajouter une ligne avant et après */
+  width: 300px;                             /* Largeur de la ligne */
+  border-bottom: 4px solid;                 /* Bordure en bas pour la ligne */
+  color: var(--color-yellow);               /* Couleur jaune pour les lignes */
+  box-shadow: var(--color-dark) 0 0 2px;    /* Ombre légère */
 }
 
 .separator::before {
-  margin-right: 20px;
+  margin-right: 20px;                       /* Espacement entre ligne et texte */
 }
 
 .separator::after {
-  margin-left: 20px;
+  margin-left: 20px;                        /* Espacement entre ligne et texte */
 }
 
 .separator span {
-  font-size: 40px;
-  font-weight: bold;
-  color: var(--color-dark);
+  font-size: 40px;                          /* Taille de police du texte central */
+  font-weight: bold;                        /* Texte en gras */
+  color: var(--color-dark);                 /* Couleur principale */
 }
 
-
-
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- CARD SECTION HOME --------------------------- */
+/* --------------------------------------------------------------------------- */
 
 .section-top {
-  padding-bottom: 30px;
+  padding-bottom: 30px;                     /* Espacement en bas de la section */
 }
 
 .container-card {
-  display: flex;
-  gap: 100px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 110px 0 170px 0;
+  display: flex;                            /* Utiliser flex pour l'affichage en ligne */
+  gap: 100px;                               /* Espace entre les cartes */
+  flex-wrap: wrap;                          /* Permettre à la carte de passer sur une nouvelle ligne */
+  justify-content: center;                  /* Centrer le contenu horizontalement */
+  margin: 110px 0 170px 0;                  /* Marges autour du conteneur de cartes */
 }
 
 .card {
-  width: 400px;
-  height: 320px;
-  box-shadow: 0 3px 4px var(--color-dark);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.8s;
+  width: 400px;                             /* Largeur de la carte */
+  height: 320px;                            /* Hauteur de la carte */
+  box-shadow: 0 3px 4px var(--color-dark);  /* Ombre autour des cartes */
+  border-radius: 10px;                      /* Bords arrondis */
+  overflow: hidden;                         /* Masquer le débordement */
+  transition: transform 0.8s;               /* Transition de mise à l'échelle */
 }
 
 .front-face {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
-  background-color: var(--color-dark);
+  width: 100%;                              /* Prendre toute la largeur */
+  height: 100%;                             /* Prendre toute la hauteur */
+  display: flex;                            /* Utiliser flex pour centrer le contenu */
+  flex-direction: column;                   /* Empiler les éléments verticalement */
+  justify-content: center;                  /* Centrer verticalement le contenu */
+  padding: 20px;                            /* Espacement intérieur */
+  text-align: center;                       /* Centrer le texte */
+  background-color: var(--color-dark);      /* Couleur de fond de la face avant */
 }
 
 .number {
-  font-size: 35px;
-  color: var(--color-yellow);
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 35px;                          /* Taille de la police */
+  color: var(--color-yellow);               /* Couleur du texte */
+  font-weight: bold;                        /* Texte en gras */
+  margin-bottom: 10px;                      /* Espacement en bas */
 }
 
 .title {
-  font-size: 30px;
-  color: var(--color-light);
-  margin: 10px 0;
+  font-size: 30px;                          /* Taille du texte pour le titre */
+  color: var(--color-light);                /* Couleur du texte */
+  margin: 10px 0;                           /* Espacement au-dessus et en-dessous */
 }
 
 .card:hover {
-  transform: scale(1.3);
+  transform: scale(1.3);                    /* Effet de mise à l'échelle au survol */
 }
 
 .bouton-card {
-  display: inline-block;
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
-  border-radius: 20px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  width: 35%;
-  padding: 10px;
-  margin-top: 10px;
+  display: inline-block;                    /* Affichage en ligne */
+  background-color: var(--color-yellow);    /* Couleur de fond */
+  color: var(--color-dark);                 /* Couleur du texte */
+  border-radius: 20px;                      /* Arrondir les coins */
+  text-align: center;                       /* Centrer le texte */
+  font-weight: bold;                        /* Texte en gras */
+  font-size: 1rem;                          /* Taille de la police */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition des effets */
+  width: 35%;                               /* Largeur du bouton */
+  padding: 10px;                            /* Espacement intérieur */
+  margin-top: 10px;                         /* Espacement en haut */
 }
 
 .bouton-card:hover {
-  background-color: var(--color-yellow);
-  text-shadow: var(--color-dark) 0 0 1px;
-  transform: scale(1.03);
-  color: var(--color-light);
+  background-color: var(--color-yellow);    /* Couleur de fond au survol */
+  text-shadow: var(--color-dark) 0 0 1px;   /* Ombre pour le texte au survol */
+  transform: scale(1.03);                   /* Mise à l'échelle au survol */
+  color: var(--color-light);                /* Changement de couleur de texte */
 }
 
 .bouton-card a {
-  color: inherit;
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: normal;
+  color: inherit;                           /* Utiliser la couleur de l'élément parent */
+  display: block;                           /* Affichage en bloc */
+  width: 100%;                              /* Largeur complète */
+  height: 100%;                             /* Hauteur complète */
+  line-height: normal;                      /* Hauteur de ligne par défaut */
 }
 
-/*                       Review                       */
+/* --------------------------------------------------------------------------- */
+/* ---------------------------- REVIEW SECTION HOME -------------------------- */
+/* --------------------------------------------------------------------------- */
 
+/* Conteneur principal pour la section des avis */
 .review-section {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 80px 0;
+  position: relative;                       /* Positionnement relatif pour le conteneur */
+  overflow: hidden;                         /* Masquer le débordement */
+  width: 100%;                              /* Largeur maximale */
+  max-width: 1500px;                        /* Largeur maximale définie */
+  margin: 0 auto;                           /* Centrer le conteneur */
+  padding: 80px 0;                          /* Espacement vertical */
 }
 
+/* Conteneur pour le contenu des avis */
 .review-container {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 1200%;
+  display: flex;                    /* Affichage en flex pour les éléments enfants */
+  transition: transform 0.5s ease-in-out; /* Transition pour le mouvement */
+  width: 1600%;                    /* Largeur totale des éléments enfants */
 }
 
+/* Carte d'un avis */
 .review-content {
-  width: 33.33%;
-  box-sizing: border-box;
-  padding: 20px;
-  background-color: var(--color-dark);
-  border-radius: 20px;
-  box-shadow: 0 4px 8px var(--color-dark);
-  color: var(--color-light);
-  display: flex;
-  align-items: center;
-  margin: 70px;
-  justify-content: center;
+  width: 33.33%;                   /* Largeur de chaque carte d'avis */
+  box-sizing: border-box;          /* Inclure padding et bordures dans la largeur */
+  padding: 20px;                   /* Espacement interne */
+  background-color: var(--color-dark); /* Couleur de fond */
+  border-radius: 20px;             /* Coins arrondis */
+  box-shadow: 0 4px 8px var(--color-dark); /* Ombre pour la carte */
+  color: var(--color-light);        /* Couleur du texte */
+  display: flex;                   /* Affichage en flex pour centrer le contenu */
+  align-items: center;              /* Alignement vertical au centre */
+  justify-content: center;          /* Alignement horizontal au centre */
+  margin: 30px;                     /* Espacement autour de chaque carte */
 }
 
+/* Titre d'un avis */
 .review-text h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
-  color: var(--color-yellow);
+  font-size: 2em;                  /* Taille de police du titre */
+  margin-bottom: 15px; /* Espacement en bas du titre */
+  color: var(--color-yellow);       /* Couleur du titre */
 }
 
+/* Image d'un avis */
 .review-image {
-  width: 30%;
-  height: auto;
-  border-radius: 20px;
+  width: 30%;                      /* Largeur de l'image */
+  height: auto;                    /* Hauteur automatique pour garder les proportions */
+  border-radius: 20px;             /* Coins arrondis pour l'image */
 }
 
+/* Conteneur du texte d'un avis */
 .review-text {
-  margin: 10px;
-  width: 100%;
+  margin: 10px;                   /* Espacement autour du texte */
+  width: 100%;                    /* Largeur complète */
 }
 
+/* Paragraphe d'un avis */
 .review-text p {
-  font-size: 1.5em;
-  line-height: 1.3em;
-  margin-bottom: 10px;
-  text-align: justify;
+  font-size: 1.5em;               /* Taille de police du texte */
+  line-height: 1.3em;             /* Hauteur de ligne pour le texte */
+  margin-bottom: 10px;            /* Espacement en bas du paragraphe */
+  text-align: justify;            /* Justification du texte */
 }
 
+/* Bouton d'avis */
 .bouton-review a {
-  text-decoration: none;
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease;
+  text-decoration: none;            /* Pas de soulignement pour le lien */
+  background-color: var(--color-yellow); /* Couleur de fond du bouton */
+  color: var(--color-dark);         /* Couleur du texte du bouton */
+  padding: 10px 15px;               /* Espacement interne du bouton */
+  border-radius: 4px;               /* Coins arrondis du bouton */
+  font-size: 0.9em;                 /* Taille de police du texte du bouton */
+  transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
 }
 
+/* Effet au survol sur le bouton d'avis */
 .bouton-review a:hover {
-  background-color: var(--color-yellow);
+  background-color: var(--color-yellow); /* Couleur de fond au survol */
 }
 
+/* Conteneur de texte des avis */
 .review-container-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 25px 0 15px 0;
-  font-size: 10px;
+  display: flex;                   /* Affichage en flex pour le conteneur */
+  justify-content: space-between;  /* Espacement entre les éléments */
+  align-items: center;             /* Alignement vertical au centre */
+  width: 100%;                     /* Largeur complète */
+  margin: 25px 0 15px 0;          /* Espacement vertical */
+  font-size: 10px;                 /* Taille de police du texte */
 }
 
+/* Lien dans le conteneur de texte */
 .review-container-text a {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 15px;                 /* Taille de police du lien */
+  font-weight: 700;                /* Épaisseur du texte du lien */
 }
 
+/* Lien dans le conteneur de texte avec couleur spécifique */
 .review-container-text p a {
-  color: var(--color-yellow);
-  font-weight: 600;
-  font-size: 20px;
+  color: var(--color-yellow);       /* Couleur du lien */
+  font-weight: 600;                 /* Épaisseur du texte */
+  font-size: 20px;                  /* Taille de police du lien */
 }
 
+/* Boutons précédent et suivant */
 .precedent, .suivant {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-dark);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 1.2em;
-  border-radius: 5px;
+  position: absolute;               /* Positionnement absolu pour le placement */
+  top: 50%;                         /* Centrer verticalement */
+  transform: translateY(-50%);     /* Ajustement du positionnement */
+  background-color: var(--color-dark); /* Couleur de fond */
+  color: white;                    /* Couleur du texte */
+  border: none;                    /* Pas de bordure */
+  padding: 10px;                   /* Espacement interne */
+  cursor: pointer;                 /* Curseur en pointeur */
+  z-index: 10;                     /* Assurer que le bouton est au-dessus des autres éléments */
+  font-size: 1.2em;                /* Taille de police du texte du bouton */
+  border-radius: 5px;              /* Coins arrondis pour le bouton */
 }
 
+/* Bouton précédent */
 .precedent {
-  left: 10px;
+  left: 10px;                     /* Placement à gauche */
 }
 
+/* Bouton suivant */
 .suivant {
-  right: 10px;
+  right: 10px;                    /* Placement à droite */
 }
 
+/* Effet au survol pour les boutons précédent et suivant */
 .precedent:hover, .suivant:hover {
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
+  background-color: var(--color-yellow); /* Couleur de fond au survol */
+  color: var(--color-dark);              /* Couleur du texte au survol */
 }
 
-/*                       contact                       */
+/* --------------------------------------------------------------------------- */
+/* -------------------------- CONTACT SECTION HOME --------------------------- */
+/* --------------------------------------------------------------------------- */
 
-  .form-section,
-  .contact-section {
-    padding: 100px 0 130px 0;
-    background-color: var(--color-blue); /* Couleur de fond */
-  }
+/* Section pour le formulaire et les informations de contact */
+.form-section,
+.contact-section {
+  padding: 100px 0 130px 0;       /* Espacement vertical */
+  background-color: var(--color-blue); /* Couleur de fond */
+}
 
-  .form-container,
-  .contact-container {
-    max-width: 1250px; /* Largeur maximale */
-    margin: auto; /* Centrer le conteneur */
-    padding: 50px;
-    background-color: var(--color-dark);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px var(--color-dark);
-  }
+/* Conteneur pour le formulaire et les informations de contact */
+.form-container,
+.contact-container {
+  max-width: 1250px;              /* Largeur maximale */
+  margin: auto;                   /* Centrer le conteneur */
+  padding: 50px;                  /* Espacement interne */
+  background-color: var(--color-dark); /* Couleur de fond */
+  border-radius: 20px;            /* Coins arrondis */
+  box-shadow: 0 4px 8px var(--color-dark); /* Ombre autour du conteneur */
+}
 
-  .form-group {
-    margin-bottom: 15px; /* Espacement entre les groupes */
-  }
+/* Groupe de champs dans le formulaire */
+.form-group {
+  margin-bottom: 15px;            /* Espacement entre les groupes */
+}
 
-  .form-label {
-    display: block; /* Étiquettes en bloc pour un bon espacement */
-    margin-bottom: 5px; /* Espacement en bas des étiquettes */
-    font-weight: bold; /* Gras pour les étiquettes */
-  }
+/* Étiquette d'un champ dans le formulaire */
+.form-label {
+  display: block;                  /* Étiquettes en bloc pour un bon espacement */
+  margin-bottom: 5px;             /* Espacement en bas des étiquettes */
+  font-weight: bold;              /* Gras pour les étiquettes */
+}
 
-  .form-group label {
-    color: var(--color-light);
-  }
+/* Couleur des étiquettes de champs */
+.form-group label {
+  color: var(--color-light);       /* Couleur des étiquettes */
+}
 
-  .form-input,
-  .form-textarea {
-    width: 100%; /* Largeur complète */
-    padding: 10px; /* Espacement interne */
-    border: 1px solid #ccc; /* Bordure */
-    border-radius: 4px; /* Coins arrondis */
-    font-size: 16px; /* Taille de police */
-  }
+/* Champs de saisie et zones de texte */
+.form-input,
+.form-textarea {
+  width: 100%;                    /* Largeur complète */
+  padding: 10px;                  /* Espacement interne */
+  border: 1px solid #ccc;         /* Bordure */
+  border-radius: 4px;             /* Coins arrondis */
+  font-size: 16px;                /* Taille de police */
+}
 
-  .form-input:focus,
-  .form-textarea:focus {
-    border-color: #ECC33E; /* Bordure colorée au focus */
-    outline: none; /* Enlever l'outline par défaut */
-  }
+/* Effet de focus sur les champs de saisie et zones de texte */
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #ECC33E;          /* Bordure colorée au focus */
+  outline: none;                  /* Enlever l'outline par défaut */
+}
 
-  .contact-btn {
-    width: 100%;
-    background-color: #ECC33E;
-    color: #0C1D36;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+/* Bouton de contact */
+.contact-btn {
+  width: 100%;                    /* Largeur complète */
+  background-color: #ECC33E;      /* Couleur de fond */
+  color: #0C1D36;                 /* Couleur du texte */
+  padding: 10px 15px;             /* Espacement interne */
+  border: none;                   /* Pas de bordure */
+  border-radius: 4px;             /* Coins arrondis */
+  font-size: 16px;                /* Taille de police */
+  cursor: pointer;                /* Curseur en pointeur */
+}
 
-  .contact-btn:hover {
-      background-color: #ecb911; /* Changer de couleur au survol */
-  }
+/* Effet au survol pour le bouton de contact */
+.contact-btn:hover {
+  background-color: #ecb911;      /* Changer de couleur au survol */
+}
 
-/* ----------------------------------------------------------- */
-/* Styles RETOUR EN HAUT                                       */
-/* ----------------------------------------------------------- */
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- BOUTON TOP HOME ----------------------------- */
+/* --------------------------------------------------------------------------- */
 
-/* Styles pour le bouton "Retour en haut" */
+/* Style pour le bouton de retour en haut de la page */
 .back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: var(--color-dark);
-  color: var(--color-yellow);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  opacity: 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  font-size: 24px;
-  border: 2px solid var(--color-yellow);
+  position: fixed;                        /* Positionnement fixe pour le bouton */
+  bottom: 30px;                          /* Espacement depuis le bas de la fenêtre */
+  right: 30px;                           /* Espacement depuis la droite de la fenêtre */
+  background-color: var(--color-dark);   /* Couleur de fond du bouton */
+  color: var(--color-yellow);             /* Couleur du texte du bouton */
+  width: 60px;                           /* Largeur du bouton */
+  height: 60px;                          /* Hauteur du bouton */
+  border-radius: 50%;                    /* Coins arrondis pour le bouton */
+  display: flex;                         /* Utiliser flex pour centrer le contenu */
+  justify-content: center;               /* Centrer horizontalement le contenu */
+  align-items: center;                   /* Centrer verticalement le contenu */
+  text-decoration: none;                 /* Pas de soulignement pour le texte */
+  opacity: 0;                            /* Opacité initiale du bouton */
+  transition: all 0.3s ease;            /* Transition pour tous les changements */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre portée pour le bouton */
+  z-index: 1000;                        /* Assurer que le bouton est au-dessus des autres éléments */
+  font-size: 24px;                       /* Taille de la police du texte */
+  border: 2px solid var(--color-yellow); /* Bordure du bouton */
 }
 
+/* Effets au survol du bouton de retour en haut */
 .back-to-top:hover {
-  background-color: var(--color-yellow);
-  color: var(--color-dark);
-  transform: scale(1.1);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-yellow); /* Changer la couleur de fond au survol */
+  color: var(--color-dark);               /* Changer la couleur du texte au survol */
+  transform: scale(1.1);                  /* Agrandir le bouton au survol */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Ombre plus marquée au survol */
 }
 
+/* Classe pour rendre le bouton visible */
 .back-to-top.show {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1;                             /* Rendre le bouton complètement opaque */
+  transform: translateY(0);               /* Remettre le bouton à sa position originale */
 }
 
+/* Icône de flèche vers le haut dans le bouton */
 .back-to-top::before {
-  content: "↑";
-  font-weight: bold;
+  content: "↑";                           /* Contenu de l'icône, flèche vers le haut */
+  font-weight: bold;                      /* Mettre l'icône en gras */
 }
 
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- LOGOS SECTION HOME -------------------------- */
+/* --------------------------------------------------------------------------- */
 
-
-/* ----------------------------------------------------------- */
-
-:root {
-  --Vitesse: 30s;
-}
-
+/* Style pour les images de logos */
 .img-logo {
-  height: 100px !important;
-  width: auto !important;
-  padding-right: 40px !important;
-  vertical-align: middle !important;
-  object-fit: contain !important;
-  transition: transform 0.3s ease !important;
+  height: 100px !important;               /* Hauteur des logos */
+  width: auto !important;                  /* Largeur automatique pour garder les proportions */
+  padding-right: 40px !important;         /* Espacement à droite des logos */
+  vertical-align: middle !important;      /* Alignement vertical au milieu */
+  object-fit: contain !important;         /* Ajustement de l'image pour contenir sans déformer */
+  transition: transform 0.3s ease !important; /* Transition pour l'effet de transformation */
 }
 
+/* Effet au survol sur les logos */
 .img-logo:hover {
-  transform: scale(1.2) !important;
+  transform: scale(1.2) !important;       /* Agrandir le logo au survol */
 }
 
+/* Conteneur pour les logos */
 .container_logos {
-  width: 100vw !important;
-  display: flex !important;
-  align-items: center !important;
-  overflow: hidden !important;
-  padding: 50px 0;
-  margin: 0 !important;
-  max-width: 100% !important;
+  width: 100vw !important;                /* Largeur complète de la fenêtre */
+  display: flex !important;               /* Utiliser flex pour l'affichage en ligne */
+  align-items: center !important;         /* Centrer verticalement les logos */
+  overflow: hidden !important;            /* Masquer le débordement des logos */
+  padding: 50px 0;                       /* Espacement vertical autour des logos */
+  margin: 0 !important;                   /* Pas de marges autour du conteneur */
+  max-width: 100% !important;             /* Largeur maximale du conteneur */
 }
 
+/* Style pour la section des logos */
 .logos {
-  width: 100vw !important;
-  overflow: hidden !important;
+  width: 100vw !important;                /* Largeur complète de la fenêtre */
+  overflow: hidden !important;            /* Masquer le débordement des logos */
 }
 
+/* Animation de défilement pour les logos */
 .text {
-  white-space: nowrap !important;
-  animation: Scroll var(--Vitesse) linear infinite !important;
-  display: flex !important;
-  align-items: center !important;
-  width: 100vw !important;
+  white-space: nowrap !important;         /* Empêcher le retour à la ligne des logos */
+  animation: Scroll var(--Vitesse) linear infinite !important; /* Animation de défilement */
+  display: flex !important;               /* Utiliser flex pour l'affichage en ligne */
+  align-items: center !important;         /* Centrer verticalement les logos */
+  width: 100vw !important;                /* Largeur complète de la fenêtre */
 }
 
+/* Affichage des logos en bloc */
 .text .img-logo {
-  display: inline-block;
+  display: inline-block;                  /* Afficher les logos en bloc */
 }
 
+/* Affichage des logos en flex */
 .text {
-  display: inline-flex !important;
+  display: inline-flex !important;        /* Afficher les logos en flex */
 }
 
+/* Dernier logo sans espacement à droite */
 .text .img-logo:last-child {
-  padding-right: 40px !important;
+  padding-right: 40px !important;         /* Espacement à droite pour le dernier logo */
 }
 
+/* Arrêter l'animation au survol */
 .container_logos:hover .text {
-  animation-play-state: paused !important;
+  animation-play-state: paused !important; /* Arrêter l'animation au survol */
 }
 
+/* Définition de l'animation de défilement */
 @keyframes Scroll {
   from {
-    transform: translateX(0);
+    transform: translateX(0);              /* Début de l'animation */
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-50%);          /* Fin de l'animation */
   }
 }
 
+/* Adaptation pour les petits écrans */
 @media screen and (max-width: 700px) {
   img {
-    height: 30px !important;
-    padding-right: 30px !important;
+    height: 30px !important;               /* Hauteur des logos sur petits écrans */
+    padding-right: 30px !important;       /* Espacement à droite des logos sur petits écrans */
   }
   
   .text {
-    animation: Scroll 100s linear infinite !important;
+    animation: Scroll 100s linear infinite !important; /* Durée plus longue pour l'animation sur petits écrans */
   }
 }
 
-
+/* Effet de rotation pour les éléments avec la classe hover:rotate-360 */
 .hover\:rotate-360:hover {
-  transform: rotate(360deg);
+  transform: rotate(360deg);               /* Rotation de 360 degrés au survol */
+}
+
+/* --------------------------------------------------------------------------- */
+/* -------------------------- FOOTER SECTION HOME ---------------------------- */
+/* --------------------------------------------------------------------------- */
+
+/* Conteneur principal pour le pied de page */
+.footer-section {
+  background-color: var(--color-dark);     /* Couleur de fond du pied de page */
+  color: var(--color-light);                /* Couleur du texte dans le pied de page */
+  padding: 40px 0;                         /* Espacement vertical */
+  text-align: center;                       /* Centrer le texte */
+}
+
+/* Liens dans le pied de page */
+.footer-section a {
+  color: var(--color-yellow);               /* Couleur des liens */
+  text-decoration: none;                    /* Pas de soulignement pour les liens */
+  margin: 0 15px;                          /* Espacement horizontal entre les liens */
+}
+
+/* Effet au survol pour les liens du pied de page */
+.footer-section a:hover {
+  text-decoration: underline;               /* Souligner les liens au survol */
+}
+
+/* Copyright dans le pied de page */
+.footer-copyright {
+  margin-top: 20px;                        /* Espacement au-dessus du copyright */
+  font-size: 0.9rem;                       /* Taille de police pour le copyright */
+}
+
+/* --------------------------------------------------------------------------- */
+/* ---------------------------- ANIMATION SECTION ---------------------------- */
+/* --------------------------------------------------------------------------- */
+
+/* Animation de transition pour les éléments */
+.fade-in {
+  opacity: 0;                              /* Opacité initiale */
+  transition: opacity 0.5s ease-in;      /* Transition pour l'opacité */
+}
+
+/* Classe pour rendre visible l'élément */
+.fade-in.visible {
+  opacity: 1;                              /* Opacité finale */
+}
+
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- MEDIA QUERIES ------------------------------ */
+/* --------------------------------------------------------------------------- */
+
+/* Styles spécifiques aux petits écrans */
+@media screen and (max-width: 768px) {
+  .header-section h1 {
+    font-size: 3.5rem;                     /* Réduire la taille du titre sur petits écrans */
+  }
+
+  .header-section h3 {
+    font-size: 1rem;                       /* Réduire la taille du sous-titre */
+  }
+
+  .card {
+    width: 90%;                            /* Largeur de la carte pour petits écrans */
+  }
+
+  .review-content {
+    width: 100%;                           /* Largeur des cartes d'avis pour petits écrans */
+  }
+
+  .footer-section {
+    padding: 20px 0;                      /* Réduire l'espacement du pied de page */
+  }
+}
+
+/* --------------------------------------------------------------------------- */
+/* ----------------------------- CUSTOM SCROLLBAR --------------------------- */
+/* --------------------------------------------------------------------------- */
+
+/* Personnaliser la barre de défilement */
+::-webkit-scrollbar {
+  width: 8px;                             /* Largeur de la barre de défilement */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-yellow);  /* Couleur de la poignée de défilement */
+  border-radius: 10px;                    /* Coins arrondis pour la poignée */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-light);          /* Couleur de fond de la piste de défilement */
 }

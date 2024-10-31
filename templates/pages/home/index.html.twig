@@ -11,7 +11,7 @@
         <!-- TITRE PRINCIPAL ET DESCRIPTION -->
         <section class="">
 
-            <section class="header-section space-y-4" id="bg-home">
+            <section class="space-y-4 header-section" id="bg-home">
             
             <h1> Welcome to  <b> PlayRanker </b> </h1>
             <h3>
@@ -21,17 +21,17 @@
                 new tips to master your favorite games, and expert opinions to guide you in your choices.
             </h3>
 
-            <div class="search-container py-4">
+            <div class="py-4 search-container">
                 <form class="search-form" action="{{ path('search') }}" id="searchthis" method="post">
                 <input class="search-input" id="search" name="input" type="text" placeholder="Search for a game" />
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </form>
             </div>
 
-            <section class="container mx-auto px-4">
+            <section class="container px-4 mx-auto">
                 <div class="flex flex-wrap -mx-4">
                     <!-- Section des catégories -->
-                    <section class="w-full px-4 flex justify-center my-2">
+                    <section class="flex justify-center w-full px-4 my-2">
                         <div class="flex flex-wrap justify-center gap-4">
                             {% for category in categories %}
                                 <div class="relative w-[150px] text-center text-base">
@@ -56,7 +56,7 @@
 
         <!-- Cherchez-les -->
 
-        <section class="rate-section flex flex-col">
+        <section class="flex flex-col rate-section">
         <h2> Discover your favorite games,
             <div class="word-animation">
             <span class='red'> Unlimited, </span>
@@ -68,7 +68,7 @@
 
         </section>
 
-    <div class="bg-white py-10">
+    <div class="py-10 bg-white">
         <!-- Séparateur -->
 
         <section class="section-top">
@@ -104,32 +104,32 @@
             <span>UPCOMING 2025 GAMES</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8 max-w-7xl mx-auto">
-            <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+        <div class="grid grid-cols-1 gap-6 px-4 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3 max-w-7xl">
+            <div class="relative overflow-hidden transition-all duration-300 rounded-lg group hover:-translate-y-2">
                 <img src="https://cdn1.epicgames.com/spt-assets/ca9ef1bcf2f54043baac351366aec677/black-myth-wukong-jjjfw.png" alt="Black Myth: Wukong" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute inset-0 flex items-end transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
                     <div class="p-4">
-                        <h3 class="text-white text-xl font-bold">Black Myth: Wukong</h3>
+                        <h3 class="text-xl font-bold text-white">Black Myth: Wukong</h3>
                         <p class="text-gray-200">Release: August 20, 2025</p>
                     </div>
                 </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+            <div class="relative overflow-hidden transition-all duration-300 rounded-lg group hover:-translate-y-2">
                 <img src="https://www.starwars-universe.com/images/fans/fanarts/27714/affiche_kotor.jpg" alt="Star Wars: Knights of the Old Republic Remake" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute inset-0 flex items-end transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
                     <div class="p-4">
-                        <h3 class="text-white text-xl font-bold">Star Wars: KOTOR Remake</h3>
+                        <h3 class="text-xl font-bold text-white">Star Wars: KOTOR Remake</h3>
                         <p class="text-gray-200">Expected: 2025</p>
                     </div>
                 </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-lg group hover:-translate-y-2 transition-all duration-300">
+            <div class="relative overflow-hidden transition-all duration-300 rounded-lg group hover:-translate-y-2">
                 <img src="https://store-images.s-microsoft.com/image/apps.29572.14301289549560004.21a931ed-1596-4a2b-8642-73be42254d40.7beda2e8-b7df-4758-8e87-9052559824a2" alt="Senua's Saga: Hellblade II" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute inset-0 flex items-end transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
                     <div class="p-4">
-                        <h3 class="text-white text-xl font-bold">Senua's Saga: Hellblade II</h3>
+                        <h3 class="text-xl font-bold text-white">Senua's Saga: Hellblade II</h3>
                         <p class="text-gray-200">Expected: 2025</p>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
         </div>
     </section>
 
-    <section class=" bg-white py-10">
+    <section class="py-10 bg-white ">
         <!-- Séparateur -->
         
         <div class="separator">
@@ -155,9 +155,9 @@
                         <p>{{ comment.content }}</p>
                         <div class="review-container-text">
                             <div class="bouton-review">
-                                <a href="{{ path('detail_jeu', { id: comment.game.idGameApi }) }}">Read more</a>
+                                <a href="{{ path('detail_jeu', { id: comment.game.idGameApi }) }}"> Read more </a>
                             </div>
-                                <p>De <a href="{{ path('lienProfile', { username: comment.user.username }) }}">{{ comment.user.username }}</a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
+                                <p>De <a href="{{ path('lienProfile', { username: comment.user.username }) }}"> {{ comment.user.username }} </a> Le {{ comment.createdAt|date('d/m/Y') }}</p>
                         </div>
                     </div>
                 </div>
@@ -170,14 +170,14 @@
         </div>
     </section>
 
-    <section class="flex flex-col py-10 rounded-lg shadow-lg p-6">
+    <section class="flex flex-col p-6 py-10 rounded-lg shadow-lg">
         <!-- Separator -->
-        <div class="separator mb-4 text-center">
+        <div class="mb-4 text-center separator">
             <span class="text-xl font-bold text-[#ECC33E]">DISCORD COMMUNITY</span>
         </div>
 
         <!-- Discord Button -->
-        <div class="flex flex-col py-16 items-center justify-center  ">
+        <div class="flex flex-col items-center justify-center py-16 ">
             <div style="text-align: center; box-shadow: 0 4px 8px black; padding: 60px 150px; border: 3px solid #ECC33E; border-radius: 15px; background-color: #0C1D36; color: #ECC33E;">
                 <h2 style="font-size: 60px; padding-bottom: 30px;">🌟 Join Our Discord Community! 🌟</h2>
                 <p style="font-size: 30px; color: white;">Dive into the world of PlayRanker and connect with fellow enthusiasts!</p>
@@ -193,8 +193,8 @@
                 <p style="font-size: 20px; color: white; padding-bottom: 20px;">join our community and experience something amazing!</p>
                 <div class="flex justify-center">
                     <a href="https://discord.com/invite/WkR5WE4N?utm_source=Discord%20Widget&utm_medium=Connect" target="_blank" class="text-[#ECC33E] my-4 w-full md:w-1/2 p-2 flex items-center justify-center bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-300 ease-in-out shadow-md">
-                        <img src="/img/discord.png" alt="Discord Logo" class="w-8 h-8 rounded-full object-cover mr-2">
-                        <p class="text-white text-sm font-semibold">Join Our Discord</p>
+                        <img src="/img/discord.png" alt="Discord Logo" class="object-cover w-8 h-8 mr-2 rounded-full">
+                        <p class="text-sm font-semibold text-white"> Join Our Discord </p>
                     </a>
                 </div>
             </div>
@@ -202,7 +202,7 @@
     </section>
 
 
-    <section class=" bg-white py-10">
+    <section class="py-10 bg-white ">
         <!-- Séparateur -->
         
         <div class="separator">
