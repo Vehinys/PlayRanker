@@ -12,7 +12,7 @@
     {{ form_start(registrationForm, {'attr': {'class': 'mt-8 space-y-6'}}) }}
       <div class="rounded-md shadow-sm -space-y-px">
         <div class="mb-4">
-          {{ form_label(registrationForm.username, 'username',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
+          {{ form_label(registrationForm.username, 'Username',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
           {{ form_widget(registrationForm.username, { 'attr': { 'class': 'appearance-none rounded-none relative mt-1 block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-t-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your username' } }) }}
           {{ form_errors(registrationForm.username) }}
         </div>
