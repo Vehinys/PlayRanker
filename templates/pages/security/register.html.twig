@@ -10,7 +10,7 @@
     {{ form_errors(registrationForm) }}
   
     {{ form_start(registrationForm, {'attr': {'class': 'mt-8 space-y-6'}}) }}
-      <div class="rounded-md shadow-sm -space-y-px">
+      <div class="-space-y-px rounded-md shadow-sm">
         <div class="mb-4">
           {{ form_label(registrationForm.username, 'username',  {'label_attr': {'class': 'text-[#ECC33E] font-bold mb-3'}}) }}
           {{ form_widget(registrationForm.username, { 'attr': { 'class': 'appearance-none rounded-none relative mt-1 block w-full px-3 py-2 border border-[#ECC33E] placeholder-gray-500 text-[#ebf1ff] rounded-t-md focus:outline-none focus:ring-[#ECC33E] focus:border-[#ECC33E] focus:z-10 sm:text-sm bg-[#0C1D36]', 'placeholder': 'Enter your username' } }) }}
@@ -39,7 +39,7 @@
       <div class="flex items-center">
         {{ form_widget(registrationForm.agreeTerms, { 'attr': { 'class': 'h-4 w-4 text-[#ECC33E] focus:ring-[#ECC33E] border-[#ECC33E] rounded' } }) }}
         <label for="{{ registrationForm.agreeTerms.vars.id }}" class="ml-2 block text-sm text-[#ebf1ff]">
-          <a href="#" class="text-[#ECC33E] hover:underline">I agree to the terms of service</a>
+          <a href="https://www.privacypolicies.com/live/bc5dfcac-62af-4795-9f36-3e2f4ba6604d" class="text-[#ECC33E] hover:underline">I agree to the terms of service</a>
         </label>
       </div>
       {{ form_errors(registrationForm.agreeTerms) }}

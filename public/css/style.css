@@ -3,11 +3,11 @@
 /* --------------------------------------------------------------------------- */
 
 :root {
-  --color-dark: #0C1D36;                    /* Couleur principale foncée du site */
-  --color-dark-2: #09172b;                  /* Couleur foncée secondaire */
-  --color-light: #ebf1ff;                   /* Couleur claire pour le contraste */
-  --color-yellow: #ECC33E;                  /* Couleur jaune pour les accents */
-  --color-bg-blue: #97b4e0;                 /* Couleur de fond pour le corps */
+  --color-dark: #0C1D36;                  /* Couleur principale foncée du site */
+  --color-dark-2: #09172b;                /* Couleur foncée secondaire */
+  --color-light: #ebf1ff;                 /* Couleur claire pour le contraste */
+  --color-yellow: #ECC33E;                /* Couleur jaune pour les accents */
+  --color-bg-blue: #97b4e0;               /* Couleur de fond pour le corps */
   --Vitesse: 30s;                           /* Vitesse d'animation par défaut */
 }
 
@@ -285,63 +285,63 @@
 
 /* Conteneur pour le contenu des avis */
 .review-container {
-  display: flex;                    /* Affichage en flex pour les éléments enfants */
-  transition: transform 0.5s ease-in-out; /* Transition pour le mouvement */
-  width: 1600%;                    /* Largeur totale des éléments enfants */
+  display: flex;                            /* Affichage en flex pour les éléments enfants */
+  transition: transform 0.5s ease-in-out;   /* Transition pour le mouvement */
+  width: 1700%;                             /* Largeur totale des éléments enfants */
 }
 
 /* Carte d'un avis */
 .review-content {
-  width: 33.33%;                   /* Largeur de chaque carte d'avis */
-  box-sizing: border-box;          /* Inclure padding et bordures dans la largeur */
-  padding: 20px;                   /* Espacement interne */
-  background-color: var(--color-dark); /* Couleur de fond */
-  border-radius: 20px;             /* Coins arrondis */
-  box-shadow: 0 4px 8px var(--color-dark); /* Ombre pour la carte */
-  color: var(--color-light);        /* Couleur du texte */
-  display: flex;                   /* Affichage en flex pour centrer le contenu */
-  align-items: center;              /* Alignement vertical au centre */
-  justify-content: center;          /* Alignement horizontal au centre */
-  margin: 30px;                     /* Espacement autour de chaque carte */
+  width: 33.33%;                            /* Largeur de chaque carte d'avis */
+  box-sizing: border-box;                   /* Inclure padding et bordures dans la largeur */
+  padding: 20px;                            /* Espacement interne */
+  background-color: var(--color-dark);      /* Couleur de fond */
+  border-radius: 20px;                      /* Coins arrondis */
+  box-shadow: 0 4px 8px var(--color-dark);  /* Ombre pour la carte */
+  color: var(--color-light);                /* Couleur du texte */
+  display: flex;                            /* Affichage en flex pour centrer le contenu */
+  align-items: center;                      /* Alignement vertical au centre */
+  justify-content: center;                  /* Alignement horizontal au centre */
+  margin: 30px;                             /* Espacement autour de chaque carte */
 }
 
 /* Titre d'un avis */
 .review-text h2 {
-  font-size: 2em;                  /* Taille de police du titre */
-  margin-bottom: 15px; /* Espacement en bas du titre */
-  color: var(--color-yellow);       /* Couleur du titre */
+  font-size: 2em;                           /* Taille de police du titre */
+  margin-bottom: 15px;                      /* Espacement en bas du titre */
+  color: var(--color-yellow);               /* Couleur du titre */
 }
 
 /* Image d'un avis */
 .review-image {
-  width: 30%;                      /* Largeur de l'image */
-  height: auto;                    /* Hauteur automatique pour garder les proportions */
-  border-radius: 20px;             /* Coins arrondis pour l'image */
+  width: 30%;                               /* Largeur de l'image */
+  height: auto;                             /* Hauteur automatique pour garder les proportions */
+  border-radius: 20px;                      /* Coins arrondis pour l'image */
 }
 
 /* Conteneur du texte d'un avis */
 .review-text {
-  margin: 10px;                   /* Espacement autour du texte */
-  width: 100%;                    /* Largeur complète */
+  margin: 10px;                             /* Espacement autour du texte */
+  width: 100%;                              /* Largeur complète */
 }
 
 /* Paragraphe d'un avis */
 .review-text p {
-  font-size: 1.5em;               /* Taille de police du texte */
-  line-height: 1.3em;             /* Hauteur de ligne pour le texte */
-  margin-bottom: 10px;            /* Espacement en bas du paragraphe */
-  text-align: justify;            /* Justification du texte */
+  font-size: 1.5em;                         /* Taille de police du texte */
+  line-height: 1.3em;                       /* Hauteur de ligne pour le texte */
+  margin-bottom: 10px;                      /* Espacement en bas du paragraphe */
+  text-align: justify;                      /* Justification du texte */
 }
 
 /* Bouton d'avis */
 .bouton-review a {
-  text-decoration: none;            /* Pas de soulignement pour le lien */
-  background-color: var(--color-yellow); /* Couleur de fond du bouton */
-  color: var(--color-dark);         /* Couleur du texte du bouton */
-  padding: 10px 15px;               /* Espacement interne du bouton */
-  border-radius: 4px;               /* Coins arrondis du bouton */
-  font-size: 0.9em;                 /* Taille de police du texte du bouton */
-  transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+  text-decoration: none;                    /* Pas de soulignement pour le lien */
+  background-color: var(--color-yellow);    /* Couleur de fond du bouton */
+  color: var(--color-dark);                 /* Couleur du texte du bouton */
+  padding: 10px 15px;                       /* Espacement interne du bouton */
+  border-radius: 4px;                       /* Coins arrondis du bouton */
+  font-size: 0.9em;                         /* Taille de police du texte du bouton */
+  transition: background-color 0.3s ease;   /* Transition pour le changement de couleur */
 }
 
 /* Effet au survol sur le bouton d'avis */

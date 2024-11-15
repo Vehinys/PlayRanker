@@ -15,23 +15,23 @@
                     <a href="{{ path('login') }}" class="block hover:text-[#ECC33E] transition duration-300">LOGIN</a>
                     <a href="#" class="block hover:text-[#ECC33E] transition duration-300">FAQ</a>
 
-                    {% if app.user and ( is_granted('ROLE_ADMIN' )) %}
+                    {% if app.user and ( is_granted('ROLE_ADMIN')) %}
                     <a href="{{ path('admin') }}" class="block hover:text-[#ECC33E] transition duration-300">ADMIN</a>
                     {% endif %}
                 </div>
 
                 <div>
                     <h3 class="text-lg flex font-semibold text-[#ECC33E] mb-2">FOLLOW US</h3>
-                    <div class="flex gap-4 items-center">
-                        <a href="#" class="hover:opacity-75 transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="transition duration-300 hover:opacity-75">
                             <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram" class="w-8 h-8">
                         </a>
 
-                        <a href="https://www.facebook.com/groups/538218072111448" class="hover:opacity-75 transition duration-300">
+                        <a href="https://www.facebook.com/groups/538218072111448" class="transition duration-300 hover:opacity-75">
                             <img src="https://cdn-icons-png.flaticon.com/512/4494/4494475.png" alt="Facebook" class="w-8 h-8">
                         </a>
 
-                        <a href="#" class="hover:opacity-75 transition duration-300">
+                        <a href="#" class="transition duration-300 hover:opacity-75">
                             <img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png" alt="Twitter" class="w-8 h-8">
                         </a>
 
@@ -44,7 +44,7 @@
     <div class="border-t border-[#ECC33E] text-white bg-[#09172b] py-8 text-center text-sm">
         <p class="mb-2">©2024 PlayRanker, Inc. All rights reserved</p>
         <p>
-            <a href="#" class="hover:text-[#ECC33E] text-sm transition duration-300">Privacy Policy</a> | 
+            <a href="https://www.privacypolicies.com/live/bc5dfcac-62af-4795-9f36-3e2f4ba6604d" class="hover:text-[#ECC33E] text-sm transition duration-300">Privacy Policy</a> | 
             <a href="#" class="hover:text-[#ECC33E] text-sm transition duration-300">Cookie Settings</a>
         </p>
     </div>

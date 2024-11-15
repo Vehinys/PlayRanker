@@ -283,7 +283,7 @@
                             <tbody>
                         {% endif %}
                         {% if currentGame != score.game.name %}
-                        % set currentGame = score.game.name %}
+                        {% set currentGame = score.game.name %}
                             <tr class="bg-[#09172b] bg-opacity-20">
                             <td colspan="2" class="px-6 py-3 font-semibold">
                                 {{ score.game.name }}
@@ -301,7 +301,6 @@
             </div>
             {% endif %}
             {% endfor %}
-        </div>
         </div>
                 {# Pagination for Scores #}
                 <div class="container bg-[#97b4e0] mx-auto text-center">
