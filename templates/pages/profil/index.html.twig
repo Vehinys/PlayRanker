@@ -14,11 +14,9 @@
     <!-- ----------------------------------------------------------------------- -->
     
     <!-- Section pour le profil utilisateur -->
-    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-8 transition-transform duration-300 border-[3px] border-[#ECC33E] hover:shadow-xl">  
+    <section class="bg-[#0C1D36] shadow-lg rounded-lg p-8 transition-transform duration-300 border-[3px]  md:place-items-center border-[#ECC33E] hover:shadow-xl">  
         <!-- Flexbox pour disposer le contenu -->
-        <div class="flex flex-col items-center gap-8 py-7 md:flex-row md:justify-between">  
-
-            <!-- Profil Utilisateur -->
+        <div class="flex flex-col items-center gap-3 px-8 py-7 md:flex-col md:justify-between>
             <!-- Colonne pour le profil utilisateur -->
             <div class="w-full md:w-1/2">  
                 <!-- Titre de la section -->
@@ -27,13 +25,13 @@
                 <!-- Vérifie si l'utilisateur est défini -->
                 {% if user %}  
                     <!-- Conteneur pour les informations utilisateur -->
-                    <div class="flex flex-col items-center gap-6 md:gap-8">  
+                    <div class="flex flex-col items-center md:gap-8">  
                         <!-- Image de l'avatar -->
-                        <img src="/uploads/avatars/{{ user.avatar }}" alt="Profile Picture of {{ user.username }}" 
-                        class="w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] rounded border-4 border-[#ECC33E] 
-                        transition-transform duration-500 transform hover:scale-105 object-cover md:object-fill">  
+                        <div class="rounded w-1/2 border-4 border-[#ECC33E] object-cover md:object-fill">
+                            <img src="/uploads/avatars/{{ user.avatar }}" alt="Profile Picture of {{ user.username }}">  
+                        </div>
                         <!-- Conteneur pour les détails utilisateur -->
-                        <div class="space-y-3 text-white text-start">  
+                        <div class="space-y-3 text-white text-start md:text-center">  
                             <!-- Affiche le nom d'utilisateur -->
                             <p><span class="text-lg font-bold text-[#ECC33E]">username :</span> {{ user.username }}</p>  
                             <!-- Affiche l'email si l'utilisateur est le même que l'utilisateur connecté -->
@@ -57,7 +55,7 @@
                             <!-- Lien vers la chaîne YouTube de l'utilisateur -->
                             <p><a href="{{ user.Youtube }}" target="_blank" class="text-lg text-[#ECC33E] font-bold hover:underline">YouTube Channel</a></p>  
                             <!-- Conteneur pour les boutons d'édition et de suppression -->
-                            <div class="flex mt-4 space-x-4">  
+                            <div class="flex mt-4 space-x-4 md:justify-center">  
                                 <!-- Vérifie si l'utilisateur connecté peut modifier ou supprimer -->
                                 {% if app.user and (app.user.username == user.username or is_granted('ROLE_ADMIN')) %}  
                                     <!-- Bouton pour éditer le profil -->
@@ -85,7 +83,7 @@
             <!-- Conteneur pour l'iframe Twitch -->
             <div class="flex items-center justify-center w-full mt-8 md:w-1/2 md:mt-0">  
                 <!-- Iframe pour la diffusion Twitch -->
-                <iframe src="https://player.twitch.tv/?channel={{ user.Twitch }}&parent=localhost" height="500" width="800" allowfullscreen="true" frameborder="0" class="max-w-full"></iframe>  
+                <iframe src="https://player.twitch.tv/?channel={{ user.Twitch }}&parent=localhost" height="500" width="800" allowfullscreen="true" frameborder="0"></iframe>  
             </div>
         </div>
     </section>
@@ -165,7 +163,7 @@
                         </ul>
                     {% endif %}
                     <!-- Bouton pour rechercher des jeux -->
-                    <div class="mt-4 text-center">
+                    <div class="mt-4 text-center ">
                         <a href="{{ path('jeux', { 'page': 1 }) }}" class="inline-block bg-[#ECC33E] text-[15px] hover:bg-[#09172b] text-[#09172b] hover:text-[#ECC33E] font-semibold border-[2px] border-[#ECC33E] py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                             Search Game  
                         </a>
