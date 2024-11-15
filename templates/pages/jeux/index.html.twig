@@ -8,136 +8,132 @@
 
         <div class="container px-4 mx-auto">
 
-        <section class="container px-4 pb-10 mx-auto">
+            <section class="container px-4 pb-10 mx-auto">
 
-        <div class="flex items-center justify-center w-full gap-10 mb-2">
-            <!-- Search Bar -->
-            <div class="w-full max-w-xl">
-                <form class="flex" action="{{ path('multiFiltre') }}" id="searchthis" method="post">
-                    <input class="border w-full border-[#ECC33E] rounded-l-lg py-3 px-4 bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-1 focus:ring-[#ECC33E]" 
-                        id="multiFiltre" name="input" type="text" placeholder="Search for a game" />
-                    <input id="platformParam" type="hidden" name="platform" value="">
-                    <input id="genreParam" type="hidden" name="genre" value="">
-                    <button class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-r-lg hover:bg-[#ebf1ff] transition duration-300">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Genres -->
-            {% if viewGenres is defined %}
-            <div class="relative w-[150px]">
-                <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer text-center"
-                    onclick="toggleDropdown('dropdown-menu-genre')"aria-haspopup="true"aria-expanded="false" aria-controls="dropdown-menu-genre">Genres
-                </h2>
-                <div id="dropdown-menu-genre" 
-                    class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] hover:text-[#0C1D36] shadow-lg rounded-md z-10 w-full" 
-                    role="menu" 
-                    aria-labelledby="dropdown-menu-genre">
-                    {% for genre in viewGenres %}
-                        <form action="#" class="text-left py-1 pl-3 hover:bg-[#ECC33E] hover:text-[#0C1D36]" method="post">
-                            <input type="checkbox" class="hover:text-[#0C1D36]" value="{{ genre.id }}" name="{{ genre.name }}">
-                            <label for="{{ genre.name }}" class="text-[#ebf1ff] hover:text-[#0C1D36]">{{ genre.name }}</label>
+                <div class="flex items-center justify-center w-full gap-10 mb-2">
+                    <!-- Search Bar -->
+                    <div class="w-full max-w-xl">
+                        <form class="flex" action="{{ path('multiFiltre') }}" id="searchthis" method="post">
+                            <input class="border w-full border-[#ECC33E] rounded-l-lg py-3 px-4 bg-[#09172b] text-[#ebf1ff] focus:outline-none focus:ring-1 focus:ring-[#ECC33E]" 
+                                id="multiFiltre" name="input" type="text" placeholder="Search for a game" />
+                            <input id="platformParam" type="hidden" name="platform" value="">
+                            <input id="genreParam" type="hidden" name="genre" value="">
+                            <button class="bg-[#ECC33E] text-[#0C1D36] px-4 py-2 rounded-r-lg hover:bg-[#ebf1ff] transition duration-300">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </form>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        </div>
+                    </div>
 
-
-
-            <section class="container mx-auto px-4 pt-4">
-                <div class="flex flex-wrap -mx-4">
-                    <!-- Section des catégories -->
-                    <section class="w-full px-4 flex justify-center my-2">
-                        <div id="platformSelect" class="flex flex-wrap justify-center gap-4">
-                            {% if categories is defined %}
-                            {% for category in categories %}
-                                <div class="relative w-[150px] text-center text-base">
-                                    <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-{{ category.id }}">
-                                        {{ category.name }}
-                                    </h2>
-                                    <form id="dropdown-menu-{{ category.id }}" class="hidden text-left text-[#ebf1ff] text-absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full" role="menu" aria-labelledby="dropdown-menu-{{ category.id }}">
-                                        {% for platform in category.platforms %}
-                                            <div class="px-2 space-x-2 w-full inline-flex py-2 hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" role="menuitem">
-                                                <input id="{{ platform.id }}" type="checkbox" name="{{ platform.name }}" value="{{ platform.id}}">
-                                                <label for="{{ platform.name }}" class="">{{ platform.name }}</label>
-                                            </div>
-                                        {% endfor %}
-                                    </form>
-                                </div>
+                    <!-- Genres -->
+                    {% if viewGenres is defined %}
+                    <div class="relative w-[150px]">
+                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer text-center"
+                            onclick="toggleDropdown('dropdown-menu-genre')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-genre"> Genres </h2>
+                            
+                        <div id="dropdown-menu-genre" 
+                            class="hidden absolute mt-2 bg-[#09172b] border border-[#ECC33E] hover:text-[#0C1D36] shadow-lg rounded-md z-10 w-full" 
+                            role="menu" 
+                            aria-labelledby="dropdown-menu-genre">
+                            {% for genre in viewGenres %}
+                                <form action="#" class="text-left py-1 pl-3 hover:bg-[#ECC33E] hover:text-[#0C1D36]" method="post">
+                                    <input type="checkbox" class="hover:text-[#0C1D36]" value="{{ genre.id }}" name="{{ genre.name }}">
+                                    <label for="{{ genre.name }}" class="text-[#ebf1ff] hover:text-[#0C1D36]">{{ genre.name }}</label>
+                                </form>
                             {% endfor %}
-                            {% endif %}
                         </div>
-                    </section>
+                    </div>
+                    {% endif %}
                 </div>
+
+                <section class="container px-4 pt-4 mx-auto">
+                    <div class="flex flex-wrap -mx-4">
+                        <!-- Section des catégories -->
+                        <section class="flex justify-center w-full px-4 my-2">
+                            <div id="platformSelect" class="flex flex-wrap justify-center gap-4">
+                                {% if categories is defined %}
+                                {% for category in categories %}
+                                    <div class="relative w-[150px] text-center text-base">
+                                        <h2 class="bg-[#09172b] border border-[#ECC33E] text-[#ebf1ff] px-4 py-2 rounded-lg hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" onclick="toggleDropdown('dropdown-menu-{{ category.id }}')" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu-{{ category.id }}">
+                                            {{ category.name }}
+                                        </h2>
+                                        <form id="dropdown-menu-{{ category.id }}" class="hidden text-left text-[#ebf1ff] text-absolute mt-2 bg-[#09172b] border border-[#ECC33E] shadow-lg rounded-md z-10 w-full" role="menu" aria-labelledby="dropdown-menu-{{ category.id }}">
+                                            {% for platform in category.platforms %}
+                                                <div class="px-2 space-x-2 w-full inline-flex py-2 hover:bg-[#ECC33E] hover:text-[#0C1D36] transition duration-300 cursor-pointer" role="menuitem">
+                                                    <input id="{{ platform.id }}" type="checkbox" name="{{ platform.name }}" value="{{ platform.id}}">
+                                                    <label for="{{ platform.name }}" class="">{{ platform.name }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        </form>
+                                    </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
             </section>
 
-        </section>
-
-
-
             <script>
-            // Function to get selected values from checkboxes
+            
+                // Function to get selected values from checkboxes
 
-            function getSelectedValues() {
-                 // Get all checkboxes
-                const checkGenres = document.querySelectorAll('#dropdown-menu-genre input[type="checkbox"]');
-                const checkPlatforms = document.querySelectorAll('#platformSelect input[type="checkbox"]');
-                
+                function getSelectedValues() {
+                        // Get all checkboxes
+                    const checkGenres = document.querySelectorAll('#dropdown-menu-genre input[type="checkbox"]');
+                    const checkPlatforms = document.querySelectorAll('#platformSelect input[type="checkbox"]');
+                    
 
-                // Get selected genres
-                const selectGenres = Array.from(checkGenres)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value)
-                    .join(',');
+                    // Get selected genres
+                    const selectGenres = Array.from(checkGenres)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value)
+                        .join(',');
 
-                // Get selected platforms
-                const selectPlatforms = Array.from(checkPlatforms)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value)
-                    .join(',');
+                    // Get selected platforms
+                    const selectPlatforms = Array.from(checkPlatforms)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value)
+                        .join(',');
 
 
-                // Get the form element
+                    // Get the form element
 
-                let getPlatform = document.getElementById('platformParam');
-                let getGenre = document.getElementById('genreParam');
+                    let getPlatform = document.getElementById('platformParam');
+                    let getGenre = document.getElementById('genreParam');
 
-                getPlatform.value = selectPlatforms;
-                getGenre.value = selectGenres;
+                    getPlatform.value = selectPlatforms;
+                    getGenre.value = selectGenres;
 
-                return {
-                    genres: selectGenres,
-                    platforms: selectPlatforms
-                };
-            }
+                    return {
+                        genres: selectGenres,
+                        platforms: selectPlatforms
+                    };
+                }
 
-            // Add event listeners to update selections in real-time
-            document.addEventListener('DOMContentLoaded', () => {
-                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    checkbox.addEventListener('change', () => {
-                        const selections = getSelectedValues();
-                        console.log('Selected Genres:', selections.genres);
-                        console.log('Selected Platforms:', selections.platforms);
-                        
+                // Add event listeners to update selections in real-time
+                document.addEventListener('DOMContentLoaded', () => {
+                    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => {
+                        checkbox.addEventListener('change', () => {
+                            const selections = getSelectedValues();
+                            console.log('Selected Genres:', selections.genres);
+                            console.log('Selected Platforms:', selections.platforms);
+                            
+                        });
                     });
                 });
-            });
 
             </script>
 
             {% if games.results|length == 0 %}
                 <div class="flex justify-center">
-                    <h2 class="text-2xl font-bold text-[#0C1D36]">Aucun jeu trouvé</h2>
+                    <h2 class="text-2xl font-bold text-[#0C1D36]"> Aucun jeu trouvé </h2>
                 </div>
             {% endif %}
-            
         
             <!-- Games Grid -->
-            <section class="grid py-10 gap-10 sm:gap-12 md:gap-16 lg:gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container mx-auto">
+            <section class="container grid grid-cols-1 gap-10 py-10 mx-auto sm:gap-12 md:gap-16 lg:gap-20 md:grid-cols-2 lg:grid-cols-4">
 
                 {% for game in games.results %}
                     <div class="bg-[#0C1D36] border-2 scale-105 border-[#ECC33E] shadow-md rounded-lg overflow-visible max-w-[300px] w-full mx-auto min-h-[500px] h-full flex flex-col justify-between relative">
@@ -149,11 +145,11 @@
                                     <span class="text-white font-bold text-[30px]">{{ averageScores[game.id] | number_format(1) }}</span>
                                 </div>
                             {% else %}
-                                <span class="text-white text-center font-bold text-xs">No Rating</span>
+                                <span class="text-xs font-bold text-center text-white">No Rating</span>
                             {% endif %}
                         </div>
 
-                        <div class="text-center py-10">
+                        <div class="py-10 text-center">
                             <h3 class="font-bold text-[18px] text-[#ECC33E]">{{ game.name }}</h3>
                         </div>
 
@@ -161,7 +157,7 @@
                             <img class="object-cover w-full h-full" src="{{ game.background_image }}" alt="{{ game.name }}">
                         </div>
 
-                        <div class="p-4 flex flex-col justify-around">
+                        <div class="flex flex-col justify-around p-4">
                             <div class="flex flex-wrap justify-evenly min-h-[120px] space-x-3">
                                 {% for platform in game.platforms %}
                                     <div class="flex">
@@ -261,7 +257,6 @@
                         <a href="{{ path('multiFiltre', { 'page': nextPageMutliFiltre + 1 }) }}" class="px-3 py-2 bg-[#ECC33E] text-[#0C1D36] rounded-lg hover:bg-[#ebf1ff] transition duration-300 text-sm sm:text-base">Next Page</a>
                     </div>
                 {% endif %}
-
             </div>
         </div>
     </section>

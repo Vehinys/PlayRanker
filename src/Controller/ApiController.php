@@ -146,7 +146,7 @@ class ApiController extends AbstractController
     /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
     #[Route('/jeux/multiFiltre/{page<\d+>?1}', name:'multiFiltre',methods: ['GET', 'POST'])]
-    public function multiSearch(
+    public function multiFiltre(
 
         int $page,
         Request $request, 
@@ -165,7 +165,7 @@ class ApiController extends AbstractController
         // Récupérer tous les genres disponibles
         $viewGenres = $genreRepository->findAll();
         
-        // // Vérifier si l'input est présent dans la requête
+        // Vérifier si l'input est présent dans la requête
         $input = $request->get('input');
         
         // Récupération des parametres de recherche
