@@ -9,11 +9,8 @@ use App\Entity\GamesList;
 use App\Repository\GameRepository;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
-use App\Repository\TopicRepository;
-use App\Repository\CategoryRepository;
 use App\Repository\GamesListRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -55,12 +52,8 @@ class ProfilController extends AbstractController
     public function index(
 
         string $username,
-        Request $request,
         TypeRepository $typeRepository,
         UserRepository $userRepository,
-        TopicRepository $topicRepository,
-        PaginatorInterface $paginatorInterface,
-        CategoryRepository $categoryForumRepository,
 
     ): Response {
     

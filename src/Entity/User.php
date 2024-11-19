@@ -206,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = 'UserDelete'; // username anonyme
         $this->avatar = null; // Supprime l'avatar
         $this->password = $passwordHasher->hashPassword($this, 'PasswordDelete'); // Hachage du nouveau mot de passe
-        $this->roles = ['ROLE_USERDELETE']; // Restaure le rôle par défaut
+        $this->roles = ['ROLE_USERDELETE'];
     }
 
 
