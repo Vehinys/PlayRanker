@@ -287,7 +287,7 @@
 .review-container {
   display: flex;                            /* Affichage en flex pour les éléments enfants */
   transition: transform 0.5s ease-in-out;   /* Transition pour le mouvement */
-  width: 1700%;                             /* Largeur totale des éléments enfants */
+  width: 1200%;                             /* Largeur totale des éléments enfants */
 }
 
 /* Carte d'un avis */
