@@ -215,6 +215,7 @@ class ApiController extends AbstractController
     public function detailJeu(
 
         string $id,
+        Request $request,
         ApiHttpClient $apiHttpClient,
         GameRepository $gameRepository,
         ScoreRepository $scoreRepository,
@@ -222,7 +223,6 @@ class ApiController extends AbstractController
         EntityManagerInterface $entityManager,
         PaginatorInterface $paginatorInterface,
         RatingCategoryRepository $ratingCategoryRepository,
-        Request $request
 
     ): Response {
 

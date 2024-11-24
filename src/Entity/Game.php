@@ -24,6 +24,36 @@ class Game
     #[ORM\Column]
     private array $data = [];
 
+    
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+    
+    public function getIdGameApi(): ?string
+    {
+        return $this->id_game_api;
+    }
+    
+    public function setIdGameApi(string $id_game_api): static
+    {
+        $this->id_game_api = $id_game_api;
+        
+        return $this;
+    }
+
     /**
      * @var Collection<int, Platform>
      */
@@ -54,35 +84,6 @@ class Game
         $this->gamesLists = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->scores = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getIdGameApi(): ?string
-    {
-        return $this->id_game_api;
-    }
-
-    public function setIdGameApi(string $id_game_api): static
-    {
-        $this->id_game_api = $id_game_api;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getData(): array

@@ -30,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email] // Validation pour vérifier que le champ contient une adresse e-mail valide
     private ?string $email = null; // Adresse e-mail de l'utilisateur
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type: 'string', length: 100)]
     private ?string $username = null; // username de l'utilisateur
 
     #[ORM\Column(nullable: true)]
