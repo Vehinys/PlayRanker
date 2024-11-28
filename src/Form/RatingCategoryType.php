@@ -17,6 +17,10 @@ class RatingCategoryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Category Rating Name',
+                'attr' => [
+                    'class' => 'form-control', 
+                    'placeholder' => 'Enter the Rating Category name'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a name for the Rating category.',

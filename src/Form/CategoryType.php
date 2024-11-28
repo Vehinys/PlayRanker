@@ -21,7 +21,7 @@ class CategoryType extends AbstractType
                 'attr' => [
                     'minlength' => 2,
                     'maxlength' => 100,
-                    'placeholder' => 'Add category'
+                    'placeholder' => 'Enter the category name',
                 ],
 
                 'constraints' => [

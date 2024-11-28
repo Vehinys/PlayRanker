@@ -21,7 +21,7 @@ class PlatformType extends AbstractType
                 'attr' => [
                     'minlength' => 2,
                     'maxlength' => 100,
-                    'placeholder' => 'Add platform'
+                    'placeholder' => 'Enter the platform name'
                 ],
 
                 'constraints' => [
