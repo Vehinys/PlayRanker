@@ -3,45 +3,45 @@
 {% block title %}Admin Dashboard - Edit Items{% endblock %}
 
 {% block body %}
-<div class="flex h-screen bg-[#97b4e0]">
-    <!-- Sidebar -->
-    <div class="w-64 bg-[#0C1D36] text-white flex flex-col">
-        <div class="p-6">
-            <h1 class="text-2xl text-[#ECC33E] font-bold">PlayRanker Admin</h1>
+    <div class="flex h-screen bg-[#97b4e0]">
+        <!-- Sidebar -->
+        <div class="w-64 bg-[#0C1D36] text-white flex flex-col">
+            <div class="p-6">
+                <h1 class="text-2xl text-[#ECC33E] font-bold">PlayRanker Admin</h1>
+            </div>
+            <nav class="mt-6 flex-1">
+                <h2 class="ml-3 my-6 text-xl text-[#ECC33E]"> My list </h2>
+
+                <a href="{{ path('admin') }}" class="block py-1 px-5 hover:bg-blue-700">Lists</a>
+                <h2 class="ml-3 my-6 text-xl text-[#ECC33E]" > My list ADD </h2>
+                <a href=" {{ path('type_new') }} " class="block py-1 px-5 hover:bg-blue-700">Add Type</a>
+                <a href=" {{ path('category.add') }} " class="block py-1 px-5 hover:bg-blue-700">Add Category</a>
+                <a href=" {{ path('platform.add') }} " class="block py-1 px-5 hover:bg-blue-700">Add Platform</a>
+                <a href=" {{ path('ratingcategory_add') }}" class="block py-1 px-5 hover:bg-blue-700">Add Rating Category</a> 
+            </nav>
         </div>
-        <nav class="mt-6 flex-1">
-            <h2 class="ml-3 my-6 text-xl text-[#ECC33E]"> My list </h2>
-
-            <a href="{{ path('admin') }}" class="block py-1 px-5 hover:bg-blue-700">Lists</a>
-            <h2 class="ml-3 my-6 text-xl text-[#ECC33E]" > My list ADD </h2>
-            <a href=" {{ path('type_new') }} " class="block py-1 px-5 hover:bg-blue-700">Add Type</a>
-            <a href=" {{ path('category.add') }} " class="block py-1 px-5 hover:bg-blue-700">Add Category</a>
-            <a href=" {{ path('platform.add') }} " class="block py-1 px-5 hover:bg-blue-700">Add Platform</a>
-            <a href=" {{ path('ratingcategory_add') }}" class="block py-1 px-5 hover:bg-blue-700">Add Rating Category</a> 
-        </nav>
-    </div>
 
 
-    <!-- Main Content -->
-    <div class="flex-1 overflow-x-hidden overflow-y-auto">
-        <div class="container mx-auto px-6 py-8">
-            <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Edit a Platform</h2>
-        
-            <div class="bg-[#0C1D36] shadow-md rounded p-6">
-                <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Platform modification Form</h3>
+        <!-- Main Content -->
+        <div class="flex-1 overflow-x-hidden overflow-y-auto">
+            <div class="container mx-auto px-6 py-8">
+                <h2 class="text-3xl font-semibold text-[#ECC33E] mb-6">Edit a Platform</h2>
+            
+                <div class="bg-[#0C1D36] shadow-md rounded p-6">
+                    <h3 class="text-xl text-[#ECC33E] font-bold mb-4">Platform modification Form</h3>
 
-                {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
-                    <div class="mb-4 space-y-4">
-                        {{ form_label(form.name, null, {'label_attr': {'class': 'block text-[#ECC33E] mb-2'}}) }}
-                        {{ form_widget(form.name, {'attr': {'class': 'w-full p-3 text-gray-800 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
-                    </div>
+                    {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+                        <div class="mb-4 space-y-4">
+                            {{ form_label(form.name, null, {'label_attr': {'class': 'block text-[#ECC33E] mb-2'}}) }}
+                            {{ form_widget(form.name, {'attr': {'class': 'w-full p-3 text-gray-800 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                        </div>
 
-                    <div class="flex justify-end">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Save Changes</button>
-                    </div>
-                {{ form_end(form) }}
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Save Changes</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
