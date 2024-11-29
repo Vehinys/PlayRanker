@@ -126,52 +126,48 @@
 // ---------------------------------------- DROPDOWN ADMIN ---------------------------------------- //  
 // ------------------------------------------------------------------------------------------------ //
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const dropdowns = [
-            { buttonId: "dropdown-types", menuId: "dropdown-types-menu" },
-            { buttonId: "dropdown-categories", menuId: "dropdown-categories-menu" },
-            { buttonId: "dropdown-platforms", menuId: "dropdown-platforms-menu" },
-            { buttonId: "dropdown-rating", menuId: "dropdown-rating-menu" }
-        ];
+document.addEventListener("DOMContentLoaded", function() {
+    const dropdowns = [
+        { buttonId: "dropdown-types", menuId: "dropdown-types-menu" },
+        { buttonId: "dropdown-categories", menuId: "dropdown-categories-menu" },
+        { buttonId: "dropdown-platforms", menuId: "dropdown-platforms-menu" },
+        { buttonId: "dropdown-rating", menuId: "dropdown-rating-menu" }
+    ];
 
-        // Fonction pour fermer tous les dropdowns sauf celui spécifié
-        function closeAllDropdowns(exceptMenu = null) {
-            dropdowns.forEach(d => {
-                const menu = document.getElementById(d.menuId);
-                if (menu !== exceptMenu) {
-                    menu.classList.add("hidden");
+    // Fonction pour fermer tous les dropdowns sauf celui spécifié
+    function closeAllDropdowns(exceptMenu = null) {
+        dropdowns.forEach(d => {
+            const menu = document.getElementById(d.menuId);
+            if (menu !== exceptMenu) {
+                menu.classList.add("hidden");
+            }
+        });
+    }
+
+    // Boucle à travers chaque dropdown pour ajouter les événements de clic
+    dropdowns.forEach(dropdown => {
+        const dropdownButton = document.getElementById(dropdown.buttonId);
+        const dropdownMenu = document.getElementById(dropdown.menuId);
+
+        if (dropdownButton && dropdownMenu) {
+            dropdownButton.addEventListener("click", function(event) {
+                // Empêche le clic de se propager à l'écouteur de clic global
+                event.stopPropagation();
+                const isHidden = dropdownMenu.classList.contains("hidden");
+                closeAllDropdowns(); // Ferme tous les autres dropdowns
+                if (isHidden) {
+                    dropdownMenu.classList.remove("hidden"); // Affiche le menu courant
                 }
             });
         }
-
-        // Boucle à travers chaque dropdown pour ajouter les événements de clic
-        dropdowns.forEach(dropdown => {
-            const dropdownButton = document.getElementById(dropdown.buttonId);
-            const dropdownMenu = document.getElementById(dropdown.menuId);
-
-            if (dropdownButton && dropdownMenu) {
-                dropdownButton.addEventListener("click", function(event) {
-                    // Empêche le clic de se propager à l'écouteur de clic global
-                    event.stopPropagation();
-                    closeAllDropdowns(dropdownMenu);
-                    dropdownMenu.classList.toggle("hidden");
-                });
-            }
-
-        });
-
-        // Un seul événement pour fermer tous les dropdowns en cas de clic à l'extérieur
-        document.addEventListener("click", function(event) {
-            let clickedInsideDropdown = dropdowns.some(dropdown => {
-                return event.target.closest(`#${dropdown.menuId}`) || event.target.closest(`#${dropdown.buttonId}`);
-            });
-
-            // Si le clic est à l'extérieur des menus et des boutons, tout fermer
-            if (!clickedInsideDropdown) {
-                closeAllDropdowns();
-            }
-        });
     });
+
+    // Un seul événement pour fermer tous les dropdowns en cas de clic à l'extérieur
+    document.addEventListener("click", function() {
+        closeAllDropdowns();
+    });
+});
+
 
 // ------------------------------------------------------------------------------------------------ //
 // ------------------------------------- DROPDOWN PAR CONSOLE ------------------------------------- // 

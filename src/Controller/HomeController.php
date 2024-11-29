@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,8 @@ class HomeController extends AbstractController
         CommentRepository $commentRepository,
         ScoreRepository $scoreRepository,
         UserRepository $userRepository,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        GameRepository $gameRepository,
         
     ): Response {
 
@@ -39,7 +41,6 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
     
         $comments = $commentRepository->findAll();
-
         
         // Récupérer tous les utilisateurs
         $users = $userRepository->findAll();
