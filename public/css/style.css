@@ -133,7 +133,7 @@
 
 .word-animation .red {
   font-size: 60px;                          /* Taille agrandie pour l'effet */
-  color: red;                             /* Couleur rouge pour mise en avant */
+  color: var(--color-yellow);               /* Couleur rouge pour mise en avant */
   display: flex;                            /* Flex pour alignement */
 }
 
